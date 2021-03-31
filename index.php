@@ -17,5 +17,5 @@ $conn->query(CREATE TABLE student (
     major VARCHAR(20) DEFAULT 'undecided'
 );)
 
-echo $conn->query(SELECT * from student;)
+$conn->query(SELECT * from student;)
 ?>
