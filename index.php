@@ -11,11 +11,4 @@ $query_builder = TRUE;
 // Connect to DB
 $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
 
-$conn->query(CREATE TABLE student (
-    student_id INT PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(20),
-    major VARCHAR(20) DEFAULT 'undecided'
-);)
-
-$conn->query(SELECT * from student;)
 ?>
