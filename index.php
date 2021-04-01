@@ -1,24 +1,16 @@
 <?php
-//Get Heroku ClearDB connection information
-$cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$cleardb_server = $cleardb_url["host"];
-$cleardb_username = $cleardb_url["user"];
-$cleardb_password = $cleardb_url["pass"];
-$cleardb_db = substr($cleardb_url["path"],1);
-$active_group = 'default';
-$query_builder = TRUE;
 
-// Connect to DB
-$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-if ($conn->connect_error) {
+$link = new mysqli($_SERVER['database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com'], $_SERVER['admin'], $_SERVER['12345678'], $_SERVER['database-1'], $_SERVER['3306']);
+// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+if ($link->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
 echo "Hello world"
 
-$sql = "SELECT * from student;"
+// $sql = "SELECT * from student;"
 
-echo $sql
+// echo $sql
 // $result = $conn->query($sql);
 // if ($result->num_rows > 0) {
 //     // output data of each row
