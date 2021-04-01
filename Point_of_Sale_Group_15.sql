@@ -106,8 +106,8 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`shopping_cart` (
   `cart_quantity` VARCHAR(45) NULL,
   PRIMARY KEY (`customer_id`, `upc`),
   INDEX `upc_idx` (`upc` ASC),
-  CONSTRAINT `customer_id`
-    FOREIGN KEY (`customer_id`)
+  CONSTRAINT `cart_customer_id`
+    FOREIGN KEY (`cart_customer_id`)
     REFERENCES `Point_of_Sale`.`customer` (`customer_id`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT,
@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`shipping_address` (
   `zip` INT(8) UNSIGNED NOT NULL,
   `state` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`customer_id`),
-  CONSTRAINT `customer_id`
+  CONSTRAINT `address_customer_id`
     FOREIGN KEY (`customer_id`)
     REFERENCES `Point_of_Sale`.`customer` (`customer_id`)
     ON DELETE CASCADE
@@ -146,7 +146,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`billing_info` (
   `cvv` INT(3) UNSIGNED NOT NULL,
   `exp_date` DATE NOT NULL,
   PRIMARY KEY (`customer_id`),
-  CONSTRAINT `customer_id`
+  CONSTRAINT `billing_customer_id`
     FOREIGN KEY (`customer_id`)
     REFERENCES `Point_of_Sale`.`customer` (`customer_id`)
     ON DELETE CASCADE
@@ -187,7 +187,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`billing_address` (
   `zip` INT(8) UNSIGNED NOT NULL,
   `state` VARCHAR(15) NOT NULL,
   PRIMARY KEY (`customer_id`),
-  CONSTRAINT `customer_id`
+  CONSTRAINT `billing_address_customer_id`
     FOREIGN KEY (`customer_id`)
     REFERENCES `Point_of_Sale`.`customer` (`customer_id`)
     ON DELETE CASCADE
@@ -207,7 +207,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`product_update` (
   PRIMARY KEY (`update_id`),
   INDEX `employee_id_idx` (`employee_id` ASC),
   INDEX `upc_idx` (`upc` ASC),
-  CONSTRAINT `employee_id`
+  CONSTRAINT `product_update_employee_id`
     FOREIGN KEY (`employee_id`)
     REFERENCES `Point_of_Sale`.`employee` (`employee_id`)
     ON DELETE NO ACTION
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`support_ticket` (
     REFERENCES `Point_of_Sale`.`order` (`o_id`)
     ON DELETE NO ACTION
     ON UPDATE RESTRICT,
-  CONSTRAINT `c_id`
+  CONSTRAINT `support_c_id`
     FOREIGN KEY (`c_id`)
     REFERENCES `Point_of_Sale`.`customer` (`customer_id`)
     ON DELETE NO ACTION
