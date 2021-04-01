@@ -35,8 +35,8 @@ $connect->close()
     <!-- <button type="button" onClick=>Jack</button> -->
     <?php
         if(isset($_POST['btn-jack'])){
-            $result = $connect->query("SELECT major FROM student WHERE name='Jack'");
-            print_r($result);
+            $result = $connect->query("SELECT major FROM student WHERE name = 'Jack' ");
+            echo "<tr><td>".$result. "</tr></td>";
         }
     ?>
 
