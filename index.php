@@ -6,7 +6,7 @@ if(isset($_POST['btn-jack'])){
 
     echo "<table>";
     while($kid = mysqli_fetch_array($result)){
-        echo "<tr><td>". $kid['name']. "</td></tr>";
+        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
     }
     echo "</table>";
 }
@@ -34,7 +34,7 @@ if(isset($_POST['btn-jack'])){
     </center>
     
 	<br>
-    
+
 	<?php print_r($results);?>
 </body>
 </html>
