@@ -17,13 +17,13 @@ $results = $result->fetch_all();
 
 if(isset($_POST['btn-jack'])){
     $result = $connect->query("select * from student");
+
+    echo "<table>";
     while($kid = mysqli_fetch_array($result)){
         echo "<tr><td>". $kid['name']. "</td></tr>";
     }
+    echo "</table>";
 }
-
-// $connect->close()
-
 ?>
 <!DOCTYPE html>
 
@@ -38,11 +38,6 @@ if(isset($_POST['btn-jack'])){
 </head>
 <body>
 	<h1>This is the index page</h1>
-
-    <!-- <button type="button" onClick=>Jack</button> -->
-    <?php
-      
-    ?>
 
     <form method="post">
         <input type="submit" name="btn-jack" value="Jack">
