@@ -1,31 +1,26 @@
 <?php
-//Get Heroku ClearDB connection information
-// $cleardb_url = parse_url(getenv("CLEARDB_DATABASE_URL"));
-$cleardb_server = $cleardb_url["database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com"];
-$cleardb_username = $cleardb_url["admin"];
-$cleardb_password = $cleardb_url["12345678"];
-$cleardb_db = substr($cleardb_url["path"],1);
-$active_group = 'default';
-$query_builder = TRUE;
+$servername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
+$username = "admin";
+$password = "12345678";
+$dbname = "database-1";
 
-// Connect to DB
-$conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
 if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+  die("Connection failed: " . $conn->connect_error);
 }
-
-echo "Hello world"
 
 $sql = "SELECT student_id, name, major FROM student";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-      echo "id: " . $row["student_id"]. " - Name: " . $row["name"]. " " . $row["major"]. "<br>";
-    }
-  } else {
-    echo "0 results";
+  // output data of each row
+  while($row = $result->fetch_assoc()) {
+    echo "id: " . $row["student_id"]. " - Name: " . $row["name"]. " " . $row["major"]. "<br>";
   }
-
+} else {
+  echo "0 results";
+}
+$conn->close();
 ?>
