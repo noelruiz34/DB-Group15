@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 
 echo "Hello world"
 
-$sql = "SELECT * from student";
+// $sql = "SELECT * from student";
 
 // echo $sql
 // $result = $conn->query($sql);
