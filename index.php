@@ -13,11 +13,11 @@ if ($conn->connect_error) {
 
 echo "Hello world"
 
-$sql = "SELECT * from student;"
+$sql = "SELECT * from student";
 
 // echo $sql
 $result = $conn->query($sql);
-echo $result
+// echo $result
 // if ($result->num_rows > 0) {
 //     // output data of each row
 //     while($row = $result->fetch_assoc()) {
