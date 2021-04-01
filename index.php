@@ -25,6 +25,8 @@ if(isset($_POST['btn-jack'])){
 	<title>My website</title>
 </head>
 <body>
+    
+    <a href="rules_status.html">Rules</a>
 	<h1>This is the index page</h1>
 
     <center style="margin-top: 2%">
