@@ -107,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`shopping_cart` (
   PRIMARY KEY (`customer_id`, `upc`),
   INDEX `upc_idx` (`upc` ASC),
   CONSTRAINT `cart_customer_id`
-    FOREIGN KEY (`cart_customer_id`)
+    FOREIGN KEY (`customer_id`)
     REFERENCES `Point_of_Sale`.`customer` (`customer_id`)
     ON DELETE CASCADE
     ON UPDATE RESTRICT,
