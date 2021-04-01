@@ -16,7 +16,7 @@ $results = $result->fetch_all();
 
 
 if(isset($_POST['btn-jack'])){
-    $result = $connect->query("SELECT major FROM student WHERE name = 'Jack' ");
+    $result = $connect->query("SELECT major FROM student");
     echo "<tr><td>".$result->fetch_all(). "</tr></td>";
 }
 
