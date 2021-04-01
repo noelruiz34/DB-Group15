@@ -39,11 +39,11 @@ if(isset($_POST['btn-jack'])){
 <body>
 	<h1>This is the index page</h1>
 
-    <div style="margin-top: 2%">
+    <center style="margin-top: 2%">
         <form method="post">
             <input type="submit" name="btn-jack" value="Jack">
         </form>
-    </div>
+    </center>
     
 	<br>
 	<?php print_r($results);?>
