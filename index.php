@@ -2,7 +2,7 @@
 $servername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
 $username = "admin";
 $password = "12345678";
-$dbname = "database-1";
+$dbname = "aws";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -23,4 +23,5 @@ if ($result->num_rows > 0) {
   echo "0 results";
 }
 $conn->close();
+
 ?>
