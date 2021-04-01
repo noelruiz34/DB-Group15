@@ -16,8 +16,8 @@ $results = $result->fetch_all();
 
 
 if(isset($_POST['btn-jack'])){
-    $result = $connect->query("SELECT major FROM student");
-    echo "<tr><td>".$result->fetch_all(). "</tr></td>";
+    $result = $connect->query("SELECT * FROM student");
+    echo "<tr><td>".$result->fetch_all()."</tr></td>";
 }
 
 // $connect->close()
