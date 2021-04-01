@@ -1,9 +1,14 @@
 <?php
 
-$link = new mysqli($_SERVER['database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com'], $_SERVER['admin'], $_SERVER['12345678'], $_SERVER['database-1'], $_SERVER['3306']);
-// $conn = mysqli_connect($cleardb_server, $cleardb_username, $cleardb_password, $cleardb_db);
-if ($link->connect_error) {
-    die("Connection failed: " . $link->connect_error);
+$dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
+$dbUser = "admin";
+$dbPass = "12345678";
+$dbName = "database-1";
+
+// $link = new mysqli($_SERVER['database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com'], $_SERVER['admin'], $_SERVER['12345678'], $_SERVER['database-1'], $_SERVER['3306']);
+$conn = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
 }
 
 echo "Hello world"
