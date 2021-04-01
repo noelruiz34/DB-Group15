@@ -15,7 +15,12 @@ $result = $connect->query("select * from student");
 $results = $result->fetch_all();
 
 
-$connect->close()
+if(isset($_POST['btn-jack'])){
+    $result = $connect->query("SELECT major FROM student WHERE name = 'Jack' ");
+    echo "<tr><td>".$result->fetch_all(). "</tr></td>";
+}
+
+// $connect->close()
 
 ?>
 <!DOCTYPE html>
@@ -34,10 +39,7 @@ $connect->close()
 
     <!-- <button type="button" onClick=>Jack</button> -->
     <?php
-        if(isset($_POST['btn-jack'])){
-            $result = $connect->query("SELECT major FROM student WHERE name = 'Jack' ");
-            echo "<tr><td>".$result. "</tr></td>";
-        }
+      
     ?>
 
     <form method="post">
