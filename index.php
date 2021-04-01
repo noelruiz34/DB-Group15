@@ -11,7 +11,20 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-echo "Hello world"
+$test_query = "SHOW TABLES FROM $dbname";
+$result = mysql_query($test_query);
+
+$tblCnt = 0;
+while($tbl = mysql_fetch_array($result)) {
+  $tblCnt++;
+  #echo $tbl[0]."<br />\n";
+}
+
+if (!$tblCnt) {
+  echo "There are no tables<br />\n";
+} else {
+  echo "There are $tblCnt tables<br />\n";
+}
 
 // $sql = "SELECT * from student";
 
