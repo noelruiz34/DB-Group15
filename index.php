@@ -16,8 +16,12 @@ $results = $result->fetch_all();
 
 
 if(isset($_POST['btn-jack'])){
-    $result = $connect->query("SELECT * FROM student");
-    echo "<tr><td>"$result->fetch_all()"</td></tr>";
+    $result = $connect->query("select * from student");
+    while($kid = mysqli_fetch_array($result)){
+        echo "<tr><td>". $result->fetch_all(). "</td></tr>";
+    }
+
+    
 }
 
 // $connect->close()
