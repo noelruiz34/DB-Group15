@@ -11,6 +11,12 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
+$result = $connect->query("select * from student");
+$results = $result->fetch_all();
+
+print_r($results);
+
+$connect->close()
 // $test_query = "SHOW TABLES FROM $dbName";
 // $result = mysqli_query($test_query);
 
@@ -25,4 +31,7 @@ if($connect->connect_error) {
 // } else {
 //   echo "There are $tblCnt tables<br />\n";
 // }
+
+
+?>
 
