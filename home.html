@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        Title
+    </head>
+    <body>
+        Hello world
+
+        <?php
+            include 'index2.php'
+            $result = $connect->query("select * from student")
+            $results = $result->fetch_all();
+
+            print_r($results);
+
+            $connect->close()
+        ?>
+
+    </body>
+</html>
