@@ -32,8 +32,17 @@ $connect->close()
 <body>
 	<h1>This is the index page</h1>
 
-    <button type="button" onClick=>Jack</button>
-    <input type="submit" name="" value="Jack">
+    <!-- <button type="button" onClick=>Jack</button> -->
+    <?php
+        if(isset($_POST['btn-jack'])){
+            $result = $connect->query("SELECT major FROM student WHERE name='Jack'");
+            print_r($result);
+        }
+    ?>
+
+    <form method="post">
+        <input type="submit" name="btn-jack" value="Jack">
+    </form>
 	<br>
 	<?php print_r($results);?>
 </body>
