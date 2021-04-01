@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`product_update` (
     REFERENCES `Point_of_Sale`.`employee` (`employee_id`)
     ON DELETE NO ACTION
     ON UPDATE RESTRICT,
-  CONSTRAINT `upc`
+  CONSTRAINT `product_update_upc`
     FOREIGN KEY (`upc`)
     REFERENCES `Point_of_Sale`.`product` (`upc`)
     ON DELETE NO ACTION
@@ -234,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`support_ticket` (
   PRIMARY KEY (`t_id`),
   INDEX `o_id_idx` (`o_id` ASC),
   INDEX `customer_id_idx` (`c_id` ASC),
-  CONSTRAINT `o_id`
+  CONSTRAINT `support_o_id`
     FOREIGN KEY (`o_id`)
     REFERENCES `Point_of_Sale`.`order` (`o_id`)
     ON DELETE NO ACTION
