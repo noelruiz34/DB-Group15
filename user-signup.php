@@ -77,8 +77,6 @@ if (!isset($_POST['billing_same']) &&
 }
 
 
-
-
 //Connect to DB
 
 $dsn = 'mysql:host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';
