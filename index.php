@@ -25,7 +25,7 @@ include 'db.php';
 
         if (x.style.display === "none") {
             x.style.display = "block";
-            var y = document.getElementById(`R ${id}`);
+            var y = document.getElementById(`${id}`);
             y.style.backgroundColor = "rgba(0,0, 0,.5)";
         } else {
             var y = document.getElementById(`R ${id}`);
@@ -76,7 +76,7 @@ include 'db.php';
 
             echo "<table>";
             while($kid = mysqli_fetch_array($result)){
-                echo "<tr onclick='show(".$kid['name'].") ><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+                echo "<tr onclick='show(".$kid['name'].") id ='".$kid['name'].'"><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
             }
             echo "</table>";
         ?>
