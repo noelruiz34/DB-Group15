@@ -1,27 +1,27 @@
 <?php 
 include 'db.php';
-
-if(isset($_POST['btn-jack'])){
-    $result = $connect->query("select * from student");
-
-    echo "<table>";
-    while($kid = mysqli_fetch_array($result)){
-        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-    }
-    echo "</table>";
-}
-
 ?>
+
 
 <!DOCTYPE html>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <script>
-    function getMajor() {
-        $
-    }
+    $(document).ready(function() {
+        var count = 2;
+         $("button").click(function() {
+            count = count + 1;
+            $("#comments").load("testingDB.php", {
+                 numberOfStudents: count
+            });
+         });
+    });
+    
 </script>
+
 <html>
-<head>
+<head>  
 	<title>My website</title>
 </head>
 <body>
@@ -35,11 +35,7 @@ if(isset($_POST['btn-jack'])){
         <a href="customer_login.php"><button>Log in</button></a>
     </p>
 
-    <center style="margin-top: 2%">
-        <form method="post">
-            <input type="submit" name="btn-jack" value="Jack">
-        </form>
-    </center>
+   
 
     <h1>Categories</h1>
     <font size="+2">
@@ -49,7 +45,26 @@ if(isset($_POST['btn-jack'])){
     <p> display of items down here </p>
     
 	<br>
+    <center style="margin-top: 2%">
+        <form method="post">
+            <input type="submit" name="btn-jack" value="Jack">
 
-	<?php print_r($results);?>
+
+        </form>
+    </center>
+
+    <div id="comments">
+        <?php
+            $sql = "select * from student limit 2";
+            $result = $connect->query($sql);
+
+            echo "<table>";
+            while($kid = mysqli_fetch_array($result)){
+                echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+            }
+            echo "</table>";
+        ?>
+    </div>
+    <button> Show one more </button>
 </body>
 </html>
