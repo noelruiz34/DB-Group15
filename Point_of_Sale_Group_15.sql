@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS `Point_of_Sale`.`customer` (
   `password` VARCHAR(50) NOT NULL,
   `f_name` VARCHAR(32) NULL,
   `l_name` VARCHAR(32) NULL,
-  `billing_info` VARCHAR(45) NULL,
   `phone_number` INT(10) NULL,
   PRIMARY KEY (`customer_id`))
 ENGINE = InnoDB;
