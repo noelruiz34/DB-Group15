@@ -2,11 +2,11 @@
 include 'db.php';
 
 
-    $result = $connect->query("select * from student");
+    $result = $connect->query("select category_name from product_category");
 
     echo "<table>";
     while($kid = mysqli_fetch_array($result)){
-        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+        echo "<tr><td>". $kid['category_name']. "</td> <td>". $kid['category_id']. "</td></tr>";
     }
     echo "</table>";
 
