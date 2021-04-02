@@ -4,21 +4,21 @@ session_start();
 
 // Variables from POST
 
-$email = $_POST['email'];
+$email = strtolower($_POST['email']);
 $password = $_POST['password'];
 $passwordConfirm = $_POST['password_confirm'];
-$firstName = $_POST['firstname'];
-$lastName = $_POST['lastname'];
+$firstName = ucwords(strtolower($_POST['firstname']));
+$lastName = ucwords(strtolower($_POST['lastname']));
 $phone = $_POST['phone'];
 
-$street = $_POST['street'];
-$city = $_POST['city'];
+$street = ucwords(strtolower($_POST['street']));
+$city = ucwords(strtolower($_POST['city']));
 $state = strtoupper($_POST['state']);
 $zip = $_POST['zip'];
 
-$billstreet = $_POST['billstreet'];
-$billcity = $_POST['billcity'];
-$billstate = $_POST['billstate'];
+$billstreet = ucwords(strtolower($_POST['billstreet']));
+$billcity = ucwords(strtolower($_POST['billcity']));
+$billstate = strtoupper($_POST['billstate']);
 $billzip = $_POST['billzip'];
 
 $ccNum = $_POST['cc_num'];
@@ -71,9 +71,9 @@ if (!isset($_POST['billing_same']) &&
     header('Location: register.php');
     exit;
 } elseif (isset($_POST['billing_same'])) {
-    $billstreet = $_POST['street'];
-    $billcity = $_POST['city'];
-    $billstate = $_POST['state'];
+    $billstreet = ucwords(strtolower($_POST['street']));
+    $billcity = ucwords(strtolower($_POST['city']));
+    $billstate = strtoupper($_POST['state']);
     $billzip = $_POST['zip'];
 }
 
