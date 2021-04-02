@@ -92,6 +92,7 @@ try {
     exit;
 }
 
+<<<<<<< HEAD
 $statement = $connection->prepare('SELECT * FROM customer WHERE email = :email');
 if ($statement) {
     $statement->execute([
@@ -173,5 +174,7 @@ if ($statement) {
         exit;
     }
 }
+=======
+>>>>>>> 55fc4a705823f3a8d527ba0b5b0d303155129628
 
 ?>
