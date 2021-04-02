@@ -4,8 +4,14 @@ include 'db.php';
 ?>
 <!DOCTYPE html>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+         $("button").click(function() {
+             $("#comments").load("testingDB.php");
+         });
+    });
 </script>
 
 <html>
@@ -36,19 +42,7 @@ include 'db.php';
     <center style="margin-top: 2%">
         <form method="post">
             <input type="submit" name="btn-jack" value="Jack">
-            <?php
 
-                if(isset($_POST['btn-jack'])){
-                    $result = $connect->query("select * from student");
-
-                    echo "<table>";
-                    while($kid = mysqli_fetch_array($result)){
-                        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-                    }
-                    echo "</table>";
-                }
-
-            ?>
 
         </form>
     </center>
