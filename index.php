@@ -1,15 +1,20 @@
 <?php 
 include 'db.php';
-
 ?>
+
+
 <!DOCTYPE html>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 
 <script>
     $(document).ready(function() {
+        var count = 2;
          $("button").click(function() {
-             $("#comments").load("testingDB.php");
+            count = count + 1;
+            $("#comments").load("testingDB.php", {
+                 numberOfStudents: count
+            });
          });
     });
 </script>
@@ -46,5 +51,9 @@ include 'db.php';
 
         </form>
     </center>
+
+    <div id="comments"></div>
+
+    <button> Lets see </button>
 </body>
 </html>
