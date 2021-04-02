@@ -1,17 +1,4 @@
-<?php 
-include 'db.php';
 
-if(isset($_POST['btn-jack'])){
-    $result = $connect->query("select * from student");
-
-    echo "<table>";
-    while($kid = mysqli_fetch_array($result)){
-        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-    }
-    echo "</table>";
-}
-
-?>
 
 <!DOCTYPE html>
 
@@ -50,6 +37,20 @@ if(isset($_POST['btn-jack'])){
     <center style="margin-top: 2%">
         <form method="post">
             <input type="submit" name="btn-jack" value="Jack">
+            <?php 
+include 'db.php';
+
+if(isset($_POST['btn-jack'])){
+    $result = $connect->query("select * from student");
+
+    echo "<table>";
+    while($kid = mysqli_fetch_array($result)){
+        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+    }
+    echo "</table>";
+}
+
+?>
         </form>
     </center>
 </body>
