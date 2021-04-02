@@ -1,3 +1,18 @@
+<?php 
+include 'db.php';
+
+
+    $result = $connect->query("select * from student");
+
+    echo "<table>";
+    while($kid = mysqli_fetch_array($result)){
+        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+    }
+    echo "</table>";
+
+
+?>
+
 <!DOCTYPE html>
 
 <html>
@@ -16,9 +31,10 @@
     </center>
 
 
+    <?php print_r($result);?>
 </body>
 </html>
 
 
-<?php 
+
 
