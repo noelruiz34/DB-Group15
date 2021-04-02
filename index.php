@@ -32,7 +32,7 @@ if(isset($_POST['btn-jack'])){
 
     <p align="right">
         <a href="index2.php"><button>Create account</button></a>
-        <a href="index2.php"><button>Log in</button></a>
+        <a href="customer_login.php"><button>Log in</button></a>
     </p>
 
     <center style="margin-top: 2%">
