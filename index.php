@@ -31,6 +31,7 @@ if(isset($_POST['btn-jack'])){
     <a href="index2.php">index2 page</a>
 
     <p align="right">
+        <a href="shopping_cart.php"><button>My Cart</button></a>
         <a href="register.php"><button>Create account</button></a>
         <a href="customer_login.php"><button>Log in</button></a>
     </p>
