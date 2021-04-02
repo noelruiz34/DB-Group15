@@ -11,13 +11,17 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
-$result = $connect->query("select * from product_category");
+$result = $connect->query("SELECT * FROM product_category");
 $results = $result->fetch_all();
-echo "<table>";
-while($category = mysqli_fetch_array($result)){
-    echo "<tr><td>". $category['category_name']. "</td></tr>";
+
+if ($result->num_rows > 0) {
+    echo "<table>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>". $row['category_name']. "</td></tr>";
+    }
+    echo "</table>";
 }
-echo "</table>";
+
 
 print_r($results);
 
