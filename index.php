@@ -28,6 +28,7 @@ if(isset($_POST['btn-jack'])){
     
     <a href="rules_status.html">Rules</a>
 	<h1>This is the index page</h1>
+    <a href="index2.php">Index Page</a>
 
     <center style="margin-top: 2%">
         <form method="post">
