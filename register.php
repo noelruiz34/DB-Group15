@@ -47,7 +47,7 @@
     <h3>Billing Info</h3>
     Credit card number: <input type='text' id='cc_num' name='cc_num' pattern='[0-9]{16}' placeholder='16 digits' required/><br/>
     CVV: <input type='text' id='cvv' name='cvv' pattern='[0-9]{3}' placeholder='3 digits' required/><br/>
-    Expiration date: <input type='month' id='exp_date' name='exp_date' required/><br/>
+    Expiration date: <input type='month' id='exp_date' name='exp_date' min='<?php echo date("Y-m"); ?>' required/><br/>
     <br/>
 
     <input type='submit' id='register' value='Register'/>
