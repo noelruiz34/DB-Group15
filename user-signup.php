@@ -2,6 +2,8 @@
 
 session_start();
 
+// Variables from POST
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 $passwordConfirm = $_POST['password_confirm'];
@@ -22,6 +24,11 @@ $billzip = $_POST['billzip'];
 $ccNum = $_POST['cc_num'];
 $cvv = $_POST['cvv'];
 $expDate = $_POST['exp_date'];
+
+
+
+
+// Conditionals verifying correct input
 
 if (empty($email) ||
     empty($password) ||
@@ -47,6 +54,7 @@ if (strlen($password) < 7) {
     exit;
 }
 
+
 if ($password !== $passwordConfirm) {
     $_SESSION['messages'][] = 'Password and confirm password should match!';
     header('Location: register.php');
@@ -69,6 +77,9 @@ if (!isset($_POST['billing_same']) &&
 }
 
 
+
+
+//Connect to DB
 
 $dsn = 'mysql:host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';
 $dbUser = 'admin';
