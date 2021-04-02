@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $email = $_POST['email'];
 $password = $_POST['password'];
 $passwordConfirm = $_POST['password_confirm'];
@@ -34,25 +36,39 @@ if (empty($email) ||
     empty($ccNum) ||
     empty($cvv) ||
     empty($expDate)) {
-    die('Please fill all required fields!1' . $passwordConfirm);
+    $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:1)';
+    header('Location: register.php');
+    exit;
 }
 
-if ($data['password'] !== $data['password_confirm']) {
-    die('Password and Confirm password should match!');
+if (strlen($password) < 7) {
+    $_SESSION['messages'][] = 'Password must be at least 7 characters long!';
+    header('Location: register.php');
+    exit;
+}
+
+if ($password !== $passwordConfirm) {
+    $_SESSION['messages'][] = 'Password and confirm password should match!';
+    header('Location: register.php');
+    exit;
 }
 
 if (!isset($_POST['billing_same']) &&
-    (empty($data['billstreet']) ||
-    empty($data['billcity']) ||
-    empty($data['billstate']) ||
-    empty($data['billzip']))) {
-    die('Please fill all required fields!2');
+    (empty($billstreet) ||
+    empty($billcity) ||
+    empty($billstate) ||
+    empty($billzip))) {
+    $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:2)';
+    header('Location: register.php');
+    exit;
 } elseif (isset($_POST['billing_same'])) {
     $billstreet = $_POST['street'];
     $billcity = $_POST['city'];
     $billstate = $_POST['state'];
     $billzip = $_POST['zip'];
 }
+
+
 
 $dsn = 'mysql:host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';
 $dbUser = 'admin';
@@ -61,7 +77,9 @@ $dbPassword = '12345678';
 try {
     $connection = new PDO($dsn, $dbUser, $dbPassword);
 } catch (PDOException $expection) {
-    die('Connection failed: ' . $expection->getMessage());
+    $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
+    header('Location: register.php');
+    exit;
 }
 
 ?>

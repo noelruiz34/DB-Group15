@@ -11,12 +11,14 @@
   <i>All fields required for account creation</i><br/>
   <br/>
 
+  <?php require_once 'register-error-handling.php'; ?>
+  
   <form action='user-signup.php' method='POST'>
     <!-- Personal Info -->
     <h3>Personal Info</h3>
     E-mail address: <input type='email' id='email' name='email'/><br/>
     Password: <input type='password' id='password' name='password' placeholder='At least 7 characters'/><br/>
-    Re-enter password: <input type='password' id='password_confirm' name='repassword_confirm'/><br/>
+    Confirm password: <input type='password' id='password_confirm' name='password_confirm'/><br/>
     First name: <input type='text' id='firstname' name='firstname'/><br/>
     Last name: <input type='text' id='lastname' name='lastname'/><br/>
     Phone number: <input type='tel' id='phone' name='phone' placeholder='1234567890' pattern='[0-9]{10}' required/><br/>
