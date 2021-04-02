@@ -1,17 +1,4 @@
-<?php 
-include 'db.php';
 
-
-    $result = $connect->query("select category_name from product_category");
-
-    echo "<table>";
-    while($kid = mysqli_fetch_array($result)){
-        echo "<tr><td>". $kid['category_name']. "</td> <td>". $kid['category_id']. "</td></tr>";
-    }
-    echo "</table>";
-
-
-?>
 
 <!DOCTYPE html>
 
@@ -34,7 +21,20 @@ include 'db.php';
     <?php print_r($result);?>
 </body>
 </html>
+<?php 
+include 'db.php';
 
+
+    $result = $connect->query("select category_name from product_category");
+
+    echo "<table>";
+    while($kid = mysqli_fetch_array($result)){
+        echo "<tr><td>". $kid['category_name']. "</td> <td>". $kid['category_id']. "</td></tr>";
+    }
+    echo "</table>";
+
+
+?>
 
 
 
