@@ -14,7 +14,7 @@
         echo $email;
         
         $sql = "SELECT customer_id FROM customer WHERE email = '".$email."' AND password = '".$password."'";
-        $result = mysqli_query($connect, $sql);
+        $result = $connect -> query($sql);
         echo $result; /*
         $row = mysqli_fetch_array($result);
         
