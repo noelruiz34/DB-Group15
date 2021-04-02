@@ -7,12 +7,16 @@
     <?php 
     
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
-        include 'db.php';
-        
         $email = $_POST["email"];
         $password = $_POST["password"]; 
         echo $email;
-        
+        try {
+            $connect = new PDO($dsn, $dbUser, $dbPassword);
+        } catch (PDOException $expection) {
+            $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
+            header('Location: customer_login.php');
+            exit;
+        }
         $sql = "SELECT customer_id FROM customer WHERE email = '".$email."' AND password = '".$password."'";
         $result = $connect -> query($sql);
         echo $result; /*
