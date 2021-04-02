@@ -17,6 +17,23 @@ include 'db.php';
             });
          });
     });
+
+
+    function show(id) {
+        var x = document.getElementById(id);
+        collapseAll();
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            var y = document.getElementById(`R ${id}`);
+            y.style.backgroundColor = "rgba(0,0, 0,.5)";
+        } else {
+            var y = document.getElementById(`R ${id}`);
+            y.style.backgroundColor = "rbga(0,0,0,.08)";
+            x.style.display = "none";
+        }
+    }
+    
 </script>
 
 <html>
@@ -59,7 +76,7 @@ include 'db.php';
 
             echo "<table>";
             while($kid = mysqli_fetch_array($result)){
-                echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+                echo "<tr onclick='show(".$kid['name'].") ><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
             }
             echo "</table>";
         ?>
