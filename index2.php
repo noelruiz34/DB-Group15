@@ -11,8 +11,17 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
-$result = $connect->query("select * from student");
+$result = $connect->query("SELECT * FROM product_category");
 $results = $result->fetch_all();
+
+if ($result->num_rows > 0) {
+    echo "<table>";
+    while($row = $result->fetch_assoc()){
+        echo "<tr><td>". $row['category_name']. "</td></tr>";
+    }
+    echo "</table>";
+}
+
 
 print_r($results);
 
