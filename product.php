@@ -29,6 +29,7 @@ include 'db.php';
 
     echo "<table>";
     while($kid = mysqli_fetch_array($result)){
+        echo "<input type='button>";
         echo "<tr><td>". $kid['category_name']. "</td> <td>". $kid['category_id']. "</td></tr>";
     }
     echo "</table>";
