@@ -10,6 +10,9 @@
         $email = $_POST["email"];
         $password = $_POST["password"]; 
         echo $email;
+        $dsn = 'mysql:host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';
+        $dbUser = 'admin';
+        $dbPassword = '12345678';
         try {
             $connect = new PDO($dsn, $dbUser, $dbPassword);
         } catch (PDOException $expection) {
