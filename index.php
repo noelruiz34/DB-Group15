@@ -76,7 +76,7 @@ include 'db.php';
 
             echo "<table>";
             while($kid = mysqli_fetch_array($result)){
-                echo "<tr onclick='show('".$kid['name']."') id ='".$kid['name']."'><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+                echo "<tr onclick='show('".$kid['name'].")' id ='".$kid['name']."'><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
             }
             echo "</table>";
         ?>
