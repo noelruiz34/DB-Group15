@@ -52,29 +52,32 @@ include 'db.php';
         </form>
     </center>
 
-    <div id="comments"></div>
-    <?php
+    <div id="comments">
 
-        // if(isset($_POST['btn-jack'])){
-        //     $result = $connect->query("select * from student");
+        <?php
 
-        //     echo "<table>";
-        //     while($kid = mysqli_fetch_array($result)){
-        //         echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-        //     }
-        //     echo "</table>";
-        // }
+            // if(isset($_POST['btn-jack'])){
+            //     $result = $connect->query("select * from student");
 
-        $sql = "select * from student limit 2";
-        $result = $connect->query($sql);
+            //     echo "<table>";
+            //     while($kid = mysqli_fetch_array($result)){
+            //         echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+            //     }
+            //     echo "</table>";
+            // }
 
-        echo "<table>";
-        while($kid = mysqli_fetch_array($result)){
-            echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-        }
-        echo "</table>";
+            $sql = "select * from student limit 2";
+            $result = $connect->query($sql);
 
-    ?>
+            echo "<table>";
+            while($kid = mysqli_fetch_array($result)){
+                echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+            }
+            echo "</table>";
+
+        ?>
+    </div>
+    
 
     <button> Lets see </button>
 </body>
