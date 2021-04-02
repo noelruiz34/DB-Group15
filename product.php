@@ -19,9 +19,9 @@
 
 
     <?php print_r($result);?>
-</body>
-</html>
-<?php 
+
+
+    <?php 
 include 'db.php';
 
 
@@ -30,12 +30,20 @@ include 'db.php';
     echo "<table>";
     while($kid = mysqli_fetch_array($result)){
         
-        echo "<tr><td>". $kid['category_name']. "</td> <td>". $kid['category_id']. "</td></tr>";
+        echo "<tr><td>". $row['category_name']. "</td></tr>";
+        
+     // <button>Create account</button></a>
+       // <button type="button" onclick="alert('Hello world!')">Click Me!</button>;
+        
     }
     echo "</table>";
 
 
 ?>
+
+
+</body>
+</html>
 
 
 
