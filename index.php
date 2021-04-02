@@ -33,9 +33,6 @@ include 'db.php';
     <p> display of items down here </p>
     
 	<br>
-
-	<?php print_r($results) ;?>
-
     <center style="margin-top: 2%">
         <form method="post">
             <input type="submit" name="btn-jack" value="Jack">
