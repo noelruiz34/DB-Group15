@@ -27,14 +27,26 @@ if(isset($_POST['btn-jack'])){
 <body>
     
     <a href="rules_status.html">Rules</a>
-	<h1>This is the index page</h1>
+	<h1>Omazon</h1>
     <a href="index2.php">index2 page</a>
+
+    <p align="right">
+        <a href="index2.php"><button>Create account</button></a>
+        <a href="index2.php"><button>Log in</button></a>
+    </p>
 
     <center style="margin-top: 2%">
         <form method="post">
             <input type="submit" name="btn-jack" value="Jack">
         </form>
     </center>
+
+    <h1>Categories</h1>
+    <font size="+2">
+        Display all the categories from DB here somehow
+    </font>
+
+    <p> display of items down here </p>
     
 	<br>
 
