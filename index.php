@@ -15,13 +15,12 @@ if(isset($_POST['btn-jack'])){
 
 <!DOCTYPE html>
 
-<script>
-    function getMajor() {
-        $
-    }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">
+
 </script>
+
 <html>
-<head>
+<head>  
 	<title>My website</title>
 </head>
 <body>
@@ -35,11 +34,7 @@ if(isset($_POST['btn-jack'])){
         <a href="customer_login.php"><button>Log in</button></a>
     </p>
 
-    <center style="margin-top: 2%">
-        <form method="post">
-            <input type="submit" name="btn-jack" value="Jack">
-        </form>
-    </center>
+   
 
     <h1>Categories</h1>
     <font size="+2">
@@ -50,6 +45,12 @@ if(isset($_POST['btn-jack'])){
     
 	<br>
 
-	<?php print_r($results);?>
+	<?php print_r($results) ;?>
+
+    <center style="margin-top: 2%">
+        <form method="post">
+            <input type="submit" name="btn-jack" value="Jack">
+        </form>
+    </center>
 </body>
 </html>
