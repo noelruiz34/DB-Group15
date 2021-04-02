@@ -9,12 +9,13 @@
     if ($_SERVER["REQUEST_METHOD"]=="POST") {
         include 'db.php';
         
-        $email = mysqli_real_escape_string($_POST["email"]);
+        $email = $_POST["email"];
+        $password = $_POST["password"]; 
         echo $email;
-        $password = mysqli_real_escape_string($_POST["password"]); 
-        /*
-        $sql = "SELECT customer_id FROM customer WHERE email = '$email' and password = '$password'";
-        $result = connect->query($sql) or die("Failed to query database ".mysql_error());
+        
+        $sql = "SELECT customer_id FROM customer WHERE email = '".$email."' AND password = '".$password."'";
+        $result = mysqli_query($connect, $sql);
+        echo $result; /*
         $row = mysqli_fetch_array($result);
         
         $count = mysqli_num_rows($result);
