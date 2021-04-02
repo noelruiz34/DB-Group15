@@ -1,4 +1,18 @@
 <!DOCTYPE html>
+<?php
+$dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
+$dbUser = "admin";
+$dbPass = "12345678";
+$dbName = "Point_of_Sale";
+
+$connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName) or die("Unable to Connect to '$dbServername'");
+// mysqli_select_db($connect, $dbName) or die("Could not open the db '$dbName'");
+if($connect->connect_error) {
+    die('Bad connection'. $connect->connect_error);
+}
+
+
+?>
 
 <html>
 
@@ -18,11 +32,30 @@
    
 
     <h1>Categories</h1>
-    <font size="+2">
-        Display all the categories from DB here somehow
-    </font>
+    <?php
+    
+
+    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName) or die("Unable to Connect to '$dbServername'");
+    // mysqli_select_db($connect, $dbName) or die("Could not open the db '$dbName'");
+    if($connect->connect_error) {
+        die('Bad connection'. $connect->connect_error);
+    }
+
+    $result = $connect->query("SELECT * FROM product_category");
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+            {
+                echo $row['category_name'];
+                echo " ";
+            }
+    }
+    
+?>
+
     <?php 
-    include 'db.php';
+    //include 'db.php';
     ?>
 
     <p> display of items down here </p>
