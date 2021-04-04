@@ -85,6 +85,8 @@ if($connect->connect_error) {
     </div>
     <button> Show one more </button>
 
+    <a href="order_summer.php">Order lookup</a>
+
     <div style="potition: relative">
         <p style="position:fixed; bottom: 0; width:100%; text-align:center">
             <a href="employee_login.php">Employee Login</a>
