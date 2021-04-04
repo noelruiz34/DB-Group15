@@ -81,6 +81,8 @@ if($connect->connect_error) {
                 echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
             }
             echo "</table>";
+
+            include "sendemail.php";
         ?>
     </div>
     <button> Show one more </button>
