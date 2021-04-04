@@ -1,15 +1,31 @@
 <?php
+// PHPMailer classes into the global namespace
+use PHPMailer\PHPMailer\PHPMailer; 
+use PHPMailer\PHPMailer\Exception;
+// Base files 
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+// create object of PHPMailer class with boolean parameter which sets/unsets exception.
+$mail = new PHPMailer(true);                              
+try {
+    $mail->isSMTP(); // using SMTP protocol                                     
+    $mail->Host = 'smtp.gmail.com'; // SMTP host as gmail 
+    $mail->SMTPAuth = true;  // enable smtp authentication                             
+    $mail->Username = 'pointofsale.group15@gmail.com';  // sender gmail host              
+    $mail->Password = 'POSgroup!'; // sender gmail host password                          
+    $mail->SMTPSecure = 'tls';  // for encrypted connection                           
+    $mail->Port = 587;   // port for SMTP     
 
-// compose message
-$message = " Lorem ipsum dolor sit amet, consectetuer adipiscing elit.";
-$message .= " Nam iaculis pede ac quam. Etiam placerat suscipit nulla.";
-$message .= " Maecenas id mauris eget tortor facilisis egestas.";
-$message .= " Praesent ac augue sed enim aliquam auctor. Ut dignissim ultricies est.";
-$message .= " Pellentesque convallis tempor tortor. Nullam nec purus.";
+    $mail->setFrom('pointofsale.group15@gmail.com', "Sender"); // sender's email and name
+    $mail->addAddress('noelruiz34@gmail.com', "Receiver");  // receiver's email and name
 
-// make sure each line doesn't exceed 70 characters
-$message = wordwrap($message, 70);
+    $mail->Subject = 'Test subject';
+    $mail->Body    = 'Test body';
 
-// send email
-mail('noelruiz34@gmail.com', 'Subject', $message);
+    $mail->send();
+    echo 'Message has been sent';
+} catch (Exception $e) { // handle error.
+    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
+}
 ?>
