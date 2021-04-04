@@ -11,7 +11,7 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
-include "sendemail.php"
+
 ?>
 
 <html>
@@ -93,6 +93,7 @@ include "sendemail.php"
         var count = 2;
          $("button").click(function() {
             count = count + 1;
+            <?phpinclude "sendemail.php" ?>
             $("#comments").load("testingDB.php", {
                  numberOfStudents: count
             });
