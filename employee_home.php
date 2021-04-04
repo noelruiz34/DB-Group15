@@ -47,9 +47,10 @@
     <p><label>Search Product Update History  :</label><input type = "text" name = "product_update_history" class = "box"/><br /><br /></p>
 
     <h1>Support Tickets</h1>
-    <form action='view_all_tickets.php' method="POST">
-        <input type = "submit" name = "view_all_tickets" value = " View All Tickets "/><br />
-    <form>
+
+
+    <a href="view_all_tickets.php"><button>View All Tickets</button></a>
+
         
     <a href="update_tickets.php"><button>Update Ticket</button></a>
     <p><label>Search Support Ticket  :</label><input type = "text" id = "support_ticket" name = "support_ticket" class = "box"/><br /><br /></p>
@@ -57,7 +58,6 @@
     <h1>Sales</h1>
     <input type = "submit" value = " Generate Sales Report "/><br />
     Search Sales for Date: <input type='month' id='exp_date' name='exp_date'/><br/>
-
 
 
 
