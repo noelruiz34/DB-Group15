@@ -11,6 +11,7 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
+include "sendemail.php";
 
 ?>
 
@@ -82,7 +83,6 @@ if($connect->connect_error) {
             }
             echo "</table>";
 
-            include "sendemail.php";
         ?>
     </div>
     <button> Show one more </button>
