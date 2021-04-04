@@ -29,7 +29,7 @@ include 'db.php';
 
     
         echo "<table>";
-        while($kid = mysqli_fetch_array($result)){
+        while($row = mysqli_fetch_array($result)){
             echo "<tr><td>". $row['category_name']. "</td></tr>";
         }
         echo "</table>";
