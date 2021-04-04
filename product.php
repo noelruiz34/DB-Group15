@@ -32,8 +32,10 @@ include 'db.php';
         while($row = mysqli_fetch_array($result)){
             //echo "<tr><td>". $row['category_name']. "</td></tr>";
 
-            print_r($row['category_name']);
-
+            //print_r($row['category_name']);
+            
+            
+            echo "<button>".$row['category']. "</button>";
         }
         echo "</table>";
     //
