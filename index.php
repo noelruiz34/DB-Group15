@@ -93,7 +93,6 @@ if($connect->connect_error) {
         var count = 2;
          $("button").click(function() {
             count = count + 1;
-            
             $("#comments").load("testingDB.php", {
                  numberOfStudents: count
             });
