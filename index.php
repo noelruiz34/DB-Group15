@@ -11,7 +11,7 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
-
+include "sendemail.php"
 ?>
 
 <html>
