@@ -84,6 +84,12 @@ if($connect->connect_error) {
         ?>
     </div>
     <button> Show one more </button>
+
+    <div style="potition: relative">
+        <p style="position:fixed; bottom: 0; width:100%; text-align:center">
+            <a href="employee_login.php">Employee Login</a>
+        </p>
+    <div>
 </body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

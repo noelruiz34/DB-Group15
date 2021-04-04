@@ -50,31 +50,9 @@
     <form action='view_all_tickets.php' method="POST">
         <input type = "submit" name = "view_all_tickets" value = " View All Tickets "/><br />
     <form>
-    <form>
-        <a href="update_tickets.php"><button>Update Ticket</button></a>
-        <p><label>Search Support Ticket  :</label><input type = "text" id = "support_ticket" name = "support_ticket" class = "box"/><br /><br /></p>
-    <form>
-    <p>
-        <?php
-            if($_POST) {
-                $sql = "SELECT * FROM support_ticket";
-                $result = mysqli_query($connect,$sql);
-                if(!$result) {
-                    die("Query Failed!");
-                }
-                /*while($row=mysqli_fetch_array($result)) {
-                    echo $row['o_id'] ;
-                } */
-                echo "<table>";
-                    echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
-                    while($row=mysqli_fetch_array($result)){
-                        echo "<tr><td>". $row['o_id']. "</td><td>" . $row ['t_category'] . "</td><td>" . $row ['t_status'] . "</td></tr>";
-                    }
-                echo "</table>";
-            }
-        ?>
-    </p>
-
+        
+    <a href="update_tickets.php"><button>Update Ticket</button></a>
+    <p><label>Search Support Ticket  :</label><input type = "text" id = "support_ticket" name = "support_ticket" class = "box"/><br /><br /></p>
 
     <h1>Sales</h1>
     <input type = "submit" value = " Generate Sales Report "/><br />
