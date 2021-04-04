@@ -1,10 +1,15 @@
 <?php
-// The message
-$message = "Line 1\r\nLine 2\r\nLine 3";
 
-// In case any of our lines are larger than 70 characters, we should use wordwrap()
-$message = wordwrap($message, 70, "\r\n");
+// compose message
+$message = " Lorem ipsum dolor sit amet, consectetuer adipiscing elit.";
+$message .= " Nam iaculis pede ac quam. Etiam placerat suscipit nulla.";
+$message .= " Maecenas id mauris eget tortor facilisis egestas.";
+$message .= " Praesent ac augue sed enim aliquam auctor. Ut dignissim ultricies est.";
+$message .= " Pellentesque convallis tempor tortor. Nullam nec purus.";
 
-// Send
-mail('noelruiz34@gmail.com', 'My Subject', $message);
+// make sure each line doesn't exceed 70 characters
+$message = wordwrap($message, 70);
+
+// send email
+mail('noelruiz34@gmail.com', 'Subject', $message);
 ?>
