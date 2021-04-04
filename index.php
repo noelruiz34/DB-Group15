@@ -81,7 +81,6 @@ if($connect->connect_error) {
                 echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
             }
             echo "</table>";
-
         ?>
     </div>
     <button> Show one more </button>
@@ -94,7 +93,7 @@ if($connect->connect_error) {
         var count = 2;
          $("button").click(function() {
             count = count + 1;
-            $("#comments").load("sendemail.php", {
+            $("#comments").load("testingDB.php", {
                  numberOfStudents: count
             });
          });
