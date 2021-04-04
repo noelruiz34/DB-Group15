@@ -35,7 +35,7 @@ include 'db.php';
             //print_r($row['category_name']);
             
             
-            echo "<button>".$row['category']. "</button>";
+            echo "<button>".$row['category_name']. "</button>";
         }
         echo "</table>";
     //
