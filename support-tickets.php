@@ -13,9 +13,7 @@
     if(!$result) {
         die("Query Failed!");
     }
-    /*while($row=mysqli_fetch_array($result)) {
-        echo $row['o_id'] ;
-    } */
+
     echo "<table>";
         echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
         while($row=mysqli_fetch_array($result)){
