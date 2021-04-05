@@ -59,21 +59,22 @@ include 'db.php';
         echo '</form>';
 */
 
-echo '<form method="post" name="proddisp" action="">';
+echo "<form method='post' name='proddisp' action=''>";
  
 echo'<input type="submit" id="button" value =' .$row['category_name']. 'name="proddisp">';
 echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
-    ';
     echo "</form>";
 
         }
+
+
       //  echo "</table>";
     //
    
-    if(isset($_POST["proddisp"))
+    if(isset($_POST["proddisp"]))
             {
 
-            echo"print_r("Hello")";
+            echo"print_r('Hello')";
                 
             }
 
