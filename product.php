@@ -79,19 +79,21 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             /*echo"print_r('Hello')";
             print_r('hello');
             echo"hello";*/
-            /*$result2 = $connect->query("select p_name from product where p_category = ".$pcat." ");
+            $result2 = $connect->query("select p_name from product where p_category = ".$_POST["proddisp"]." ");
             $pcat = $_GET['value'];
             while($row = mysqli_fetch_array($result2)){
                 //echo($row['p_name']);
 
-                "<tr><td>". $row['p_name']. "</td></tr>";*/
-                echo($_REQUEST['name']);
+                "<tr><td>". $row['p_name']. "</td></tr>";
+
+            }
+               /* echo($_REQUEST['name']);
                 echo($_GET['id']);
                 echo($_GET['value']);
                 echo($_GET['name']);
                 echo("hello");
-                echo($_POST["proddisp"]);
-                
+                echo($_POST["proddisp"]);*/
+
             
                 
             }
