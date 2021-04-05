@@ -15,9 +15,9 @@
     }
 
     echo "<table>";
-        echo "<tr><td> Email ID </td><td> Recipient Email </td><td> Subject </td></tr>";
+        echo "<tr><td> Email ID </td><td> Recipient Email </td><td> Subject </td><td> Body </td></tr>";
         while($row=mysqli_fetch_array($result)){
-            echo "<tr><td>". $row['pending_email_id']. "</td><td>" . $row ['p_email'] . "</td><td>" . $row ['email_subject'] . "</td></tr>";
+            echo "<tr><td>". $row['pending_email_id']. "</td><td>" . $row ['p_email'] . "</td><td>" . $row ['email_subject'] . "</td><td>" . $row ['email_content'] . "</td></tr>";
         }
     echo "</table>";
 
