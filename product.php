@@ -68,7 +68,7 @@ include 'db.php';
 
                 //CREATE A VARIABLE THAT HOLDS THE SELECTED PRODUCTED TO BE ADDED TO CART
                    // $selectedProduct = $_POST["add_to_cart"];
-                print_r("helloworld");
+                echo("helloworld");
                 //echo 'Selected Product  = '.$selectedProduct;
 
             }
