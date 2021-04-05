@@ -47,7 +47,7 @@ include 'db.php';
 
             //echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name']." id ='submit'>";
             //echo "<input type='button' onclick='test()' name =".$row['category_name']." value = ".$row['category_name']." />";
-
+/*
             echo '<form method="post">';
             echo '<u>'.$row_all["name"].'</u>';
 
@@ -57,20 +57,24 @@ include 'db.php';
 
             echo '<hr>';
         echo '</form>';
+*/
 
+echo '<form method="post" name="proddisp" action="">';
+ 
+echo'<input type="submit" id="button" value =' .$row['category_name']. 'name="proddisp">';
+echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
+    ';
+    echo "</form>";
 
         }
       //  echo "</table>";
     //
    
-    if(isset($_POST[$row['category_name']]))
+    if(isset($_POST["proddisp"))
             {
 
-                //CREATE A VARIABLE THAT HOLDS THE SELECTED PRODUCTED TO BE ADDED TO CART
-                   // $selectedProduct = $_POST["add_to_cart"];
-                echo("helloworld");
-                //echo 'Selected Product  = '.$selectedProduct;
-
+            echo"print_r("Hello")";
+                
             }
 
 ?>
