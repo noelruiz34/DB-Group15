@@ -31,7 +31,7 @@ if($connect->connect_error) {
 
    
 
-    <h1>Categories</h1>
+    <h1> <a href="product.php">Product Categories</a></h1>
     <?php
     
 
