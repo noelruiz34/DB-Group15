@@ -33,15 +33,17 @@ include 'db.php';
             //echo "<tr><td>". $row['category_name']. "</td></tr>";
 
             //print_r($row['category_name']);
+            function test()
+            {
+                print_r("hello");
+            }
             
-            
-            //echo "<button>".$row['category_name']. "</button>";
-
-            echo "<input type='submit' name='submit' value = 'submit'>";
-            print_r("Hello");
+            echo "<button onclick = 'test()' >".$row['category_name']. "</button>";
+/*
+            echo "<input type='submit' name=".$row['category_name']." value = 'submit'>";
             if(isset($_POST['submit'])) {
                 print_r("Hello");
-                }
+                }*/
 
 
         }
