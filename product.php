@@ -88,8 +88,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 //echo($row['p_name']);
 
                 echo"<tr><td>". $row['p_name']. "</td></tr>";
-                echo"MIKE JONES";
-                echo"\r\n";
+                header('Content-type: text/plain');
+                
 
             }
 
