@@ -60,10 +60,12 @@ table{
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
+    width: 400px;
 }
 td {
     border: 1px solid black;
     border-spacing: 10px;
+
 }
 </style>
     <div>
