@@ -30,7 +30,7 @@ form.example input[type=text] {
   float: left;
   width: 60%;
   background: #f1f1f1;
-  margin-left: 20%;
+  margin-left: 10%;
 }
 
 form.example button {
@@ -53,6 +53,12 @@ form.example::after {
   content: "";
   clear: both;
   display: table;
+}
+
+table {
+    border: 1px solid black;
+    margin-left: auto;
+    margin-right: auto;
 }
 </style>
     <div>
