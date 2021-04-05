@@ -55,13 +55,15 @@ form.example::after {
   display: table;
 }
 
-tr {
+table {
     border: 1px solid black;
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
 }
-
+table.tr {
+    border: 1px solid black;
+}
 </style>
     <div>
         <center style="margin-top: 5%;font-size: 300%;">Order Summary</center>
