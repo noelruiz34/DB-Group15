@@ -35,7 +35,14 @@ include 'db.php';
             //print_r($row['category_name']);
             
             
-            echo "<button>".$row['category_name']. "</button>";
+            //echo "<button>".$row['category_name']. "</button>";
+
+            echo "<input type='submit' name='submit'>";
+            if(isset($_POST['submit'])) {
+                echo "hello";
+                }
+
+
         }
         echo "</table>";
     //
