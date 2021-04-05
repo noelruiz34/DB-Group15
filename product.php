@@ -35,12 +35,12 @@ include 'db.php';
     
         //echo "<table>";
         while($row = mysqli_fetch_array($result)){
-        $cat =  $row['category_name'];
-        echo($cat);
+       // $cat =  $row['category_name'];
+        //echo($cat);
 
 echo "<form method='post' name='proddisp' action=''>";
  
-echo'<input type="submit" id="button" name="proddisp" value ='.$row['category_name'].'>';
+echo'<input type="submit" id="button" name="proddisp" value ="'.$row['category_name'].'">';
 echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
     echo "</form>";
 
