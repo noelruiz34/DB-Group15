@@ -1,7 +1,5 @@
 <?php
 
-include "db.php";
-
 $order = $_POST["search"];
 
 // $sql = "select * from order where o_id = $order";
