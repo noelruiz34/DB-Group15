@@ -99,7 +99,7 @@ td {
         echo "</table>";
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
-        echo "<div> <center style=\"margin-top: 5%;font-size: 70%;\">Order Contents</center><hr style=\"width: 50%;margin-bottom: -5%;\"></div>";
+        echo "<div> <center style=\"margin-top: 5%;font-size: 70%;\">Order Contents</center><hr style=\"width: 50%;margin-bottom: 0%;\"></div>";
         echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
         while($item = mysqli_fetch_array($result))
         {
