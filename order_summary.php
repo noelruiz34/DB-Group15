@@ -74,21 +74,5 @@ form.example::after {
 
 </div>
 
-
-<div id="comments">
-
-    </div>
-    <button> Show one more </button>
 </body>
-<script>
-    $(document).ready(function() {
-        var count = 2;
-         $("button").click(function() {
-            count = count + 1;
-            $("#comments").load("testingDB.php", {
-                 numberOfStudents: count
-            });
-         });
-    });
-</script>
 </html> 
