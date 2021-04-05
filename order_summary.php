@@ -97,11 +97,10 @@ td {
         }
         echo "</table>";
 
-        $products = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
-        echo $products
+        $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
         echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
-        while($item = mysqli_fetch_array($products))
+        while($item = mysqli_fetch_array($result))
         {
             echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
