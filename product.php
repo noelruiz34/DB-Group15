@@ -18,8 +18,13 @@
     </center>
 
 
-    <?php print_r($result);?>
+    <?php print_r($result);
 
+     function test()
+            {
+                print_r("hello");
+            }
+            ?>
 
     <?php 
 include 'db.php';
@@ -40,8 +45,8 @@ include 'db.php';
             
            // echo "<button>".$row['category_name']. "</button>";
 
-            echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name']." id ='submit'>";
-
+            //echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name']." id ='submit'>";
+            echo "<input type='button' onclick='test()' name =".$row['category_name']." value = ".$row['category_name']." />";
 
         }
         echo "</table>";
