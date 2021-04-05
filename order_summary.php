@@ -65,7 +65,7 @@ form.example::after {
 
 <div id="order_info">
     <?php 
-    if(isset($_POST['Search'])){
+    if(isset($_POST['search'])){
     $result = $connect->query("select * from student");
 
     echo "<table>";
