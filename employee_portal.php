@@ -39,13 +39,12 @@
         
     ?>
 
-    <h1>Product</h1>
-    <a href="add_product.php"><button>Add Product</button></a>
-    <a href="update_product.php"><button>Update Product</button></a>
-    <a href="add_product_category.php"><button>Add Product Category</button></a>
+    <h1><a href="add-update-product.php"> Add/Update Product </a></h1>
+
+    <!--<a href="add_product_category.php"><button>Add Product Category</button></a>
     <a href="add_product_category.php"><button>Update Product Category</button></a>
     <p><label>Search Product Update History  :</label><input type = "text" name = "product_update_history" class = "box"/><br /><br /></p>
-
+    -->
     <h1>Support Tickets</h1>
 
 
