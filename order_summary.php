@@ -28,7 +28,7 @@ form.example input[type=text] {
   font-size: 17px;
   border: 1px solid grey;
   float: left;
-  width: 60%;
+  width: 55%;
   background: #f1f1f1;
   margin-left: 10%;
 }
