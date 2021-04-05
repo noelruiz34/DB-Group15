@@ -48,6 +48,8 @@
         </form>
         <p> Don't have an account yet? </p>
         <a href="register.php">Create account</a>
+        <br>
+        <a href="index.php">Back to Home</a>
     </center>
 
    
