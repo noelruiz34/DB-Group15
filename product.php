@@ -40,7 +40,7 @@ include 'db.php';
             
            // echo "<button>".$row['category_name']. "</button>";
 
-            echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name'].">";
+            echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name']." id ='submit'>";
 
 
         }
