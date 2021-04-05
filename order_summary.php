@@ -98,7 +98,6 @@ td {
         echo "</table>";
 
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
-        echo $result;
         echo"<table>";
         echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
         while($item = mysqli_fetch_array($result))
