@@ -85,6 +85,9 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 "<tr><td>". $row['p_name']. "</td></tr>";*/
 
                 echo($_GET['id']);
+                echo($_GET['value']);
+                echo($_GET['name']);
+                echo("hello");
             
                 
             }
