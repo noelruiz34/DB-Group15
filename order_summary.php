@@ -30,6 +30,7 @@ form.example input[type=text] {
   float: left;
   width: 60%;
   background: #f1f1f1;
+  margin-left: 20%;
 }
 
 form.example button {
@@ -76,10 +77,10 @@ form.example::after {
         echo "<table>";
         while($order = mysqli_fetch_array($result))
         {
-            echo "<tr> Order ID: ".$order['o_id']."</tr>";
-            echo "<tr> Customer ID: ".$order['customer_id']."</tr>";
-            echo "<tr> Date order Received: ".$order['o_time']."</tr>";
-            echo "<tr> Status: ".$order['o_status']."</tr>";
+            echo "<tr><td> Order ID: ".$order['o_id']."</td></tr>";
+            echo "<tr><td> Customer ID: ".$order['customer_id']."</td></tr>";
+            echo "<tr><td> Date order Received: ".$order['o_time']."</td></tr>";
+            echo "<tr><td> Status: ".$order['o_status']."</td></tr>";
         }
         echo "</table>";
     }
