@@ -55,13 +55,13 @@ form.example::after {
   display: table;
 }
 
-table {
+table{
     border: 1px solid black;
     margin-top: 5%;
     margin-left: auto;
     margin-right: auto;
 }
-table.tr {
+tr, td {
     border: 1px solid black;
 }
 </style>
