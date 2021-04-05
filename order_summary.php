@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+    include 'db.php';
+?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -55,22 +58,37 @@ form.example::after {
 </head>
 <body>
 
-<form class="example" action="retrieve_order.php">
+<form class="example" method="post">
   <input type="text" placeholder="Search.." name="search">
-  <button type="submit"><i class="fa fa-search"></i></button>
+  <button type="submit" name="Search"><i class="fa fa-search"></i></button>
 </form>
 
 <div id="order_info">
+    <?php 
+    if(isset($_POST['search'])){
+    echo "<table>";
+    echo $_POST['search'];
+    echo "</table>";
+}
+    ?>
 
 </div>
 
+
+<div id="comments">
+
+    </div>
+    <button> Show one more </button>
 </body>
 <script>
     $(document).ready(function() {
+        var count = 2;
          $("button").click(function() {
-            $("#order_info").load("retieve_order.php");
+            count = count + 1;
+            $("#comments").load("testingDB.php", {
+                 numberOfStudents: count
+            });
          });
     });
-
 </script>
 </html> 
