@@ -23,6 +23,7 @@
         <a href="index.php">Log Out</a>
     </p>
     <a href="index.php">Back to Home</a>
+    <br>
 
     <font size="+1"> <!-- Not sure if this is necessary -->
         Hello "EMPLOYEE_NAME"!
