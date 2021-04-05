@@ -58,12 +58,23 @@ form.example::after {
 </head>
 <body>
 
-<form action="retrieve_order.php" method="post">
+<form class="example" action="retrieve_order.php" method="post">
   <input type="text" placeholder="Search.." name="search">
-  <input type="submit"> hey</input>
+  <button type="submit" name="Search"><i class="fa fa-search"></i></button>
 </form>
 
 <div id="order_info">
+    <?php 
+    if(isset($_POST['Search'])){
+    $result = $connect->query("select * from student");
+
+    echo "<table>";
+    while($kid = mysqli_fetch_array($result)){
+        echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+    }
+    echo "</table>";
+}
+    ?>
 
 </div>
 
