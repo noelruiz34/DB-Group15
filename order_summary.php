@@ -58,7 +58,7 @@ form.example::after {
 </head>
 <body>
 
-<form class="example" action="retrieve_order.php" method="post">
+<form class="example" method="post">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit" name="Search"><i class="fa fa-search"></i></button>
 </form>
