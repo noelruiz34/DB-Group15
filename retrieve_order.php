@@ -22,7 +22,7 @@ if(isset($_POST['search'])){
     // $result = $connect->query("select * from student");
 
     echo "<table>";
-    echo $order
+    echo $order;
     // while($kid = mysqli_fetch_array($result)){
     //     echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
     // }

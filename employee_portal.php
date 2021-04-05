@@ -20,11 +20,11 @@
 	<h1>Employee Portal</h1>
 
     <p align="right">
-        <a href="index.php"><button>Log Out</button></a>
+        <a href="index.php">Log Out</a>
     </p>
 
     <font size="+1"> <!-- Not sure if this is necessary -->
-        Hello "insert login name here"!
+        Hello "EMPLOYEE_NAME"!
     </font>
 
     <h1><a href="add-update-product.php"> Add/Update Product </a></h1>
@@ -33,7 +33,7 @@
     <a href="add_product_category.php"><button>Update Product Category</button></a>
     <p><label>Search Product Update History  :</label><input type = "text" name = "product_update_history" class = "box"/><br /><br /></p>
     -->
-    <h1><a href="support_tickets.php"> Support Tickets </a></h1>
+    <h1><a href="support-tickets.php"> Support Tickets </a></h1>
 
     <h1><a href="sales.php"> Sales </a></h1>
 

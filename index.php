@@ -25,13 +25,14 @@ if($connect->connect_error) {
 	<h1>Omazon</h1>
 
     <p align="right">
-        <a href="register.php"><button>Create account</button></a>
-        <a href="customer_login.php"><button>Log in</button></a>
+        <a href="customer_login.php">Log in (login system not working yet)</a>
+        <a href="register.php">Create account</a>
+        <a href="order_summary.php">Order lookup</a>
     </p>
 
    
 
-    <h1> <a href="product.php">Product Categories</a></h1>
+    <h1> <a href="product-catalog.php">Browse Products</a></h1>
     <?php
     
 
@@ -60,6 +61,7 @@ if($connect->connect_error) {
 
     <p> display of items down here </p>
     
+    <!-- OLD JUNK
 	<br>
     <center style="margin-top: 2%">
         <form method="post">
@@ -82,12 +84,14 @@ if($connect->connect_error) {
         ?>
     </div>
     <button> Show one more </button>
+    -->
 
-    <a href="order_summary.php">Order lookup</a>
+    
 
     <div style="position: relative">
         <p style="position:fixed; bottom: 0; width:100%; text-align:center">
-            <a href="employee_login.php">Employee Login</a><br>
+            <a href="employee_login.php">Employee Login (login system not working yet)</a><br>
+            <a href="employee_portal.php">Skip directly to employee portal (since login system does not work yet)</a><br>
         </p>
     <div>
 </body>
