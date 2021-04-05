@@ -98,7 +98,7 @@ td {
         echo "<div>
         <center style=\"margin-top: 5%;font-size: 50%;\">Order Contents</center>
         <hr style=\"width: 50%;\">
-    </div>"
+    </div>";
         echo "</table>";
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
