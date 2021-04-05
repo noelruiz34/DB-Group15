@@ -79,7 +79,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             /*echo"print_r('Hello')";
             print_r('hello');
             echo"hello";*/
-            $result2 = $connect->query("select p_name from product where p_category = Clothing");
+            $result2 = $connect->query('select p_name from product where p_category = "Clothing" ');
             
             //where p_category ".$_POST["proddisp"]. "
             //$pcat = $_GET['value'];
