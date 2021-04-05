@@ -87,8 +87,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             while($row = mysqli_fetch_array($result2)){
                 //echo($row['p_name']);
 
-                echo"<tr><td>". $row['p_name']. "</td></tr>";
-                header('Content-type: text/plain');
+                echo"<tr><td>". $row['p_name']. "</td></tr><br>";
+                
                 
 
             }
