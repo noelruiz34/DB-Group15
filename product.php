@@ -33,7 +33,7 @@ include 'db.php';
     $result = $connect->query("select category_name from product_category");
 
     
-        echo "<table>";
+        //echo "<table>";
         while($row = mysqli_fetch_array($result)){
             //echo "<tr><td>". $row['category_name']. "</td></tr>";
 
@@ -46,14 +46,32 @@ include 'db.php';
            // echo "<button>".$row['category_name']. "</button>";
 
             //echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name']." id ='submit'>";
-            echo "<input type='button' onclick='test()' name =".$row['category_name']." value = ".$row['category_name']." />";
+            //echo "<input type='button' onclick='test()' name =".$row['category_name']." value = ".$row['category_name']." />";
+
+            echo '<form method="post">';
+            echo '<u>'.$row_all["name"].'</u>';
+
+            echo '<br>';
+
+            echo '<button name='.$row['category_name'].' value='.$row['category_name'].' type="submit">'.$row['category_name'].'</button>';
+
+            echo '<hr>';
+        echo '</form>';
+
 
         }
-        echo "</table>";
+      //  echo "</table>";
     //
-    if(isset($_POST['submit'])) {
-        print_r("Hello");
-        }
+   
+    if(isset($_POST[$row['category_name']]))
+            {
+
+                //CREATE A VARIABLE THAT HOLDS THE SELECTED PRODUCTED TO BE ADDED TO CART
+                   // $selectedProduct = $_POST["add_to_cart"];
+                print_r("helloworld");
+                //echo 'Selected Product  = '.$selectedProduct;
+
+            }
 
 ?>
 
