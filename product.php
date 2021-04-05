@@ -91,7 +91,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
 
             }
 
-            print_r($result2);
+           // print_r($result2);
                /* echo($_REQUEST['name']);
                 echo($_GET['id']);
                 echo($_GET['value']);
