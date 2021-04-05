@@ -85,9 +85,10 @@ if($connect->connect_error) {
 
     <a href="order_summary.php">Order lookup</a>
 
-    <div style="potition: relative">
+    <div style="position: relative">
         <p style="position:fixed; bottom: 0; width:100%; text-align:center">
-            <a href="employee_login.php">Employee Login</a>
+            <a href="employee_login.php">Employee Login</a><br>
+            <a href="add-update-product.php">Add/Update Product</a>
         </p>
     <div>
 </body>
