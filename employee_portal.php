@@ -27,38 +27,15 @@
         Hello "insert login name here"!
     </font>
 
-    <?php
-        $sql = "SELECT * FROM product_category";
-        $result = mysqli_query($connect,$sql);
-        if(!$result) {
-            die("Query Failed!");
-        }
-        while($row=mysqli_fetch_array($result)) {
-            echo $row['category_name'];
-        }
-        
-    ?>
-
     <h1><a href="add-update-product.php"> Add/Update Product </a></h1>
 
     <!--<a href="add_product_category.php"><button>Add Product Category</button></a>
     <a href="add_product_category.php"><button>Update Product Category</button></a>
     <p><label>Search Product Update History  :</label><input type = "text" name = "product_update_history" class = "box"/><br /><br /></p>
     -->
-    <h1>Support Tickets</h1>
+    <h1><a href="support_tickets.php"> Support Tickets </a></h1>
 
-
-    <a href="view_all_tickets.php"><button>View All Tickets</button></a>
-
-        
-    <a href="update_tickets.php"><button>Update Ticket</button></a>
-    <p><label>Search Support Ticket  :</label><input type = "text" id = "support_ticket" name = "support_ticket" class = "box"/><br /><br /></p>
-
-    <h1>Sales</h1>
-    <input type = "submit" value = " Generate Sales Report "/><br />
-    Search Sales for Date: <input type='month' id='exp_date' name='exp_date'/><br/>
-
-
+    <h1><a href="sales.php"> Sales </a></h1>
 
 </body>
 </html>
