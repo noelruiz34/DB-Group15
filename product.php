@@ -73,6 +73,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
    
     if(isset($_POST["proddisp"]))
             {
+                $id_targ = $_GET['id'];
+                echo($id_targ);
 
             /*echo"print_r('Hello')";
             print_r('hello');
