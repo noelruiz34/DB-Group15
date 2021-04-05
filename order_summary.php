@@ -69,7 +69,7 @@ form.example::after {
     $result = $connect->query("select * from student");
 
     echo "<table>";
-    echo $_POST['Search']
+    echo $_POST['Search'];
     echo "</table>";
 }
     ?>
