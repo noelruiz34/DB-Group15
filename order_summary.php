@@ -95,8 +95,11 @@ td {
             echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
+        echo "<div>
+        <center style=\"margin-top: 5%;font-size: 50%;\">Order Contents</center>
+        <hr style=\"width: 50%;\">
+    </div>"
         echo "</table>";
-
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
         echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
