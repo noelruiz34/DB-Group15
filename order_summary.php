@@ -70,7 +70,6 @@ form.example::after {
     <?php 
     if(isset($_POST['search'])){
 
-        include "db.php";
         $order = $_POST['search'];
         $result = $connect->query("select * from Point_Sale.order where o_id = $order");
 
