@@ -61,7 +61,7 @@ table{
     margin-left: auto;
     margin-right: auto;
 }
-tr, td {
+tr {
     border: 1px solid black;
 }
 </style>
