@@ -2,7 +2,16 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
+<script>
+    $(document).ready(function() {
+         $("button").click(function() {
+            $("#comments").load("retieve_order.php", {
+                 numberOfStudents: count
+            });
+         });
+    });
 
+</script>
 <html>
 <head>
 
@@ -65,12 +74,4 @@ form.example::after {
 </div>
 
 </body>
-<script>
-    $(document).ready(function() {
-         $("button").click(function() {
-            $("#order_info").load("retieve_order.php");
-         });
-    });
-
-</script>
 </html> 

@@ -64,8 +64,6 @@ if($connect->connect_error) {
     <center style="margin-top: 2%">
         <form method="post">
             <input type="submit" name="btn-jack" value="Jack">
-
-
         </form>
     </center>
     <a href="rules_status.html">Rules</a>
@@ -106,7 +104,6 @@ if($connect->connect_error) {
             });
          });
     });
-    
 </script>
 
 </html>
