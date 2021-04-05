@@ -63,7 +63,7 @@ table{
 }
 td {
     border: 1px solid black;
-    border-spacing: 5px;
+    border-spacing: 10px;
 }
 </style>
     <div>
