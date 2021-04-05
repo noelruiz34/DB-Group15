@@ -95,6 +95,12 @@ td {
             echo "<tr><td> Date order Received: ".$order['o_time']."</td></tr>";
             echo "<tr><td> Status: ".$order['o_status']."</td></tr>";
         }
+        $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
+        echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
+        while($item = mysqli_fetch_array($result))
+        {
+            echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+        }
         echo "</table>";
     }
     ?>
