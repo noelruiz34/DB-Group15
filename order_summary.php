@@ -71,7 +71,7 @@ form.example::after {
     if(isset($_POST['search'])){
 
         $order = $_POST['search'];
-        $result = $connect->query("select * from Point_Sale.order where o_id = $order");
+        $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
 
         echo "<table>";
         while($order = mysqli_fetch_array($result))
