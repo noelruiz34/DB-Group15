@@ -65,12 +65,12 @@ form.example::after {
 </div>
 
 </body>
-<script>
+<!-- <script>
     $(document).ready(function() {
          $("button").click(function() {
             $("#order_info").load("retieve_order.php");
          });
     });
 
-</script>
+</script> -->
 </html> 
