@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php 
+    include 'db.php';
+    ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
@@ -64,13 +67,30 @@ form.example::after {
 
 </div>
 
+
+<div id="comments">
+        <?php
+            $sql = "select * from student limit 2";
+            $result = $connect->query($sql);
+
+            echo "<table>";
+            while($kid = mysqli_fetch_array($result)){
+                echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+            }
+            echo "</table>";
+        ?>
+    </div>
+    <button> Show one more </button>
 </body>
-<!-- <script>
+<script>
     $(document).ready(function() {
+        var count = 2;
          $("button").click(function() {
-            $("#order_info").load("retieve_order.php");
+            count = count + 1;
+            $("#comments").load("testingDB.php", {
+                 numberOfStudents: count
+            });
          });
     });
-
-</script> -->
+</script>
 </html> 
