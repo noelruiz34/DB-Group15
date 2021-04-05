@@ -28,7 +28,7 @@ form.example input[type=text] {
   font-size: 17px;
   border: 1px solid grey;
   float: left;
-  width: 80%;
+  width: 60%;
   background: #f1f1f1;
 }
 
@@ -69,10 +69,21 @@ form.example::after {
 <div id="order_info">
     <?php 
     if(isset($_POST['search'])){
-    echo "<table>";
-    echo $_POST['search'];
-    echo "</table>";
-}
+
+        include "db.php";
+        $order = $_POST['search'];
+        $result = $connect->query("select * from Point_Sale.order where o_id = $order");
+
+        echo "<table>";
+        while($order = mysqli_fetch_array($result))
+        {
+            echo "<tr> Order ID: ".$order['o_id']."</tr>";
+            echo "<tr> Customer ID: ".$order['customer_id']."</tr>";
+            echo "<tr> Date order Received: ".$order['o_time']."</tr>";
+            echo "<tr> Status: ".$order['o_status']."</tr>";
+        }
+        echo "</table>";
+    }
     ?>
 
 </div>
