@@ -77,6 +77,10 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             echo"print_r('Hello')";
             print_r('hello');
             echo"hello";
+            $result2 = $connect->query("select p_name from product");
+            while($row = mysqli_fetch_array($result2)){
+                echo($row['p_name']);
+            }
                 
             }
 
