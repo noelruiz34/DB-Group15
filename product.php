@@ -61,7 +61,7 @@ include 'db.php';
 
 echo "<form method='post' name='proddisp' action=''>";
  
-echo'<input type="submit" id="button" value =' .$row['category_name']. 'name="proddisp">';
+echo'<input type="submit" id="button" name="proddisp" value =' .$row['category_name']. ' >';
 echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
     echo "</form>";
 
@@ -75,6 +75,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             {
 
             echo"print_r('Hello')";
+            print_r('hello');
+            echo"hello";
                 
             }
 
