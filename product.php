@@ -88,18 +88,12 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 //echo($row['p_name']);
 
                 echo"<tr><td>". $row['p_name']. "</td></tr>";
-                echo"\n";
+                echo"MIKE JONES";
                 echo"\r\n";
 
             }
 
-           // print_r($result2);
-               /* echo($_REQUEST['name']);
-                echo($_GET['id']);
-                echo($_GET['value']);
-                echo($_GET['name']);
-                echo("hello");*/
-                //echo($_POST["proddisp"]);*/
+          
 
             
                 
