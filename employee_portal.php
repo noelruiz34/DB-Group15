@@ -39,5 +39,7 @@
 
     <h1><a href="sales.php"> Sales </a></h1>
 
+    <h1><a href="pending_emails.php"> Pending Emails </a></h1>
+
 </body>
 </html>
