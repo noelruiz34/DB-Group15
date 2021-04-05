@@ -35,7 +35,8 @@ include 'db.php';
     
         //echo "<table>";
         while($row = mysqli_fetch_array($result)){
-        echo "<tr><td>". $row['category_name']. "</td></tr><br>";
+        $cat =  $row['category_name'];
+        echo($cat);
 
 echo "<form method='post' name='proddisp' action=''>";
  
