@@ -38,18 +38,17 @@ include 'db.php';
                 print_r("hello");
             }*/
             
-            echo "<button>".$row['category_name']. "</button>";
-/*
-            echo "<input type='submit' name=".$row['category_name']." value = 'submit'>";
-            if(isset($_POST['submit'])) {
-                print_r("Hello");
-                }*/
+           // echo "<button>".$row['category_name']. "</button>";
+
+            echo "<input type='submit' name=".$row['category_name']." value = ".$row['category_name'].">";
 
 
         }
         echo "</table>";
     //
-
+    if(isset($_POST['submit'])) {
+        print_r("Hello");
+        }
 
 ?>
 
