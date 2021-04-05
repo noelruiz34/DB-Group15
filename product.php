@@ -40,7 +40,7 @@ include 'db.php';
             echo "<input type='submit' name='submit' value = 'submit'>";
 
             if(isset($_POST['submit'])) {
-                echo "hello";
+                print_r("Hello");
                 }
 
 
