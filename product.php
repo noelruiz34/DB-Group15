@@ -38,7 +38,7 @@ include 'db.php';
             //echo "<button>".$row['category_name']. "</button>";
 
             echo "<input type='submit' name='submit' value = 'submit'>";
-
+            print_r("Hello");
             if(isset($_POST['submit'])) {
                 print_r("Hello");
                 }
