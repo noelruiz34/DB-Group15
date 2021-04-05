@@ -4,77 +4,37 @@ session_start();
 
 // Variables from POST
 
-$email = strtolower($_POST['email']);
-$password = $_POST['password'];
-$passwordConfirm = $_POST['password_confirm'];
-$firstName = ucwords(strtolower($_POST['firstname']));
-$lastName = ucwords(strtolower($_POST['lastname']));
-$phone = $_POST['phone'];
+$upc = $_POST['add_upc'];
+$pname = $_POST['add_pname'];
+$quantity = $_POST['add_quantity'];
+$price = $_POST['add_price'];
+$category = $_POST['add_category'];
+$discount = $_POST['add_discount'];
+$listed = $_POST['add_listed'];
+if ($listed == 'on') {
+    $listed = 1;
+} else {
+    $listed = 0;
+}
 
-$street = ucwords(strtolower($_POST['street']));
-$city = ucwords(strtolower($_POST['city']));
-$state = strtoupper($_POST['state']);
-$zip = $_POST['zip'];
+// FIX EMPLOYEEID LATER
+$employeeId = 1;
 
-$billstreet = ucwords(strtolower($_POST['billstreet']));
-$billcity = ucwords(strtolower($_POST['billcity']));
-$billstate = strtoupper($_POST['billstate']);
-$billzip = $_POST['billzip'];
-
-$ccNum = $_POST['cc_num'];
-$cvv = $_POST['cvv'];
-$expDate = $_POST['exp_date'];
-$expDate = $expDate.'-30';
-
-
+$currTime = date('Y-m-d H:i:s');
+$updateDesc = 'Added product to database';
 
 
 // Conditionals verifying correct input
 
-if (empty($email) ||
-    empty($password) ||
-    empty($passwordConfirm) ||
-    empty($firstName) ||
-    empty($lastName) ||
-    empty($phone) ||
-    empty($street) ||
-    empty($city) ||
-    empty($state) ||
-    empty($zip) ||
-    empty($ccNum) ||
-    empty($cvv) ||
-    empty($expDate)) {
+if (empty($upc) ||
+    empty($pname) ||
+    empty($quantity) ||
+    empty($price) ||
+    empty($category) ||
+    empty($discount)) {
     $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:1)';
-    header('Location: register.php');
+    header('Location: add-update-product.php');
     exit;
-}
-
-if (strlen($password) < 7) {
-    $_SESSION['messages'][] = 'Password must be at least 7 characters long!';
-    header('Location: register.php');
-    exit;
-}
-
-
-if ($password !== $passwordConfirm) {
-    $_SESSION['messages'][] = 'Password and confirm password should match!';
-    header('Location: register.php');
-    exit;
-}
-
-if (!isset($_POST['billing_same']) &&
-    (empty($billstreet) ||
-    empty($billcity) ||
-    empty($billstate) ||
-    empty($billzip))) {
-    $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:2)';
-    header('Location: register.php');
-    exit;
-} elseif (isset($_POST['billing_same'])) {
-    $billstreet = ucwords(strtolower($_POST['street']));
-    $billcity = ucwords(strtolower($_POST['city']));
-    $billstate = strtoupper($_POST['state']);
-    $billzip = $_POST['zip'];
 }
 
 
@@ -90,6 +50,54 @@ try {
     $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
     header('Location: register.php');
     exit;
+}
+
+$statement = $connection->prepare('SELECT * FROM product WHERE upc = :upc');
+if ($statement) {
+    $statement->execute([
+        ':upc' => $upc
+    ]);
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!empty($result)) {
+        $_SESSION['messages'][] = 'Error: Product with the UPC# ' . $upc . ' already exists in the database!';
+        header('Location: add-update-product.php');
+        exit;
+    }
+}
+
+$statement = $connection->prepare('INSERT INTO product VALUES (:upc, :p_name, :p_quantity, :p_price, :p_category, :p_discount, :p_listed)');
+if ($statement) {
+    $result = $statement->execute ([
+        ':upc' => $upc,
+        ':p_name' => $pname,
+        ':p_quantity' => $quantity,
+        ':p_price' => $price,
+        ':p_category' => $category,
+        ':p_discount' => $discount,
+        ':p_listed' => $listed
+    ]);
+
+    if ($result) {
+        $_SESSION['messages'][] = 'Product UPC#' . $upc . ' successfully added to database.';
+    }
+}
+
+$statement = $connection->prepare('INSERT INTO product_update(employee_id, upc, update_time, update_desc) VALUES (:employee_id, :upc, :update_time, :update_desc)');
+if ($statement) {
+    $result = $statement->execute ([
+        ':employee_id' => $employeeId,
+        ':upc' => $upc,
+        ':update_time' => $currTime,
+        ':update_desc' => $updateDesc
+    ]);
+
+    if ($result) {
+        $_SESSION['messages'][] = 'Addition of product UPC#' . $upc . ' successfully logged.';
+        header('Location: add-update-product.php');
+        exit;
+    }
 }
 
 $statement = $connection->prepare('SELECT * FROM customer WHERE email = :email');

@@ -24,7 +24,7 @@ while($row = mysqli_fetch_array($result)) {
 
     echo "Product name: <input type='text' id='pname' name='pname' maxlength='64' value='" . $row['p_name'] . "' required/><br>";
     echo "Quantity: <input type='number' id='quantity' name='quantity' min='0' max='2147483647' value='" . $row['p_quantity'] . "' required/><br>";
-    echo "Price: <input type='number' id='price' name='price' min='0' max='2147483647' value='" . $row['p_price'] . "' required/><br>";
+    echo "Price: <input type='number' id='price' name='price' min='0' max='2147483647' step='.01' value='" . $row['p_price'] . "' required/><br>";
     echo "Category:
     <select id='categories' name='categories' required>";
     while ($catRow = mysqli_fetch_array($catResult)) {

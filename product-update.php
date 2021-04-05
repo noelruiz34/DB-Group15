@@ -13,6 +13,8 @@ $discount = $_POST['discount'];
 $listed = $_POST['listed'];
 if ($listed == 'on') {
     $listed = 1;
+} else {
+    $listed = 0;
 }
 
 // FIX EMPLOYEEID LATER
@@ -26,9 +28,9 @@ $updateDesc = $_POST['update_desc'];
 if (empty($upc) ||
     empty($pname) ||
     empty($quantity) ||
+    empty($price) ||
     empty($category) ||
-    empty($discount) ||
-    empty($listed)) {
+    empty($discount)) {
     $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:1)';
     header('Location: add-update-product.php');
     exit;
@@ -59,6 +61,10 @@ if ($statement) {
         ':p_discount' => $discount,
         ':p_listed' => $listed
     ]);
+
+    if ($result) {
+        $_SESSION['messages'][] = 'Product UPC#' . $upc . ' successfully updated.';
+    }
 }
 
 $statement = $connection->prepare('INSERT INTO product_update(employee_id, upc, update_time, update_desc) VALUES (:employee_id, :upc, :update_time, :update_desc)');
@@ -71,7 +77,7 @@ if ($statement) {
     ]);
 
     if ($result) {
-        $_SESSION['messages'][] = 'Product UPC#' . $upc . ' successfully updated.';
+        $_SESSION['messages'][] = 'Update for product UPC#' . $upc . ' successfully logged.';
         header('Location: add-update-product.php');
         exit;
     }
