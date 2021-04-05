@@ -43,7 +43,7 @@ while($row = mysqli_fetch_array($result)) {
     }
     echo "/>";
     echo "<br><br>";
-    echo "Describe the changes made: <input type='text' id='update_desc' name='update_desc' minlength='4' maxlength='200' placeholder='200 characters max'/> <br><br>";
+    echo "Describe the changes made: <input type='text' id='update_desc' name='update_desc' minlength='4' maxlength='200' placeholder='200 characters max' required/> <br><br>";
     echo "<input type='submit' id='update_product' value='Update Product'/><br>";
 
 
