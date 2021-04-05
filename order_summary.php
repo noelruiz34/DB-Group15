@@ -88,12 +88,12 @@ td {
         $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
 
         echo "<table>";
-        while($order = mysqli_fetch_array($result))
+        while($order_info = mysqli_fetch_array($result))
         {
-            echo "<tr><td> Order ID: ".$order['o_id']."</td></tr>";
-            echo "<tr><td> Customer ID: ".$order['customer_id']."</td></tr>";
-            echo "<tr><td> Date order Received: ".$order['o_time']."</td></tr>";
-            echo "<tr><td> Status: ".$order['o_status']."</td></tr>";
+            echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
+            echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
+            echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
+            echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
         echo "</table>";
 
