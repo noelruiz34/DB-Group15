@@ -43,6 +43,7 @@
             }
             else {
                 echo  "<center> Wrong username and/or password </center>";
+                echo  "<center> Please try again! </center>";
             }
         };
     ?>
