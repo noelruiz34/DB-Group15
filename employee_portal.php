@@ -8,6 +8,13 @@
     {
         die("connection Failed! " . mysqli_connect_error());
     }
+    session_start();
+    if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
+       {
+           header("Location:employee_login.php");  
+       }
+    
+    $employee_id = $_SESSION['use']; //Use this for queries on employee
 ?>
 
 <!DOCTYPE html> <!-- This page is for after an employee logs in -->
@@ -20,15 +27,20 @@
 	<h1>Employee Portal</h1>
 
     <p align="right">
-        <a href="index.php">Log Out</a>
+        <a href="logout.php">Log Out</a>
     </p>
-    <a href="index.php">Back to Home</a>
-    <br>
 
     <font size="+1"> <!-- Not sure if this is necessary -->
-        Hello "EMPLOYEE_NAME"!
+       <?php
+            $sql = "SELECT f_name, l_name FROM employee WHERE employee_id=$employee_id";
+            $result = mysqli_query($connect, $sql);
+            $row = mysqli_fetch_array($result);
+            echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!"
+        ?>
     </font>
-
+    <p><a href="index.php">Back to Home</a></p>
+    <br>
+    
     <h1><a href="add-update-product.php"> Add/Update Product </a></h1>
 
     <!--<a href="add_product_category.php"><button>Add Product Category</button></a>
