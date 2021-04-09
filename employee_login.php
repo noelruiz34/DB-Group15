@@ -38,7 +38,7 @@
             $sql = "SELECT * FROM employee WHERE employee_id=$id AND password=$pass";
             $result = mysqli_query($connect,$sql);
             if($result) {
-                $_SESSION['use']=$id;
+                $_SESSION['employee']=$id;
                 header("Location:employee_portal.php");
             }
             else {

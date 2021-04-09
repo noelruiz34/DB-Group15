@@ -12,6 +12,7 @@ if($connect->connect_error) {
 }
 
 session_start();
+$customer_id = $_SESSION['customer']
 ?>
 
 <html>
@@ -24,7 +25,11 @@ session_start();
     
 	<h1>Omazon</h1>
     <?php
-    if(isset($_SESSION['use'])) {
+    if(isset($_SESSION['customer'])) {
+        $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
+        $result = mysqli_query($connect, $sql);
+        $row = mysqli_fetch_array($result);
+        echo "Hello, " .$row['f_name'] . " " . $row['l_name'] . "!";
         echo "<p align='right'>
                 <a href = 'shopping_cart.php'> My Cart </a>
                 <a href = 'logout.php'> Log out </a>

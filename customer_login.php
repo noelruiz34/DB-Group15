@@ -35,7 +35,7 @@
             $result = mysqli_query($connect,$sql);
             if($result) {
                 $row = mysqli_fetch_array($result);
-                $_SESSION['use']= $row['customer_id'];
+                $_SESSION['customer']= $row['customer_id'];
                 header("Location:index.php");
             }
             else {

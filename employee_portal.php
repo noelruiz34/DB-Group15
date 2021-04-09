@@ -9,12 +9,12 @@
         die("connection Failed! " . mysqli_connect_error());
     }
     session_start();
-    if(!isset($_SESSION['use'])) // If session is not set then redirect to Login Page
+    if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
            header("Location:employee_login.php");  
        }
     
-    $employee_id = $_SESSION['use']; //Use this for queries on employee
+    $employee_id = $_SESSION['employee']; //Use this for queries on employee
 ?>
 
 <!DOCTYPE html> <!-- This page is for after an employee logs in -->
@@ -35,7 +35,7 @@
             $sql = "SELECT f_name, l_name FROM employee WHERE employee_id=$employee_id";
             $result = mysqli_query($connect, $sql);
             $row = mysqli_fetch_array($result);
-            echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!"
+            echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         ?>
     </font>
     <p><a href="index.php">Back to Home</a></p>
