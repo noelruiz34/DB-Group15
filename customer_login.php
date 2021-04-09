@@ -1,51 +1,53 @@
+<?php
+    $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
+    $dbUser = "admin";
+    $dbPass = "12345678";
+    $dbName = "Point_of_Sale";
+    
+    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+    session_start();
+    if(isset($_SESSION['use'])) {
+        #header("Location:employee_login.php");
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>My website</title>
+	<title>Customer Login</title>
 </head>
 <body>
-    <?php 
-    
-    if ($_SERVER["REQUEST_METHOD"]=="POST") {
-        $email = $_POST["email"];
-        $password = $_POST["password"]; 
-        echo $email;
-        $dsn = 'mysql:host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';
-        $dbUser = 'admin';
-        $dbPassword = '12345678';
-        try {
-            $connect = new PDO($dsn, $dbUser, $dbPassword);
-        } catch (PDOException $expection) {
-            $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
-            header('Location: customer_login.php');
-            exit;
-        }
-        $sql = "SELECT customer_id FROM customer WHERE email = '".$email."' AND password = '".$password."'";
-        $result = $connect -> query($sql);
-        echo $result; /*
-        $row = mysqli_fetch_array($result);
-        
-        $count = mysqli_num_rows($result);
-        
-        // If result matched $email and $mypassword, table row must be 1 row
-            
-        if($count == 1) {
-            echo "Login sucessful";
-        }else {
-            echo "Failed to login";
-        }
-        */
-    }
-    ?> 
-    
 	<h1 style="text-align:center;">Login</h1>
 
     <center style="margin-top: 2%">
-        <form action = "customer_login.php" method = "POST">
-            <label>email  :</label><input type = "text" name = "email" class = "box"/><br /><br />
+        <form action = "" method = "post">
+            <label>Email  :</label><input type = "text" name = "email" class = "box"/><br /><br />
             <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-            <input type = "submit" value = " Login "/><br />
+            <input type = "submit" name = 'login' value = " Login "/><br />
         </form>
+    </center>
+    <?php
+        if(isset($_POST['login'])) {
+            $email = $_POST['email'];
+            $pass = $_POST['password'];
+            $sql = "SELECT * FROM customer WHERE email='$email' AND password='$pass'";
+            $result = mysqli_query($connect,$sql);
+            if($result) {
+                #$_SESSION['use']= $result;
+                header("Location:index.php");
+            }
+            else {
+                echo  "<center> Wrong username and/or password </center>";
+                echo  "<center> Please try again! </center>";
+                echo  "<center> " . $email . " </center>";
+                echo  "<center> " . $pass . " </center>";
+                echo  "<center> " . $result . " </center>";
+                echo  "<center> " . $sql . " </center>";
+            }
+        };
+    ?>
+    <center>
         <p> Don't have an account yet? </p>
         <a href="register.php">Create account</a>
         <br>

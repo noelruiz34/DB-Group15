@@ -11,13 +11,13 @@ if($connect->connect_error) {
     die('Bad connection'. $connect->connect_error);
 }
 
-
+session_start();
 ?>
 
 <html>
 
 <head>  
-	<title>My website</title>
+	<title>Omazon Home</title>
 </head>
 
 <body>
