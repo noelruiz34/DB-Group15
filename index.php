@@ -88,14 +88,14 @@ $customer_id = $_SESSION['customer']
 
     <div id="comments">
         <?php
-            $sql = "select * from student limit 2";
-            $result = $connect->query($sql);
+            #$sql = "select * from student limit 2";
+            #$result = $connect->query($sql);
 
-            echo "<table>";
-            while($kid = mysqli_fetch_array($result)){
-                echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-            }
-            echo "</table>";
+            #echo "<table>";
+            #while($kid = mysqli_fetch_array($result)){
+            #    echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
+            #}
+            #echo "</table>";
         ?>
     </div>
     <button> Show one more </button>

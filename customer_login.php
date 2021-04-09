@@ -33,18 +33,14 @@
             $pass = $_POST['password'];
             $sql = "SELECT * FROM customer WHERE email='$email' AND password='$pass'";
             $result = mysqli_query($connect,$sql);
-            if($result) {
-                $row = mysqli_fetch_array($result);
+            $row = mysqli_fetch_array($result);
+            if($row['customer_id'] >= 1) {
                 $_SESSION['customer']= $row['customer_id'];
                 header("Location:index.php");
             }
             else {
                 echo  "<center> Wrong username and/or password </center>";
                 echo  "<center> Please try again! </center>";
-                echo  "<center> " . $email . " </center>";
-                echo  "<center> " . $pass . " </center>";
-                echo  "<center> " . $result . " </center>";
-                echo  "<center> " . $sql . " </center>";
             }
         };
     ?>
