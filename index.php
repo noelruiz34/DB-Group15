@@ -23,13 +23,23 @@ session_start();
 <body>
     
 	<h1>Omazon</h1>
+    <?php
+    if(isset($_SESSION['use'])) {
+        echo "<p align='right'>
+                <a href = 'shopping_cart.php'> My Cart </a>
+                <a href = 'logout.php'> Log out </a>
+                <a href = 'order_summary.php'> Order lookup </a>";
+    }
+    else {
+        echo "<p align='right'>
+        <a href='customer_login.php'>Log in (login system not working yet)</a>
+        <a href='register.php'>Create account</a>
+        <a href='order_summary.php'>Order lookup</a>
+        </p>";
+    }
+    
 
-    <p align="right">
-        <a href="customer_login.php">Log in (login system not working yet)</a>
-        <a href="register.php">Create account</a>
-        <a href="order_summary.php">Order lookup</a>
-    </p>
-
+    ?>
    
 
     <h1> <a href="product-catalog.php">Browse Products</a></h1>

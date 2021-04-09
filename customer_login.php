@@ -34,7 +34,8 @@
             $sql = "SELECT * FROM customer WHERE email='$email' AND password='$pass'";
             $result = mysqli_query($connect,$sql);
             if($result) {
-                #$_SESSION['use']= $result;
+                $row = mysqli_fetch_array($result);
+                $_SESSION['use']= $row['customer_id'];
                 header("Location:index.php");
             }
             else {
