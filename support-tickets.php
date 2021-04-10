@@ -24,7 +24,7 @@
 <body>
 	<h1>Support Tickets</h1>
     <p align='right'>
-        <a href = 'employee_portal.php'> Back to Home </a>
+        <a href = 'employee_portal.php'> Back to Employee Portal </a>
     </p>
     
     <form action="" method="post">
@@ -56,14 +56,25 @@
             $ticket_id = $_POST['ticket_id'];
             $sql = "SELECT * FROM support_ticket where t_id = $ticket_id";
             $result = mysqli_query($connect,$sql);
-            $row = mysqli_fetch_array($result);
+            $ticket_row = mysqli_fetch_array($result);
             
-            if($row) { #display support ticket details
-                $customer_id = $row['customer_id'];
-                $customer_query = "SELECT email FROM customer where customer_id = $customer_id";
+            
+            if($ticket_row) { #display support ticket details
+                $order_id = $ticket_row['o_id'];
+                $order_sql = "SELECT Point_of_Sale.customer.email, Point_of_Sale.customer.phone_number
+                FROM Point_of_Sale.customer INNER JOIN Point_of_Sale.order ON Point_of_Sale.order.customer_id = Point_of_Sale.customer.customer_id
+                WHERE Point_of_Sale.order.o_id = $order_id";
+                $result = mysqli_query($connect,$order_sql);
+                $order_row = mysqli_fetch_array($result);
+
                 echo "<h1>Support Ticket: $ticket_id</h1>";
                 echo "<font size='+1'>";
-                echo "<p><strong> Order ID: </strong> $row[o_id]</p>";
+                echo "<p><strong> Order ID: </strong> $order_id</p>";
+                echo "<p><strong> Category: </strong> $ticket_row[t_category]</p>";
+                echo "<p><strong> Status: </strong> $ticket_row[t_status]</p>";
+                echo "<p><strong> Description: </strong> $ticket_row[t_desc]</p>";
+                echo "<p><strong> Customer Email: </strong> $order_row[email]</p>";
+                echo "<p><strong> Customer Phone Number: </strong> $order_row[phone_number]</p>";
                 echo "</font>";
             }
             else {
@@ -71,7 +82,6 @@
             }
 
         }
-        
     ?>
 
 </body>
