@@ -34,7 +34,7 @@
             $sql = "SELECT * FROM customer WHERE email='$email' AND password='$pass'";
             $result = mysqli_query($connect,$sql);
             $row = mysqli_fetch_array($result);
-            if($row['customer_id'] >= 1) {
+            if($row) {
                 $_SESSION['customer']= $row['customer_id'];
                 header("Location:index.php");
             }
