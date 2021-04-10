@@ -33,7 +33,8 @@ $customer_id = $_SESSION['customer']
         echo "<p align='right'>
                 <a href = 'shopping_cart.php'> My Cart </a>
                 <a href = 'logout.php'> Log out </a>
-                <a href = 'order_summary.php'> Order lookup </a>";
+                <a href = 'order_summary.php'> Order lookup </a>
+                </p>";
     }
     else {
         echo "<p align='right'>
