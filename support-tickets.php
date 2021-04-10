@@ -28,7 +28,7 @@
     </p>
     
     <form action="" method="post">
-        <input type = "submit" name = "view_all_reports" value = "View All Reports"/><br />
+        <input type = "submit" name = "view_all_tickets" value = "View All Tickets"/><br />
     </form>
 
     <form action="" method="post">
@@ -37,7 +37,7 @@
     </form>
    
     <?php
-        if(isset($_POST['view_all_reports'])) {
+        if(isset($_POST['view_all_tickets'])) {
             $sql = "SELECT * FROM support_ticket";
             $result = mysqli_query($connect,$sql);
             if(!$result) {
