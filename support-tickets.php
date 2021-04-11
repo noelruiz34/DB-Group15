@@ -28,10 +28,11 @@
         }
         else {
             echo "<table>";
-                echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
+                echo "<tr><td> Order ID </td><td> Date Requested </td><td> Category </td><td> Status </td></tr>";
                 while($row=mysqli_fetch_array($result)){
                     echo "<tr>
                     <td>". $row['o_id']. "</td>
+                    <td>". $row['t_time']. "</td>
                     <td>" . $row ['t_category'] . "</td>
                     <td>" . $row ['t_status'] . "</td>
                     <td><form action='' method=post>
@@ -56,10 +57,11 @@
         }
         else {
             echo "<table>";
-            echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
+            echo "<tr><td> Order ID </td><td> Date Requested </td><td> Category </td><td> Status </td></tr>";
             while($row=mysqli_fetch_array($result)){
                 echo "<tr>
                 <td>". $row['o_id']. "</td>
+                <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
                 <td><form action='support-ticket-details.php' method=post>
@@ -85,11 +87,12 @@
         }
         else{
             echo "<table>";
-            echo "<tr><td> Order ID </td><td> Employee ID </td><td> Category </td><td> Status </td></tr>";
+            echo "<tr><td> Order ID </td><td> Employee ID </td><td> Date Requested </td><td> Category </td><td> Status </td></tr>";
             while($row=mysqli_fetch_array($result)){
                 echo "<tr>
                 <td>". $row['o_id']. "</td>
                 <td>" . $row ['e_id'] . "</td>
+                <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
                 <td><form action='support-ticket-details' method=post>

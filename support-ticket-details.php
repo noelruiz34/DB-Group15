@@ -43,6 +43,7 @@
             echo "<font size='+1'>";
             echo "<p><strong> Order ID: </strong> $order_id</p>";
             echo "<p><strong> Employee ID: </strong> $ticket_row[e_id]</p>";
+            echo "<p><strong> Date Requested: </strong> $ticket_row[t_time]</p>";
             echo "<p><strong> Category: </strong> $ticket_row[t_category]</p>";
             echo "<p><strong> Status: </strong> $ticket_row[t_status]</p>";
             echo "<p><strong> Description: </strong> $ticket_row[t_desc]</p>";
