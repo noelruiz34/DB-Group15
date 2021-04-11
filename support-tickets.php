@@ -53,9 +53,9 @@
                 <td>". $row['o_id']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                <td><form action='' method=post>
+                <td><form action='support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
-                <input type = submit name = details value = 'Details'/><br />
+                <input type = submit name = details_button value = 'Details'/><br />
                 </form></td>
                 </tr>";
             }
@@ -70,43 +70,20 @@
         }
 
         echo "<table>";
-            echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
+            echo "<tr><td> Order ID </td><td> Employee ID </td><td> Category </td><td> Status </td></tr>";
             while($row=mysqli_fetch_array($result)){
                 echo "<tr>
                 <td>". $row['o_id']. "</td>
                 <td>" . $row ['e_id'] . "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                <td><form action='' method=post>
+                <td><form action='support-ticket-details' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
                 <input type = submit name = details value = 'Details'/><br />
                 </form></td>
                 </tr>";
             }
         echo "</table>";
-    }
-
-    function echoSupportTicketDetails($connect, $ticket_id, $ticket_row) {
-        $sql = "SELECT * FROM support_ticket where t_id = $ticket_id";
-        $result = mysqli_query($connect,$sql);
-        $ticket_row = mysqli_fetch_array($result);
-
-        $order_id = $ticket_row['o_id'];
-        $order_sql = "SELECT Point_of_Sale.customer.email, Point_of_Sale.customer.phone_number
-        FROM Point_of_Sale.customer INNER JOIN Point_of_Sale.order ON Point_of_Sale.order.customer_id = Point_of_Sale.customer.customer_id
-        WHERE Point_of_Sale.order.o_id = $order_id";
-        $result = mysqli_query($connect,$order_sql);
-        $order_row = mysqli_fetch_array($result);
-
-        echo "<h1>Support Ticket: $ticket_id</h1>";
-        echo "<font size='+1'>";
-        echo "<p><strong> Order ID: </strong> $order_id</p>";
-        echo "<p><strong> Category: </strong> $ticket_row[t_category]</p>";
-        echo "<p><strong> Status: </strong> $ticket_row[t_status]</p>";
-        echo "<p><strong> Description: </strong> $ticket_row[t_desc]</p>";
-        echo "<p><strong> Customer Email: </strong> $order_row[email]</p>";
-        echo "<p><strong> Customer Phone Number: </strong> $order_row[phone_number]</p>";
-        echo "</font>";
     }
 ?>
 
@@ -117,16 +94,17 @@
 </head>
 <body>
 	<h1>Support Tickets</h1>
-    <p align='right'>
+    <p align='left'>
         <a href = 'employee_portal.php'> Back to Employee Portal </a>
     </p>
     
     <form action="" method="post">
         <input type = "submit" name = "view_need_review_tickets" value = "View Needs Review"/>
         <input type = "submit" name = "review_my_tickets" value = "Review My Tickets"/>
+        <input type = "submit" name = "view_resolved_tickets" value = "View Resoved Tickets"/>
     </form>
 
-    <form action="" method="post">
+    <form action="support-ticket-details.php" method="post">
         <label> Search For Support Ticket (ID): </label><input type = "text" name = "ticket_details" class = "box" />
         <input type = "submit" name = "search_ticket" value = "Search"/> <br /> <br />
     </form>
@@ -140,19 +118,8 @@
             echoReviewMyTickets($connect, $employee_id);
         }
 
-        if(isset($_POST['search_ticket'])) {
-            $ticket_id = $_POST['ticket_details'];
-            $sql = "SELECT * FROM support_ticket where t_id = $ticket_id";
-            $result = mysqli_query($connect,$sql);
-            $ticket_row = mysqli_fetch_array($result);
-            
-            if($ticket_row) { #display support ticket details
-                echoSupportTicketDetails($connect, $ticket_id, $employee_id);
-            }
-            else {
-                echo "Support Ticket: " . $ticket_id . " was not found";
-            }
-
+        if(isset($_POST['view_resolved_tickets'])) {
+            echoResolvedTickets($connect);
         }
 
         if(isset($_POST['address_button'])) {
