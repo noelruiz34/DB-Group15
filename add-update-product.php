@@ -70,7 +70,7 @@
   <br>
   <br>
   <br>
-  <a href="index.php">Return to homepage</a>
+  <a href="employee-portal.php">Return to Employee Portal</a>
 
 </body>
 

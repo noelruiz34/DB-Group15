@@ -4,16 +4,22 @@
     $dbPass = "12345678";
     $dbName = "Point_of_Sale";
     $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+    session_start();
     if(mysqli_connect_errno())
     {
         die("connection Failed! " . mysqli_connect_error());
     }
+    if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
+       {
+           header("Location:employee-login.php");  
+       }
     $sql = "SELECT * FROM pending_email";
     $result = mysqli_query($connect,$sql);
     if(!$result) {
         die("Query Failed!");
     }
 
+    echo "<a href = employee-portal.php> Back to Employee Portal </a>";
     echo "<table>";
         echo "<tr><td> Email ID </td><td> Recipient Email </td><td> Subject </td><td> Body </td></tr>";
         while($row=mysqli_fetch_array($result)){

@@ -11,7 +11,7 @@
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
-           header("Location:employee_login.php");  
+           header("Location:employee-login.php");  
        }
     
     $employee_id = $_SESSION['employee'];
@@ -111,7 +111,7 @@
 <body>
 	<h1>Support Tickets</h1>
     <p align='left'>
-        <a href = 'employee_portal.php'> Back to Employee Portal </a>
+        <a href = 'employee-portal.php'> Back to Employee Portal </a>
     </p>
     
     <form action="" method="post">

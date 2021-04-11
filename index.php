@@ -106,7 +106,7 @@ $customer_id = $_SESSION['customer']
 
     <div style="position: relative">
         <p style="position:fixed; bottom: 0; width:100%; text-align:center">
-            <a href="employee_login.php">Employee Login </a><br>
+            <a href="employee-login.php">Employee Login </a><br>
         </p>
     <div>
 </body>

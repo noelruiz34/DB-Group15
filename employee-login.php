@@ -6,8 +6,8 @@
     
     $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
     session_start();
-    if(isset($_SESSION['use'])) {
-        #header("Location:employee_login.php");
+    if(isset($_SESSION['employee'])) {
+        header("Location:employee-portal.php");
     }
 
 ?>
@@ -27,9 +27,10 @@
             <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
             <input type = "submit" name = login value = " Login "/><br />
         </form>
+        <p><a href="index.php">Back to Home</a></p>
     </center>
 
-    <a href="index.php">Back to Home</a>
+    
 
     <?php
         if(isset($_POST['login'])) {
@@ -39,7 +40,7 @@
             $result = mysqli_query($connect,$sql);
             if($result) {
                 $_SESSION['employee']=$id;
-                header("Location:employee_portal.php");
+                header("Location:employee-portal.php");
             }
             else {
                 echo  "<center> Wrong username and/or password </center>";

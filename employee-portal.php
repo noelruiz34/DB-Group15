@@ -26,10 +26,6 @@
     
 	<h1>Employee Portal</h1>
 
-    <p align="right">
-        <a href="logout.php">Log Out</a>
-    </p>
-
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
             $sql = "SELECT f_name, l_name FROM employee WHERE employee_id=$employee_id";
@@ -38,8 +34,9 @@
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         ?>
     </font>
-    <p><a href="index.php">Back to Home</a></p>
-    <br>
+    <p align="left">
+        <a href="logout.php">Log Out</a>
+    </p>
     
     <h1><a href="add-update-product.php"> Add/Update Product </a></h1>
 
@@ -51,7 +48,7 @@
 
     <h1><a href="sales.php"> Sales </a></h1>
 
-    <h1><a href="pending_emails.php"> Pending Emails </a></h1>
+    <h1><a href="pending-emails.php"> Pending Emails </a></h1>
 
 </body>
 </html>
