@@ -38,7 +38,7 @@ $customer_id = $_SESSION['customer']
     }
     else {
         echo "<p align='right'>
-        <a href='customer_login.php'>Log in (login system not working yet)</a>
+        <a href='customer_login.php'>Log in</a>
         <a href='register.php'>Create account</a>
         <a href='order_summary.php'>Order lookup</a>
         </p>";
@@ -106,8 +106,7 @@ $customer_id = $_SESSION['customer']
 
     <div style="position: relative">
         <p style="position:fixed; bottom: 0; width:100%; text-align:center">
-            <a href="employee_login.php">Employee Login (login system not working yet)</a><br>
-            <a href="employee_portal.php">Skip directly to employee portal (since login system does not work yet)</a><br>
+            <a href="employee_login.php">Employee Login </a><br>
         </p>
     <div>
 </body>

@@ -50,10 +50,6 @@
             echo "<p><strong> Customer Phone Number: </strong> $order_row[phone_number]</p>";
             echo "</font>";
         }
-
-        
-
-        
     }
 
     echoSupportTicketDetails($connect, $ticket_id);
