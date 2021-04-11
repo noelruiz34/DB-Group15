@@ -31,8 +31,55 @@
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
                 <td><form action='' method=post>
-                <input type = hidden name = address_ticket_value value=$row[t_id]>
-                <input type = submit name = address_button value = 'Address Ticket' asdfdsf/><br />
+                <input type = hidden name = address_ticket_id value=$row[t_id]>
+                <input type = submit name = address_button value = 'Address Ticket'/><br />
+                </form></td>
+                </tr>";
+            }
+        echo "</table>";
+    }
+
+    function echoReviewMyTickets($connect, $employee_id) {
+        $sql = "SELECT * FROM support_ticket WHERE e_id=$employee_id AND t_status='In Review'";
+        $result = mysqli_query($connect,$sql);
+        if(!$result) {
+            die("Query Failed!");
+        }
+
+        echo "<table>";
+            echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
+            while($row=mysqli_fetch_array($result)){
+                echo "<tr>
+                <td>". $row['o_id']. "</td>
+                <td>" . $row ['t_category'] . "</td>
+                <td>" . $row ['t_status'] . "</td>
+                <td><form action='' method=post>
+                <input type = hidden name = ticket_details value=$row[t_id]>
+                <input type = submit name = details value = 'Details'/><br />
+                </form></td>
+                </tr>";
+            }
+        echo "</table>";
+    }
+
+    function echoResolvedTickets($connect) {
+        $sql = "SELECT * FROM support_ticket WHERE t_status='Resolved'";
+        $result = mysqli_query($connect,$sql);
+        if(!$result) {
+            die("Query Failed!");
+        }
+
+        echo "<table>";
+            echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
+            while($row=mysqli_fetch_array($result)){
+                echo "<tr>
+                <td>". $row['o_id']. "</td>
+                <td>" . $row ['e_id'] . "</td>
+                <td>" . $row ['t_category'] . "</td>
+                <td>" . $row ['t_status'] . "</td>
+                <td><form action='' method=post>
+                <input type = hidden name = ticket_details value=$row[t_id]>
+                <input type = submit name = details value = 'Details'/><br />
                 </form></td>
                 </tr>";
             }
@@ -75,12 +122,12 @@
     </p>
     
     <form action="" method="post">
-        <input type = "submit" name = "view_need_review_tickets" value = "View Need Review"/>
-        <input type = "submit" name = "view_my_tickets" value = "View My Tickets"/>
+        <input type = "submit" name = "view_need_review_tickets" value = "View Needs Review"/>
+        <input type = "submit" name = "review_my_tickets" value = "Review My Tickets"/>
     </form>
 
     <form action="" method="post">
-        <label> Search For Support Ticket (ID): </label><input type = "text" name = "ticket_id" class = "box" />
+        <label> Search For Support Ticket (ID): </label><input type = "text" name = "ticket_details" class = "box" />
         <input type = "submit" name = "search_ticket" value = "Search"/> <br /> <br />
     </form>
    
@@ -89,12 +136,12 @@
             echoNeedReviewTickets($connect);
         }
 
-        if(isset($_POST['view_my_tickets'])) {
-            
+        if(isset($_POST['review_my_tickets'])) {
+            echoReviewMyTickets($connect, $employee_id);
         }
 
         if(isset($_POST['search_ticket'])) {
-            $ticket_id = $_POST['ticket_id'];
+            $ticket_id = $_POST['ticket_details'];
             $sql = "SELECT * FROM support_ticket where t_id = $ticket_id";
             $result = mysqli_query($connect,$sql);
             $ticket_row = mysqli_fetch_array($result);
@@ -109,8 +156,8 @@
         }
 
         if(isset($_POST['address_button'])) {
-            $ticket_id = $_POST['address_ticket_value'];
-            $sql = "UPDATE support_ticket SET e_id=$employee_id WHERE t_id=$ticket_id";
+            $ticket_id = $_POST['address_ticket_id'];
+            $sql = "UPDATE support_ticket SET e_id=$employee_id, t_status='In Review' WHERE t_id=$ticket_id";
             $result = mysqli_query($connect, $sql);
 
             if($result){
