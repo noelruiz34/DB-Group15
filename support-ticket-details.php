@@ -52,9 +52,32 @@
             echo "</font>";
         }
     }
-
-    echoSupportTicketDetails($connect, $ticket_id);
-    
-
 ?>
 
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Support Ticket Details</title>
+</head>
+<body>
+    <?php
+        echoSupportTicketDetails($connect, $ticket_id);
+        if(!isset($_POST['resolved_details_button'])){
+            echo "<form action='' method=post>
+            <input type = hidden name = ticket_details value=$ticket_id>
+            <input type = submit name = resolve_ticket value = 'Resolve Ticket'/><br />
+            </form>";
+        }
+   
+        if(isset($_POST['resolve_ticket'])) {
+            $sql = "UPDATE support_ticket SET t_status='Resolved' WHERE t_id=$ticket_id";
+            $result = mysqli_query($connect,$sql);
+            if(!$result) {
+                die("Query failed!");
+            }
+            header("Location:support-tickets.php");
+        }
+    ?>
+
+</body>
+</html>

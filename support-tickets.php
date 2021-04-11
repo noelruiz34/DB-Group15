@@ -66,7 +66,7 @@
                 <td>" . $row ['t_status'] . "</td>
                 <td><form action='support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
-                <input type = submit name = details_button value = 'Details'/><br />
+                <input type = submit name = my_tickets_details_button value = 'Details'/><br />
                 </form></td>
                 </tr>";
             }
@@ -95,9 +95,9 @@
                 <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                <td><form action='support-ticket-details' method=post>
+                <td><form action='support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
-                <input type = submit name = details value = 'Details'/><br />
+                <input type = submit name = resolved_details_button value = 'Details'/><br />
                 </form></td>
                 </tr>";
             }
