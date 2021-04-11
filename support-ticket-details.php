@@ -62,7 +62,12 @@
 <body>
     <?php
         echoSupportTicketDetails($connect, $ticket_id);
-        if(!isset($_POST['resolved_details_button'])){
+        $ticket_resolved_sql = "SELECT t_status FROM support_ticket WHERE t_id=$ticket_id";
+        $result = mysqli_query($connect, $ticket_resolved_sql);
+        $ticket_row = mysqli_fetch_array($result);
+        $isResolved = $ticket_row['t_status'] == 'Resolved';
+          
+        if(!$isResolved){
             echo "<form action='' method=post>
             <input type = hidden name = ticket_details value=$ticket_id>
             <input type = submit name = resolve_ticket value = 'Resolve Ticket'/><br />
