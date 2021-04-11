@@ -120,7 +120,7 @@
     <form action="" method="post">
         <input type = "submit" name = "view_need_review_tickets" value = "View Needs Review"/>
         <input type = "submit" name = "review_my_tickets" value = "Review My Tickets"/>
-        <input type = "submit" name = "view_resolved_tickets" value = "View Resoved Tickets"/>
+        <input type = "submit" name = "view_resolved_tickets" value = "View Resolved Tickets"/>
     </form>
 
     <form action="support-ticket-details.php" method="post">
