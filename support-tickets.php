@@ -23,20 +23,25 @@
             die("Query Failed!");
         }
 
-        echo "<table>";
-            echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
-            while($row=mysqli_fetch_array($result)){
-                echo "<tr>
-                <td>". $row['o_id']. "</td>
-                <td>" . $row ['t_category'] . "</td>
-                <td>" . $row ['t_status'] . "</td>
-                <td><form action='' method=post>
-                <input type = hidden name = address_ticket_id value=$row[t_id]>
-                <input type = submit name = address_button value = 'Address Ticket'/><br />
-                </form></td>
-                </tr>";
-            }
-        echo "</table>";
+        if(mysqli_num_rows($result)==0) {
+            echo "There are no support tickets that need review!";
+        }
+        else {
+            echo "<table>";
+                echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
+                while($row=mysqli_fetch_array($result)){
+                    echo "<tr>
+                    <td>". $row['o_id']. "</td>
+                    <td>" . $row ['t_category'] . "</td>
+                    <td>" . $row ['t_status'] . "</td>
+                    <td><form action='' method=post>
+                    <input type = hidden name = address_ticket_id value=$row[t_id]>
+                    <input type = submit name = address_button value = 'Address Ticket'/><br />
+                    </form></td>
+                    </tr>";
+                }
+            echo "</table>";
+        }
     }
 
     function echoReviewMyTickets($connect, $employee_id) {
@@ -46,7 +51,11 @@
             die("Query Failed!");
         }
 
-        echo "<table>";
+        if(mysqli_num_rows($result)==0) {
+            echo "There are no tickets you are reviewing!";
+        }
+        else {
+            echo "<table>";
             echo "<tr><td> Order ID </td><td> Category </td><td> Status </td></tr>";
             while($row=mysqli_fetch_array($result)){
                 echo "<tr>
@@ -59,7 +68,9 @@
                 </form></td>
                 </tr>";
             }
-        echo "</table>";
+            echo "</table>";
+        }
+        
     }
 
     function echoResolvedTickets($connect) {
@@ -69,7 +80,11 @@
             die("Query Failed!");
         }
 
-        echo "<table>";
+        if(mysqli_num_rows($result)==0) {
+            echo "There are no resolved support tickets!";
+        }
+        else{
+            echo "<table>";
             echo "<tr><td> Order ID </td><td> Employee ID </td><td> Category </td><td> Status </td></tr>";
             while($row=mysqli_fetch_array($result)){
                 echo "<tr>
@@ -83,7 +98,8 @@
                 </form></td>
                 </tr>";
             }
-        echo "</table>";
+            echo "</table>";
+        } 
     }
 ?>
 
