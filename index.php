@@ -30,7 +30,7 @@ $customer_id = $_SESSION['customer']
     <div class='navbar'>
         <ul>
             <li style='float:left'><a class='active' href='index.php' style='font-weight:700;'>Omazon</a></li>
-            <!-- <li style='float:left'><a href="product-catalog.php">Browse Products</a></li> -->
+            <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
             <?php
                 if(isset($_SESSION['customer'])) {
                     echo "
@@ -62,7 +62,7 @@ $customer_id = $_SESSION['customer']
                 <div class='hero-body'>
                     <p>Don't settle for cheap knockoffs. Come discover the point-of-sale system of all time.</p>
                     <br>
-                    <a href='product-catalog.php'>Browse Products</a>
+                    <a href='product-catalog.php'>Sign Up</a>
                 </div>
             </div>
             
