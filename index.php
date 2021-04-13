@@ -100,20 +100,21 @@ $customer_id = $_SESSION['customer']
 
         <h1 style='padding-top:7vh;'>Welcome to Omazon.</h1>
 
-        <?php
-            if(isset($_SESSION['customer'])) {
-                $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
-                $result = mysqli_query($connect, $sql);
-                $row = mysqli_fetch_array($result);
-                
-                echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
-            }
-        ?>
+        
 
         <div class='homepage-info'>
             <p>
                 <img class='homepage-info-image' src='/images/homepage-ecommerce.png'>
                 <p class='homepage-info-text'>
+                    <?php
+                        if(isset($_SESSION['customer'])) {
+                            $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
+                            $result = mysqli_query($connect, $sql);
+                            $row = mysqli_fetch_array($result);
+                            
+                            echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "! ";
+                        }
+                    ?>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, 
                     vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus 
                     vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum 
