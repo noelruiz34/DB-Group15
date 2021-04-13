@@ -1,6 +1,11 @@
+html {
+    position: relative;
+    min-height: 100vh;
+    height: 100vh;
+}
+
 body {
-    margin-left: 0;
-    padding-top: 60px; 
+    margin: 0;
     background-color: #303841;
     color: #eeeeee;
     font-family: 'Open Sans', serif;
@@ -19,36 +24,134 @@ h3 {
     font-family: 'Roboto', sans-serif;
 }
 
-ul {
+/* ---- begin navbar ---- */
+.navbar ul {
+    z-index: 1000;
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #3a4750;
+    background-color: #f6c90e;
+    color: #303841;
     position: fixed;
     top: 0;
-    width: 100vw;
+    width: 100%;
+    /*border-bottom: 5px solid #eeeeee;*/
 }
 
-li {
+.navbar li {
     float: right;
+    
 }
-  
-li a {
+
+.navbar li a {
+    transition: .3s;
+    color: #303841;
     display: block;
-    color: #eeeeee;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-  
 
-li a:hover {
-    background-color: #21292e;
+.navbar li a:hover {
+    background-color: #3a4750;
+    color: #eeeeee;
+}
+
+.navbar .active {
+    background-color: #eeeeee;
+}
+/* ---- end navbar ---- */
+
+.main-container {
+    padding-top: 50px;
+}
+.main-container a {
     color: #f6c90e;
+    text-decoration: none;
 }
 
-.active {
-    background-color: #f6c90e;
-    color: #303841;
+.main-container a:hover {
+    text-decoration: underline;
 }
+
+.hero-image-bg {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    
+    
+    background: rgb(34,193,195);
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(246,201,14,1) 100%);
+    /*22c1c3*/
+    /* Set a specific height */
+    height: 75vh;
+  
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+.hero-image {
+    background-image: url('https://i.imgur.com/9QnZaLs.png');
+    height: 80vh;
+  
+    /* Position and center the image to scale nicely on all screens */
+
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+.hero-text {
+    
+    text-align: left;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate(0%, -60%);
+    color: #3a4750;
+}
+
+.hero-text h1 {
+    font-weight: bolder;
+    font-size: 12vh;
+    color: #eeeeee;
+    margin-bottom: 0;
+}
+
+.hero-text p {
+    font-weight: bold;
+    font-size: 3vh;
+}
+
+.hero-text a {
+    padding: 15px 40px;
+    color: #303841;
+    background-color: #f6c90e;
+    transition: .3s;
+    font-weight: bold;
+}
+
+.hero-text a:hover {
+    background-color: #3a4750;
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.footer {
+    position: relative;
+    top: 100vh;
+    width: 100%;
+    border-top: 5px solid #eeeeee;
+    background-color: #3a4750;
+    color: #eeeeee;
+}
+
+.footer ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
