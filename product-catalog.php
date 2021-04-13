@@ -102,7 +102,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         
         }*/
         
-        $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
+       // $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
         if (empty($qcheck)) { 
 
             echo "item not already in cart";
