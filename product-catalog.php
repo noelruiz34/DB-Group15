@@ -105,9 +105,9 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             echo "cart updated";
             $qcheck2 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
 
-            while($row = mysqli_fetch_array($result2)){
+            while($row5 = mysqli_fetch_array($qcheck2)){
                 
-                echo( $row['upc']);
+                echo( $row5['upc']);
             
             }
 
@@ -121,6 +121,13 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
             $q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
             $cq = mysqli_fetch_array($qcheck['cart_quantity']);
+            $qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
+
+            while($row6 = mysqli_fetch_array($qcheck3)){
+                
+                echo( $row6['upc']);
+            
+            }
 
 
             if ($q >= $cq)
