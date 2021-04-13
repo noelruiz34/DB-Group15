@@ -62,7 +62,7 @@ $customer_id = $_SESSION['customer']
                 <div class='hero-body'>
                     <p>Don't settle for cheap knockoffs. Come discover the point-of-sale system of all time.</p>
                     <br>
-                    <a href='product-catalog.php'>Sign Up</a>
+                    <a href='register.php'>Sign Up</a>
                 </div>
             </div>
             
