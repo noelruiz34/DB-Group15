@@ -33,7 +33,6 @@ $customer_id = $_SESSION['customer']
             echo "Hello, " .$row['f_name'] . " " . $row['l_name'] . "!";
             echo "<p align='right'>
                     <a href = 'logout.php'> Log out </a>
-                    <a href = 'order_summary.php'> Order lookup </a>
                     ";
         }
         else {

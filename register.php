@@ -55,8 +55,10 @@
 
   <br>
   <br>
+  Already have an account?
+  <a href="customer_login.php">Log in to existing account</a>
+  <br>
   <a href="index.php">Return to homepage</a>
-
 </body>
 
 <script>
