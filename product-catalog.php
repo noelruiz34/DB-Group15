@@ -95,8 +95,12 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         
         $quantiy = 1;
         $qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-
+echo "cart: ";
+        while($row10 = mysqli_fetch_array($qcheck)){
+                
+            echo( $row10['upc']);
         
+        }
         
         if (empty($qcheck)) { 
 
