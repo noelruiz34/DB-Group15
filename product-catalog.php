@@ -96,17 +96,18 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
   
 
     if(isset($_POST['add_to_cart'])) {
-        echo("is thiseven working at this point");
+       // echo("is thiseven working at this point");
 
-        echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
+       // echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
         $quantiy = 1;
         $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
-        $int = 0;
+
+      /*  $int = 0;
 
         while($row = mysqli_fetch_array($qcheck)){
             echo("foound someting?");
             $int = $int +1;
-        }
+        }*/
                 
      
         
@@ -115,9 +116,9 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
 
             echo "item not already in cart";
 
-            /*
-            $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
-            echo "cart updated";
+            
+            $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantity."')");
+            /*echo "cart updated";
             $qcheck2 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
 
             while($row5 = mysqli_fetch_array($qcheck2)){
@@ -134,7 +135,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         else{
             
             echo "item is  already in cart";
-            /*
+            $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
+/*
             $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
             $q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
             $cq = mysqli_fetch_array($qcheck['cart_quantity']);
