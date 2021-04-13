@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
 $dbUser = "admin";
@@ -15,33 +14,54 @@ session_start();
 $customer_id = $_SESSION['customer']
 ?>
 
+
+<!DOCTYPE html>
 <html>
 
-<head>  
+<head>
+    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
 	<title>Omazon Home</title>
 </head>
 
 <body>
     
-	<h1>Omazon</h1>
-    
+    <ul>
+        <li style='float:left'><a class='active' href='index.php' style='font-weight:700;'>Omazon</a></li>
+        <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
         <?php
+            if(isset($_SESSION['customer'])) {
+                $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
+                $result = mysqli_query($connect, $sql);
+                $row = mysqli_fetch_array($result);
+                
+                echo "
+                <li><a href='edit-customer-account-info.php'>My Account</a></li>
+                <li><a href = 'shopping_cart.php'>My Cart</a></li>
+                <li><a href = 'logout.php'> Log out </a></li>
+                ";
+            }
+            else {
+                echo "
+                <li><a href='register.php'>Register</a></li>
+                <li><a href='customer_login.php'>Log in</a></li>
+                ";
+            }
+        ?>
+        <li><a href='order_summary.php'>Order Lookup</a></li>
+    </ul>
+    
+    <?php
         if(isset($_SESSION['customer'])) {
             $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
             $result = mysqli_query($connect, $sql);
             $row = mysqli_fetch_array($result);
-            echo "Hello, " .$row['f_name'] . " " . $row['l_name'] . "!";
-            echo "<p align='right'>
-                    <a href = 'logout.php'> Log out </a>
-                    ";
-        }
-        else {
-            echo "<p align='right'>
-            <a href='customer_login.php'>Log in</a>
-            <a href='register.php'>Register</a>
             
-            ";
+            echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         }
+<<<<<<< HEAD
+=======
         ?>
         <a href = 'shopping_cart.php'>My Cart</a>
         <a href="edit-customer-account-info.php">My Account</a>
@@ -72,56 +92,19 @@ $customer_id = $_SESSION['customer']
 
     <?php 
     //include 'db.php';
+>>>>>>> b34f505aaab1472d43aeffc7a90197ac04fb3dac
     ?>
 
-    <p> display of items down here </p>
-    
-    <!-- OLD JUNK
-	<br>
-    <center style="margin-top: 2%">
-        <form method="post">
-            <input type="submit" name="btn-jack" value="Jack">
-        </form>
-    </center>
-    <a href="rules_status.html">Rules</a>
-    <a href="index2.php">index2 page</a>
 
-    <div id="comments">
-        <?php
-            #$sql = "select * from student limit 2";
-            #$result = $connect->query($sql);
-
-            #echo "<table>";
-            #while($kid = mysqli_fetch_array($result)){
-            #    echo "<tr><td>". $kid['name']. "</td> <td>". $kid['major']. "</td></tr>";
-            #}
-            #echo "</table>";
-        ?>
-    </div>
-    <button> Show one more </button>
-    -->
-
+    <p>UNDER CONSTRUCTION</p>
     
 
-    <div style="position: relative">
+    <div style="position:relative">
         <p style="position:fixed; bottom: 0; width:100%; text-align:center">
             <a href="employee-login.php">Employee Login </a><br>
         </p>
     <div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script>
-    $(document).ready(function() {
-        var count = 2;
-         $("button").click(function() {
-            count = count + 1;
-            $("#comments").load("testingDB.php", {
-                 numberOfStudents: count
-            });
-         });
-    });
-</script>
 
 </html>
