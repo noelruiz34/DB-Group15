@@ -50,6 +50,36 @@
                 echo "There are no sales in this date range!";
             }
             else {
+                $running_item_total = 0;
+                $running_sold_total = 0;
+                while($row=mysqli_fetch_array($result)) {
+                    $order_id = $row['o_id'];
+                    $order_join_sql = "SELECT Point_of_Sale.order.o_id, Point_of_Sale.product_purchase.quantity_ordered, Point_of_Sale.product_purchase.p_price
+                    FROM Point_of_Sale.order INNER JOIN Point_of_Sale.product_purchase ON Point_of_Sale.order.o_id = Point_of_Sale.product_purchase.o_id
+                    WHERE Point_of_Sale.order.o_id = $order_id";
+                    $join_result = mysqli_query($connect, $order_join_sql);
+
+                    if(!$join_result) {
+                        die("Query Failed!");
+                    }
+                    
+                    $item_total = 0;
+                    $cost_total = 0;
+                    while($join_row=mysqli_fetch_array($join_result)){
+                        $item_amount = $join_row['quantity_ordered'];
+                        $cost_amount = $join_row['quantity_ordered'] * $join_row['p_price'];
+                        $item_total += $item_amount;
+                        $cost_total += $cost_amount;
+                    }
+                    
+                    $running_item_total += $item_total;
+                    $running_sold_total += $cost_total;
+                }
+                
+                $result = mysqli_query($connect, $sales_sql);
+                if(mysqli_num_rows($result)==0) {
+                    echo "There are no sales in this date range!";
+                }
                 echo "<table>";
                 echo "<tr><td> Date </td><td> Order ID </td><td>";
                 while($row=mysqli_fetch_array($result)) {
