@@ -48,6 +48,8 @@ $customer_id = $_SESSION['customer'];
     ?> 
     <?php
 
+    
+
 
     $result = $connect->query("select category_name from product_category");
 
@@ -91,20 +93,23 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             }
 
 
-            $tcheck = $connect->connect("select * from shopping_cart where customer_id = '".$customer_id."' and upc = 44431");
-            echo(mysqli_row_nums($tcheck));
-
+  
 
     if(isset($_POST['add_to_cart'])) {
         
         $quantiy = 1;
         $qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-        $rownum = mysqli_num_rows($qcheck);
-        echo (rownum);
+        $int = 0;
+
+        while($row = mysqli_fetch_array($qcheck)){
+            echo("foound someting?");
+            $int = $int +1;
+        }
+                
      
         
        // $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
-        if (mysqli_row_nums($qcheck) == 0) { 
+        if ($int == 0) { 
 
             echo "item not already in cart";
 
