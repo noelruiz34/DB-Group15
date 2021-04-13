@@ -94,8 +94,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
     if(isset($_POST['add_to_cart'])) {
         
         $quantiy = 1;
-        $qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-echo "cart: ";
+        $qcheck = $connect->query("select upc from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
+
        /* while($row10 = mysqli_fetch_array($qcheck)){
                 
             echo( $row10['upc']);
@@ -103,8 +103,10 @@ echo "cart: ";
         }*/
         
         if (empty($qcheck)) { 
-/*
-            echo "item not already in cartd";
+
+            echo "item not already in cart";
+
+            /*
             $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
             echo "cart updated";
             $qcheck2 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
