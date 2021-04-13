@@ -59,29 +59,33 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             {
                
 
-            $result2 = $connect->query('select p_name, p_price from product where p_category = "' .$_POST["proddisp"]. '" and  p_listed=1');
+            $result2 = $connect->query('select upc, p_name, p_price from product where p_category = "' .$_POST["proddisp"]. '" and  p_listed=1');
             
- 
+            echo "<table>";
+            echo "<tr><td> Name </td><td> Price </td></tr>";
             while($row = mysqli_fetch_array($result2)){
                 
-                echo "<div class='product_wrapper'>
-                <form method='post' action=''>
-                
-    
-                <div class='p_name'>".$row['p_name']."</div>
-                <div class='p_price'>$".$row['p_price']."</div>
-                <button type='submit' class='buy'>Add To Cart</button>
+                echo "<tr>
+                <td>" . $row['p_name'] . "</td>
+                <td>$" . $row['p_price'] . "</td>
+                <td><form method='post' action=''>
+                <input type = hidden name = add_upc value=$row[t_id]>
+                <input type = submit name = add_to_cart value = 'Add to Cart'/><br />
+                </td>
                 </form>
-                </div>";
+                </tr>";
             
             }
-
-          
-
-            
-                
+            echo "</table>";
+        
             }
 
+
+
+    if(isset($_POST['add_to_cart'])) {
+        #if upc already in cart run sql update
+        #else run sql insert into
+    }
 ?>
 
 
