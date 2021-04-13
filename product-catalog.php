@@ -70,7 +70,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             {
                
 
-            $result2 = $connect->query('select upc, p_name, p_price from product where p_category = "' .$_POST["proddisp"]. '" and  p_listed=1');
+            $result2 = $connect->query('select upc, p_name, p_price, p_quantity from product where p_category = "' .$_POST["proddisp"]. '" and  p_listed=1');
             
             echo "<table>";
             echo "<tr><td> Name </td><td> Price </td></tr>";
@@ -82,6 +82,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 <td>$" . $row['p_price'] . "</td>
                 <td><form method='post' action=''>
                 <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+                <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
                 <input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
                 </td>
                 </form>
@@ -132,20 +133,23 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
 
         else{
             
-            echo "Cart Successfully Updated!";
+            echo "Cart Successfully Updated!<br>";
 
+            echo($POST['p_quantity']);
            // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
             
 
-            $quancheck = $connect->query("select p_quantity from product where upc = ".$_POST['add_upc']);
+            //$quancheck = $connect->query("select p_quantity from product where upc = ".$_POST['add_upc']);
            // echo("select p_quantity from product where upc = ".$_POST['add_upc']);
             //$q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
-            $cq = mysqli_fetch_array($qcheck['cart_quantity']);
-            $qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-            while($row40 = mysqli_fetch_array($quancheck)){
+           // $cq = mysqli_fetch_array($qcheck['cart_quantity']);
+            //$qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
+           /* while($row = mysqli_fetch_array($quancheck)){
                 echo"found a value: ";
-                echo ($row40['p_quantity']);
-            }
+                echo ($row['p_quantity']);
+            }*/
+
+            
 
             
           /*
