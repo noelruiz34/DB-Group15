@@ -134,13 +134,14 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
 
         else{
             
-            echo "Cart Successfully Updated!<br>";
+           
 
             echo($_POST['iquant']);
+
+
            // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
             
 
-            //$quancheck = $connect->query("select p_quantity from product where upc = ".$_POST['add_upc']);
            // echo("select p_quantity from product where upc = ".$_POST['add_upc']);
             //$q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
            // $cq = mysqli_fetch_array($qcheck['cart_quantity']);
@@ -149,6 +150,15 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 echo"found a value: ";
                 echo ($row['p_quantity']);
             }*/
+
+            if( $_POST['iquant'] >= ($int + $quantity)){
+                echo "Cart Successfully Updated!<br>";
+             $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity." where upc = ".$_POST['add_upc']." and customer_id = ".$customer_id);
+                
+            }
+            else{
+                echo "You cannot exceed the available quantity. Please choose a lower quantity";
+        }
 
             
 
