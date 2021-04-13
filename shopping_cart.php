@@ -19,10 +19,10 @@
   $cart_sql = "SELECT * FROM shopping_cart WHERE customer_id=$customer_id";
   $cart_results = mysqli_query($connect, $cart_sql);
   echo "<table>";
-  echo "<tr><td> UPC </td><td> Quantity </td></tr>";
+  echo "<tr><td> Product Name </td><td> Quantity </td></tr> ";
   while($row=mysqli_fetch_array($cart_results)) {
     echo "<tr>
-    <td>" . $row['upc'] . "</td>
+    <td>" . $row['p_name'] . "</td>
     <td>" . $row['cart_quantity'] . "</td>
     </tr>";
   }
