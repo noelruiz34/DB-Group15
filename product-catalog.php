@@ -77,14 +77,17 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 <td>$" . $row['p_price'] . "</td>
                 <td><form method='post' action=''>
                 <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-                <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+                <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
                
                 echo '<select>';
-                for ($h = 1; $h <=".$row['p_quantity']."; $h++) echo '<option value='$h'>$h</option>';
+                for ($h = 1; $h <=$row['p_quantity']; $h++) 
+                {
+                echo '<option value='.$h.'>$h</option>';
+                }
                 echo '</select>';
 
 
-                <input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
+               echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
                 </td>
                 </form>
                 </tr>";
