@@ -113,9 +113,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         
        // $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
         if ($int == 0) { 
-
-            echo "item not already in cart";
-
+            echo"Item Successfully Added to Cart!";
             
             $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantity."')");
             /*echo "cart updated";
@@ -134,24 +132,20 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
 
         else{
             
-            echo "item is  already in cart";
-            $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
-/*
+            echo "Cart Successfully Updated!";
+
+           // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
+            
+
             $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
             $q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
             $cq = mysqli_fetch_array($qcheck['cart_quantity']);
             $qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-
-            while($row6 = mysqli_fetch_array($qcheck3)){
-                
-                echo( $row6['upc']);
-            
-            }
-
-
+            echo("quantity in inventory: ".$q);
+          /*
             if ($q >= $cq)
             {
-                $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
+               // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
                 echo "item in cart";
             }
 
