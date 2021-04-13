@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
+{
+    header("Location:employee_login.php");  
+}
 
 // Variables from POST
 
@@ -18,7 +22,7 @@ if ($listed == 'on') {
 }
 
 // FIX EMPLOYEEID LATER
-$employeeId = 1;
+$employeeId = $_SESSION['employee'];
 
 $currTime = date('Y-m-d H:i:s');
 $updateDesc = 'Added product to database';
