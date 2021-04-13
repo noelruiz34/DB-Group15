@@ -72,6 +72,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             
             echo "<table>";
             echo "<tr><td> Name </td><td> Price </td></tr>";
+            echo (mysqli_num_rows($result2));
             while($row = mysqli_fetch_array($result2)){
                 
                 echo "<tr>
