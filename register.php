@@ -58,6 +58,7 @@
   Already have an account?
   <a href="customer_login.php">Log in to existing account</a>
   <br>
+  <br>
   <a href="index.php">Return to homepage</a>
 </body>
 
