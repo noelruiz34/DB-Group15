@@ -44,7 +44,6 @@ $customer_id = $_SESSION['customer']
         }
         ?>
         <a href = 'shopping_cart.php'>My Cart</a>
-        <a href='order_summary.php'>Order Lookup</a>
         <a href="edit-customer-account-info.php">My Account</a>
     </p>
 
