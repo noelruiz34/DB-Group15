@@ -25,7 +25,7 @@
 	<title>Sales</title>
 </head>
 <body>
-    
+    <!-- use join tables to make the report -->
     <h1>Sales</h1>
     <a href = employee-portal.php> Back to Employee Portal </a>
        

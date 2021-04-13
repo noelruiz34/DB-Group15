@@ -59,7 +59,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             {
                
 
-            $result2 = $connect->query('select p_name, p_price from product where p_category = "' .$_POST["proddisp"]. '" ');
+            $result2 = $connect->query('select p_name, p_price from product where p_category = "' .$_POST["proddisp"]. '" and  p_listed=1');
             
  
             while($row = mysqli_fetch_array($result2)){
