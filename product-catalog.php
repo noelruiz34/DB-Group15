@@ -48,6 +48,9 @@ $customer_id = $_SESSION['customer'];
     ?> 
     <?php
 
+$qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
+$rownum = mysql_num_rows($qcheck);
+echo (rownum);
 
     $result = $connect->query("select category_name from product_category");
 
@@ -72,7 +75,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             
             echo "<table>";
             echo "<tr><td> Name </td><td> Price </td></tr>";
-            echo (mysqli_num_rows($result2));
+           // echo (mysqli_num_rows($result2));
             while($row = mysqli_fetch_array($result2)){
                 
                 echo "<tr>
