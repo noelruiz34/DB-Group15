@@ -78,6 +78,12 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 <td><form method='post' action=''>
                 <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
                 <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+               
+                echo '<select>';
+                for ($h = 1; $h <=".$row['p_quantity']."; $h++) echo '<option value='$h'>$h</option>';
+                echo '</select>';
+
+
                 <input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
                 </td>
                 </form>
@@ -136,7 +142,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             
            
 
-            echo($_POST['iquant']);
+            //echo($_POST['iquant']);
 
 
            // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
