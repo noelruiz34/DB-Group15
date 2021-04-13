@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <?php 
     include 'db.php';
+    session_start();
+    if(!isset($_SESSION['employee'])) {
+      header("Location:employee-login.php"); 
+    }
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -9,7 +13,7 @@
 <html>
 <head>
 
-<a href="index.php">Back to Home</a>
+<a href="employee-portal.php">Back to Employee Portal</a>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

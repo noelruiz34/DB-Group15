@@ -17,13 +17,20 @@
   $customer_id = $_SESSION['customer'];
   
   $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
+  
   $cart_results = mysqli_query($connect, $cart_sql);
+  
   echo "<table>";
-  echo "<tr><td> Product Name </td><td> Quantity </td></tr> ";
+  echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+  
   while($row=mysqli_fetch_array($cart_results)) {
+    $cart_qty =  floatval($row['cart_quantity']);
+    $cart_p = floatval($row['p_price']);
+    $cart_price = $cart_qty * $cart_p;
     echo "<tr>
     <td>" . $row['p_name'] . "</td>
     <td>" . $row['cart_quantity'] . "</td>
+    <td>" . $cart_price . "</td>
     </tr>";
   }
   echo "</table>";

@@ -60,6 +60,39 @@ $customer_id = $_SESSION['customer']
             
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         }
+<<<<<<< HEAD
+=======
+        ?>
+        <a href = 'shopping_cart.php'>My Cart</a>
+        <a href="edit-customer-account-info.php">My Account</a>
+    </p>
+
+    <h1> <a href="product-catalog.php">Browse Products</a></h1>
+    <?php
+    
+
+    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName) or die("Unable to Connect to '$dbServername'");
+    // mysqli_select_db($connect, $dbName) or die("Could not open the db '$dbName'");
+    if($connect->connect_error) {
+        die('Bad connection'. $connect->connect_error);
+    }
+
+    $result = $connect->query("SELECT * FROM product_category");
+    $resultCheck = mysqli_num_rows($result);
+    if ($resultCheck > 0)
+    {
+        while ($row = mysqli_fetch_assoc($result))
+            {
+                echo $row['category_name'];
+                echo " ";
+            }
+    }
+    
+?>
+
+    <?php 
+    //include 'db.php';
+>>>>>>> b34f505aaab1472d43aeffc7a90197ac04fb3dac
     ?>
 
 
