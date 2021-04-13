@@ -32,10 +32,6 @@ $customer_id = $_SESSION['customer']
         <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
         <?php
             if(isset($_SESSION['customer'])) {
-                $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
-                $result = mysqli_query($connect, $sql);
-                $row = mysqli_fetch_array($result);
-                
                 echo "
                 <li><a href='edit-customer-account-info.php'>My Account</a></li>
                 <li><a href = 'shopping_cart.php'>My Cart</a></li>
@@ -60,7 +56,7 @@ $customer_id = $_SESSION['customer']
             
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         }
-        ?>
+    ?>
 
 
 
