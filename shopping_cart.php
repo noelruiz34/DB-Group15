@@ -16,7 +16,7 @@
 
   $customer_id = $_SESSION['customer'];
   
-  $cart_sql = "SELECT * FROM shopping_cart FULL OUTER JOIN product WHERE customer_id=$customer_id";
+  $cart_sql = "SELECT *, p_name.product, p_price.product FROM (shopping_cart FULL OUTER JOIN product) WHERE customer_id=$customer_id";
   $cart_results = mysqli_query($connect, $cart_sql);
   echo "<table>";
   echo "<tr><td> Product Name </td><td> Quantity </td></tr> ";
