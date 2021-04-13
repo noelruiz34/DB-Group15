@@ -83,7 +83,14 @@ $customer_id = $_SESSION['customer']
                 <div class='hero-body'>
                     <p>Don't settle for cheap knockoffs. Come discover the point-of-sale system of all time.</p>
                     <br>
-                    <a class='link-button' href='register.php'>Register an account</a>
+                    <?php
+                        if(isset($_SESSION['customer'])) {
+                            echo "<a class='link-button' href='product-catalog.php'>Browse our products</a>";
+                        } else {
+                            echo "<a class='link-button' href='register.php'>Register an account</a>";
+                        }
+                    ?>
+                    
                 </div>
             </div>
         </div>
@@ -92,7 +99,7 @@ $customer_id = $_SESSION['customer']
         <img class='center-image' style='width:40px;margin-top:50px;margin-bottom:50px;' src='/images/down-arrow.png'>
 
         <h1 style='padding-top:7vh;'>Welcome to Omazon.</h1>
-        
+
         <?php
             if(isset($_SESSION['customer'])) {
                 $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
@@ -123,8 +130,14 @@ $customer_id = $_SESSION['customer']
             </p>
         </div>
         
-        <div style='text-align:center;'><a class='link-button' href='product-catalog.php'>Browse our products</a></div>
         
+        <?php
+            if(isset($_SESSION['customer'])) {
+                echo "<div style='text-align:center;'><a class='link-button' href='edit-customer-account-info.php'>View my account</a></div>";
+            } else {
+                echo "<div style='text-align:center;'><a class='link-button' href='product-catalog.php'>Browse our products</a></div>";
+            }
+        ?>
         
         <div class='footer'>
             <ul>
