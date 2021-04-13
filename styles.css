@@ -14,6 +14,8 @@ body {
 h1 {
     font-family: 'Roboto', sans-serif;
     color: #f6c90e;
+    font-size: 7vh;
+    text-align: center;
 }
 
 h2 {
@@ -24,7 +26,14 @@ h3 {
     font-family: 'Roboto', sans-serif;
 }
 
+a {
+    color: #f6c90e;
+    text-decoration: none;
+}
+
+
 /* ---- begin navbar ---- */
+
 .navbar ul {
     z-index: 1000;
     list-style-type: none;
@@ -51,6 +60,7 @@ h3 {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .navbar li a:hover {
@@ -64,12 +74,10 @@ h3 {
 /* ---- end navbar ---- */
 
 .main-container {
+    min-height: 50vh;;
     padding-top: 50px;
 }
-.main-container a {
-    color: #f6c90e;
-    text-decoration: none;
-}
+
 
 .main-container a:hover {
     text-decoration: underline;
@@ -93,8 +101,8 @@ h3 {
 }
 
 .hero-image {
-    background-image: url('https://i.imgur.com/9QnZaLs.png');
-    height: 80vh;
+    background-image: url('/images/heroimg.png');
+    height: 83vh;
   
     /* Position and center the image to scale nicely on all screens */
 
@@ -118,6 +126,8 @@ h3 {
     font-size: 12vh;
     color: #eeeeee;
     margin-bottom: 0;
+    line-height: 12vh;
+    text-align: left;
 }
 
 .hero-text p {
@@ -125,27 +135,33 @@ h3 {
     font-size: 3vh;
 }
 
-.hero-text a {
+.link-button {
     padding: 15px 35px;
     color: #303841;
     background-color: #f6c90e;
     transition: .3s;
     font-weight: bold;
+    text-decoration: none;
 }
 
-.hero-text a:hover {
+.link-button:hover {
     background-color: #3a4750;
     color: #eeeeee;
     text-decoration: none;
 }
 
 .footer {
+    clear:both;
     position: relative;
-    top: 100vh;
-    width: 100%;
-    border-top: 5px solid #eeeeee;
+    /*top: 50vh;*/
+    bottom: 0%;
+    /*border-top: 5px solid #eeeeee;*/
+    padding-top: 10px;
+    margin:0;
+    margin-top: 10vh;
     background-color: #3a4750;
     color: #eeeeee;
+    text-align: center;
 }
 
 .footer ul {
@@ -153,5 +169,33 @@ h3 {
     margin: 0;
     padding: 0;
     overflow: hidden;
+    width: 100%;
 }
 
+.footer li {
+    padding: 2px;
+}
+
+.footer p {
+    font-size: 13px;
+    margin-top: 5px;
+    padding-bottom: 10px;
+    color:#8e9da8;
+}
+
+.center-image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homepage-info {
+    padding: 5vw;
+    padding-top: 2vw;
+}
+
+.homepage-info-image {
+    width:50vw;
+    float:right;
+    margin-left:3vw;
+}

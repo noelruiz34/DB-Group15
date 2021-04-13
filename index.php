@@ -23,6 +23,29 @@ $customer_id = $_SESSION['customer']
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     
+    <!-- ****** faviconit.com favicons ****** -->
+	<link rel="shortcut icon" href="/images/favicon/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="/images/favicon/favicon-192.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="/images/favicon/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" href="/images/favicon/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/favicon-60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon-180.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="/images/favicon/favicon-144.png">
+	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+	<!-- ****** faviconit.com favicons ****** -->
+
 	<title>Omazon Home</title>
 </head>
 
@@ -53,22 +76,23 @@ $customer_id = $_SESSION['customer']
 
     <div class='main-container'>
     
-        <!-- <div class='hero-image-bg'> -->
-            <div class="hero-image">
-
+        <!-- hero image begin -->
+        <div class="hero-image">
             <div class="hero-text">
                 <h1>High-quality goods for highly-awesome customers.</h1>
-
                 <div class='hero-body'>
                     <p>Don't settle for cheap knockoffs. Come discover the point-of-sale system of all time.</p>
                     <br>
-                    <a href='register.php'>Sign Up</a>
+                    <a class='link-button' href='register.php'>Register an account</a>
                 </div>
             </div>
-            
         </div>
+        <!-- hero image end -->
         
+        <img class='center-image' style='width:40px;margin-top:50px;margin-bottom:50px;' src='/images/down-arrow.png'>
 
+        <h1 style='padding-top:7vh;'>Welcome to Omazon.</h1>
+        
         <?php
             if(isset($_SESSION['customer'])) {
                 $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
@@ -79,18 +103,34 @@ $customer_id = $_SESSION['customer']
             }
         ?>
 
-
+        <div class='homepage-info'>
+            <p>
+                <img class='homepage-info-image' src='/images/homepage-ecommerce.png'>
+                <p class='homepage-info-text'>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus imperdiet, nulla et dictum interdum, nisi lorem egestas odio, 
+                    vitae scelerisque enim ligula venenatis dolor. Maecenas nisl est, ultrices nec congue eget, auctor vitae massa. Fusce luctus 
+                    vestibulum augue ut aliquet. Mauris ante ligula, facilisis sed ornare eu, lobortis in odio. Praesent convallis urna a lacus interdum 
+                    ut hendrerit risus congue. Nunc sagittis dictum nisi, sed ullamcorper ipsum dignissim ac. In at libero sed nunc venenatis imperdiet 
+                    sed ornare turpis. Donec vitae dui eget tellus gravida venenatis. Integer fringilla congue eros non fermentum. Sed dapibus pulvinar 
+                    nibh tempor porta. Cras ac leo purus. Mauris quis diam velit.
+                    <br><br>
+                    Ut id nunc erat. Quisque sodales est neque, vel lacinia turpis bibendum eu. Sed condimentum tempus risus, eu fringilla tellus 
+                    aliquam quis. Praesent a tortor vulputate, ultrices orci ut, dapibus tellus. Aenean at suscipit libero, et porta lorem. Vivamus 
+                    tincidunt tellus sed lacus tempor, eget lobortis arcu vulputate. Aliquam venenatis orci vitae libero interdum sagittis. Nam tempus 
+                    rhoncus feugiat. Aliquam quis cursus eros, pharetra molestie est. Nunc orci lorem, semper vitae mauris sit amet, egestas semper 
+                    augue. Donec et placerat ante. Vivamus ullamcorper leo dictum dui lobortis ullamcorper.    
+                </p>
+            </p>
+        </div>
         
-
+        <div style='text-align:center;'><a class='link-button' href='product-catalog.php'>Browse our products</a></div>
         
         
-
-
         <div class='footer'>
             <ul>
                 <li><a href="index.php">Home</a></li>
+                <li><a href="employee-login.php">Employee Portal</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="employee-login.php">Employee Login</a></li>
             </ul>
             <p>Omazon © 2021</p>
         </div>
