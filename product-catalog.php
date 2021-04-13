@@ -14,12 +14,7 @@ if($connect->connect_error) {
 }
 
 session_start();
-if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
-  {
-    header("Location:customer_login.php");  
-  }
 
-$customer_id = $_SESSION['customer'];
 
 ?>
 <html>
@@ -100,6 +95,12 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
        // echo("is thiseven working at this point");
 
        // echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
+       if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
+        {
+            header("Location:customer_login.php");  
+        }
+
+        $customer_id = $_SESSION['customer'];
         $quantity = 1;
         $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
 
