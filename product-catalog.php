@@ -135,7 +135,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             
             echo "Cart Successfully Updated!<br>";
 
-            echo($POST['p_quantity']);
+            echo($_POST['p_quantity']);
            // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
             
 
