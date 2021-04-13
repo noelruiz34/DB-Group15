@@ -137,8 +137,8 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
            // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
             
 
-            $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
-            echo("select p_quantity fron product where upc = ".$_POST['add_upc']);
+            $quancheck = $connect->query("select p_quantity from product where upc = ".$_POST['add_upc']);
+           // echo("select p_quantity from product where upc = ".$_POST['add_upc']);
             //$q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
             $cq = mysqli_fetch_array($qcheck['cart_quantity']);
             $qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
