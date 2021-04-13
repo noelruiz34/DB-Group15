@@ -99,15 +99,15 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
        // echo("is thiseven working at this point");
 
        // echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
-        $quantiy = 1;
+        $quantity = 1;
         $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
 
-      /*  $int = 0;
+       $int = 0;
 
         while($row = mysqli_fetch_array($qcheck)){
             echo("foound someting?");
             $int = $int +1;
-        }*/
+        }
                 
      
         
