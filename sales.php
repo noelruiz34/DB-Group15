@@ -52,6 +52,8 @@
             else {
                 $running_item_total = 0;
                 $running_sold_total = 0;
+                $order_items_array = array();
+                $order_total_array = array();
                 while($row=mysqli_fetch_array($result)) {
                     $order_id = $row['o_id'];
                     $order_join_sql = "SELECT Point_of_Sale.order.o_id, Point_of_Sale.product_purchase.quantity_ordered, Point_of_Sale.product_purchase.p_price
@@ -72,20 +74,29 @@
                         $cost_total += $cost_amount;
                     }
                     
+                    $order_items_array[$order_id] = $item_total;
+                    $order_total_array[$order_id] = $cost_total;
                     $running_item_total += $item_total;
                     $running_sold_total += $cost_total;
                 }
                 
+                echo "<h1>Summary for Date: $start_date to $end_date</h1>";
+                echo "<font size='+3'>
+                    Total sold: $$running_sold_total <br>
+                    Number of Items Sold: $running_item_total <br>
+                </font>";
                 $result = mysqli_query($connect, $sales_sql);
                 if(mysqli_num_rows($result)==0) {
                     echo "There are no sales in this date range!";
                 }
                 echo "<table>";
-                echo "<tr><td> Date </td><td> Order ID </td><td>";
+                echo "<tr><td> Date </td><td> Order ID </td><td> Total Cost </td><td> Number of Items </td><td>";
                 while($row=mysqli_fetch_array($result)) {
                     echo "<tr>
                     <td>" . $row['o_time'] . "</td>
                     <td>" . $row['o_id'] . "</td>
+                    <td>" . $order_total_array[$row['o_id']] . "</td>
+                    <td>" . $order_items_array[$row['o_id']] . "</td>
                     </tr>";
                 }
                 echo "</table>";
