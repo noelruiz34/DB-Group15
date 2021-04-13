@@ -96,14 +96,14 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         $quantiy = 1;
         $qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
 echo "cart: ";
-        while($row10 = mysqli_fetch_array($qcheck)){
+       /* while($row10 = mysqli_fetch_array($qcheck)){
                 
             echo( $row10['upc']);
         
-        }
+        }*/
         
         if (empty($qcheck)) { 
-
+/*
             echo "item not already in cartd";
             $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
             echo "cart updated";
@@ -115,12 +115,13 @@ echo "cart: ";
             
             }
 
-
+*/
 
             
         }
 
         else{
+            /*
             echo "item is  already in cart";
             $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
             $q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
@@ -146,7 +147,7 @@ echo "cart: ";
 
 
             }
-
+*/
         }
 
     }
