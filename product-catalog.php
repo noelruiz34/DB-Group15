@@ -79,10 +79,10 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
                 <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
                 <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
                
-                echo '<select>';
+                echo '<select name = qp>';
                 for ($h = 1; $h <=$row['p_quantity']; $h++) 
                 {
-                echo '<option value='.$h.'>$h</option>';
+                echo '<option value='.$h.'>'.$h.'</option>';
                 }
                 echo '</select>';
 
@@ -101,6 +101,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
   
 
     if(isset($_POST['add_to_cart'])) {
+        
        // echo("is thiseven working at this point");
 
        // echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
@@ -110,7 +111,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         }
 
         $customer_id = $_SESSION['customer'];
-        $quantity = 1;
+        $quantity = $_POST['qp'];
         $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
 
        $int = 0;
