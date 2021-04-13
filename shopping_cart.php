@@ -1,3 +1,7 @@
+<body>
+  <a href="index.php">Return to homepage</a>
+  </body>
+  
 <?php
   $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
   $dbUser = "admin";
@@ -16,12 +20,14 @@
 
   $customer_id = $_SESSION['customer'];
   
+  
   $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
   
   $cart_results = mysqli_query($connect, $cart_sql);
   
   echo "<table>";
   echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+  $cart_total = 0;
   
   while($row=mysqli_fetch_array($cart_results)) {
     $cart_qty =  floatval($row['cart_quantity']);
@@ -32,7 +38,17 @@
     <td>" . $row['cart_quantity'] . "</td>
     <td>" . $cart_price . "</td>
     </tr>";
+    $cart_total = $cart_total + $cart_price;
   }
   echo "</table>";
+  echo "<br>
+    <tr>
+    <td> Total </td>
+    <td>  </td>
+  $cart_total
+  </tr>
+  ";
+  
+  
 
 ?>
