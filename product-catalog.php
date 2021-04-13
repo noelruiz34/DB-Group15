@@ -48,7 +48,7 @@ $customer_id = $_SESSION['customer'];
     ?> 
     <?php
 
-$qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
+$qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = 2342432432432");
 $rownum = mysql_num_rows($qcheck);
 echo (rownum);
 
