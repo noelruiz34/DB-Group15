@@ -117,7 +117,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
         }
 
         else{
-            echo "item not in  already in cart";
+            echo "item is  already in cart";
             $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
             $q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
             $cq = mysqli_fetch_array($qcheck['cart_quantity']);
