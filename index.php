@@ -24,29 +24,30 @@ $customer_id = $_SESSION['customer']
 <body>
     
 	<h1>Omazon</h1>
-    <?php
-    if(isset($_SESSION['customer'])) {
-        $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
-        $result = mysqli_query($connect, $sql);
-        $row = mysqli_fetch_array($result);
-        echo "Hello, " .$row['f_name'] . " " . $row['l_name'] . "!";
-        echo "<p align='right'>
-                <a href = 'shopping_cart.php'> My Cart </a>
-                <a href = 'logout.php'> Log out </a>
-                <a href = 'order_summary.php'> Order lookup </a>
-                </p>";
-    }
-    else {
-        echo "<p align='right'>
-        <a href='customer_login.php'>Log in</a>
-        <a href='register.php'>Create account</a>
-        <a href='order_summary.php'>Order lookup</a>
-        </p>";
-    }
     
-
-    ?>
-   
+        <?php
+        if(isset($_SESSION['customer'])) {
+            $sql = "SELECT f_name, l_name FROM customer WHERE customer_id=$customer_id";
+            $result = mysqli_query($connect, $sql);
+            $row = mysqli_fetch_array($result);
+            echo "Hello, " .$row['f_name'] . " " . $row['l_name'] . "!";
+            echo "<p align='right'>
+                    <a href = 'logout.php'> Log out </a>
+                    <a href = 'order_summary.php'> Order lookup </a>
+                    ";
+        }
+        else {
+            echo "<p align='right'>
+            <a href='customer_login.php'>Log in</a>
+            <a href='register.php'>Create account</a>
+            
+            ";
+        }
+        ?>
+        <a href = 'shopping_cart.php'> My Cart </a>
+        <a href='order_summary.php'>Order Lookup</a>
+        <a href="edit-customer-account.php">My Account</a>
+    </p>
 
     <h1> <a href="product-catalog.php">Browse Products</a></h1>
     <?php
