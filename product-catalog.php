@@ -105,7 +105,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
        $int = 0;
 
         while($row = mysqli_fetch_array($qcheck)){
-            echo("foound someting?");
+           
             $int = $int +1;
         }
                 
@@ -138,10 +138,16 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             
 
             $quancheck = $connect->query("select p_quantity fron product where upc = ".$_POST['add_upc']);
-            $q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
+            echo("select p_quantity fron product where upc = ".$_POST['add_upc']);
+            //$q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
             $cq = mysqli_fetch_array($qcheck['cart_quantity']);
             $qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-            echo("quantity in inventory: ".$q);
+            while($row40 = mysqli_fetch_array($quancheck)){
+                echo"found a value: ";
+                echo ($row40['p_quantity']);
+            }
+
+            
           /*
             if ($q >= $cq)
             {
