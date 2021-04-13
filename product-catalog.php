@@ -48,9 +48,6 @@ $customer_id = $_SESSION['customer'];
     ?> 
     <?php
 
-$qcheck = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = 2342432432432");
-$rownum = mysql_num_rows($qcheck);
-echo (rownum);
 
     $result = $connect->query("select category_name from product_category");
 
