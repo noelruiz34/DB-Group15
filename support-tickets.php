@@ -17,7 +17,7 @@
     $employee_id = $_SESSION['employee'];
 
     function echoNeedReviewTickets($connect) {
-        $sql = "SELECT * FROM support_ticket WHERE e_id IS NULL";
+        $sql = "SELECT * FROM support_ticket WHERE e_id=0";
         $result = mysqli_query($connect,$sql);
         if(!$result) {
             die("Query Failed!");
