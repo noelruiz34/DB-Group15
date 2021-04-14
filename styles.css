@@ -14,7 +14,7 @@ body {
 h1 {
     font-family: 'Roboto', sans-serif;
     color: #f6c90e;
-    font-size: 7vh;
+    font-size: 72px;
     text-align: center;
 }
 
@@ -24,6 +24,8 @@ h2 {
 
 h3 {
     font-family: 'Roboto', sans-serif;
+    color: #f6c90e;
+    font-size: 26px;
 }
 
 a {
@@ -31,6 +33,31 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
+input {
+    outline: none;
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 2px solid #3A4750;
+    background-color: #3A4750;
+    border-radius: 8px;
+    transition: .3s;
+    margin-bottom: 26px;
+    color: #eeeeee
+}
+
+input[type=checkbox] {
+    min-width: 20px;
+}
+
+input:focus {
+    border: 2px solid #eeeeee;
+}
 
 /* ---- begin navbar ---- */
 
@@ -198,4 +225,63 @@ a {
     width:50vw;
     float:right;
     margin-left:3vw;
+}
+
+.container-portal {
+    background-image: url('/images/background-logo.png');
+    background-position: 100% 0%;
+    background-repeat: no-repeat;
+}
+
+.portal-content {
+    margin: 100px auto;
+    padding: 12px 75px;
+    width: 40%;
+    background-color: rgba(26, 29, 32, 0.849);
+    border-radius: 42px;
+}
+
+.portal-content h3 {
+    margin-bottom: 16px;
+}
+
+.portal-content form input[type=submit] {
+    border: 0px;
+    border-radius: 0px;
+    transition: .3s;
+    background-color: #F6C90E;
+    color:#303841;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.portal-content form input[type=submit]:hover {
+    background-color: #303841;
+    color:#eeeeee;
+}
+
+/* The alert message box */
+.alert {
+    padding: 20px;
+    background-color: #F6C90E; /* Red */
+    color: #303841;
+    margin-bottom: 15px;
+  }
+  
+/* The close button */
+.closebtn {
+    margin-left: 15px;
+    color: #3A4750;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+    color: #F44C67;
 }
