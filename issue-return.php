@@ -73,6 +73,25 @@
     </form>
 
     <?php
+        if(isset($_POST['view_all_returns'])) {
+            $return_sql = "SELECT * FROM Point_of_Sale.return";
+            $return_result = mysqli_query($connect, $return_sql);
+            if(!$return_result) {
+                die("View all returns query failed!");
+            }
+
+            echo "<table>";
+            echo "<tr><td> Return ID </td><td> Order ID </td><td> Return Time </td></tr>";
+            while($row=mysqli_fetch_array($return_result)) {
+                echo "<tr>
+                <td>$row[return_id]</td>
+                <td>$row[order_id]</td>
+                <td>$row[return_time]</td>
+                <tr>";
+            }
+            echo "</table>";
+        }
+
         if(isset($_POST['start_return'])) {
             $return_order = $_POST['return_order'];
             $_SESSION['return_order'] = $return_order;
