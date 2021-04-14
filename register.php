@@ -68,7 +68,7 @@
         
       </p><br>
       <?php require_once 'register-error-handling.php'; ?><br>
-      
+
       <i style='font-size:13px;'>(All fields are required for account creation)</i>
       
       
@@ -120,7 +120,7 @@
         <!-- Billing Info -->
         <h3>Billing Info</h3>
         Credit card number: <br>
-        <input type='text' id='cc_num' name='cc_num' pattern='[0-9]{16}' placeholder='16 digits' placeholder='Your 16-digit credit card number...' required/><br>
+        <input type='text' id='cc_num' name='cc_num' pattern='[0-9]{16}' placeholder='Your 16-digit credit card number...' required/><br>
         CVV: <br>
         <input type='text' id='cvv' name='cvv' pattern='[0-9]{3}' placeholder='3-digit security code...' required/><br>
         Expiration date: <br>
