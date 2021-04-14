@@ -34,7 +34,7 @@
         </select>
         <label> Search:  </label><input type = "text" name = "search_id" class = "box" />
         <input type = "submit" name = "history_search" value = "Search"/>
-        <br>
+        <br> <br>
     </form>
     
     <?php
@@ -55,18 +55,25 @@
                 die("Query failed!");
             }
             
-            echo "<br><table>";
-            echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
-            while($row=mysqli_fetch_array($update_result)) {
-                echo "<tr>
-                <td>$row[update_id]</td>
-                <td>$row[update_time]</td>
-                <td>$row[employee_id]</td>
-                <td>$row[upc]</td>
-                <td>$row[update_desc]</td>
-                </tr>";
+            if(mysqli_num_rows($update_result) == 0) {
+                $upper_attribute = strtoupper($search_attribute);
+                echo "There are no changes for $upper_attribute: $search_id!";
             }
-            echo "</table>";
+            else{
+                echo "<table>";
+                echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
+                while($row=mysqli_fetch_array($update_result)) {
+                    echo "<tr>
+                    <td>$row[update_id]</td>
+                    <td>$row[update_time]</td>
+                    <td>$row[employee_id]</td>
+                    <td>$row[upc]</td>
+                    <td>$row[update_desc]</td>
+                    </tr>";
+                }
+                echo "</table>";
+            }
+            
         }
 
 
