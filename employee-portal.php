@@ -40,10 +40,6 @@
     
     <h1><a href="add-update-product.php"> Add/Update Product </a></h1>
 
-    <!--<a href="add_product_category.php"><button>Add Product Category</button></a>
-    <a href="add_product_category.php"><button>Update Product Category</button></a>
-    <p><label>Search Product Update History  :</label><input type = "text" name = "product_update_history" class = "box"/><br /><br /></p>
-    -->
     <h1><a href="product-changes-history.php"> View Product Changes History </a></h1>
 
     <h1><a href="support-tickets.php"> Support Tickets </a></h1>
