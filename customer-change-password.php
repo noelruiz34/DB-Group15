@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
 {
-    header("Location:customer_login.php");  
+    header("Location:customer-login.php");  
 }
 
 $dsn = 'mysql:dbname=Point_of_Sale;host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';

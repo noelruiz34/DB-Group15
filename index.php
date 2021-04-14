@@ -46,31 +46,30 @@ $customer_id = $_SESSION['customer']
 	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
 	<!-- ****** faviconit.com favicons ****** -->
 
-	<title>Omazon Home</title>
+	<title>Omazon.com: The Point-Of-Sale System For All Your Needs</title>
 </head>
 
 <body>
     <div class='navbar'>
         <ul>
-            <li style='float:left'><a class='active' href='index.php' style='font-weight:700;'>Omazon</a></li>
+            <li style='float:left'><a class='active' href='index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
             <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
             <?php
                 if(isset($_SESSION['customer'])) {
                     echo "
                     <li><a href = 'logout.php'  style='color:#ec0016;'> Log out </a></li>
                     <li><a href='edit-customer-account-info.php'>My Account</a></li>
-                    <li><a href = 'shopping_cart.php'>My Cart</a></li>
+                    <li><a href = 'shopping-cart.php'>My Cart</a></li>
                     
                     ";
                 }
                 else {
                     echo "
                     <li><a href='register.php'>Register</a></li>
-                    <li><a href='customer_login.php'>Log in</a></li>
+                    <li><a href='customer-login.php'>Log in</a></li>
                     ";
                 }
             ?>
-            <li><a href='order_summary.php'>Order Lookup</a></li>
         </ul>
     </div>
 

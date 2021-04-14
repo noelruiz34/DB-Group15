@@ -107,7 +107,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
        // echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
        if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
         {
-            header("Location:customer_login.php");  
+            header("Location:customer-login.php");  
         }
 
         $customer_id = $_SESSION['customer'];
