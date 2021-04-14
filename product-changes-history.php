@@ -27,6 +27,7 @@
     <h1>Product Changes History</h1>
     <a href = employee-portal.php> Back to Employee Portal </a> <br> <br>
     <form action='' method='post'>
+        <input type = "submit" name = "view_all_updates" value = "View All Updates"/><br><br>
         <label for="search"> Search Changes History By </label>
         <select id="method" name = "search_method">
             <option value="upc"> UPC</option>
@@ -38,7 +39,7 @@
     </form>
     
     <?php
-        if(isset($_POST['history_search'])) {
+        if(isset($_POST['history_search']) || isset($_POST['view_all_updates'])) {
             $search_attribute = "";
             $search_id = $_POST['search_id'];
             if($_POST['search_method'] == "upc") {
@@ -48,7 +49,13 @@
                 $search_attribute = "employee_id";
             }
 
-            $update_sql = "SELECT * FROM product_update WHERE $search_attribute=$search_id";
+            if(isset($_POST['view_all_updates'])) {
+                $update_sql = "SELECT * FROM product_update";
+            }
+            else {
+                $update_sql = "SELECT * FROM product_update WHERE $search_attribute=$search_id";
+            }
+            
             $update_result = mysqli_query($connect, $update_sql);
 
             if(!$update_result) {
@@ -76,9 +83,7 @@
             
         }
 
-
     ?>
-
 
 </body>
 </html>
