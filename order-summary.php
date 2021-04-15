@@ -8,6 +8,21 @@
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+  function showOptions() {
+    const div = document.getElementById('options')
+    let html = ''
+
+    html += '<a style={{ fontSize: \"150%\", marginRight: \"1%\" }}>Price:</a>'
+    html += '<input type=\"radio\" name="status" id="p1" /> $'
+    html +=  '<input type="radio" name="status" id="p2" /> $ $'
+    html +=  '<input type="radio" name="status" id="p3" /> $ $ $'
+    html +=  '<input type="radio" name="status" id="p4" /> $ $ $ $'
+
+    div.innerHTML = html
+  }
+</script>
 
 
 <html>
@@ -76,17 +91,17 @@ td {
         <center style="margin-top: 5%;font-size: 300%;">Order Lookup</center>
         <hr style="width: 50%;">
     </div>
+
 </head>
 <body>
 
 <form class="example" action='' method="post">
   <input type="text" placeholder="Search.." name="search">
-  <button type="submit" name="Search"><i class="fa fa-search"></i></button>
+  <button type="submit" name="Search" onclick="showOptions()"><i class="fa fa-search"></i></button>
 </form>
 
-<form class="example" action='' method="post">
-  <button type="submit" name="status"><i class="fa fa-search"></i></button>
-</form>
+<div id="options"></div>
+
 
 <div id="order_info">
     <?php 
