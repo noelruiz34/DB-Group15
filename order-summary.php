@@ -14,7 +14,7 @@
     const div = document.getElementById('options')
     let html = ''
 
-    html += '<a style={{ fontSize: \"150%\", marginRight: \"1%\" }}>Price:</a>'
+    html += '<a style=\"fontSize: 150%; marginRight: 1%;\";>Price:</a>'
     html += '<input type=\"radio\" name="status" id="p1" /> $'
     html +=  '<input type="radio" name="status" id="p2" /> $ $'
     html +=  '<input type="radio" name="status" id="p3" /> $ $ $'
@@ -97,7 +97,7 @@ td {
 
 <form class="example" action='' method="post">
   <input type="text" placeholder="Search.." name="search">
-  <button type="submit" name="Search" ><i class="fa fa-search"></i></button>
+  <button type="submit" name="Search" onclick="showOptions()"><i class="fa fa-search"></i></button>
 </form>
 
 <div id="options"></div>
