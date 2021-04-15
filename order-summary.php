@@ -129,9 +129,9 @@ td {
 <div id="order_info">
     <?php 
 
-  if(isset($_POST['search'])){
-    getOrderInfo()
-  }
+    if(isset($_POST['search'])){
+      getOrderInfo()
+    }
 
     
 
