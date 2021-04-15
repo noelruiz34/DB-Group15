@@ -32,14 +32,7 @@ session_start();
        
     </center>
 
-    <?php /*print_r($result); 
-
-     function test()
-            {
-                print_r("hello");
-            }
-            ?>
-            */
+    <?php 
     ?> 
     <?php
 
@@ -47,64 +40,113 @@ session_start();
 
 
     $result = $connect->query("select category_name from product_category");
+  
 
-    
-
-        while($row = mysqli_fetch_array($result)){
-
-echo "<form method='post' name='proddisp' action=''>";
  
-echo'<input type="submit" id="button" name="proddisp" value ="'.$row['category_name'].'">';
-echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
-    echo "</form>";
+            echo"<form action='' method='post'>";
 
+            echo "Choose Category:
+    <select id='categories' name='categories' required>";
+    while ($catRow = mysqli_fetch_array($result)) {
+        echo "<option value='" . $catRow['category_name'] . "' ";
+        if ($catRow['category_name'] == $row['p_category']) {
+            echo "selected";
         }
+        echo ">" . $catRow['category_name'] . "</option>";
+    }
+    echo'<input type="submit" name="catsel" vlaue="Choose options">';
+    echo('</form>');
 
-   
-    if(isset($_POST["proddisp"]))
+    if(isset($_POST['catsel']))
+    {
+//echo ($_POST['categories']);
+        $result3 = $connect->query('select upc, p_name, p_price, p_quantity from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+            
+        echo "<table>";
+        echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
+       // echo (mysqli_num_rows($result2));
+        while($row = mysqli_fetch_array($result3)){
+            
+            echo "<tr>
+            <td>" . $row['p_name'] . "</td>
+            <td>$" . $row['p_price'] . "</td>
+            <td>" . $row['upc'] . "</td>
+            <td><form method='post' action=''>
+            <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+            <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
+           
+            echo '<select name = qp>';
+            for ($h = 1; $h <=$row['p_quantity']; $h++) 
             {
-               
-
-            $result2 = $connect->query('select upc, p_name, p_price, p_quantity from product where p_category = "' .$_POST["proddisp"]. '" and  p_listed=1');
-            
-            echo "<table>";
-            echo "<tr><td> Name </td><td> Price </td></tr>";
-           // echo (mysqli_num_rows($result2));
-            while($row = mysqli_fetch_array($result2)){
-                
-                echo "<tr>
-                <td>" . $row['p_name'] . "</td>
-                <td>$" . $row['p_price'] . "</td>
-                <td><form method='post' action=''>
-                <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-                <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
-               
-                echo '<select name = qp>';
-                for ($h = 1; $h <=$row['p_quantity']; $h++) 
-                {
-                echo '<option value='.$h.'>'.$h.'</option>';
-                }
-                echo '</select>';
-
-
-               echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
-                </td>
-                </form>
-                </tr>";
-            
+            echo '<option value='.$h.'>'.$h.'</option>';
             }
-            echo "</table>";
+            echo '</select>';
+
+
+           echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
+            </td>
+            </form>
+            </tr>";
         
-            }
+        }
+        echo "</table>";
+    }
+    else{
 
+     
+      echo" <html>
+      <h2 style='text-align:left;'>Popular Items!</h2>
+        </html>";
+
+
+        $popi = $connect->query("
+        SELECT product_purchase.upc,  p_name, product.p_price ,p_quantity, 
+COUNT(product_purchase.upc) AS val
+ FROM Point_of_Sale.product_purchase
+INNER JOIN Point_of_Sale.product ON product_purchase.upc = product.upc
+GROUP BY product_purchase.upc
+ORDER BY `val` DESC
+LIMIT 3;");
+
+
+echo "<table>";
+echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
+        
+        
+        while($row2 = mysqli_fetch_array($popi)){
+            echo "<tr>
+            <td>" . $row2['p_name'] . "</td>
+            <td>$" . $row2['p_price'] . "</td>
+            <td>" . $row2['upc'] . "</td>
+            <td><form method='post' action=''>
+            <input type = 'hidden' name = 'add_upc' value= ".$row2['upc'].">
+            <input type = 'hidden' name = 'iquant' value= ".$row2['p_quantity'].">";
+           
+            echo '<select name = qp>';
+            for ($h = 1; $h <=$row2['p_quantity']; $h++) 
+            {
+            echo '<option value='.$h.'>'.$h.'</option>';
+            }
+            echo '</select>';
+
+
+           echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
+            </td>
+            </form>
+            </tr>";
+           
+           
+        }
+        echo "</table>";
+
+        
+    }
 
   
 
     if(isset($_POST['add_to_cart'])) {
         
-       // echo("is thiseven working at this point");
-
-       // echo "select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc'];
+    
        if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
         {
             header("Location:customer_login.php");  
@@ -120,7 +162,15 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
            
             $int = $int +1;
         }
-                
+             
+        if($quantity == 0)
+        {
+
+            echo"Item is out of stock! Please check back later<br>";
+        }
+
+        else
+        {
      
         
        // $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
@@ -188,7 +238,7 @@ echo '<input type="hidden" name="disp_this" value="'.$row['category_name'].'">';
             }
 */
         }
-
+    }
     }
 
 
