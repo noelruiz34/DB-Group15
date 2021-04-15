@@ -131,10 +131,10 @@ td {
         echo "</table>";
 
         echo "<a style={{ fontSize: \"150%\", marginRight: \"1%\" }}>Price:</a>";
-        echo "<input type=\"radio\" name=\"status\" id=\"p1\" /> $";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" /> $ $";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" /> $ $ $";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p4\" /> $ $ $ $";    
+        echo "<input type=\"radio\" name=\"status\" id=\"p1\" > $";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" > $ $";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" > $ $ $";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p4\" > $ $ $ $";    
    ?>
 
 </div>
