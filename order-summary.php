@@ -110,6 +110,8 @@ td {
         $order = $_POST['search'];
         $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
 
+        $_SESSION['order'] = $order;
+
         echo "<table id=\"orderInfo\">";
         while($order_info = mysqli_fetch_array($result))
         {
@@ -145,7 +147,7 @@ td {
       $order = $_POST['search'];
 
       echo $status;
-      echo $order;
+      echo $_SESSION['order'];
       $update = $connect->query("update Point_of_Sale.order set o_status = '$status' where o_id = $order");
     }
     ?>
