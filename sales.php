@@ -25,21 +25,14 @@
 }
 
 .row {
+  display: flex;
   margin-left:-5px;
   margin-right:-5px;
 }
-  
-.column {
-  float: left;
-  width: 50%;
-  padding: 5px;
-}
 
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
+.column {
+  flex: 50%;
+  padding: 5px;
 }
 
 table {
@@ -66,6 +59,11 @@ tr:nth-child(even) {
     <h1>Sales</h1>
     <a href = /employee/employee-portal.php> Back to Employee Portal </a> <br> <br>
     <form action='' method='post'>
+        <label for="view_method"> View Sales Report: </label>
+        <select id="method" name = "view_method">
+                <option value="orders_and_returns"> Orders and Returns</option>
+                <option value="product_view"> Products and Categories</option>
+        </select> <br>
         Start Date: <input type='date' id='start' name='sales_start' required/><br>
         End Date: <input type='date' id='end' name='sales_end' required/><br> <br>
         <input type = "submit" name = "generate_report" value = "Generate Report"/>
@@ -73,7 +71,7 @@ tr:nth-child(even) {
     </form>
     
     <?php 
-        if(isset($_POST['generate_report'])) {
+        if(isset($_POST['generate_report']) && $_POST['view_method'] == "orders_and_returns") {
             $start_date = $_POST['sales_start'];
             $end_date = $_POST['sales_end'];
             $sales_sql = "SELECT * FROM Point_of_Sale.order WHERE DATE(o_time) >= '$start_date' AND DATE(o_time) <= '$end_date'";
@@ -161,14 +159,14 @@ tr:nth-child(even) {
 
             echo "<div class='row'>";
             $sales_result = mysqli_query($connect, $sales_sql);
-            echo "<div class='column style='background-color:#aaa;'>";
+            echo "<div class='column'>";
             echo "<h2>Orders</h2>";
             if(mysqli_num_rows($sales_result)==0) {
                 echo "<p>There are no orders in this date range!</p>";
             }
             else {
                 echo "<table>";
-                echo "<tr><th> Date </th><th> Order ID </th><th> Total Cost </th><th> Number of Items </th><th>";
+                echo "<tr><th> Date </th><th> Order ID </th><th> Total Cost </th><th> Number of Items </th></tr>";
                 while($row=mysqli_fetch_array($sales_result)) {
                     echo "<tr>
                     <td>" . $row['o_time'] . "</td>
@@ -183,14 +181,14 @@ tr:nth-child(even) {
             echo "</div>";
 
             $returns_result = mysqli_query($connect, $returns_sql);
-            echo "<div class='column style='background-color:#aaa;'>";
+            echo "<div class='column'>";
             echo "<h2>Returns</h2>";
             if(mysqli_num_rows($returns_result)==0) {
                 echo "<p>There are no returns in this date range!</p>";
             }
             else {
                 echo "<table>";
-                echo "<tr><th> Date </th><th> Return ID </th><th> Order ID </th><th> Return Cost </th><th> Number of Items </th><th>";
+                echo "<tr><th> Date </th><th> Return ID </th><th> Order ID </th><th> Return Cost </th><th> Number of Items </th></tr>";
                 while($row=mysqli_fetch_array($returns_result)) {
                     echo "<tr>
                     <td>$row[return_time]</td>
@@ -206,6 +204,85 @@ tr:nth-child(even) {
             }
             
         }
+
+        if(isset($_POST['generate_report']) && $_POST['view_method'] == "product_view") {
+            $start_date = $_POST['sales_start'];
+            $end_date = $_POST['sales_end'];
+
+            $product_join_sql = "SELECT Point_of_Sale.order.o_time, Point_of_Sale.product_purchase.upc, Point_of_Sale.product.p_category, Point_of_Sale.order.o_id, Point_of_Sale.product_purchase.quantity_ordered, Point_of_Sale.product_purchase.p_price
+            FROM Point_of_Sale.order INNER JOIN Point_of_Sale.product_purchase ON Point_of_Sale.order.o_id = Point_of_Sale.product_purchase.o_id
+            INNER JOIN Point_of_Sale.product ON Point_of_Sale.product_purchase.upc = Point_of_Sale.product.upc
+            WHERE DATE(o_time) >= '$start_date' AND DATE(o_time) <= '$end_date'";
+            $product_join_result = mysqli_query($connect, $product_join_sql);
+            if(!$product_join_result) {
+                die("product_join Query failed!");
+            }
+
+            
+            $categories_array = array();
+            $products_array = array();
+
+            while($row=mysqli_fetch_array($product_join_result)) {
+                $row_cost_total = $row['quantity_ordered'] *$row['p_price'];
+
+                if(!array_key_exists($row['p_category'],$categories_array)) {
+                    $categories_array[$row['p_category']] = array($row['quantity_ordered'], $row_cost_total);
+                }
+                else {
+                    $categories_array[$row['p_category']][0] += $row['quantity_ordered'];
+                    $categories_array[$row['p_category']][1] += $row_cost_total;
+                }
+                
+                if(!array_key_exists($row['upc'], $products_array)) {
+                    $products_array[$row['upc']] = array($row['quantity_ordered'], $row_cost_total);
+                }
+                else {
+                    $products_array[$row['upc']][0] += $row['quantity_ordered'];
+                    $products_array[$row['upc']][1] += $row_cost_total;
+                }
+
+            }
+            
+            echo "<h1>Summary for Date: $start_date to $end_date</h1>";
+            echo "<div class='row'>";
+            echo "<div class='column'>";
+            echo "<h2>Sales by Category</h2>";
+        
+                echo "<table>";
+                echo "<tr><th> Category </th><th> Items Sold </th><th> Total Revenue </th></tr>";
+                foreach($categories_array as $category => $quantity_and_revenue) {
+                    echo "<tr>
+                    <td>$category</td>
+                    <td>$quantity_and_revenue[0]</td>
+                    <td>$quantity_and_revenue[1]</td>
+                    </tr>";
+                }
+                echo "</table>";
+            
+            echo "</div>";
+
+            echo "<div class='column'>";
+            echo "<h2>Sales by Product(UPC)</h2>";
+       
+                echo "<table>";
+                echo "<tr><th> UPC </th><th> Items Sold </th><th> Total Revenue </th>
+                </tr>";
+                /*
+                <th>S.no</th>
+                <th ><a href='sortorder('emp_name')' class='sort'>Name</a></th>
+                <th ><a href='sortorder('salary')' class='sort'>Salary</a></th>
+                <th ><a href='sortorder('gender')' class='sort'>Gender</a></th> */
+                foreach($products_array as $upc => $quantity_and_revenue) {
+                    echo "<tr>
+                    <td>$upc</td>
+                    <td>$quantity_and_revenue[0]</td>
+                    <td>$quantity_and_revenue[1]</td>
+                    </tr>";
+                }
+                echo "</table>";
+                echo "</div> </div>";
+        }
+        
         
     ?>
 
