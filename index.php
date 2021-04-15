@@ -18,14 +18,6 @@ $customer_id = $_SESSION['customer']
 <!DOCTYPE html>
 <html>
 
-<style>
-div.ul.li {
-    float: left
-}
-
-
-</style>
-
 <head>
     <link href="/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -60,8 +52,8 @@ div.ul.li {
 <body>
     <div class='navbar'>
         <ul>
-            <li><a class='active' href='/index.php' style='font-weight:900;'>Omazon<img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
-            <li><a href="/product-catalog.php">Browse Products</a></li>
+            <li style='float:left'><a class='active' href='/index.php' style='font-weight:900;'>Omazon<img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+            <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
             <?php
                 if(isset($_SESSION['customer'])) {
                     echo "
