@@ -93,6 +93,23 @@
 
   }
 
+  function checkEmpty($cust_id, $conn)
+  {
+    $cart_sql = "SELECT *, product.p_name, product.p_price, product.upc FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+    
+    $cart_results = mysqli_query($conn, $cart_sql);
+    while($row=mysqli_fetch_array($cart_results)) 
+    {
+      if ($row['cart_quantity'] <= 0)
+      {
+        $deleteEmpRow = "DELETE FROM shopping_cart WHERE customer_id = $cust_id and upc = $row[upc]";
+        mysqli_query($conn, $deleteEmpRow);
+
+        #DELETE FROM `Point_of_Sale`.`shopping_cart` WHERE (`customer_id` = '1') and (`upc` = '1');
+      }
+    }
+  }
+
   
 
   if(isset($_POST['remove_from_cart'])) {
@@ -122,6 +139,7 @@
            }
        }
        ob_end_clean();
+       checkEmpty($customer_id, $connect);
        displayCart($customer_id, $connect);
  
  }
@@ -154,6 +172,7 @@ if(isset($_POST['add_more_to_cart'])) {
           }
       }
       ob_end_clean();
+      checkEmpty($customer_id, $connect);
       displayCart($customer_id, $connect);
 }
 ?>
