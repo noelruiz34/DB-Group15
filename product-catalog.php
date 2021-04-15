@@ -14,7 +14,7 @@ if($connect->connect_error) {
 }
 
 session_start();
-
+ob_start();
 
 ?>
 <html>
@@ -32,8 +32,6 @@ session_start();
        
     </center>
 
-    <?php 
-    ?> 
     <?php
 
     
@@ -149,14 +147,16 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     
        if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
         {
-            header("Location:/customer/customer-login.php");  
+            ob_start();
+            header("Location: /customer/customer-login.php");
+
         }
 
         $customer_id = $_SESSION['customer'];
         $quantity = $_POST['qp'];
         $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
 
-       $int = 0;
+        $int = 0;
 
         while($row = mysqli_fetch_array($qcheck)){
            

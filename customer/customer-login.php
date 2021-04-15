@@ -6,10 +6,6 @@
     
     $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
     session_start();
-    if(isset($_SESSION['use'])) {
-        #header("Location:employee_login.php");
-    }
-
 ?>
 
 <!DOCTYPE html>
