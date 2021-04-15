@@ -145,7 +145,7 @@ td {
 
       echo $status;
 
-      $connect->query("update Point_of_Sale.order set o_status = $status where o_id = $order");
+      $connect->query("update Point_of_Sale.order set o_status = '$status' where o_id = $order");
     }
     ?>
 
