@@ -143,8 +143,8 @@ td {
     {
       $status = $_POST['status'];
 
-      echo $status
-      
+      echo $status;
+
       $connect->query("update Point_of_Sale.order set o_status = $status where o_id = $order");
     }
     ?>
