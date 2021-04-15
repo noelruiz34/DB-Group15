@@ -145,7 +145,7 @@ td {
       $order = $_POST['search'];
 
       echo $status;
-      echo "update Point_of_Sale.order set o_status = '$status' where o_id = $order";
+      echo $order
       $update = $connect->query("update Point_of_Sale.order set o_status = '$status' where o_id = $order");
     }
     ?>
