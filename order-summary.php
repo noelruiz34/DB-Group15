@@ -79,7 +79,7 @@ td {
 </head>
 <body>
 
-<form class="example" method="post">
+<form class="example" action='' method="post">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit" name="Search"><i class="fa fa-search"></i></button>
 </form>
