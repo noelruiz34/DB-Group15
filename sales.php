@@ -17,8 +17,6 @@
     $employee_id = $_SESSION['employee']; //Use this for queries on employee
 ?>
 
-
-
 <!DOCTYPE html>
 <html>
 <style>
@@ -130,7 +128,7 @@ tr:nth-child(even) {
                 WHERE Point_of_Sale.return.return_id=$return_id";
                 $return_join_result = mysqli_query($connect, $return_join_sql);
 
-                if(!$order_join_result) {
+                if(!$return_join_result) {
                     die("Query Failed!");
                 }
                 
