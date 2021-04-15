@@ -151,8 +151,10 @@ tr:nth-child(even) {
             
             echo "<h1>Summary for Date: $start_date to $end_date</h1>";
             echo "<font size='+3'>
-                Total Sold: $$running_sold_total Total Returned: $$running_return_total<br>
-                Number of Items Sold: $running_item_total Number of Items Returned: $running_return_item_total<br>
+                Total Sold: $$running_sold_total <br>
+                Total Returned: $$running_return_total<br>
+                Number of Items Sold: $running_item_total <br>
+                Number of Items Returned: $running_return_item_total<br>
                 Profit: $" . ($running_sold_total - $running_return_total) ."<br>
             </font>";
 
