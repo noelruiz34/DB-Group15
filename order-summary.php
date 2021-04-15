@@ -6,9 +6,9 @@
       header("Location:/employee/employee-login.php"); 
     }
 
-    function getOrderInfo() {
+    function getOrderInfo($post) {
     
-        $order = $_POST['search'];
+        $order = $post;
         $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
 
         echo "<table id=\"orderInfo\">";
@@ -130,15 +130,9 @@ td {
     <?php 
 
     if(isset($_POST['search'])){
-      getOrderInfo();
+      getOrderInfo($_POST['search']);
     }
 
-    
-
-    if(isset($_POST['status']))
-    {
-
-    }
     ?>
 
 </div>
