@@ -144,10 +144,9 @@ td {
     if(isset($_POST['status']))
     {
       $status = $_POST['status'];
-      $order = $_POST['search'];
+      $order = $_SESSION['order'];
 
       echo $status;
-      echo $_SESSION['order'];
       $update = $connect->query("update Point_of_Sale.order set o_status = '$status' where o_id = $order");
     }
     ?>
