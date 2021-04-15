@@ -14,7 +14,7 @@ if($connect->connect_error) {
 }
 
 session_start();
-ob_start();
+ob_start(); //added this line for login redirect hopefully it doesn't mess anything up -Bryan
 
 ?>
 <html>
