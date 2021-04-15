@@ -118,7 +118,13 @@ td {
             echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
+        echo "<a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>";
+        echo "<input type=\"radio\" name=\"status\" id=\"p1\" > $";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" > $ $";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" > $ $ $";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p4\" > $ $ $ $";  
 
+        
         echo "</table>";
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
@@ -129,11 +135,7 @@ td {
             echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
         echo "</table>";
-        echo "<a style=\"fontSize: 150%; marginRight: 1%;\";>Price:</a>";
-        echo "<input type=\"radio\" name=\"status\" id=\"p1\" > $";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" > $ $";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" > $ $ $";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p4\" > $ $ $ $";  
+
     }
     ?>
 
