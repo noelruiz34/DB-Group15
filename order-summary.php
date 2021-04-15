@@ -139,7 +139,7 @@ td {
 
     if(isset($_POST['status']))
     {
-      echo "<div> hey</div>"
+      echo "<div> hey</div>";
     }
     ?>
 
