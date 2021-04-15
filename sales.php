@@ -16,6 +16,13 @@
     
     $employee_id = $_SESSION['employee']; //Use this for queries on employee
 
+    function revenue_compare_desc($a, $b) {
+        if($a[1] == $b[1]) return 0;
+        return $a[1] < $b[1]?1:-1;
+    }
+
+
+
     function render_orders_and_returns_report($connect, $start_date, $end_date) {
         $sales_sql = "SELECT * FROM Point_of_Sale.order WHERE DATE(o_time) >= '$start_date' AND DATE(o_time) <= '$end_date'";
         $returns_sql = "SELECT * FROM Point_of_Sale.return WHERE DATE(return_time) >= '$start_date' AND DATE(return_time) <= '$end_date'";
@@ -152,7 +159,7 @@
         }
     }
 
-    function render_products_and_categories_report($connect, $start_date, $end_date) {
+    function render_products_and_categories_report($connect, $start_date, $end_date, $sort_function) {
         $product_join_sql = "SELECT Point_of_Sale.order.o_time, Point_of_Sale.product_purchase.upc, Point_of_Sale.product.p_category, Point_of_Sale.order.o_id, Point_of_Sale.product_purchase.quantity_ordered, Point_of_Sale.product_purchase.p_price
         FROM Point_of_Sale.order INNER JOIN Point_of_Sale.product_purchase ON Point_of_Sale.order.o_id = Point_of_Sale.product_purchase.o_id
         INNER JOIN Point_of_Sale.product ON Point_of_Sale.product_purchase.upc = Point_of_Sale.product.upc
@@ -187,6 +194,7 @@
 
         }
         
+        uasort($categories_array, $sort_function);
         echo "<h1>Summary for Date: $start_date to $end_date</h1>";
         echo "<div class='row'>";
         echo "<div class='column'>";
@@ -285,6 +293,8 @@ tr:nth-child(even) {
     </form>
     
     <?php 
+        
+
         if(isset($_POST['generate_report']) && $_POST['view_method'] == "orders_and_returns") {
             $start_date = $_POST['sales_start'];
             $end_date = $_POST['sales_end'];
@@ -294,10 +304,8 @@ tr:nth-child(even) {
         if(isset($_POST['generate_report']) && $_POST['view_method'] == "product_view") {
             $start_date = $_POST['sales_start'];
             $end_date = $_POST['sales_end'];
-            render_products_and_categories_report($connect, $start_date, $end_date);
+            render_products_and_categories_report($connect, $start_date, $end_date, 'revenue_compare_desc');
         }
-        
-        
         
     ?>
 
