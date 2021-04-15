@@ -11,7 +11,7 @@
     }
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
-           header("Location:employee-login.php");  
+           header("Location:/employee/employee-login.php");  
        }
     $sql = "SELECT * FROM pending_email";
     $result = mysqli_query($connect,$sql);
@@ -19,7 +19,7 @@
         die("Query Failed!");
     }
 
-    echo "<a href = employee-portal.php> Back to Employee Portal </a>";
+    echo "<a href = /employee/employee-portal.php> Back to Employee Portal </a>";
     echo "<table>";
         echo "<tr><td> Email ID </td><td> Recipient Email </td><td> Subject </td><td> Body </td></tr>";
         while($row=mysqli_fetch_array($result)){

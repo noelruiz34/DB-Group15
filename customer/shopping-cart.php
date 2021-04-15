@@ -18,7 +18,7 @@
   session_start();
   if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
     {
-      header("Location:customer-login.php");  
+      header("Location:/customer/customer-login.php");  
     }
     $customer_id = $_SESSION['customer'];
   

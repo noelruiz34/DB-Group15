@@ -3,7 +3,7 @@
 session_start();
 if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
 {
-    header("Location:customer-login.php");  
+    header("Location:/customer/customer-login.php");  
 }
 
 $dsn = 'mysql:dbname=Point_of_Sale;host=database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com';
@@ -14,7 +14,7 @@ try {
     $connection = new PDO($dsn, $dbUser, $dbPassword);
 } catch (PDOException $expection) {
     $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
-    header('Location: edit-customer-account-info.php');
+    header('Location: /customer/account/edit-customer-account-info.php');
     exit;
 }
 
@@ -56,7 +56,7 @@ if ($statement) {
 
     if (empty($result)) {
         $_SESSION['messages'][] = 'Incorrect current password!';
-        header('Location: edit-customer-account-info.php');
+        header('Location: /customer/account/edit-customer-account-info.php');
         exit;
     }
 }
@@ -72,7 +72,7 @@ if ($statement) {
 
     if (!empty($result)) {
         $_SESSION['messages'][] = 'Email already exists in database!';
-        header('Location: edit-customer-account-info.php');
+        header('Location: /customer/account/edit-customer-account-info.php');
         exit;
     }
 }
@@ -123,14 +123,14 @@ if ($statement) {
 
     if ($result) {
         $_SESSION['messages'][] = 'Account info successfully updated!';
-        header('Location: edit-customer-account-info.php');
+        header('Location: /customer/account/edit-customer-account-info.php');
         exit;
     }
 }
 
 
 $_SESSION['messages'][] = 'Error in updating info.';
-header('Location: edit-customer-account-info.php');
+header('Location: /customer/account/edit-customer-account-info.php');
 exit;
 
 ?>

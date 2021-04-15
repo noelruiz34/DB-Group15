@@ -36,7 +36,7 @@ if (empty($upc) ||
     empty($category) ||
     empty($discount)) {
     $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:1)';
-    header('Location: add-update-product.php');
+    header('Location: /employee/manage-products/add-update-product.php');
     exit;
 }
 
@@ -50,7 +50,7 @@ try {
     $connection = new PDO($dsn, $dbUser, $dbPassword);
 } catch (PDOException $expection) {
     $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
-    header('Location: register.php');
+    header('Location: /customer/register.php');
     exit;
 }
 
@@ -82,7 +82,7 @@ if ($statement) {
 
     if ($result) {
         $_SESSION['messages'][] = 'Update for product UPC#' . $upc . ' successfully logged.';
-        header('Location: add-update-product.php');
+        header('Location: /employee/manage-products/add-update-product.php');
         exit;
     }
 }

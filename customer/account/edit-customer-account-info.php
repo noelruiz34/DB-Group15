@@ -2,7 +2,7 @@
     session_start();
     if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
     {
-    header("Location:customer-login.php");  
+    header("Location:/customer/customer-login.php");  
     }
 
     $cust_id = $_SESSION['customer'];
@@ -21,7 +21,7 @@
 <html lang='en'>
 
 <head>
-    <link href="styles.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     
@@ -67,20 +67,20 @@
     <div class='navbar'>
         <ul>
         <li style='float:left'><a href='index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
-        <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
+        <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
         <?php
             if(isset($_SESSION['customer'])) {
                 echo "
-                <li><a href = 'logout.php'  style='color:#ec0016;'> Log out </a></li>
-                <li><a class='active' href='edit-customer-account-info.php'>My Account</a></li>
-                <li><a href = 'shopping-cart.php'>My Cart</a></li>
+                <li><a href = '/logout.php'  style='color:#ec0016;'> Log out </a></li>
+                <li><a class='active' href='/customer/account/edit-customer-account-info.php'>My Account</a></li>
+                <li><a href = '/customer/shopping-cart.php'>My Cart</a></li>
                 
                 ";
             }
             else {
                 echo "
-                <li><a href='register.php'>Register</a></li>
-                <li><a href='customer-login.php'>Log in</a></li>
+                <li><a href='/customer/register.php'>Register</a></li>
+                <li><a href='/customer/customer-login.php'>Log in</a></li>
                 ";
             }
         ?>
@@ -88,13 +88,13 @@
     </div>
 
     <h1 style='margin-top: 100px;margin-bottom:15px;'>My Account</h1>
-    <?php require_once 'register-error-handling.php'; ?>
+    <?php require_once '/error-message.php'; ?>
     
     <div class='row'>
         <div class='column'>
             <div class='shade-content'>
             <h2>Edit Account Info</h2>
-            <form action='customer-info-update.php' method='POST'>
+            <form action='/customer/account/customer-info-update.php' method='POST'>
             
                 <?php
                     $sql="SELECT * FROM customer WHERE customer_id = '".$cust_id."'";
@@ -161,7 +161,7 @@
         <div class='column'>
             <div class='shade-content'>
             <h2>Change Password</h2>
-            <form action='customer-change-password.php' method='POST'>
+            <form action='/customer/account/customer-change-password.php' method='POST'>
                 Enter current password: <input type='password' id='curr_password' name='curr_password' minlength='7' maxlength='50' placeholder='Enter current password...' required/><br>
                 Enter new password: <input type='password' id='new_password' name='new_password' minlength='7' maxlength='50' placeholder='At least 7 characters...' required/><br>
                 Confirm new password: <input type='password' id='new_password_confirm' name='new_password_confirm' minlength='7' maxlength='50' placeholder='Re-enter new password...' required/><br>
@@ -176,8 +176,8 @@
     <div class='footer'>
       <ul>
           <li><a href="index.php">Home</a></li>
-          <li><a href="employee-login.php">Employee Portal</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="/employee/employee-login.php">Employee Portal</a></li>
+          <li><a href="/about.html">About</a></li>
       </ul>
       <p>Omazon © 2021</p>
     </div>

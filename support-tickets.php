@@ -11,7 +11,7 @@
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
-           header("Location:employee-login.php");  
+           header("Location:/employee/employee-login.php");  
        }
     
     $employee_id = $_SESSION['employee'];
@@ -64,7 +64,7 @@
                 <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                <td><form action='support-ticket-details.php' method=post>
+                <td><form action='/support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
                 <input type = submit name = my_tickets_details_button value = 'Details'/><br />
                 </form></td>
@@ -95,7 +95,7 @@
                 <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                <td><form action='support-ticket-details.php' method=post>
+                <td><form action='/support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
                 <input type = submit name = resolved_details_button value = 'Details'/><br />
                 </form></td>
@@ -114,7 +114,7 @@
 <body>
 	<h1>Support Tickets</h1>
     <p align='left'>
-        <a href = 'employee-portal.php'> Back to Employee Portal </a>
+        <a href = '/employee/employee-portal.php'> Back to Employee Portal </a>
     </p>
     
     <form action="" method="post">
@@ -123,7 +123,7 @@
         <input type = "submit" name = "view_resolved_tickets" value = "View Resolved Tickets"/>
     </form>
 
-    <form action="support-ticket-details.php" method="post">
+    <form action="/support-ticket-details.php" method="post">
         <label> Search For Support Ticket (ID): </label><input type = "text" name = "ticket_details" class = "box" />
         <input type = "submit" name = "search_ticket" value = "Search"/> <br /> <br />
     </form>

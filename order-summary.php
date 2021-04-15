@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <?php 
-    include 'db.php';
+    include '/db.php';
     session_start();
     if(!isset($_SESSION['employee'])) {
-      header("Location:employee-login.php"); 
+      header("Location:/employee/employee-login.php"); 
     }
 ?>
 
@@ -13,7 +13,7 @@
 <html>
 <head>
 
-<a href="employee-portal.php">Back to Employee Portal</a>
+<a href="/employee/employee-portal.php">Back to Employee Portal</a>
 
 
 <meta name="viewport" content="width=device-width, initial-scale=1">

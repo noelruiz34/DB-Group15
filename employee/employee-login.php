@@ -6,8 +6,8 @@
     
     $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
     session_start();
-    if(isset($_SESSION['use'])) {
-        #header("Location:employee_login.php");
+    if(isset($_SESSION['employee'])) {
+        header("Location:/employee/employee-portal.php");
     }
 
 ?>
@@ -15,28 +15,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Customer Login</title>
+	<title>Employee Login</title>
 </head>
 <body>
-	<h1 style="text-align:center;">Login</h1>
+    
+    <h1 style="text-align:center;">Employee Login</h1>
 
     <center style="margin-top: 2%">
         <form action = "" method = "post">
-            <label>Email  :</label><input type = "text" name = "email" class = "box"/><br /><br />
+            <label>Employee ID  :</label><input type = "text" name = "employee_id" class = "box"/><br /><br />
             <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-            <input type = "submit" name = 'login' value = " Login "/><br />
+            <input type = "submit" name = login value = " Login "/><br />
         </form>
+        <p><a href="index.php">Back to Home</a></p>
     </center>
+
+    
+
     <?php
         if(isset($_POST['login'])) {
-            $email = $_POST['email'];
+            $id = $_POST['employee_id'];
             $pass = $_POST['password'];
-            $sql = "SELECT * FROM customer WHERE email='$email' AND password='$pass'";
+            $sql = "SELECT * FROM employee WHERE employee_id=$id AND password=$pass";
             $result = mysqli_query($connect,$sql);
-            $row = mysqli_fetch_array($result);
-            if($row) {
-                $_SESSION['customer']= $row['customer_id'];
-                header("Location:index.php");
+            if($result) {
+                $_SESSION['employee']=$id;
+                header("Location:/employee/employee-portal.php");
             }
             else {
                 echo  "<center> Wrong username and/or password </center>";
@@ -44,14 +48,6 @@
             }
         };
     ?>
-    <center>
-        <p> Don't have an account yet? </p>
-        <a href="register.php">Create account</a>
-        <br>
-        <a href="index.php">Back to Home</a>
-    </center>
-
-   
 
 </body>
 </html>
