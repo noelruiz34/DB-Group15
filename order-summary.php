@@ -20,7 +20,7 @@
     html +=  '<input type=\"radio\" name=\"status\" id=\"p3\" /> $ $ $'
     html +=  '<input type=\"radio\" name=\"status\" id=\"p4\" /> $ $ $ $'
 
-    div.innerHTML = html
+    div.innerHTML += html
   }
 </script>
 
