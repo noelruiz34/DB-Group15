@@ -129,9 +129,8 @@ td {
             echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
         echo "</table>";
-
-          
-   ?>
+    }
+    ?>
 
 </div>
 
