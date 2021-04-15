@@ -130,7 +130,7 @@ td {
     <?php 
 
     if(isset($_POST['search'])){
-      getOrderInfo()
+      getOrderInfo();
     }
 
     
