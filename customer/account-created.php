@@ -58,7 +58,7 @@
         <h2 style='text-align:center;margin-top:100px;'>Account Created</h2>
         <p style='text-align:center;'>Your Omazon account has successfully been registered! You can now <a href='/customer/customer-login.php'>login</a>.</p>
 
-        <div class='footer' style='bottom:0; position:fixed; width:100%;'>
+        <div class='footer' style='bottom:0; position:absolute; width:100%;'>
             <ul>
                 <li><a href="/index.php">Home</a></li>
                 <li><a href="/employee/employee-login.php">Employee Portal</a></li>

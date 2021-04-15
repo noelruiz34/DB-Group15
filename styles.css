@@ -254,6 +254,7 @@ input:focus {
     background-image: url('/images/background-logo.png');
     background-position: 100% 0%;
     background-repeat: no-repeat;
+    min-height: 80vh;
 }
 
 .portal-content {
