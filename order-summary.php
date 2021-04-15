@@ -5,45 +5,22 @@
     if(!isset($_SESSION['employee'])) {
       header("Location:/employee/employee-login.php"); 
     }
-
-    function getOrderInfo($post) {
-    
-        $order = $post;
-        $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
-
-        echo "<table id=\"orderInfo\">";
-        while($order_info = mysqli_fetch_array($result))
-        {
-            echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
-            echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
-            echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
-            echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
-        }
-        echo "<a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>";
-        echo "<input type=\"radio\" name=\"status\" id=\"p1\" > Processing";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" > In Transit";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" > Delivered";
-
-
-        echo "</table>";
-        $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
-        echo"<table>";
-        echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
-        echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
-        while($item = mysqli_fetch_array($result))
-        {
-            echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
-        }
-        echo "</table>";
-
-    }
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 
-  function reloadOrderInfo() {
+  function showOptions() {
+    const div = document.getElementById('options')
+    let html = ''
 
+    html += '<a style=\"fontSize: 150%; marginRight: 1%;\";>Price:</a>'
+    html += '<input type=\"radio\" name="status" id="p1" /> $'
+    html +=  '<input type="radio" name="status" id="p2" /> $ $'
+    html +=  '<input type="radio" name="status" id="p3" /> $ $ $'
+    html +=  '<input type="radio" name="status" id="p4" /> $ $ $ $'
+
+    div.innerHTML = html
   }
 </script>
 
@@ -128,11 +105,42 @@ td {
 
 <div id="order_info">
     <?php 
-
     if(isset($_POST['search'])){
-      getOrderInfo($_POST['search']);
+
+        $order = $_POST['search'];
+        $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
+
+        echo "<table id=\"orderInfo\">";
+        while($order_info = mysqli_fetch_array($result))
+        {
+            echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
+            echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
+            echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
+            echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
+        }
+        echo "<a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>";
+        echo "<input type=\"radio\" name=\"status\" id=\"p1\" > Processing";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" > In Transit";
+        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" > Delivered";
+
+
+        echo "</table>";
+        $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
+        echo"<table>";
+        echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
+        echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
+        while($item = mysqli_fetch_array($result))
+        {
+            echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+        }
+        echo "</table>";
+
     }
 
+    if(isset($_POST['status']))
+    {
+
+    }
     ?>
 
 </div>
