@@ -119,9 +119,9 @@ td {
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
         echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>
-                  <input type=\"radio\" name=\"status\" id=\"pro\" > Processing
-                  <input type=\"radio\" name=\"status\" id=\"inTran\" > In Transit
-                  <input type=\"radio\" name=\"status\" id=\"del\" > Delivered 
+                  <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
+                  <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
+                  <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
                   <input type=\"submit\" name=\"Result\"> 
                 </form>";
 
@@ -141,7 +141,8 @@ td {
 
     if(isset($_POST['status']))
     {
-      echo "<div> hey </div>";
+      $status = $_POST['status'];
+      $connect->query("update Point_of_Sale.order set o_status = $status where o_id = $order");
     }
     ?>
 
