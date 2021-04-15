@@ -73,7 +73,7 @@ td {
 }
 </style>
     <div>
-        <center style="margin-top: 5%;font-size: 300%;">Order Summary</center>
+        <center style="margin-top: 5%;font-size: 300%;">Order Lookup</center>
         <hr style="width: 50%;">
     </div>
 </head>
@@ -82,6 +82,10 @@ td {
 <form class="example" action='' method="post">
   <input type="text" placeholder="Search.." name="search">
   <button type="submit" name="Search"><i class="fa fa-search"></i></button>
+</form>
+
+<form class="example" action='' method="post">
+  <button type="submit" name="status"><i class="fa fa-search"></i></button>
 </form>
 
 <div id="order_info">
@@ -103,7 +107,7 @@ td {
         echo "</table>";
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
-        echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 30%;margin-bottom: -3%;\"></div>";
+        echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
         echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
         while($item = mysqli_fetch_array($result))
         {
