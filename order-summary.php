@@ -119,9 +119,9 @@ td {
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
         echo "<a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>";
-        echo "<input type=\"radio\" name=\"status\" id=\"p1\" > Processing";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p2\" > In Transit";
-        echo  "<input type=\"radio\" name=\"status\" id=\"p3\" > Delivered";
+        echo "<input type=\"radio\" name=\"status\" id=\"pro\" > Processing";
+        echo  "<input type=\"radio\" name=\"status\" id=\"inTran\" > In Transit";
+        echo  "<input type=\"radio\" name=\"status\" id=\"del\" > Delivered";
 
 
         echo "</table>";
@@ -139,7 +139,7 @@ td {
 
     if(isset($_POST['status']))
     {
-
+      echo "<div> hey</div>"
     }
     ?>
 
