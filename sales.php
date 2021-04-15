@@ -165,13 +165,17 @@ tr:nth-child(even) {
                 echo "<p>There are no orders in this date range!</p>";
             }
             else {
+                $avg_order_cost = $running_sold_total / mysqli_num_rows($sales_result);
+                $avg_order_item = $running_item_total / mysqli_num_rows($sales_result);
+                echo "<p> Average Order Cost: $" . number_format($avg_order_cost, 2);
+                echo "<p> Average Number of Items Per Order: " . number_format($avg_order_item, 2);
                 echo "<table>";
                 echo "<tr><th> Date </th><th> Order ID </th><th> Total Cost </th><th> Number of Items </th></tr>";
                 while($row=mysqli_fetch_array($sales_result)) {
                     echo "<tr>
                     <td>" . $row['o_time'] . "</td>
                     <td>" . $row['o_id'] . "</td>
-                    <td>" . $order_total_array[$row['o_id']] . "</td>
+                    <td>$" . $order_total_array[$row['o_id']] . "</td>
                     <td>" . $order_items_array[$row['o_id']] . "</td>
                     </tr>";
                 }
@@ -187,6 +191,10 @@ tr:nth-child(even) {
                 echo "<p>There are no returns in this date range!</p>";
             }
             else {
+                $avg_return_cost = $running_return_total/ mysqli_num_rows($returns_result);
+                $avg_order_item = $running_return_item_total / mysqli_num_rows($returns_result);
+                echo "<p> Average Return Amount: $" . number_format($avg_return_cost, 2);
+                echo "<p> Average Number of Items Per Return: " . number_format($avg_order_item, 2);
                 echo "<table>";
                 echo "<tr><th> Date </th><th> Return ID </th><th> Order ID </th><th> Return Cost </th><th> Number of Items </th></tr>";
                 while($row=mysqli_fetch_array($returns_result)) {
@@ -194,7 +202,7 @@ tr:nth-child(even) {
                     <td>$row[return_time]</td>
                     <td>$row[return_id]</td>
                     <td>$row[order_id]</td>
-                    <td>" . $return_total_array[$row['return_id']] . "</td>
+                    <td>$" . $return_total_array[$row['return_id']] . "</td>
                     <td>" . $return_items_array[$row['return_id']] . "</td>
                     <tr>";
 
@@ -249,12 +257,16 @@ tr:nth-child(even) {
             echo "<h2>Sales by Category</h2>";
         
                 echo "<table>";
-                echo "<tr><th> Category </th><th> Items Sold </th><th> Total Revenue </th></tr>";
+                echo "<tr>
+                <th> <a href='sortorder('category')' sort=category'>Category </a></th>
+                <th> Items Sold </th>
+                <th> Total Revenue </th>
+                </tr>";
                 foreach($categories_array as $category => $quantity_and_revenue) {
                     echo "<tr>
                     <td>$category</td>
                     <td>$quantity_and_revenue[0]</td>
-                    <td>$quantity_and_revenue[1]</td>
+                    <td>$$quantity_and_revenue[1]</td>
                     </tr>";
                 }
                 echo "</table>";
@@ -265,23 +277,23 @@ tr:nth-child(even) {
             echo "<h2>Sales by Product(UPC)</h2>";
        
                 echo "<table>";
-                echo "<tr><th> UPC </th><th> Items Sold </th><th> Total Revenue </th>
+                echo "<tr>
+                <th> UPC </th>
+                <th> Items Sold </th>
+                <th> Total Revenue </th>
                 </tr>";
-                /*
-                <th>S.no</th>
-                <th ><a href='sortorder('emp_name')' class='sort'>Name</a></th>
-                <th ><a href='sortorder('salary')' class='sort'>Salary</a></th>
-                <th ><a href='sortorder('gender')' class='sort'>Gender</a></th> */
+        
                 foreach($products_array as $upc => $quantity_and_revenue) {
                     echo "<tr>
                     <td>$upc</td>
                     <td>$quantity_and_revenue[0]</td>
-                    <td>$quantity_and_revenue[1]</td>
+                    <td>$$quantity_and_revenue[1]</td>
                     </tr>";
                 }
                 echo "</table>";
                 echo "</div> </div>";
         }
+        
         
         
     ?>
