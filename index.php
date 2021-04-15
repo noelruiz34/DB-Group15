@@ -19,8 +19,8 @@ $customer_id = $_SESSION['customer']
 <html>
 
 <style>
-li {
-    float: left;
+div.ul.li {
+    float: left
 }
 
 
