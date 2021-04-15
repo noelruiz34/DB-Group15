@@ -15,10 +15,10 @@
     let html = ''
 
     html += '<a style={{ fontSize: \"150%\", marginRight: \"1%\" }}>Price:</a>'
-    html += '<input type=\"radio\" name="status" id="p1" /> $'
-    html +=  '<input type="radio" name="status" id="p2" /> $ $'
-    html +=  '<input type="radio" name="status" id="p3" /> $ $ $'
-    html +=  '<input type="radio" name="status" id="p4" /> $ $ $ $'
+    html += '<input type=\"radio\" name=\"status\" id=\"p1\" /> $'
+    html +=  '<input type=\"radio\" name=\"status\" id=\"p2\" /> $ $'
+    html +=  '<input type=\"radio\" name=\"status\" id=\"p3\" /> $ $ $'
+    html +=  '<input type=\"radio\" name=\"status\" id=\"p4\" /> $ $ $ $'
 
     div.innerHTML = html
   }
@@ -129,6 +129,11 @@ td {
             echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
         echo "</table>";
+        echo " <a style={{ fontSize: \"150%\", marginRight: \"1%\" }}>Price:</a>
+                <input type=\"radio\" name=\"status\" id=\"p1\" /> $
+                <input type=\"radio\" name=\"status\" id=\"p2\" /> $ $
+                <input type=\"radio\" name=\"status\" id=\"p3\" /> $ $ $
+                <input type=\"radio\" name=\"status\" id=\"p4\" /> $ $ $ $"
     }
     ?>
 
