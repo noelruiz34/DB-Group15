@@ -210,27 +210,21 @@ input:focus {
     margin:0;
     margin-top: 10vh;
     background-color: #3a4750;
-    color: #eeeeee;
-    text-align: center;
-}
+    color:#8e9da8;
 
-.footer ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
     width: 100%;
+    font-size: 12px;
 }
 
-.footer li {
-    padding: 2px;
-}
 
 .footer p {
-    font-size: 13px;
+    margin: 0px;
+    padding: 4px;
+}
+
+.copyright {
     margin-top: 5px;
     padding-bottom: 10px;
-    color:#8e9da8;
 }
 
 .center-image {
@@ -296,6 +290,8 @@ input:focus {
 
 .row {
     display: flex;
+    align-items: center;
+    justify-content: center;
 }
   
 .column {

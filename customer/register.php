@@ -36,7 +36,7 @@
 <body>
   <div class='navbar'>
     <ul>
-      <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+      <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon<img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
       <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
       <?php
           if(isset($_SESSION['customer'])) {
@@ -133,13 +133,28 @@
     </div>
 
     <div class='footer'>
-      <ul>
-          <li><a href="/index.php">Home</a></li>
-          <li><a href="/employee/employee-login.php">Employee Portal</a></li>
-          <li><a href="/about.html">About</a></li>
-      </ul>
-      <p>Omazon © 2021</p>
-    </div>
+      <div class='row'>
+                  <div class='column'>
+                      <div style='padding-left:30%; padding-right: 20px; padding-top:0px; margin:32px;'>
+                          <h3 style='margin-bottom: 6px;'>Omazon<img src='/images/favicon/favicon-192.png' width='26' height='26'></h3>
+                          <p style='padding:0;'>Omazon is a fictional company conceived for the purpose of a database class project. There is no intention of profit or infringement of copyright. However, it still has many functionalities that a typical ecommerce website would have.</p>
+                      </div>
+                  </div>
+
+                  <div class='column' style='flex:25%'>
+                      <div style='padding-left: 20px; padding-right: 30%; padding-top:0px; margin:32px; text-align:left;'>
+                          <p>
+                              <a href="/index.php">Home</a> | 
+                              <a href="/product-catalog.php">Products</a> | 
+                              <a href="/customer/register.php">Register</a> | 
+                              <a href="/about.html">About</a>
+                          </p>
+                          <p><a href="/employee/employee-login.php">Employee Portal</a></p>
+                          <p class='copyright'>Omazon © 2021</p>
+                      </div>
+                  </div>
+              </div>
+      </div>
   </div>
 </body>
 
