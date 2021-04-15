@@ -59,6 +59,7 @@ $customer_id = $_SESSION['customer']
                     echo "
                     <li><a href = '/logout.php'  style='color:#ec0016;'> Log out </a></li>
                     <li><a href='/customer/account/edit-customer-account-info.php'>My Account</a></li>
+                    <li><a href='/customer/customer-orders.php'>My Orders</a></li>
                     <li><a href = '/customer/shopping-cart.php'>My Cart</a></li>
                     
                     ";

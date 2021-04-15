@@ -16,12 +16,6 @@
     
     $employee_id = $_SESSION['employee']; //Use this for queries on employee
 
-    function revenue_compare_desc($a, $b) {
-        if($a[1] == $b[1]) return 0;
-        return $a[1] < $b[1]?1:-1;
-    }
-
-
 
     function render_orders_and_returns_report($connect, $start_date, $end_date) {
         $sales_sql = "SELECT * FROM Point_of_Sale.order WHERE DATE(o_time) >= '$start_date' AND DATE(o_time) <= '$end_date'";
@@ -159,7 +153,7 @@
         }
     }
 
-    function render_products_and_categories_report($connect, $start_date, $end_date, $sort_function) {
+    function render_products_and_categories_report($connect, $start_date, $end_date) {
         $product_join_sql = "SELECT Point_of_Sale.order.o_time, Point_of_Sale.product_purchase.upc, Point_of_Sale.product.p_category, Point_of_Sale.order.o_id, Point_of_Sale.product_purchase.quantity_ordered, Point_of_Sale.product_purchase.p_price
         FROM Point_of_Sale.order INNER JOIN Point_of_Sale.product_purchase ON Point_of_Sale.order.o_id = Point_of_Sale.product_purchase.o_id
         INNER JOIN Point_of_Sale.product ON Point_of_Sale.product_purchase.upc = Point_of_Sale.product.upc
@@ -194,48 +188,53 @@
 
         }
         
-        uasort($categories_array, $sort_function);
         echo "<h1>Summary for Date: $start_date to $end_date</h1>";
-        echo "<div class='row'>";
-        echo "<div class='column'>";
-        echo "<h2>Sales by Category</h2>";
-    
-            echo "<table>";
-            echo "<tr>
-            <th><a href='sales.php' sort=category'>Category </a></th>
-            <th><a href='sales.php' sort=category'> Items Sold  </a></th>
-            <th><a href='sales.php' sort=category'>Total Revenue </a> </th>
-            </tr>";
-            foreach($categories_array as $category => $quantity_and_revenue) {
-                echo "<tr>
-                <td>$category</td>
-                <td>$quantity_and_revenue[0]</td>
-                <td>$$quantity_and_revenue[1]</td>
-                </tr>";
-            }
-            echo "</table>";
+        if(mysqli_num_rows($product_join_result) == 0){
+            echo "There are no sales in this date range!";
+        }
+        else {
+            echo "<div class='row'>";
+            echo "<div class='column'>";
+            echo "<h2>Sales by Category</h2>";
         
-        echo "</div>";
-
-        echo "<div class='column'>";
-        echo "<h2>Sales by Product(UPC)</h2>";
-   
-            echo "<table>";
-            echo "<tr>
-            <th> UPC </th>
-            <th> Items Sold </th>
-            <th> Total Revenue </th>
-            </tr>";
-    
-            foreach($products_array as $upc => $quantity_and_revenue) {
+                echo "<table>";
                 echo "<tr>
-                <td>$upc</td>
-                <td>$quantity_and_revenue[0]</td>
-                <td>$$quantity_and_revenue[1]</td>
+                <th><a href='sales.php' category_sort=category asc_or_desc=desc'>Category </a></th>
+                <th><a href='sales.php' category_sort=cateogry_items_sold asc_or_desc=desc'> Items Sold  </a></th>
+                <th><a href='sales.php' category_sort=category_revenue asc_or_desc=desc'>Total Revenue </a> </th>
                 </tr>";
-            }
-            echo "</table>";
-            echo "</div> </div>";        
+                foreach($categories_array as $category => $quantity_and_revenue) {
+                    echo "<tr>
+                    <td>$category</td>
+                    <td>$quantity_and_revenue[0]</td>
+                    <td>$$quantity_and_revenue[1]</td>
+                    </tr>";
+                }
+                echo "</table>";
+            
+            echo "</div>";
+    
+            echo "<div class='column'>";
+            echo "<h2>Sales by Product(UPC)</h2>";
+       
+                echo "<table>";
+                echo "<tr>
+                <th> UPC </th>
+                <th> Items Sold </th>
+                <th> Total Revenue </th>
+                </tr>";
+        
+                foreach($products_array as $upc => $quantity_and_revenue) {
+                    echo "<tr>
+                    <td>$upc</td>
+                    <td>$quantity_and_revenue[0]</td>
+                    <td>$$quantity_and_revenue[1]</td>
+                    </tr>";
+                }
+                echo "</table>";
+                echo "</div> </div>";        
+        }
+        
     }
 ?>
 
@@ -293,18 +292,15 @@ tr:nth-child(even) {
     </form>
     
     <?php 
-        
-
+        $start_date = $_POST['sales_start'];
+        $end_date = $_POST['sales_end'];
         if(isset($_POST['generate_report']) && $_POST['view_method'] == "orders_and_returns") {
-            $start_date = $_POST['sales_start'];
-            $end_date = $_POST['sales_end'];
             render_orders_and_returns_report($connect, $start_date, $end_date);
         }
 
         if(isset($_POST['generate_report']) && $_POST['view_method'] == "product_view") {
-            $start_date = $_POST['sales_start'];
-            $end_date = $_POST['sales_end'];
-            render_products_and_categories_report($connect, $start_date, $end_date, 'revenue_compare_desc');
+            $_SESSION['category_sort'] = "category_revenue";
+            render_products_and_categories_report($connect, $start_date, $end_date);
         }
         
     ?>
