@@ -3,7 +3,7 @@
 <html lang='en'>
 
 <head>
-  <link href="styles.css" rel="stylesheet">
+  <link href="/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     
@@ -30,31 +30,30 @@
 	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
 	<!-- ****** faviconit.com favicons ****** -->
 
-  <title>Customer Registration</title>
+  <title>Customer Registration | Omazon.com</title>
 </head>
 
 <body>
   <div class='navbar'>
     <ul>
-      <li style='float:left'><a href='index.php' style='font-weight:700;'>Omazon</a></li>
-      <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
+      <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+      <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
       <?php
           if(isset($_SESSION['customer'])) {
               echo "
-              <li><a href = 'logout.php'  style='color:#ec0016;'> Log out </a></li>
-              <li><a href='edit-customer-account-info.php'>My Account</a></li>
-              <li><a href = 'shopping_cart.php'>My Cart</a></li>
+              <li><a href = '/logout.php'  style='color:#ec0016;'> Log out </a></li>
+              <li><a href='/customer/account/edit-customer-account-info.php'>My Account</a></li>
+              <li><a href = '/customer/shopping-cart.php'>My Cart</a></li>
               
               ";
           }
           else {
               echo "
-              <li><a class='active' href='register.php'>Register</a></li>
-              <li><a href='customer_login.php'>Log in</a></li>
+              <li><a class='active' href='/customer/register.php'>Register</a></li>
+              <li><a href='/customer/customer-login.php'>Log in</a></li>
               ";
           }
       ?>
-      <li><a href='order_summary.php'>Order Lookup</a></li>
     </ul>
   </div>
   
@@ -63,16 +62,16 @@
       <h1 style='margin-bottom:1px;'>Customer Registration</h1>
       
       <p style='text-align: center;'>
-        Already have an account? <a href="customer_login.php">Log in to existing account</a><br>
+        Already have an account? <a href="/customer/customer-login.php">Log in to existing account</a><br>
         <br>
         
       </p><br>
-      <?php require_once 'register-error-handling.php'; ?><br>
+      <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?><br>
 
       <i style='font-size:13px;'>(All fields are required for account creation)</i>
       
       
-      <form action='user-signup.php' method='POST'>
+      <form action='/customer/user-signup.php' method='POST'>
         <!-- Personal Info -->
         <h3>Personal Info</h3>
         E-mail address: <br>
@@ -86,7 +85,7 @@
         Last name: <br>
         <input type='text' id='lastname' name='lastname' maxlength='32' placeholder='Your last name...' required/><br>
         Phone number: <br>
-        <input type='tel' id='phone' name='phone' placeholder='1234567890' pattern='[0-9]{10}' placeholder='Your phone number...' required/><br>
+        <input type='tel' id='phone' name='phone' placeholder='1234567890' pattern='[0-9]{10}' required/><br>
 
 
         <!-- Shipping Address -->
@@ -135,9 +134,9 @@
 
     <div class='footer'>
       <ul>
-          <li><a href="index.php">Home</a></li>
-          <li><a href="employee-login.php">Employee Portal</a></li>
-          <li><a href="about.html">About</a></li>
+          <li><a href="/index.php">Home</a></li>
+          <li><a href="/employee/employee-login.php">Employee Portal</a></li>
+          <li><a href="/about.html">About</a></li>
       </ul>
       <p>Omazon © 2021</p>
     </div>

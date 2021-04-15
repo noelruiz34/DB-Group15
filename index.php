@@ -19,7 +19,7 @@ $customer_id = $_SESSION['customer']
 <html>
 
 <head>
-    <link href="styles.css" rel="stylesheet">
+    <link href="/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
     
@@ -46,31 +46,30 @@ $customer_id = $_SESSION['customer']
 	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
 	<!-- ****** faviconit.com favicons ****** -->
 
-	<title>Omazon Home</title>
+	<title>Omazon.com: The Point-Of-Sale System For All Your Needs</title>
 </head>
 
 <body>
     <div class='navbar'>
         <ul>
-            <li style='float:left'><a class='active' href='index.php' style='font-weight:700;'>Omazon</a></li>
-            <li style='float:left'><a href="product-catalog.php">Browse Products</a></li>
+            <li style='float:left'><a class='active' href='/index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+            <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
             <?php
                 if(isset($_SESSION['customer'])) {
                     echo "
-                    <li><a href = 'logout.php'  style='color:#ec0016;'> Log out </a></li>
-                    <li><a href='edit-customer-account-info.php'>My Account</a></li>
-                    <li><a href = 'shopping_cart.php'>My Cart</a></li>
+                    <li><a href = '/logout.php'  style='color:#ec0016;'> Log out </a></li>
+                    <li><a href='/customer/account/edit-customer-account-info.php'>My Account</a></li>
+                    <li><a href = '/customer/shopping-cart.php'>My Cart</a></li>
                     
                     ";
                 }
                 else {
                     echo "
-                    <li><a href='register.php'>Register</a></li>
-                    <li><a href='customer_login.php'>Log in</a></li>
+                    <li><a href='/customer/register.php'>Register</a></li>
+                    <li><a href='/customer/customer-login.php'>Log in</a></li>
                     ";
                 }
             ?>
-            <li><a href='order_summary.php'>Order Lookup</a></li>
         </ul>
     </div>
 
@@ -85,9 +84,9 @@ $customer_id = $_SESSION['customer']
                     <br>
                     <?php
                         if(isset($_SESSION['customer'])) {
-                            echo "<a class='link-button' href='product-catalog.php'>Browse our products</a>";
+                            echo "<a class='link-button' href='/product-catalog.php'>Browse our products</a>";
                         } else {
-                            echo "<a class='link-button' href='register.php'>Register an account</a>";
+                            echo "<a class='link-button' href='/customer/register.php'>Register an account</a>";
                         }
                     ?>
                     
@@ -134,17 +133,17 @@ $customer_id = $_SESSION['customer']
         
         <?php
             if(isset($_SESSION['customer'])) {
-                echo "<div style='text-align:center;'><a class='link-button' href='edit-customer-account-info.php'>View my account</a></div>";
+                echo "<div style='text-align:center;'><a class='link-button' href='/customer/account/edit-customer-account-info.php'>View my account</a></div>";
             } else {
-                echo "<div style='text-align:center;'><a class='link-button' href='product-catalog.php'>Browse our products</a></div>";
+                echo "<div style='text-align:center;'><a class='link-button' href='/product-catalog.php'>Browse our products</a></div>";
             }
         ?>
         
         <div class='footer'>
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="employee-login.php">Employee Portal</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="/index.php">Home</a></li>
+                <li><a href="/employee/employee-login.php">Employee Portal</a></li>
+                <li><a href="/about.html">About</a></li>
             </ul>
             <p>Omazon © 2021</p>
         </div>

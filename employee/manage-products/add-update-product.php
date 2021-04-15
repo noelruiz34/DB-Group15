@@ -26,7 +26,7 @@
 
 <body>
   <h1>Add/Update Product</h1>
-  <?php require_once 'register-error-handling.php'; ?>
+  <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?>
   <br>
 
   
@@ -38,7 +38,7 @@
   </select>
   
 
-  <form id='add_new' name='add_new' action='product-add.php' method='POST' style="display:none">
+  <form id='add_new' name='add_new' action='/employee/manage-products/product-add.php' method='POST' style="display:none">
     <h3>Product Information</h3>
     UPC: <input type='number' id='add_upc' name='add_upc' min='0' max='2147483647' required/>
     Product name: <input type='text' id='add_pname' name='add_pname' maxlength='64' required/><br>
@@ -64,7 +64,7 @@
 
 
 
-  <form id='update' name='update' action='product-update.php' method='POST' style="display:none" >
+  <form id='update' name='update' action='/employee/manage-products/product-update.php' method='POST' style="display:none" >
     <br>
     Enter the product UPC: <input type='number' id='upc' name='upc' min='0' max='2147483647' onkeyup='findProduct(this.value)' required/><br>
 
@@ -78,7 +78,7 @@
   <br>
   <br>
   <br>
-  <a href="employee-portal.php">Return to Employee Portal</a>
+  <a href="/employee/employee-portal.php">Return to Employee Portal</a>
 
 </body>
 
@@ -96,7 +96,7 @@
         }
       };
 
-      xmlhttp.open('GET', 'get-product.php?q='+upcToFind, true);
+      xmlhttp.open('GET', '/employee/manage-products/get-product.php?q='+upcToFind, true);
       xmlhttp.send();
     }
   }

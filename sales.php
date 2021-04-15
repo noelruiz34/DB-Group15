@@ -11,7 +11,7 @@
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
-           header("Location:employee-login.php");  
+           header("Location:/employee/employee-login.php");  
        }
     
     $employee_id = $_SESSION['employee']; //Use this for queries on employee
@@ -27,7 +27,7 @@
 <body>
     <!-- use join tables to make the report -->
     <h1>Sales</h1>
-    <a href = employee-portal.php> Back to Employee Portal </a> <br> <br>
+    <a href = /employee/employee-portal.php> Back to Employee Portal </a> <br> <br>
     <form action='' method='post'>
         Start Date: <input type='date' id='start' name='sales_start' required/><br>
         End Date: <input type='date' id='end' name='sales_end' required/><br> <br>

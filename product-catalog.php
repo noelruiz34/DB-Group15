@@ -22,7 +22,7 @@ session_start();
 	<title>Products</title>
 </head>
 <body>
-    <a href="index.php">Back to Home</a>
+    <a href="/index.php">Back to Home</a>
 	<h1 style="text-align:center;">Check Out Our Products(Best Prices Around)</h1>
 
 
@@ -149,7 +149,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     
        if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
         {
-            header("Location:customer_login.php");  
+            header("Location:/customer/customer-login.php");  
         }
 
         $customer_id = $_SESSION['customer'];

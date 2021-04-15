@@ -9,6 +9,7 @@ body {
     background-color: #303841;
     color: #eeeeee;
     font-family: 'Open Sans', serif;
+    font-size: 16px;
 }
 
 h1 {
@@ -20,12 +21,16 @@ h1 {
 
 h2 {
     font-family: 'Roboto', sans-serif;
+    color: #f6c90e;
+    font-size: 32px;
+    margin-top: 0px;
 }
 
 h3 {
     font-family: 'Roboto', sans-serif;
-    color: #f6c90e;
+    color: #eeeeee;
     font-size: 26px;
+    font-weight: bolder;
 }
 
 a {
@@ -41,22 +46,40 @@ input {
     outline: none;
     width: 100%;
     padding: 12px 20px;
+    padding-bottom: 8px;
     margin: 10px 0;
     box-sizing: border-box;
-    border: 2px solid #3A4750;
+    border: 0px;
+    border-bottom: 4px solid #3A4750;
     background-color: #3A4750;
-    border-radius: 8px;
     transition: .3s;
     margin-bottom: 26px;
-    color: #eeeeee
+    color: #eeeeee;
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 input[type=checkbox] {
     min-width: 20px;
 }
 
+input[type=submit] {
+    border: 0px;
+    transition: .3s;
+    background-color: #F6C90E;
+    color:#303841;
+    font-family: 'Roboto';
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input[type=submit]:hover {
+    background-color: #303841;
+    color:#eeeeee;
+}
+
 input:focus {
-    border: 2px solid #eeeeee;
+    border-bottom: 4px solid #eeeeee;
 }
 
 /* ---- begin navbar ---- */
@@ -231,6 +254,7 @@ input:focus {
     background-image: url('/images/background-logo.png');
     background-position: 100% 0%;
     background-repeat: no-repeat;
+    min-height: 80vh;
 }
 
 .portal-content {
@@ -245,28 +269,12 @@ input:focus {
     margin-bottom: 16px;
 }
 
-.portal-content form input[type=submit] {
-    border: 0px;
-    border-radius: 0px;
-    transition: .3s;
-    background-color: #F6C90E;
-    color:#303841;
-    font-family: 'Roboto';
-    font-weight: bold;
-    font-size: 20px;
-}
-
-.portal-content form input[type=submit]:hover {
-    background-color: #303841;
-    color:#eeeeee;
-}
-
 /* The alert message box */
 .alert {
     padding: 20px;
     background-color: #F6C90E; /* Red */
     color: #303841;
-    margin-bottom: 15px;
+    margin: 8px 26px;
   }
   
 /* The close button */
@@ -284,4 +292,18 @@ input:focus {
 /* When moving the mouse over the close button */
 .closebtn:hover {
     color: #F44C67;
+}
+
+.row {
+    display: flex;
+}
+  
+.column {
+    flex: 50%;
+}
+
+.shade-content {
+    margin: 50px;
+    padding: 60px;
+    background-color: rgba(26, 29, 32, 0.849);
 }

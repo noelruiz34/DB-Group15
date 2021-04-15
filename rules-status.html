@@ -1,0 +1,696 @@
+<html>
+<style>
+    .content-table {
+        border-collapse: collapse;
+        margin: 30px 0;
+        font-size: 1.5em;
+        min-width: 400px;
+        border-radius: 5x 5px 0 0;
+        overflow: hidden;
+        box-shadow: 0 0 2px rgba(0, 0, 0, 15);
+        width: 80%;
+    }
+    
+    .content-table thead tr {
+        background-color: #287eb8;
+        color: white;
+        text-align: left;
+        font-weight: bold;
+        border-style: groove;
+    }
+    
+    .content-table thead tr th:hover {
+        background-color: rgba(0, 0, 0, .2);
+        cursor: pointer;
+    }
+    
+    .content-table tr th {
+        border-style: ridge;
+    }
+    
+    .content-table th,
+    .content-table td {
+        padding: 12px 15px;
+    }
+    
+    .content-table th {
+        cursor: default;
+    }
+    
+    .content-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+    
+    .content-table tbody tr:nth-of-type(even) {
+        background-color: #e8e8e8;
+    }
+    
+    .content-table tbody tr:nth-of-type(odd) {
+        background-color: white;
+    }
+    
+    .content-table tbody tr:nth-last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+    
+    .content-table tbody tr .active-row {
+        font-weight: bold;
+        color: #009879;
+    }
+    
+    .content-table tbody tr:hover {
+        background-color: rgba(0, 0, 0, .5);
+        border-style: ridge;
+    }
+    
+    .content-table tr td {
+        border-width: 1px .05px;
+        border-style: solid;
+        cursor: pointer;
+    }
+    
+    .hide {
+        display: none;
+        border-style: solid;
+        width: 100%;
+        align-content: right;
+        text-align: center;
+        font-weight: bold;
+    }
+    
+    .container {
+        overflow: hidden;
+    }
+    
+    .filterDiv {
+        float: left;
+        background-color: #2196F3;
+        color: #ffffff;
+        width: 100px;
+        line-height: 100px;
+        text-align: center;
+        margin: 2px;
+        display: none;
+    }
+    
+    .show {
+        display: block;
+    }
+    
+    .btn {
+        border-style: ridge;
+        outline: none;
+        padding: 12px 16px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background-color: #ddd;
+    }
+    
+    .btn.active {
+        background-color: #666;
+        color: white;
+    }
+
+</style>
+
+<script>
+    let sortDirection = false;
+    let allFiles = new Array();
+
+    class fileData {
+        constructor(fName, type, path, fullResult, letterGrade) {
+            this.fName = fName,
+                this.path,
+                this.type = type;
+            this.fullResult = fullResult,
+                this.letterGrade = letterGrade
+        }
+    };
+
+    function show(id) {
+        var x = document.getElementById(id);
+        collapseAll();
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            var y = document.getElementById(`R ${id}`);
+            y.style.backgroundColor = "rgba(0,0, 0,.5)";
+        } else {
+            var y = document.getElementById(`R ${id}`);
+            y.style.backgroundColor = "rbga(0,0,0,.08)";
+            x.style.display = "none";
+        }
+    }
+
+    window.onload = () => {
+        loadTable(allFiles);
+        collapseAll();
+        setTitle(allFiles[0].type);
+    }
+
+    function setTitle(type) {
+        const tableBody = document.getElementById('title')
+        tableBody.innerHTML = `<strong>Currently Displaying: ${type}s</strong>`
+    }
+
+    function collapseAll() {
+        var x;
+        var y;
+        var r;
+        for (var i = 0; i < allFiles.length; i++) {
+            x = document.getElementById(`${i}`);
+            y = document.getElementById(`S ${i}`);
+            r = document.getElementById(`R ${i}`);
+            if (x != null && y != null) {
+                x.style.display = "none";
+                r.style.backgroundColor = "";
+                if (y.innerText === "FAIL") {
+                    y.style.color = "#FF0000";
+                    y.style.fontWeight = "bold";
+                } else if (y.innerText === "WARNING") {
+                    y.style.color = "#e6e600";
+                    y.style.fontWeight = "bold";
+                } else {
+                    y.style.color = "#00cc00";
+                    y.style.fontWeight = "bold";
+                }
+            }
+
+        }
+
+    }
+
+    function loadTable(allFiles) {
+        const tableBody = document.getElementById('tableData')
+        let dataHTML = '';
+
+        //Gets current time
+        let time = `${"09:18:58"}`;
+        document.getElementById('time').innerHTML = `Last updated at: ${time}`;
+        document.getElementById('summary').innerHTML = `Total files: ${98}<br />${90} passed, ${8} failed, and there were ${0} warnings.`;
+
+                var temp = new fileData("alert_ams_gip_owner_status.yaml", "Alert", "palerts/rules/alert_ams_gip_owner_status.yaml",
+            "Checking palerts/rules/alert_ams_gip_owner_status.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_ams_ibm_mq_channel_messages.yaml", "Alert", "palerts/rules/alert_ams_ibm_mq_channel_messages.yaml",
+            "Checking palerts/rules/alert_ams_ibm_mq_channel_messages.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_ams_ibm_mq_channel_sbr_messages.yaml", "Alert", "palerts/rules/alert_ams_ibm_mq_channel_sbr_messages.yaml",
+            "Checking palerts/rules/alert_ams_ibm_mq_channel_sbr_messages.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_ams_ibm_mq_channel_status.yaml", "Alert", "palerts/rules/alert_ams_ibm_mq_channel_status.yaml",
+            "Checking palerts/rules/alert_ams_ibm_mq_channel_status.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_ams_ibm_mq_queue_depth.yaml", "Alert", "palerts/rules/alert_ams_ibm_mq_queue_depth.yaml",
+            "Checking palerts/rules/alert_ams_ibm_mq_queue_depth.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_ams_Sockets.yaml", "Alert", "palerts/rules/alert_ams_Sockets.yaml",
+            "Checking palerts/rules/alert_ams_Sockets.yaml\n  SUCCESS: 6 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_cpq_jvm.yaml", "Alert", "palerts/rules/alert_cpq_jvm.yaml",
+            "Checking palerts/rules/alert_cpq_jvm.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_cpq_status.yaml", "Alert", "palerts/rules/alert_cpq_status.yaml",
+            "Checking palerts/rules/alert_cpq_status.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_dal_Sockets.yaml", "Alert", "palerts/rules/alert_dal_Sockets.yaml",
+            "Checking palerts/rules/alert_dal_Sockets.yaml\n  SUCCESS: 6 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_dataservice.yaml", "Alert", "palerts/rules/alert_dataservice.yaml",
+            "Checking palerts/rules/alert_dataservice.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_fra_Sockets.yaml", "Alert", "palerts/rules/alert_fra_Sockets.yaml",
+            "Checking palerts/rules/alert_fra_Sockets.yaml\n  SUCCESS: 6 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_graylog.yaml", "Alert", "palerts/rules/alert_graylog.yaml",
+            "Checking palerts/rules/alert_graylog.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_http_url.yaml", "Alert", "palerts/rules/alert_http_url.yaml",
+            "Checking palerts/rules/alert_http_url.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_jmx.yaml", "Alert", "palerts/rules/alert_jmx.yaml",
+            "Checking palerts/rules/alert_jmx.yaml\n  SUCCESS: 4 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_keepalived.yaml", "Alert", "palerts/rules/alert_keepalived.yaml",
+            "Checking palerts/rules/alert_keepalived.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_merchandising.yaml", "Alert", "palerts/rules/alert_merchandising.yaml",
+            "Checking palerts/rules/alert_merchandising.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_mssql.yaml", "Alert", "palerts/rules/alert_mssql.yaml",
+            "Checking palerts/rules/alert_mssql.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_nginx_tps_airbaltic_bt_15s_max.yaml", "Alert", "palerts/rules/alert_nginx_tps_airbaltic_bt_15s_max.yaml",
+            "Checking palerts/rules/alert_nginx_tps_airbaltic_bt_15s_max.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_nginx_tps_aireuropa_ux_15s_max.yaml", "Alert", "palerts/rules/alert_nginx_tps_aireuropa_ux_15s_max.yaml",
+            "Checking palerts/rules/alert_nginx_tps_aireuropa_ux_15s_max.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_nginx_tps_allclients_anomalous_tps_increase_detector.yaml", "Alert", "palerts/rules/alert_nginx_tps_allclients_anomalous_tps_increase_detector.yaml",
+            "Checking palerts/rules/alert_nginx_tps_allclients_anomalous_tps_increase_detector.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_nginx_tps_ana_nh_15s_max.yaml", "Alert", "palerts/rules/alert_nginx_tps_ana_nh_15s_max.yaml",
+            "Checking palerts/rules/alert_nginx_tps_ana_nh_15s_max.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_nginx_tps_etihad_ey_15s_max.yaml", "Alert", "palerts/rules/alert_nginx_tps_etihad_ey_15s_max.yaml",
+            "Checking palerts/rules/alert_nginx_tps_etihad_ey_15s_max.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_nginx_tps_flydubai_fz_15s_max.yaml", "Alert", "palerts/rules/alert_nginx_tps_flydubai_fz_15s_max.yaml",
+            "Checking palerts/rules/alert_nginx_tps_flydubai_fz_15s_max.yaml\n  SUCCESS: 4 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_cpu.yaml", "Alert", "palerts/rules/alert_os_cpu.yaml",
+            "Checking palerts/rules/alert_os_cpu.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_disk.yaml", "Alert", "palerts/rules/alert_os_disk.yaml",
+            "Checking palerts/rules/alert_os_disk.yaml\n  SUCCESS: 9 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_disk_recording.yaml", "Alert", "palerts/rules/alert_os_disk_recording.yaml",
+            "Checking palerts/rules/alert_os_disk_recording.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_memory.yaml", "Alert", "palerts/rules/alert_os_memory.yaml",
+            "Checking palerts/rules/alert_os_memory.yaml\n  SUCCESS: 0 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_memory_ppss.yaml", "Alert", "palerts/rules/alert_os_memory_ppss.yaml",
+            "Checking palerts/rules/alert_os_memory_ppss.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_node.yaml", "Alert", "palerts/rules/alert_os_node.yaml",
+            "Checking palerts/rules/alert_os_node.yaml\n  SUCCESS: 7 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_process.yaml", "Alert", "palerts/rules/alert_os_process.yaml",
+            "Checking palerts/rules/alert_os_process.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_os_tcp.yaml", "Alert", "palerts/rules/alert_os_tcp.yaml",
+            "Checking palerts/rules/alert_os_tcp.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_qtx_check_sp_slave.yaml", "Alert", "palerts/rules/alert_qtx_check_sp_slave.yaml",
+            "Checking palerts/rules/alert_qtx_check_sp_slave.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_qtx_status.yaml", "Alert", "palerts/rules/alert_qtx_status.yaml",
+            "Checking palerts/rules/alert_qtx_status.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_retail_dev_tapi.yaml", "Alert", "palerts/rules/alert_retail_dev_tapi.yaml",
+            "Checking palerts/rules/alert_retail_dev_tapi.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_retail_recordingrules.yaml", "Alert", "palerts/rules/alert_retail_recordingrules.yaml",
+            "Checking palerts/rules/alert_retail_recordingrules.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rm_app_availability.yaml", "Alert", "palerts/rules/alert_rm_app_availability.yaml",
+            "Checking palerts/rules/alert_rm_app_availability.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_balance.yaml", "Alert", "palerts/rules/alert_rtdp_balance.yaml",
+            "Checking palerts/rules/alert_rtdp_balance.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_cache_size.yaml", "Alert", "palerts/rules/alert_rtdp_cache_size.yaml",
+            "Checking palerts/rules/alert_rtdp_cache_size.yaml\n  SUCCESS: 6 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_cache_upload.yaml", "Alert", "palerts/rules/alert_rtdp_cache_upload.yaml",
+            "Checking palerts/rules/alert_rtdp_cache_upload.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_cassandra.yaml", "Alert", "palerts/rules/alert_rtdp_cassandra.yaml",
+            "Checking palerts/rules/alert_rtdp_cassandra.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_cluster_sync.yaml", "Alert", "palerts/rules/alert_rtdp_cluster_sync.yaml",
+            "Checking palerts/rules/alert_rtdp_cluster_sync.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_cpu.yaml", "Alert", "palerts/rules/alert_rtdp_cpu.yaml",
+            "Checking palerts/rules/alert_rtdp_cpu.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_gav.yaml", "Alert", "palerts/rules/alert_rtdp_gav.yaml",
+            "Checking palerts/rules/alert_rtdp_gav.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_gc.yaml", "Alert", "palerts/rules/alert_rtdp_gc.yaml",
+            "Checking palerts/rules/alert_rtdp_gc.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_gds.yaml", "Alert", "palerts/rules/alert_rtdp_gds.yaml",
+            "Checking palerts/rules/alert_rtdp_gds.yaml\n  SUCCESS: 18 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_graylog.yaml", "Alert", "palerts/rules/alert_rtdp_graylog.yaml",
+            "Checking palerts/rules/alert_rtdp_graylog.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_healtcheck.yaml", "Alert", "palerts/rules/alert_rtdp_healtcheck.yaml",
+            "Checking palerts/rules/alert_rtdp_healtcheck.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_health.yaml", "Alert", "palerts/rules/alert_rtdp_health.yaml",
+            "Checking palerts/rules/alert_rtdp_health.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_lh_cache_upload.yaml", "Alert", "palerts/rules/alert_rtdp_lh_cache_upload.yaml",
+            "Checking palerts/rules/alert_rtdp_lh_cache_upload.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_memory_usage.yaml", "Alert", "palerts/rules/alert_rtdp_memory_usage.yaml",
+            "Checking palerts/rules/alert_rtdp_memory_usage.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_request_generic_violation.yaml", "Alert", "palerts/rules/alert_rtdp_request_generic_violation.yaml",
+            "Checking palerts/rules/alert_rtdp_request_generic_violation.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_rtic.yaml", "Alert", "palerts/rules/alert_rtdp_rtic.yaml",
+            "Checking palerts/rules/alert_rtdp_rtic.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_rtpa.yaml", "Alert", "palerts/rules/alert_rtdp_rtpa.yaml",
+            "Checking palerts/rules/alert_rtdp_rtpa.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_schedule.yaml", "Alert", "palerts/rules/alert_rtdp_schedule.yaml",
+            "Checking palerts/rules/alert_rtdp_schedule.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_ssm_load.yaml", "Alert", "palerts/rules/alert_rtdp_ssm_load.yaml",
+            "Checking palerts/rules/alert_rtdp_ssm_load.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_timeouts.yaml", "Alert", "palerts/rules/alert_rtdp_timeouts.yaml",
+            "Checking palerts/rules/alert_rtdp_timeouts.yaml\n  SUCCESS: 5 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_tps.yaml", "Alert", "palerts/rules/alert_rtdp_tps.yaml",
+            "Checking palerts/rules/alert_rtdp_tps.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_rtdp_tvls.yaml", "Alert", "palerts/rules/alert_rtdp_tvls.yaml",
+            "Checking palerts/rules/alert_rtdp_tvls.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_tps_nginx_response_time_spike.yaml", "Alert", "palerts/rules/alert_tps_nginx_response_time_spike.yaml",
+            "Checking palerts/rules/alert_tps_nginx_response_time_spike.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("alert_tps_nginx_sudden_traffic_drop.yaml", "Alert", "palerts/rules/alert_tps_nginx_sudden_traffic_drop.yaml",
+            "Checking palerts/rules/alert_tps_nginx_sudden_traffic_drop.yaml\n  FAILED:\ngroup \"Sudden Drop in OUTGOING Traffic\", rule 0, \"Sudden Drop in OUTGOING Traffic\": could not parse expression: parse error at char 92: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("alert_tps_nginx_sudden_traffic_increase.yaml", "Alert", "palerts/rules/alert_tps_nginx_sudden_traffic_increase.yaml",
+            "Checking palerts/rules/alert_tps_nginx_sudden_traffic_increase.yaml\n  FAILED:\ngroup \"Sudden INCREASE in OUTGOING Traffic\", rule 0, \"Sudden INCREASE in OUTGOING Traffic\": could not parse expression: parse error at char 92: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("au1_pod_aks_services.yaml", "Alert", "palerts/rules/au1_pod_aks_services.yaml",
+            "Checking palerts/rules/au1_pod_aks_services.yaml\n  FAILED:\ngroup \"GuidanceCallTimeouts\", rule 0, \"GuidanceCallTimeoutsHigh\": could not parse expression: parse error at line 3, char 173: range specification must be preceded by a metric selector, but follows a *promql.Call instead\ngroup \"GuidanceCallTimeouts\", rule 1, \"GuidanceCallTimeoutsCritical\": could not parse expression: parse error at line 3, char 173: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("au1_pod_cassandra.yaml", "Alert", "palerts/rules/au1_pod_cassandra.yaml",
+            "Checking palerts/rules/au1_pod_cassandra.yaml\n  SUCCESS: 11 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("backup_check.yaml", "Alert", "palerts/rules/backup_check.yaml",
+            "Checking palerts/rules/backup_check.yaml\n  SUCCESS: 4 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("docker_alert.yaml", "Alert", "palerts/rules/docker_alert.yaml",
+            "Checking palerts/rules/docker_alert.yaml\n  SUCCESS: 4 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("eu1pv_byos_rapidminer_service.yaml", "Alert", "palerts/rules/eu1pv_byos_rapidminer_service.yaml",
+            "Checking palerts/rules/eu1pv_byos_rapidminer_service.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("eu1pv_pod_aks_services.yaml", "Alert", "palerts/rules/eu1pv_pod_aks_services.yaml",
+            "Checking palerts/rules/eu1pv_pod_aks_services.yaml\n  FAILED:\ngroup \"GuidanceCallTimeouts\", rule 0, \"GuidanceCallTimeoutsHigh\": could not parse expression: parse error at line 3, char 175: range specification must be preceded by a metric selector, but follows a *promql.Call instead\ngroup \"GuidanceCallTimeouts\", rule 1, \"GuidanceCallTimeoutsCritical\": could not parse expression: parse error at line 3, char 175: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("eu1pv_pod_cassandra.yaml", "Alert", "palerts/rules/eu1pv_pod_cassandra.yaml",
+            "Checking palerts/rules/eu1pv_pod_cassandra.yaml\n  SUCCESS: 11 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("eu1pv_pod_tenants.yaml", "Alert", "palerts/rules/eu1pv_pod_tenants.yaml",
+            "Checking palerts/rules/eu1pv_pod_tenants.yaml\n  SUCCESS: 0 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("eu1_byos_rapidminer_service.yaml", "Alert", "palerts/rules/eu1_byos_rapidminer_service.yaml",
+            "Checking palerts/rules/eu1_byos_rapidminer_service.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("eu1_pod_aks_services.yaml", "Alert", "palerts/rules/eu1_pod_aks_services.yaml",
+            "Checking palerts/rules/eu1_pod_aks_services.yaml\n  FAILED:\ngroup \"GuidanceCallTimeouts\", rule 0, \"GuidanceCallTimeoutsHigh\": could not parse expression: parse error at line 3, char 173: range specification must be preceded by a metric selector, but follows a *promql.Call instead\ngroup \"GuidanceCallTimeouts\", rule 1, \"GuidanceCallTimeoutsCritical\": could not parse expression: parse error at line 3, char 173: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("eu1_pod_cassandra.yaml", "Alert", "palerts/rules/eu1_pod_cassandra.yaml",
+            "Checking palerts/rules/eu1_pod_cassandra.yaml\n  SUCCESS: 11 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("eu1_pod_tenants.yaml", "Alert", "palerts/rules/eu1_pod_tenants.yaml",
+            "Checking palerts/rules/eu1_pod_tenants.yaml\n  SUCCESS: 5 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("gli_pod_cassandra.yaml", "Alert", "palerts/rules/gli_pod_cassandra.yaml",
+            "Checking palerts/rules/gli_pod_cassandra.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service.yaml", "Alert", "palerts/rules/guidance_service.yaml",
+            "Checking palerts/rules/guidance_service.yaml\n  SUCCESS: 3 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service_au1.yaml", "Alert", "palerts/rules/guidance_service_au1.yaml",
+            "Checking palerts/rules/guidance_service_au1.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service_eu1.yaml", "Alert", "palerts/rules/guidance_service_eu1.yaml",
+            "Checking palerts/rules/guidance_service_eu1.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service_eu1pv.yaml", "Alert", "palerts/rules/guidance_service_eu1pv.yaml",
+            "Checking palerts/rules/guidance_service_eu1pv.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service_qa.yaml", "Alert", "palerts/rules/guidance_service_qa.yaml",
+            "Checking palerts/rules/guidance_service_qa.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service_us1.yaml", "Alert", "palerts/rules/guidance_service_us1.yaml",
+            "Checking palerts/rules/guidance_service_us1.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("guidance_service_us1pv.yaml", "Alert", "palerts/rules/guidance_service_us1pv.yaml",
+            "Checking palerts/rules/guidance_service_us1pv.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("netfares_update_lock_alert.yaml", "Alert", "palerts/rules/netfares_update_lock_alert.yaml",
+            "Checking palerts/rules/netfares_update_lock_alert.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("qa2_agreement_service.yaml", "Alert", "palerts/rules/qa2_agreement_service.yaml",
+            "Checking palerts/rules/qa2_agreement_service.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("qa2_byos_rapidminer_service.yaml", "Alert", "palerts/rules/qa2_byos_rapidminer_service.yaml",
+            "Checking palerts/rules/qa2_byos_rapidminer_service.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("qa2_forecastservice.yaml", "Alert", "palerts/rules/qa2_forecastservice.yaml",
+            "Checking palerts/rules/qa2_forecastservice.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("qa_pod_aks_services.yaml", "Alert", "palerts/rules/qa_pod_aks_services.yaml",
+            "Checking palerts/rules/qa_pod_aks_services.yaml\n  FAILED:\ngroup \"GuidanceCallTimeouts\", rule 0, \"GuidanceCallTimeoutsHigh\": could not parse expression: parse error at line 3, char 176: range specification must be preceded by a metric selector, but follows a *promql.Call instead\ngroup \"GuidanceCallTimeouts\", rule 1, \"GuidanceCallTimeoutsCritical\": could not parse expression: parse error at line 3, char 176: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("snmp_cisco_alert.yaml", "Alert", "palerts/rules/snmp_cisco_alert.yaml",
+            "Checking palerts/rules/snmp_cisco_alert.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("snmp_cisco_asa.yaml", "Alert", "palerts/rules/snmp_cisco_asa.yaml",
+            "Checking palerts/rules/snmp_cisco_asa.yaml\n  SUCCESS: 1 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("snmp_f5_alert.yaml", "Alert", "palerts/rules/snmp_f5_alert.yaml",
+            "Checking palerts/rules/snmp_f5_alert.yaml\n  SUCCESS: 6 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("snmp_fg_alert.yaml", "Alert", "palerts/rules/snmp_fg_alert.yaml",
+            "Checking palerts/rules/snmp_fg_alert.yaml\n  SUCCESS: 5 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("snmp_if_alert.yaml", "Alert", "palerts/rules/snmp_if_alert.yaml",
+            "Checking palerts/rules/snmp_if_alert.yaml\n  SUCCESS: 25 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("us1pv_forecastservice.yaml", "Alert", "palerts/rules/us1pv_forecastservice.yaml",
+            "Checking palerts/rules/us1pv_forecastservice.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("us1pv_pod_aks_services.yaml", "Alert", "palerts/rules/us1pv_pod_aks_services.yaml",
+            "Checking palerts/rules/us1pv_pod_aks_services.yaml\n  FAILED:\ngroup \"GuidanceCallTimeouts\", rule 0, \"GuidanceCallTimeoutsHigh\": could not parse expression: parse error at line 3, char 179: range specification must be preceded by a metric selector, but follows a *promql.Call instead\ngroup \"GuidanceCallTimeouts\", rule 1, \"GuidanceCallTimeoutsCritical\": could not parse expression: parse error at line 3, char 179: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("us1pv_pod_cassandra.yaml", "Alert", "palerts/rules/us1pv_pod_cassandra.yaml",
+            "Checking palerts/rules/us1pv_pod_cassandra.yaml\n  SUCCESS: 11 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("us1_agreement_service.yaml", "Alert", "palerts/rules/us1_agreement_service.yaml",
+            "Checking palerts/rules/us1_agreement_service.yaml\n  SUCCESS: 2 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("us1_pod_aks_services.yaml", "Alert", "palerts/rules/us1_pod_aks_services.yaml",
+            "Checking palerts/rules/us1_pod_aks_services.yaml\n  FAILED:\ngroup \"GuidanceCallTimeouts\", rule 0, \"GuidanceCallTimeoutsHigh\": could not parse expression: parse error at line 3, char 176: range specification must be preceded by a metric selector, but follows a *promql.Call instead\ngroup \"GuidanceCallTimeouts\", rule 1, \"GuidanceCallTimeoutsCritical\": could not parse expression: parse error at line 3, char 176: range specification must be preceded by a metric selector, but follows a *promql.Call instead\n\n", "FAIL");
+        allFiles.push(temp);
+                var temp = new fileData("us1_pod_cassandra.yaml", "Alert", "palerts/rules/us1_pod_cassandra.yaml",
+            "Checking palerts/rules/us1_pod_cassandra.yaml\n  SUCCESS: 11 rules found\n\n", "PASS");
+        allFiles.push(temp);
+                var temp = new fileData("us1_pod_tenants.yaml", "Alert", "palerts/rules/us1_pod_tenants.yaml",
+            "Checking palerts/rules/us1_pod_tenants.yaml\n  SUCCESS: 4 rules found\n\n", "PASS");
+        allFiles.push(temp);
+        
+        for (var i = 0; i < allFiles.length; i++) {
+            dataHTML += `<tr onclick="show('${i}')" id='R ${i}'><td>${allFiles[i].fName}</td><td id ='S ${i}'>${allFiles[i].letterGrade}</td></tr><div ><p  style="margin-left: 4%; margin-top: 1%;margin-bottom: 1%;"id='${i}'> - ${allFiles[i].fullResult}</p></div>`;
+        }
+        tableBody.innerHTML = dataHTML;
+    }
+
+    function loadNew(allFiles) {
+        const tableBody = document.getElementById('tableData')
+        let dataHTML = '';
+        if (filtering[0]) {
+            switch (filtering[1]) {
+                case "fails":
+                    for (var i = 0; i < allFiles.length; i++) {
+                        if (allFiles[i].letterGrade === "FAIL") {
+                            dataHTML += `<tr onclick="show('${i}')" id='R ${i}'><td>${allFiles[i].fName}</td><td id ='S ${i}'>${allFiles[i].letterGrade}</td></tr><div ><p  style="margin-left: 4%; margin-top: 1%;margin-bottom: 1%;"id='${i}'> - ${allFiles[i].fullResult}</p></div>`;
+                        }
+                    }
+                    break;
+                case "warnings":
+                    for (var i = 0; i < allFiles.length; i++) {
+                        if (allFiles[i].letterGrade === "WARNING") {
+                            dataHTML += `<tr onclick="show('${i}')" id='R ${i}'><td>${allFiles[i].fName}</td><td id ='S ${i}'>${allFiles[i].letterGrade}</td></tr><div ><p  style="margin-left: 4%; margin-top: 1%;margin-bottom: 1%;"id='${i}'> - ${allFiles[i].fullResult}</p></div>`;
+                        }
+                    }
+                    break;
+                case "passes":
+                    for (var i = 0; i < allFiles.length; i++) {
+                        if (allFiles[i].letterGrade === "PASS") {
+                            dataHTML += `<tr onclick="show('${i}')" id='R ${i}'><td>${allFiles[i].fName}</td><td id ='S ${i}'>${allFiles[i].letterGrade}</td></tr><div ><p  style="margin-left: 4%; margin-top: 1%;margin-bottom: 1%;"id='${i}'> - ${allFiles[i].fullResult}</p></div>`;
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+        } else {
+            for (var i = 0; i < allFiles.length; i++) {
+                dataHTML += `<tr onclick="show('${i}')" id='R ${i}'><td>${allFiles[i].fName}</td><td id ='S ${i}'>${allFiles[i].letterGrade}</td></tr><div ><p  style="margin-left: 4%; margin-top: 1%;margin-bottom: 1%;"id='${i}'> - ${allFiles[i].fullResult}</p></div>`;
+            }
+        }
+        tableBody.innerHTML = dataHTML;
+        collapseAll();
+    }
+
+    function sort(column) {
+
+        if (sortDirection) {
+            switch (column) {
+                case 'file':
+                    sortDirection = !sortDirection;
+                    allFiles = allFiles.sort((a, b) => a.fName > b.fName ? 1 : -1)
+                    loadNew(allFiles)
+                    break;
+                case 'status':
+                    sortDirection = !sortDirection;
+                    allFiles = allFiles.sort(compare)
+                    loadNew(allFiles)
+                    break;
+                default:
+                    break;
+            }
+        } else {
+            switch (column) {
+                case 'file':
+                    sortDirection = !sortDirection;
+                    allFiles = allFiles.sort((a, b) => a.fName < b.fName ? 1 : -1)
+                    loadNew(allFiles)
+                    break;
+                case 'status':
+                    //fail > warning > pass
+                    sortDirection = !sortDirection;
+                    allFiles = allFiles.sort(compare)
+                    loadNew(allFiles)
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    function compare(a, b) {
+        console.log(sortDirection);
+        var holdA;
+        var holdB;
+        if (a.letterGrade === "PASS") {
+            holdA = 1;
+        } else if (a.letterGrade === "WARNING") {
+            holdA = 2;
+        } else {
+            holdA = 3;
+        }
+
+        if (b.letterGrade === "PASS") {
+            holdB = 1;
+        } else if (b.letterGrade === "WARNING") {
+            holdB = 2;
+        } else {
+            holdB = 3;
+        }
+
+
+        if (sortDirection) {
+            if (holdA < holdB) {
+                return -1;
+            }
+            if (holdA > holdB) {
+                return 1;
+            }
+        }
+        if (!sortDirection) {
+            if (holdA > holdB) {
+                return -1;
+            }
+            if (holdA < holdB) {
+                return 1;
+            }
+
+        }
+        return 0;
+    }
+    var filtering = [false, " "];
+
+    function filterSelection(option) {
+        console.log("filtering")
+        switch (option) {
+            case 'all':
+                filtering[0] = false;
+                loadNew(allFiles)
+                break;
+            case 'fails':
+                filtering[0] = true;
+                filtering[1] = "fails";
+                loadNew(allFiles)
+                for (var i = 0; i < allFiles.length; i++) {
+                    if (!(allFiles[i].letterGrade === "FAIL")) {
+                        var x = document.getElementById(`R ${i}`)
+                        x.style.display = "none";
+                    }
+                }
+                break;
+            case 'warnings':
+                filtering[0] = true;
+                filtering[1] = "warnings";
+                loadNew(allFiles)
+                for (var i = 0; i < allFiles.length; i++) {
+                    if (!(allFiles[i].letterGrade === "WARNING")) {
+                        var x = document.getElementById(`R ${i}`)
+                        x.style.display = "none";
+                    }
+                }
+                break;
+            case 'passes':
+                filtering[0] = true;
+                filtering[1] = "passes";
+                loadNew(allFiles)
+                for (var i = 0; i < allFiles.length; i++) {
+                    if (!(allFiles[i].letterGrade === "PASS")) {
+                        var x = document.getElementById(`R ${i}`)
+                        x.style.display = "none";
+                    }
+                }
+                break;
+            default:
+                filtering[0] = false;
+                break;
+        }
+    }
+</script>
+
+<head>
+
+    <div style="margin-left: 10%;margin-top: 3%;">
+        <button class="btn" onclick="location.href='/index.php'" type="button">Return to Main</button>
+        <hr style="width: 25%;margin-left: 0%;">
+    </div>
+
+    <div id="myBtnContainer" style="padding-top: 0%;margin-left: 10%;">
+        <button class="btn" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn" onclick="filterSelection('fails')">Fails</button>
+        <button class="btn" onclick="filterSelection('warnings')">Warnings</button>
+        <button class="btn" onclick="filterSelection('passes')">Passes</button>
+        <hr style="width: 25%;margin-left: 0%;">
+    </div>
+</head>
+
+<body>
+    <p id='title' style="font-size: 150%; font-family:'Courier New';margin-left: 10%;margin-bottom: 0%;"></p>
+    <div id='summary' style="font-size: 150%;font-weight:545; font-family:'Courier New';margin-left: 10%;margin-top: 1%;"></div>
+    <div id='time' style="font-size: 95%; font-family:'Courier New';margin-left: 10%;margin-top: 3%;"></div>    </div>
+    <table class="content-table" style="margin-left:auto;margin-right:auto;">
+
+        <thead>
+            <tr>
+                <th onclick="sort('file')" ,>File</th>
+                <th onclick="sort('status')">Status</th>
+            </tr>
+        </thead>
+
+        <tbody id='tableData' style="background-color:white;"></tbody>
+
+    </table>
+
+</body>
+
+
+</html>

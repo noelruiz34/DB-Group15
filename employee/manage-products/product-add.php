@@ -8,13 +8,13 @@ if(!isset($_SESSION['employee'])) // If session is not set then redirect to Logi
 
 // Variables from POST
 
-$upc = $_POST['upc'];
-$pname = $_POST['pname'];
-$quantity = $_POST['quantity'];
-$price = $_POST['price'];
-$category = $_POST['categories'];
-$discount = $_POST['discount'];
-$listed = $_POST['listed'];
+$upc = $_POST['add_upc'];
+$pname = $_POST['add_pname'];
+$quantity = $_POST['add_quantity'];
+$price = $_POST['add_price'];
+$category = $_POST['add_category'];
+$discount = $_POST['add_discount'];
+$listed = $_POST['add_listed'];
 if ($listed == 'on') {
     $listed = 1;
 } else {
@@ -25,7 +25,8 @@ if ($listed == 'on') {
 $employeeId = $_SESSION['employee'];
 
 $currTime = date('Y-m-d H:i:s');
-$updateDesc = $_POST['update_desc'];
+$updateDesc = 'Added product to database';
+
 
 // Conditionals verifying correct input
 
@@ -36,9 +37,10 @@ if (empty($upc) ||
     empty($category) ||
     empty($discount)) {
     $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:1)';
-    header('Location: add-update-product.php');
+    header('Location: /employee/manage-products/add-update-product.php');
     exit;
 }
+
 
 //Connect to DB
 
@@ -50,11 +52,26 @@ try {
     $connection = new PDO($dsn, $dbUser, $dbPassword);
 } catch (PDOException $expection) {
     $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
-    header('Location: register.php');
+    header('Location: /customer/register.php');
     exit;
 }
 
-$statement = $connection->prepare('UPDATE product SET p_name = :p_name, p_quantity = :p_quantity, p_price = :p_price, p_category = :p_category, p_discount = :p_discount, p_listed = :p_listed WHERE upc = :upc');
+$statement = $connection->prepare('SELECT * FROM product WHERE upc = :upc');
+if ($statement) {
+    $statement->execute([
+        ':upc' => $upc
+    ]);
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    if (!empty($result)) {
+        $_SESSION['messages'][] = 'Error: Product with the UPC# ' . $upc . ' already exists in the database!';
+        header('Location: /employee/manage-products/add-update-product.php');
+        exit;
+    }
+}
+
+$statement = $connection->prepare('INSERT INTO product VALUES (:upc, :p_name, :p_quantity, :p_price, :p_category, :p_discount, :p_listed)');
 if ($statement) {
     $result = $statement->execute ([
         ':upc' => $upc,
@@ -67,7 +84,7 @@ if ($statement) {
     ]);
 
     if ($result) {
-        $_SESSION['messages'][] = 'Product UPC#' . $upc . ' successfully updated.';
+        $_SESSION['messages'][] = 'Product UPC#' . $upc . ' successfully added to database.';
     }
 }
 
@@ -81,8 +98,8 @@ if ($statement) {
     ]);
 
     if ($result) {
-        $_SESSION['messages'][] = 'Update for product UPC#' . $upc . ' successfully logged.';
-        header('Location: add-update-product.php');
+        $_SESSION['messages'][] = 'Addition of product UPC#' . $upc . ' successfully logged.';
+        header('Location: /employee/manage-products/add-update-product.php');
         exit;
     }
 }
