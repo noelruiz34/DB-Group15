@@ -52,7 +52,7 @@ $customer_id = $_SESSION['customer']
 <body>
     <div class='navbar'>
         <ul>
-            <li style='float:left'><a class='active' href='index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+            <li style='float:left'><a class='active' href='/index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
             <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
             <?php
                 if(isset($_SESSION['customer'])) {
@@ -141,7 +141,7 @@ $customer_id = $_SESSION['customer']
         
         <div class='footer'>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="/index.php">Home</a></li>
                 <li><a href="/employee/employee-login.php">Employee Portal</a></li>
                 <li><a href="/about.html">About</a></li>
             </ul>

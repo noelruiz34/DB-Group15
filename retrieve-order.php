@@ -1,6 +1,6 @@
 <?php
 
-include "/db.php";
+include "db.php";
 
 // $order = $_POST["search"];
 

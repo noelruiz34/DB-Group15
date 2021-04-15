@@ -1,6 +1,6 @@
 <?php
 
-include "/db.php";
+include "db.php";
 
 // if(isset($_POST['btn-jack'])){
 //     $result = $connect->query("select * from student");

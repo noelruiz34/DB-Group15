@@ -169,7 +169,7 @@ if ($statement) {
 
     if ($result) {
         $_SESSION['messages'][] = 'Account successfully registered. Thank you registering an account!';
-        header('Location: /customer/account-created.html');
+        header('Location: /customer/account-created.php');
         exit;
     }
 }

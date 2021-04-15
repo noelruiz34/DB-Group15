@@ -22,7 +22,7 @@ session_start();
 	<title>Products</title>
 </head>
 <body>
-    <a href="index.php">Back to Home</a>
+    <a href="/index.php">Back to Home</a>
 	<h1 style="text-align:center;">Check Out Our Products(Best Prices Around)</h1>
 
 

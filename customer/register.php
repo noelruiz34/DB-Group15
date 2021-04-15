@@ -36,7 +36,7 @@
 <body>
   <div class='navbar'>
     <ul>
-      <li style='float:left'><a href='index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+      <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
       <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
       <?php
           if(isset($_SESSION['customer'])) {
@@ -49,7 +49,7 @@
           }
           else {
               echo "
-              <li><a class='active' href='register.php'>Register</a></li>
+              <li><a class='active' href='/customer/register.php'>Register</a></li>
               <li><a href='/customer/customer-login.php'>Log in</a></li>
               ";
           }
@@ -66,7 +66,7 @@
         <br>
         
       </p><br>
-      <?php require_once '/error-message.php'; ?><br>
+      <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?><br>
 
       <i style='font-size:13px;'>(All fields are required for account creation)</i>
       
@@ -134,7 +134,7 @@
 
     <div class='footer'>
       <ul>
-          <li><a href="index.php">Home</a></li>
+          <li><a href="/index.php">Home</a></li>
           <li><a href="/employee/employee-login.php">Employee Portal</a></li>
           <li><a href="/about.html">About</a></li>
       </ul>

@@ -21,14 +21,12 @@
     
     <h1 style="text-align:center;">Employee Login</h1>
 
-    <center style="margin-top: 2%">
-        <form action = "" method = "post">
-            <label>Employee ID  :</label><input type = "text" name = "employee_id" class = "box"/><br /><br />
-            <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-            <input type = "submit" name = login value = " Login "/><br />
-        </form>
-        <p><a href="index.php">Back to Home</a></p>
-    </center>
+    <form action = "" method = "post">
+        <label>Employee ID  :</label><input type = "text" name = "employee_id" class = "box"/><br /><br />
+        <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
+        <input type = "submit" name = login value = " Login "/><br />
+    </form>
+    <p><a href="/index.php">Back to Home</a></p>
 
     
 

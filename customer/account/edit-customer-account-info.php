@@ -66,7 +66,7 @@
 <body>
     <div class='navbar'>
         <ul>
-        <li style='float:left'><a href='index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+        <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon <img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
         <li style='float:left'><a href="/product-catalog.php">Browse Products</a></li>
         <?php
             if(isset($_SESSION['customer'])) {
@@ -88,7 +88,7 @@
     </div>
 
     <h1 style='margin-top: 100px;margin-bottom:15px;'>My Account</h1>
-    <?php require_once '/error-message.php'; ?>
+    <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?>
     
     <div class='row'>
         <div class='column'>
@@ -175,7 +175,7 @@
 
     <div class='footer'>
       <ul>
-          <li><a href="index.php">Home</a></li>
+          <li><a href="/index.php">Home</a></li>
           <li><a href="/employee/employee-login.php">Employee Portal</a></li>
           <li><a href="/about.html">About</a></li>
       </ul>

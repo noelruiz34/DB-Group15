@@ -36,7 +36,7 @@
             $row = mysqli_fetch_array($result);
             if($row) {
                 $_SESSION['customer']= $row['customer_id'];
-                header("Location:index.php");
+                header("Location:/index.php");
             }
             else {
                 echo  "<center> Wrong username and/or password </center>";
@@ -48,7 +48,7 @@
         <p> Don't have an account yet? </p>
         <a href="/customer/register.php">Create account</a>
         <br>
-        <a href="index.php">Back to Home</a>
+        <a href="/index.php">Back to Home</a>
     </center>
 
    

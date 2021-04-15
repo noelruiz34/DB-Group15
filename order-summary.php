@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php 
-    include '/db.php';
+    include 'db.php';
     session_start();
     if(!isset($_SESSION['employee'])) {
       header("Location:/employee/employee-login.php"); 

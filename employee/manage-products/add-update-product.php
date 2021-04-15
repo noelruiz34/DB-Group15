@@ -26,7 +26,7 @@
 
 <body>
   <h1>Add/Update Product</h1>
-  <?php require_once '/error-message.php'; ?>
+  <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?>
   <br>
 
   
