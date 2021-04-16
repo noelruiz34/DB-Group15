@@ -178,4 +178,4 @@ if(isset($_POST['add_more_to_cart'])) {
 ?>
 
 
-<a href="checkout.php">Proceed To Checkout</a>
+<a href="customer/checkout.php">Proceed To Checkout</a>
