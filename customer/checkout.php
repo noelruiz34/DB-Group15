@@ -60,34 +60,24 @@ function displayCart($cust_id, $conn)
       $$cart_total
     </tr>
     ";
-    if(array_key_exists('Pay Now', $_POST)) {
-      Pay();
+  }
+    ?>
+    <input type = 'submit' name = 'pay' value= 'Pay'/>
+    <?php
+    if ($_PAY['pay']=='Pay')
+    {
+      
     }
+    
+    
+  
       
     
-  }
-  ?>
-  <form method="post">
-        <input type="submit" name="Pay"
-                class="pay" value="Pay"/>
-                
-  <php>
-
-  #retrieve billing info from customer if they have it
-  function getBilling($cust_id,$conn)
-  {
-    #First thing to do is check if this customer has billing info at all. If 
-    $billing_sql = "SELECT *, * FROM shopping_cart FULL OUTER JOIN billing_info ON shopping_cart.customer_id=billing_info.customer_id WHERE customer_id=$cust_id";
-    
-    $billing_results = mysqli_query($conn, $billing_sql);
-    echo "<tr>
-      <td>" . $row['cc_num'] ."</td>";
-
-  }
+  
+  
+ 
 
   
-    #
-    ?>
     
   
 
