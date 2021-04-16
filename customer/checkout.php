@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <body>
   <a href="/index.php">Return to homepage</a>
   </body>
@@ -48,7 +49,6 @@ function displayCart($cust_id, $conn)
       <td>" . $cart_price . "</td>
       </tr>";
       echo "<td>
-      <select name = qp>
       ";
       $cart_total = $cart_total + $cart_price;
     }
@@ -60,7 +60,18 @@ function displayCart($cust_id, $conn)
       $$cart_total
     </tr>
     ";
+    if(array_key_exists('Pay Now', $_POST)) {
+      Pay();
+    }
+      
+    
   }
+  ?>
+  <form method="post">
+        <input type="submit" name="Pay"
+                class="pay" value="Pay"/>
+                
+  <php>
 
   #retrieve billing info from customer if they have it
   function getBilling($cust_id,$conn)
