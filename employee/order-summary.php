@@ -120,7 +120,7 @@ td {
             echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
-        echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 200%; marginRight: 1%;\";>Update Order Status:</a>
+        echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 25 px; marginRight: 1%;\";>Update Order Status:</a>
                   <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
                   <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
                   <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
