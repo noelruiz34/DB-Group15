@@ -61,13 +61,24 @@ function displayCart($cust_id, $conn)
     </tr>
     ";
   }
-    ?>
-    <input type = 'submit' name = 'pay' value= 'Pay'/>
-    <?php
-    if ($_PAY['pay']=='Pay')
-    {
-      
-    }
+?>
+<input type = 'submit' name = 'pay' value= 'Pay'/>
+<?php
+if ($_PAY['pay']=='Pay')
+{
+  $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
+
+  $cart_results = mysqli_query($connect, $cart_sql);
+  #run a loop to get the upc of cart items, then reduce product database p_quantity by that amount
+  #then add a new order with the appropriate o_status
+  while($row=mysqli_fetch_array($cart_results)) 
+  {
+    $cart_qty =  floatval($row['cart_quantity']);
+    $cart_price = $cart_qty * $cart_p;
+    
+    $cart_total = $cart_total + $cart_price;
+  }
+}
     
     
   
