@@ -6,38 +6,7 @@
       header("Location:/employee/employee-login.php"); 
     }
 
-    function updateOrderTable($order) {
-      $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
-
-      $_SESSION['order'] = $order;
-
-      echo "<table id=\"orderInfo\">";
-      while($order_info = mysqli_fetch_array($result))
-      {
-          echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
-          echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
-          echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
-          echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
-      }
-      echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>
-                <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
-                <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
-                <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
-                <input type=\"submit\" name=\"Result\"> 
-              </form>";
-
-
-      echo "</table>";
-      $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
-      echo"<table>";
-      echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
-      echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
-      while($item = mysqli_fetch_array($result))
-      {
-          echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
-      }
-      echo "</table>";
-    }
+    
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -138,8 +107,40 @@ td {
 
 <div id="order_info">
     <?php 
-    if(isset($_POST['search'])){
+    function updateOrderTable($order) {
+      $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
 
+      $_SESSION['order'] = $order;
+
+      echo "<table id=\"orderInfo\">";
+      while($order_info = mysqli_fetch_array($result))
+      {
+          echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
+          echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
+          echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
+          echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
+      }
+      echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>
+                <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
+                <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
+                <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
+                <input type=\"submit\" name=\"Result\"> 
+              </form>";
+
+
+      echo "</table>";
+      $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
+      echo"<table>";
+      echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
+      echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
+      while($item = mysqli_fetch_array($result))
+      {
+          echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+      }
+      echo "</table>";
+    }
+
+    if(isset($_POST['search'])){
       updateOrderTable($_POST['search']);
     }
 
