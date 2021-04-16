@@ -15,6 +15,7 @@
        }
     
     $customer_id = $_SESSION['customer'];
+    $order_id = $_POST['order_detail_id'];
 
     function echoOrderDetails($connect, $order_id) {
         $order_join_sql = "SELECT Point_of_Sale.product_purchase.upc, Point_of_Sale.product.p_name, Point_of_Sale.product_purchase.quantity_ordered, Point_of_Sale.product_purchase.p_price
@@ -57,18 +58,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Order: <?php $_POST['order_detail_id']?></title>
+	<title>Order: <?php $order_id?></title>
 </head>
 <a href="/customer/customer-orders.php">Back to My Orders</a>
 <body>
     <?php
-        $order_id = $_POST['order_detail_id'];
         if(isset($_POST['order_details'])) {
             echoOrderDetails($connect, $order_id);
-        }
-
-        if(isset($_POST['request_support'])) {
-            
         }
     ?>
 </body>

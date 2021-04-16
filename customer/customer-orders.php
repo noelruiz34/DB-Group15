@@ -47,9 +47,10 @@
             <td>$row[o_id]</td>
             <td>$row[o_time]</td>
             <td>$row[o_status]</td>
-            <td><form action='customer-order-details.php' method='post'>
+            <td><form action='/customer/customer-order-details.php' method=post>
             <input type = hidden name = order_detail_id value=$row[o_id]>
             <input type='submit' name='order_details' value='View Order Details'><br>
+            </form></td>
             </tr>";
         }
         echo "</table>";
