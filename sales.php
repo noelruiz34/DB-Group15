@@ -197,7 +197,7 @@
             echo "<div class='column'>";
             echo "<h2>Sales by Category</h2>";
         
-                echo "<table id='sorting_table'>";
+                echo "<table id='myTable'>";
                 echo "<tr>
                 <th onclick='sortTable(0)'>Category </a></th>
                 <th onclick='sortTable(1)'>Items Sold  </a></th>
@@ -207,7 +207,7 @@
                     echo "<tr>
                     <td>$category</td>
                     <td>$quantity_and_revenue[0]</td>
-                    <td>$$quantity_and_revenue[1]</td>
+                    <td>$quantity_and_revenue[1]</td>
                     </tr>";
                 }
                 echo "</table>";
@@ -228,7 +228,7 @@
                     echo "<tr>
                     <td>$upc</td>
                     <td>$quantity_and_revenue[0]</td>
-                    <td>$$quantity_and_revenue[1]</td>
+                    <td>$quantity_and_revenue[1]</td>
                     </tr>";
                 }
                 echo "</table>";
@@ -310,7 +310,7 @@ tr:nth-child(even) {
 <script>
 function sortTable(n) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("sorting_table");
+  table = document.getElementById("myTable");
   switching = true;
   //Set the sorting direction to ascending:
   dir = "asc"; 
@@ -332,13 +332,13 @@ function sortTable(n) {
       /*check if the two rows should switch place,
       based on the direction, asc or desc:*/
       if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
           //if so, mark as a switch and break the loop:
           shouldSwitch= true;
           break;
         }
       } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
           //if so, mark as a switch and break the loop:
           shouldSwitch = true;
           break;
