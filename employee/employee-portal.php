@@ -50,7 +50,7 @@
 
     <h1><a href="/employee/sales.php"> Sales </a></h1>
 
-    <h1><a href="/pending-emails.php"> Pending Emails </a></h1>
+    <h1><a href="/employee/pending-emails.php"> Pending Emails </a></h1>
 
     
     
