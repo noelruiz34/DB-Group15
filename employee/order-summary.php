@@ -146,7 +146,8 @@ td {
       $status = $_POST['status'];
       $order = $_SESSION['order'];
 
-      $result = $connect->query("update Point_of_Sale.order set o_status = '$status' where o_id = $order");
+      $update = $connect->query("update Point_of_Sale.order set o_status = '$status' where o_id = $order");
+      $result = $connect->query("select * from Point_of_Sale.order where o_id = $order");
 
       $_SESSION['order'] = $order;
 
