@@ -22,12 +22,12 @@
         $result = mysqli_query($connect,$sql);
         if(!$result) {
             echo "Support Ticket: " . $ticket_id . " was not found";
-            echo "<p align='left'><a href = '/support-tickets.php'> Back to Support Tickets </a></p>";
+            echo "<p align='left'><a href = '/employee/support-tickets.php'> Back to Support Tickets </a></p>";
         }
         $ticket_row = mysqli_fetch_array($result);
         if(!$ticket_row) {
             echo "Support Ticket: " . $ticket_id . " was not found";
-            echo "<p align='left'><a href = '/support-tickets.php'> Back to Support Tickets </a></p>";
+            echo "<p align='left'><a href = '/employee/support-tickets.php'> Back to Support Tickets </a></p>";
         }
         else{
             #display support ticket details
@@ -39,7 +39,7 @@
             $order_row = mysqli_fetch_array($result);
 
             echo "<h1>Support Ticket: $ticket_id</h1>";
-            echo "<p align='left'><a href = '/support-tickets.php'> Back to Support Tickets </a></p>";
+            echo "<p align='left'><a href = '/employee/support-tickets.php'> Back to Support Tickets </a></p>";
             echo "<font size='+1'>";
             echo "<p><strong> Order ID: </strong> $order_id</p>";
             echo "<p><strong> Employee ID: </strong> $ticket_row[e_id]</p>";
@@ -80,7 +80,7 @@
             if(!$result) {
                 die("Query failed!");
             }
-            header("Location:/support-tickets.php");
+            header("Location:/employee/support-tickets.php");
         }
     ?>
 

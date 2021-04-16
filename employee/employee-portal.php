@@ -42,7 +42,7 @@
 
     <h1><a href="/employee/product-changes-history.php"> View Product Changes History </a></h1>
 
-    <h1><a href="/support-tickets.php"> Support Tickets </a></h1>
+    <h1><a href="/employee/support-tickets.php"> Support Tickets </a></h1>
 
     <h1><a href="/employee/issue-return.php"> Issue Return </a></h1>
 
