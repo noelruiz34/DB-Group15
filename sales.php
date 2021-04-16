@@ -1,4 +1,5 @@
 <?php
+    include 'table_sort_scripts.php';
     $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
     $dbUser = "admin";
     $dbPass = "12345678";
@@ -197,11 +198,11 @@
             echo "<div class='column'>";
             echo "<h2>Sales by Category</h2>";
         
-                echo "<table id='myTable'>";
+                echo "<table id='categoriesTable'>";
                 echo "<tr>
-                <th onclick='sortTableStr(0)'>Category </a></th>
-                <th onclick='sortTableInt(1)'>Items Sold  </a></th>
-                <th onclick='sortTableInt(2)'>Total Revenue </a> </th>
+                <th onclick='sortCategoriesTableStr(0)'>Category </a></th>
+                <th onclick='sortCategoriesTableInt(1)'>Items Sold  </a></th>
+                <th onclick='sortCategoriesTableInt(2)'>Total Revenue </a> </th>
                 </tr>";
                 foreach($categories_array as $category => $quantity_and_revenue) {
                     echo "<tr>
@@ -217,11 +218,11 @@
             echo "<div class='column'>";
             echo "<h2>Sales by Product(UPC)</h2>";
        
-                echo "<table>";
+                echo "<table id='productTable'>";
                 echo "<tr>
-                <th> UPC </th>
-                <th> Items Sold </th>
-                <th> Total Revenue </th>
+                <th onclick='sortProductsTableStr(0)'> UPC </th>
+                <th onclick='sortProductsTableInt(1)'> Items Sold </th>
+                <th onclick='sortProductsTableInt(2)'> Total Revenue </th>
                 </tr>";
         
                 foreach($products_array as $upc => $quantity_and_revenue) {
@@ -307,115 +308,5 @@ tr:nth-child(even) {
 
     
 </body>
-<script>
-function sortTableInt(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  //Set the sorting direction to ascending:
-  dir = "asc"; 
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
-      if (dir == "asc") {
-        if (parseInt(x.innerHTML) > parseInt(y.innerHTML)) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (parseInt(x.innerHTML) < parseInt(y.innerHTML)) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      //Each time a switch is done, increase this count by 1:
-      switchcount ++;      
-    } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
 
-function sortTableStr(n) {
-  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-  table = document.getElementById("myTable");
-  switching = true;
-  //Set the sorting direction to ascending:
-  dir = "asc"; 
-  /*Make a loop that will continue until
-  no switching has been done:*/
-  while (switching) {
-    //start by saying: no switching is done:
-    switching = false;
-    rows = table.rows;
-    /*Loop through all table rows (except the
-    first, which contains table headers):*/
-    for (i = 1; i < (rows.length - 1); i++) {
-      //start by saying there should be no switching:
-      shouldSwitch = false;
-      /*Get the two elements you want to compare,
-      one from current row and one from the next:*/
-      x = rows[i].getElementsByTagName("TD")[n];
-      y = rows[i + 1].getElementsByTagName("TD")[n];
-      /*check if the two rows should switch place,
-      based on the direction, asc or desc:*/
-      if (dir == "asc") {
-        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch= true;
-          break;
-        }
-      } else if (dir == "desc") {
-        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-          //if so, mark as a switch and break the loop:
-          shouldSwitch = true;
-          break;
-        }
-      }
-    }
-    if (shouldSwitch) {
-      /*If a switch has been marked, make the switch
-      and mark that a switch has been done:*/
-      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-      switching = true;
-      //Each time a switch is done, increase this count by 1:
-      switchcount ++;      
-    } else {
-      /*If no switching has been done AND the direction is "asc",
-      set the direction to "desc" and run the while loop again.*/
-      if (switchcount == 0 && dir == "asc") {
-        dir = "desc";
-        switching = true;
-      }
-    }
-  }
-}
-</script>
 </html>
