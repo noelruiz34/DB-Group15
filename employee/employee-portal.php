@@ -46,7 +46,7 @@
 
     <h1><a href="/employee/issue-return.php"> Issue Return </a></h1>
 
-    <h1><a href = '/order-summary.php'> Order lookup </a></h1>
+    <h1><a href = '/employee/order-summary.php'> Order lookup </a></h1>
 
     <h1><a href="/employee/sales.php"> Sales </a></h1>
 
