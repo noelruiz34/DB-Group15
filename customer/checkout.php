@@ -63,20 +63,19 @@ function displayCart($cust_id, $conn)
   function getBilling($cust_id,$conn)
   {
     #First thing to do is check if this customer has billing info at all. If 
-    SELECT $cust_id FROM billing_info
     $billing_sql = "SELECT *, * FROM shopping_cart FULL OUTER JOIN billing_info ON shopping_cart.customer_id=billing_info.customer_id WHERE customer_id=$cust_id";
     
     $billing_results = mysqli_query($conn, $billing_sql);
+    echo "<tr>
+      <td>" . $row['cc_num'] ."</td>";
 
   }
 
-  function BillingInput()
-  {
-    #this function will echo the fill-in tables and boxes where the billing 
-    #info can be typed in, but if the customer already has 
-    #billing info(s), then echo a drop down box menu that allows them to click the 
-    #billing info they want to use, which will then autopopulate those boxes/tables 
-  }
+  
+    #
+    ?>
+    
+  
 
 
 
