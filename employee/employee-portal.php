@@ -48,7 +48,7 @@
 
     <h1><a href = '/order-summary.php'> Order lookup </a></h1>
 
-    <h1><a href="/sales.php"> Sales </a></h1>
+    <h1><a href="/employee/sales.php"> Sales </a></h1>
 
     <h1><a href="/pending-emails.php"> Pending Emails </a></h1>
 
