@@ -1,5 +1,5 @@
 <?php
-    include 'table_sort_scripts.php';
+    include 'table-sort-scripts.php';
     $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
     $dbUser = "admin";
     $dbPass = "12345678";
@@ -202,7 +202,7 @@
                 echo "<tr>
                 <th onclick='sortCategoriesTableStr(0)'>Category </a></th>
                 <th onclick='sortCategoriesTableInt(1)'>Items Sold  </a></th>
-                <th onclick='sortCategoriesTableInt(2)'>Total Revenue </a> </th>
+                <th onclick='sortCategoriesTableInt(2)'>Total Revenue $</a> </th>
                 </tr>";
                 foreach($categories_array as $category => $quantity_and_revenue) {
                     echo "<tr>
@@ -222,7 +222,7 @@
                 echo "<tr>
                 <th onclick='sortProductsTableStr(0)'> UPC </th>
                 <th onclick='sortProductsTableInt(1)'> Items Sold </th>
-                <th onclick='sortProductsTableInt(2)'> Total Revenue </th>
+                <th onclick='sortProductsTableInt(2)'> Total Revenue $</th>
                 </tr>";
         
                 foreach($products_array as $upc => $quantity_and_revenue) {
