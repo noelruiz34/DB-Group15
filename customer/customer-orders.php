@@ -15,7 +15,6 @@
        }
     
     $customer_id = $_SESSION['customer'];
-
 ?>
 
 <!DOCTYPE html>
@@ -23,10 +22,39 @@
 <head>
 	<title>My Orders</title>
 </head>
-<h1> My Orders </h1>
 <a href="/index.php">Back to Home</a>
+<h1> My Orders </h1>
 <body>
+    <?php
+        $customer_order_sql = "SELECT * FROM Point_of_Sale.order WHERE customer_id=$customer_id";
+        $customer_order_result = mysqli_query($connect, $customer_order_sql);
 
+        if(!$customer_order_result) {
+            die("customer order Query failed!");
+        }
+        if(mysqli_num_rows($customer_order_result) == 0) {
+            echo "You have not placed any orders!";
+        }
+
+        echo "<table>";
+        echo "<tr>
+        <td> Order ID </td>
+        <td> Date </td>
+        <td> Status </td>
+        </tr>";
+        while($row=mysqli_fetch_array($customer_order_result)) {
+            echo "<tr>
+            <td>$row[o_id]</td>
+            <td>$row[o_time]</td>
+            <td>$row[o_status]</td>
+            <td><form action='customer-order-details.php' method='post'>
+            <input type = hidden name = order_detail_id value=$row[o_id]>
+            <input type='submit' name='order_details' value='View Order Details'><br>
+            </tr>";
+        }
+        echo "</table>";
+        
+    ?>
 
 </body>
 </html>
