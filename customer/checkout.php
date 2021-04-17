@@ -64,9 +64,10 @@ function displayCart($cust_id, $conn)
 ?>
 <input type = 'submit' name = 'pay' value= 'Pay'/>
 <?php
+
 #a customer can only be fully registered if they have a billing address and a shipping address and billing info, thus we can just proceed to payment
-if ($_PAY['pay']=='Pay')
-{
+if(isset($_POST['pay'])) {
+
   $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
 
   $cart_results = mysqli_query($connect, $cart_sql);
@@ -112,7 +113,7 @@ if ($_PAY['pay']=='Pay')
     }
     $cart_sql = "SELECT * FROM shopping_cart WHERE customer_id=$cust_id";
     $cart_results = mysqli_query($conn, $cart_sql);
-    
+
     while($row=mysqli_fetch_array($cart_results)) 
     {
       $deleteCart = "DELETE FROM shopping_cart WHERE customer_id = $cust_id";
@@ -125,6 +126,3 @@ if ($_PAY['pay']=='Pay')
   }
 
 }
-    
-    
-
