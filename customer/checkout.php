@@ -62,7 +62,8 @@ function displayCart($cust_id, $conn)
     ";
   }
 
-  echo "<input type = 'submit' name = 'pay' value = 'Pay'/><br />
+  echo "<td><form method='post' action=''>
+  <input type = 'submit' name = 'pay' value = 'Pay'/><br />
   </form>
   ";
 
@@ -70,7 +71,7 @@ function displayCart($cust_id, $conn)
 #a customer can only be fully registered if they have a billing address and a shipping address and billing info, thus we can just proceed to payment
 if(isset($_POST['pay'])) {
 
-  $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
+  $cart_sql = "SELECT *, * FROM shopping_cart FULL OUTER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
 
   $cart_results = mysqli_query($connect, $cart_sql);
   #run a loop to get the upc of cart items, then reduce product database p_quantity by that amount
@@ -78,12 +79,7 @@ if(isset($_POST['pay'])) {
   $cart_price = 0;
   while($row=mysqli_fetch_array($cart_results)) 
   {
-    $cart_qty =  floatval($row['cart_quantity']);
-    $cart_p = floatval($row['p_price']);
-    $cart_price = $cart_qty * $cart_p;
-    
-    $cart_total = $cart_total + $cart_price;
-
+    $row['p_quantity'] = $row['p_quantity'] - $row['cart_quantity'];
     
   }
   $order_sql = "SELECT * FROM order";
