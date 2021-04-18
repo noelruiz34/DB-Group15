@@ -96,14 +96,7 @@
         
         $cart_total = $cart_total + $cart_price;
     }
-  echo "</table>";
-  echo "<br>
-    <tr>
-    <td> Total </td>
-    <td>  </td>
-    $$cart_total
-  </tr>
-  ";
+  
   if ($cart_total > 0.0)
   {
     echo "<td><form method='post' action=''>
@@ -112,6 +105,14 @@
     ";
   }
     else {
+        echo "</table>";
+        echo "<br>
+        <tr>
+        <td> Total </td>
+        <td>  </td>
+        $$cart_total
+        </tr>
+        ";
         echo"
         <td>Your cart is empty.</td>
         ";
