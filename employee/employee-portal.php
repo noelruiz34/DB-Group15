@@ -53,7 +53,24 @@
         text-align: center;
     }
     table {
-        width: 40%;
+        width: 55%;
+    }
+
+    .btn {
+        border-style: ridge;
+        outline: none;
+        padding: 12px 16px;
+        background-color: #f1f1f1;
+        cursor: pointer;
+    }
+    
+    .btn:hover {
+        background-color: #ddd;
+    }
+    
+    .btn.active {
+        background-color: #666;
+        color: white;
     }
 </style> 
 <body>
@@ -76,6 +93,7 @@
         <tr>
             <td>
                 <a href="/employee/manage-products/add-update-product.php" class = "table" > Add/Update Product </a>
+                <button class="btn" onclick="location.href='/employee/manage-products/add-update-product.php'" type="button">Return to Main</button>
             </td>
         </tr>
         <tr>
