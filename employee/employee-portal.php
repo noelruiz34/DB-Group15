@@ -25,13 +25,6 @@
 
 <style>
 
-    h1.options {
-       background-color: #3A4750;
-       opacity: .15;
-    }
-    div {
-        background-color: #3A4750;
-    }
     h1.center {
         margin: auto;
         width: 50%;
@@ -55,21 +48,21 @@
         <a href="/logout.php">Log Out</a>
     </p>
 
-    <div>
-        <h1 class="options"><a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a></h1>
+    <table>
+        <tr><a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a></tr>
 
-        <h1><a href="/employee/product-changes-history.php"> View Product Changes History </a></h1>
+        <tr><a href="/employee/product-changes-history.php"> View Product Changes History </a></tr>
 
-        <h1><a href="/employee/support-tickets.php"> Support Tickets </a></h1>
+        <tr><a href="/employee/support-tickets.php"> Support Tickets </a></tr>
 
-        <h1><a href="/employee/issue-return.php"> Issue Return </a></h1>
+        <tr><a href="/employee/issue-return.php"> Issue Return </a></tr>
 
-        <h1><a href = '/employee/order-summary.php'> Order lookup </a></h1>
+        <tr><a href = '/employee/order-summary.php'> Order lookup </a></tr>
 
-        <h1><a href="/employee/sales.php"> Sales </a></h1>
+        <tr><a href="/employee/sales.php"> Sales </a></tr>
 
-        <h1><a href="/employee/pending-emails.php"> Pending Emails </a></h1>
-    </div>
+        <tr><a href="/employee/pending-emails.php"> Pending Emails </a></tr>
+</table>
 
 </body>
 </html>
