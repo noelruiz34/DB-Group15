@@ -61,13 +61,12 @@ function displayCart($cust_id, $conn)
     </tr>
     ";
   }
-  if ($cart_total > 0)
-  {
+  
     echo "<td><form method='post' action=''>
     <input type = 'submit' name = 'pay' value = 'Pay'/><br />
     </form>
     ";
-  }
+  
   
 
 
