@@ -37,21 +37,21 @@
     <p align="left">
         <a href="/logout.php">Log Out</a>
     </p>
-    <div>
-        <a href="/employee/manage-products/add-update-product.php"> Add/Update Product </a>
+    <table>
+        <tr href="/employee/manage-products/add-update-product.php"> Add/Update Product </tr>
 
-        <a href="/employee/product-changes-history.php"> View Product Changes History </a>
+        <tr href="/employee/product-changes-history.php"> View Product Changes History </tr>
 
-        <a href="/employee/support-tickets.php"> Support Tickets </a>
+        <tr href="/employee/support-tickets.php"> Support Tickets </tr>
 
-        <a href="/employee/issue-return.php"> Issue Return </a>
+        <tr href="/employee/issue-return.php"> Issue Return </tr>
 
-        <a href = '/employee/order-summary.php'> Order lookup </a>
+        <tr href = '/employee/order-summary.php'> Order lookup </tr>
 
-        <a href="/employee/sales.php"> Sales </a>
+        <tr href="/employee/sales.php"> Sales </tr>
 
-        <a href="/employee/pending-emails.php"> Pending Emails </a>
-    </div>
+        <tr href="/employee/pending-emails.php"> Pending Emails </tr>
+    </table>
 
 </body>
 </html>
