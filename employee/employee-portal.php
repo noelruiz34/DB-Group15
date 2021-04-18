@@ -29,7 +29,7 @@
         background-color: #3A4750;
         opacity: .15;
     }
-    a.center {
+    h1.center {
         margin: auto;
         width: 50%;
         border: 3px solid green;
@@ -53,7 +53,7 @@
     </p>
 
     <div class="options">
-        <h1><a href="/employee/manage-products/add-update-product.php" class="center"> Add/Update Product </a></h1>
+        <h1 class="center"><a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a></h1>
 
         <h1><a href="/employee/product-changes-history.php"> View Product Changes History </a></h1>
 
