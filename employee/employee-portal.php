@@ -69,7 +69,7 @@
 
     <table>
         <tr>
-            <td>
+            <td style = "text-align: center;">
                 <a href="/employee/manage-products/add-update-product.php" class = "table" > Add/Update Product </a>
             </td>
         </tr>
