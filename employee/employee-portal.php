@@ -58,7 +58,6 @@
 
     .btn {
         outline: none;
-        padding: 12px 16px;
         background-color: #3A4750;
         opacity: 90%;
         color: white;
