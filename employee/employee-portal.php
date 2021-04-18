@@ -67,6 +67,7 @@
     }
     
     .btn:hover {
+        background-color: #ddd;
         opacity: 85%;
     }
     
