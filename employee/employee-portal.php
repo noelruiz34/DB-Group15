@@ -31,7 +31,6 @@
     }
     div {
         background-color: #3A4750;
-        opacity: .15;
     }
     h1.center {
         margin: auto;
