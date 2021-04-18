@@ -81,7 +81,7 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
-            $sql = "SELECT f_name, l_name FROM employee WHERE employee_id=$employee_id";
+            $sql = "select f_name, l_name from employee where employee_id=$employee_id";
             $result = mysqli_query($connect, $sql);
             $row = mysqli_fetch_array($result);
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
@@ -125,7 +125,7 @@
         </tr>
 </table>
 
-    <p style="align: center;">
+    <p style="text-align: center;">
         <a href="/logout.php">Log Out</a>
     </p>
 
