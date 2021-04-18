@@ -25,7 +25,7 @@
 
 <style>
 
-    h1.center {
+    table {
         margin: auto;
         width: 50%;
         border: 3px solid green;
@@ -49,19 +49,41 @@
     </p>
 
     <table>
-        <tr><td><a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a></td></tr>
-
-        <tr><td><a href="/employee/product-changes-history.php"> View Product Changes History </a></td></tr>
-
-        <tr><td><a href="/employee/support-tickets.php"> Support Tickets </a></td></tr>
-
-        <tr><td><a href="/employee/issue-return.php"> Issue Return </a></td></tr>
-
-        <tr><td><a href = '/employee/order-summary.php'> Order lookup </a></td></tr>
-
-        <tr><td><a href="/employee/sales.php"> Sales </a></td></tr>
-
-        <tr><td><a href="/employee/pending-emails.php"> Pending Emails </a></td></tr>
+        <tr>
+            <td>
+                <a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/employee/product-changes-history.php"> View Product Changes History </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/employee/support-tickets.php"> Support Tickets </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/employee/issue-return.php"> Issue Return </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href = '/employee/order-summary.php'> Order lookup </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/employee/sales.php"> Sales </a>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="/employee/pending-emails.php"> Pending Emails </a>
+            </td>
+        </tr>
 </table>
 
 </body>
