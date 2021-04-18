@@ -61,11 +61,14 @@ function displayCart($cust_id, $conn)
     </tr>
     ";
   }
-
-  echo "<td><form method='post' action=''>
-  <input type = 'submit' name = 'pay' value = 'Pay'/><br />
-  </form>
-  ";
+  if ($cart_total > 0)
+  {
+    echo "<td><form method='post' action=''>
+    <input type = 'submit' name = 'pay' value = 'Pay'/><br />
+    </form>
+    ";
+  }
+  
 
 
 #a customer can only be fully registered if they have a billing address and a shipping address and billing info, thus we can just proceed to payment
