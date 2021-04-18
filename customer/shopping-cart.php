@@ -99,20 +99,21 @@
   
   if ($cart_total > 0.0)
   {
+    echo "</table>";
+    echo "<br>
+      <tr>
+      <td> Total </td>
+      <td>  </td>
+      $$cart_total
+      </tr>
+      ";
     echo "<td><form method='post' action=''>
     <input type = 'submit' name = 'checkout' value = 'Proceed To Checkout'/><br />
     </form>
     ";
   }
     else {
-        echo "</table>";
-        echo "<br>
-        <tr>
-        <td> Total </td>
-        <td>  </td>
-        $$cart_total
-        </tr>
-        ";
+        
         echo"
         <td>Your cart is empty.</td>
         ";
