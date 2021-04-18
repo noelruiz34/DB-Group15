@@ -36,6 +36,9 @@
         align: center;
         background-color: #3A4750;
     }
+    a{
+        font-size: 100px;
+    }
     a:link, a:visited {
         color: white;
         text-align: center;
