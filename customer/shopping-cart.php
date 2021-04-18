@@ -30,19 +30,31 @@
     
     $cart_results = mysqli_query($conn, $cart_sql);
     
-    echo "<table>";
-    echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+    
     $cart_total = 0.0;
+    $is_empty = 0;
     
     while($row=mysqli_fetch_array($cart_results)) 
     {
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
       $cart_price = $cart_qty * $cart_p;
-      if ($cart_qty == 0.0)
+      $do_once = 0;
+      if ($cart_price == 0.0)
+      {
+        $is_empty = 1;
+      }
+      if ($is_empty == 1) 
       {
         continue;
       }
+      else if ($is_empty == 0 && $do_once == 0)
+      {
+        echo "<table>";
+        echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+        $do_once = 1;
+      }
+
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
       ";
@@ -113,22 +125,20 @@
   
 
 
-  function checkEmpty($cust_id, $conn)
-  {
-    $cart_sql = "SELECT *, product.p_name, product.p_price, product.upc FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+function checkEmpty($cust_id, $conn)
+{
+  $cart_sql = "SELECT *, product.p_name, product.p_price, product.upc FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
-    $cart_results = mysqli_query($conn, $cart_sql);
-    while($row=mysqli_fetch_array($cart_results)) 
+  $cart_results = mysqli_query($conn, $cart_sql);
+  while($row=mysqli_fetch_array($cart_results)) 
+  {
+    if ($row['cart_quantity'] <= 0)
     {
-      if ($row['cart_quantity'] <= 0)
-      {
-        $deleteEmpRow = "DELETE FROM shopping_cart WHERE customer_id = $cust_id and upc = $row[upc]";
-        mysqli_query($conn, $deleteEmpRow);
-
-        #DELETE FROM `Point_of_Sale`.`shopping_cart` WHERE (`customer_id` = '1') and (`upc` = '1');
-      }
+      $deleteEmpRow = "DELETE FROM shopping_cart WHERE customer_id = $cust_id and upc = $row[upc]";
+      mysqli_query($conn, $deleteEmpRow);
     }
   }
+}
 
   
 
