@@ -36,6 +36,17 @@
         align: center;
         background-color: #3A4750;
     }
+    a:link, a:visited {
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    a:hover, a:active {
+        opacity: 90%;
+        color: white;
+    }
 </style> 
 <body>
     
