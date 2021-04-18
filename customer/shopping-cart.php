@@ -39,7 +39,7 @@
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
       $cart_price = $cart_qty * $cart_p;
-      if ($cart_qty == 0)
+      if ($cart_qty == 0.0)
       {
         continue;
       }
