@@ -99,32 +99,33 @@
         </tr>
         <tr>
             <td>
-                <a href="/employee/product-changes-history.php" class = "table"> View Product Changes History </a>
+                <button class="btn" onclick="location.href='/employee/product-changes-history.php'" type="button">View Product Changes History</button>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/support-tickets.php" class = "table" class = "table"> Support Tickets </a>
+                <button class="btn" onclick="location.href='/employee/support-tickets.php'" type="button">Support Tickets</button>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/issue-return.php" class = "table"> Issue Return </a>
+                <button class="btn" onclick="location.href='/employee/issue-return.php'" type="button">Issue Return</button>        
             </td>
         </tr>
         <tr>
             <td>
-                <a href = '/employee/order-summary.php' class = "table"> Order lookup </a>
+                <button class="btn" onclick="location.href='/employee/order-summary.php'" type="button">Order lookup </button>            
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/sales.php" class = "table"> Sales </a>
+                <button class="btn" onclick="location.href='/employee/sales.php'" type="button">Sales</button>
             </td>
         </tr>
         <tr>
             <td>
                 <a href="/employee/pending-emails.php" class = "table"> Pending Emails </a>
+                <button class="btn" onclick="location.href='/employee/support-tickets.php'" type="button">Support Tickets</button>
             </td>
         </tr>
 </table>
