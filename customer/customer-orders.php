@@ -34,6 +34,7 @@
         }
         if(mysqli_num_rows($customer_order_result) == 0) {
             echo "You have not placed any orders!";
+            return;
         }
 
         echo "<table>";
