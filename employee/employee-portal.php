@@ -1,13 +1,5 @@
 <?php
-    $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
-    $dbUser = "admin";
-    $dbPass = "12345678";
-    $dbName = "Point_of_Sale";
-    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
-    if(mysqli_connect_errno())
-    {
-        die("connection Failed! " . mysqli_connect_error());
-    }
+    include '../db.php';
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
@@ -81,8 +73,7 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
-            $sql = "select f_name, l_name from employee where employee_id=$employee_id";
-            $result = mysqli_query($connect, $sql);
+            $result = $connect->query("select f_name, l_name from employee where employee_id=$employee_id");
             $row = mysqli_fetch_array($result);
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         ?>
