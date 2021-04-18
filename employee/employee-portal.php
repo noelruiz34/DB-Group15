@@ -124,8 +124,7 @@
         </tr>
         <tr>
             <td>
-                <a href="/employee/pending-emails.php" class = "table"> Pending Emails </a>
-                <button class="btn" onclick="location.href='/employee/support-tickets.php'" type="button">Support Tickets</button>
+                <button class="btn" onclick="location.href='/employee/pending-emails.php'" type="button">Pending Emails</button>
             </td>
         </tr>
 </table>
