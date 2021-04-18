@@ -27,9 +27,14 @@
 
     table {
         margin: auto;
-        width: 50%;
-        border: 3px solid green;
+        width: 100%;
+        background-color: #303841;
         padding: 10px;
+    }
+
+    table.tr {
+        align: center;
+        background-color: #3A4750;
     }
 </style> 
 <body>
