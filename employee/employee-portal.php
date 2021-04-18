@@ -25,7 +25,7 @@
 
 <style>
 
-    .options div{
+    div.options {
         background-color: #3A4750;
         opacity: .5;
     }
