@@ -87,10 +87,6 @@
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         ?>
     </font>
-    <p align="left">
-        <a href="/logout.php">Log Out</a>
-    </p>
-
     <table>
         <tr>
             <td>
@@ -128,6 +124,10 @@
             </td>
         </tr>
 </table>
+
+    <p style="align: center;">
+        <a href="/logout.php">Log Out</a>
+    </p>
 
 </body>
 </html>
