@@ -22,6 +22,14 @@
 <head>
 	<title>Employee Portal</title>
 </head>
+
+<style>
+
+    .options div{
+        background-color: #3A4750;
+        opacity: .5;
+    }
+</style> 
 <body>
     
 	<h1>Employee Portal</h1>
@@ -38,7 +46,7 @@
         <a href="/logout.php">Log Out</a>
     </p>
 
-    <div>
+    <div class="options">
         <h1><a href="/employee/manage-products/add-update-product.php"> Add/Update Product </a></h1>
 
         <h1><a href="/employee/product-changes-history.php"> View Product Changes History </a></h1>
