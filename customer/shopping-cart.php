@@ -39,8 +39,7 @@
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
       $cart_price = $cart_qty * $cart_p;
-      if ($cart_price > 0.0)
-      {
+      
         echo "<tr>
         <td>" . $row['p_name'] . "</td>
         ";
@@ -91,9 +90,8 @@
       $$cart_total
     </tr>
     ";
-    }
-      }
-      
+    
+    
     if ($cart_total > 0.0)
     {
       echo "<td><form method='post' action=''>
@@ -111,6 +109,7 @@
   if(isset($_POST['pay'])) {
      header("Location:/customer/checkout.php");
   }
+}
   
 
 
