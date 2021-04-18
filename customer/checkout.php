@@ -70,57 +70,61 @@ function displayCart($cust_id, $conn)
 
 #a customer can only be fully registered if they have a billing address and a shipping address and billing info, thus we can just proceed to payment
 if(isset($_POST['pay'])) {
+  $cart_sql = "SELECT Point_of_Sale.shopping_cart.upc, Point_of_Sale.product.p_name, Point_of_Sale.shopping_cart.cart_quantity, Point_of_Sale.product.p_price, Point_of_Sale.product.p_quantity
+  FROM Point_of_Sale.shopping_cart INNER JOIN Point_of_Sale.product 
+  ON Point_of_Sale.shopping_cart.upc = Point_of_Sale.product.upc 
+  WHERE Point_of_Sale.shopping_cart.customer_id=$customer_id;";
 
-  $cart_sql = "SELECT *, * FROM shopping_cart FULL OUTER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$customer_id";
+  $cart_result = mysqli_query($connect, $cart_sql);
+  if(!$cart_result) {
+    die("Cart result failed!");
+  }
 
-  $cart_results = mysqli_query($connect, $cart_sql);
-  #run a loop to get the upc of cart items, then reduce product database p_quantity by that amount
-  #then add a new order with the appropriate o_status
-  $cart_price = 0;
-  while($row=mysqli_fetch_array($cart_results)) 
-  {
-    $row['p_quantity'] = $row['p_quantity'] - $row['cart_quantity'];
-    
+  $enough_stock = true;
+  while($row=mysqli_fetch_array($cart_result)) { #this loop checks to make sure we have enough stock to carry out transaction
+    if($row['p_quantity'] == 0) {
+      echo "Sorry! Product $row[p_name] is out of stock! <br>";
+      $enough_stock = false;
+    }
+    elseif($row['cart_quantity'] > $row['p_quantity']) {
+      echo "Sorry! You are ordering more $row[p_name] than we have in stock! We currently have $row[p_quantity] in stock. <br>";
+      $enough_stock = false;
+    }
   }
-  $order_sql = "SELECT * FROM order";
-  $order_results = mysqli_query($connect,$order_sql);
-  $new_order_num = 0;
-  #add this order to a new order number
-  #loop through all order numbers and generate a new one?
-  while($row = mysqli_fetch_array($order_results))
-  {
-    $new_order_num = $new_order_num + 1;
-    #after this loop, the new_order_num variable will equal the greatest number order number in the DB
-    #we want 1 number past this
+  if(!$enough_stock) return;
+
+  #$create_order_sql = "INSERT INTO Point_of_Sale.order (customer_id) VALUES ('$customer_id')"; #inserting new order for customer
+  #$create_order_result = mysqli_query($connect, $create_order_sql);
+  #if(!$create_order_result) {
+  #  die("Create Order Query failed");
+  #}
+
+  $new_order_sql = "SELECT * FROM Point_of_Sale.order WHERE customer_id = $customer_id ORDER BY o_time DESC";
+  $new_order_result = mysqli_query($connect, $new_order_sql);
+  if(!$new_order_result) {
+    die("new order query failed!");
   }
+  $new_order_row = mysqli_fetch_array($new_order_result);
+  $new_order_id = $new_order_row['o_id']; #the order id just created
   
-  $new_order_num = $new_order_num + 1;
-  $timestamp = date('Y-m-d H:i:s');
-
-  $whole_order = $connection->prepare('INSERT INTO order VALUES (:o_id, :customer_id, :otime, :o_status)');
-  if ($whole_order)
-  {
-    $result = $whole_order->execute ([
-      'o_id' => $new_order_num,
-      'customer_id' => $customer_id,
-      'otime' => $timestamp,
-      'o_status' => "Processing"
-    ]);
-    if ($whole_order) {
-      $_SESSION['messages'][] = 'Order placed! Thank you for shopping with Omazon!';
-    }
-    $cart_sql = "SELECT * FROM shopping_cart WHERE customer_id=$cust_id";
-    $cart_results = mysqli_query($conn, $cart_sql);
-
-    while($row=mysqli_fetch_array($cart_results)) 
-    {
-      $deleteCart = "DELETE FROM shopping_cart WHERE customer_id = $cust_id";
-      mysqli_query($conn, $deleteCart);
-
-      #DELETE FROM `Point_of_Sale`.`shopping_cart` WHERE (`customer_id` = '1') and (`upc` = '1');
-      
+  $cart_result = mysqli_query($connect, $cart_sql);
+  while($row=mysqli_fetch_array($cart_result)) {
+    $new_p_quantity = $row['p_quantity'] - $row['cart_quantity']; #value to update current upc in loop
+    $update_quantity_sql = "UPDATE Point_of_Sale.product SET p_quantity = '$new_p_quantity' WHERE upc = '$row[upc]'";
+    $update_quantity_result = mysqli_query($connect, $update_quantity_sql);
+    if(!$update_quantity_result) {
+      die("update quantity failed!");
     }
 
+    $product_purchase_sql = "INSERT INTO Point_of_Sale.product_purchase (upc, o_id, quantity_ordered, p_price) VALUES ($row[upc], $new_order_id, $row[cart_quantity], $row[p_price])";
+    $product_purchase_result = mysqli_query($connect, $product_purchase_sql); #Creating product purchase entities for the order
+    if(!$product_purchase_result) {
+      die("product purchase insert failed! on $row[upc] | $product_purchase_sql");
+    }
   }
 
+  echo "Purchase Complete! Thank you!";
+
+
+  
 }
