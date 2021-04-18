@@ -142,8 +142,6 @@ if(isset($_POST['pay'])) {
   }
 
   echo "Purchase Complete! Thank you!";
-  sleep(1);
-  header("Location:/index.php");
 
   
 }
