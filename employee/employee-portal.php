@@ -36,17 +36,17 @@
         align: center;
         background-color: #3A4750;
     }
-    a{
+    a.table{
         font-size: 25px;
         text-align: center;
     }
-    a:link, a:visited {
+    a.table:link, a.table:visited {
         color: white;
         text-decoration: none;
         display: inline-block;
     }
 
-    a:hover, a:active {
+    a.table:hover, a.table:active {
         opacity: 90%;
         color: white;
     }
@@ -70,37 +70,37 @@
     <table>
         <tr>
             <td>
-                <a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a>
+                <a href="/employee/manage-products/add-update-product.php" class = "table" > Add/Update Product </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/product-changes-history.php"> View Product Changes History </a>
+                <a href="/employee/product-changes-history.php" class = "table"> View Product Changes History </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/support-tickets.php"> Support Tickets </a>
+                <a href="/employee/support-tickets.php" class = "table" class = "table"> Support Tickets </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/issue-return.php"> Issue Return </a>
+                <a href="/employee/issue-return.php" class = "table"> Issue Return </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href = '/employee/order-summary.php'> Order lookup </a>
+                <a href = '/employee/order-summary.php' class = "table"> Order lookup </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/sales.php"> Sales </a>
+                <a href="/employee/sales.php" class = "table"> Sales </a>
             </td>
         </tr>
         <tr>
             <td>
-                <a href="/employee/pending-emails.php"> Pending Emails </a>
+                <a href="/employee/pending-emails.php" class = "table"> Pending Emails </a>
             </td>
         </tr>
 </table>
