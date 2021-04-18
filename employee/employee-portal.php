@@ -60,8 +60,9 @@
         border-style: ridge;
         outline: none;
         padding: 12px 16px;
-        background-color: #f1f1f1;
+        background-color: #3A4750;
         cursor: pointer;
+        width: 100%;
     }
     
     .btn:hover {
