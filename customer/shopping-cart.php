@@ -92,6 +92,9 @@
     ";
     
     
+
+    
+  }
     if ($cart_total > 0.0)
     {
       echo "<td><form method='post' action=''>
@@ -104,8 +107,7 @@
         <td>Your cart is empty.</td>
         ";
       }
-    
-  }
+
   if(isset($_POST['pay'])) {
      header("Location:/customer/checkout.php");
   }
