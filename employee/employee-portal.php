@@ -68,7 +68,7 @@
     
     .btn:hover {
         background-color: #ddd;
-        opacity: 85%;
+        opacity: 25%;
     }
     
     .btn.active {
