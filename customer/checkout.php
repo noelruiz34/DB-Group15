@@ -93,11 +93,11 @@ if(isset($_POST['pay'])) {
   }
   if(!$enough_stock) return;
 
-  #$create_order_sql = "INSERT INTO Point_of_Sale.order (customer_id) VALUES ('$customer_id')"; #inserting new order for customer
-  #$create_order_result = mysqli_query($connect, $create_order_sql);
-  #if(!$create_order_result) {
-  #  die("Create Order Query failed");
-  #}
+  $create_order_sql = "INSERT INTO Point_of_Sale.order (customer_id) VALUES ('$customer_id')"; #inserting new order for customer
+  $create_order_result = mysqli_query($connect, $create_order_sql);
+  if(!$create_order_result) {
+    die("Create Order Query failed");
+  }
 
   $new_order_sql = "SELECT * FROM Point_of_Sale.order WHERE customer_id = $customer_id ORDER BY o_time DESC";
   $new_order_result = mysqli_query($connect, $new_order_sql);
@@ -123,8 +123,15 @@ if(isset($_POST['pay'])) {
     }
   }
 
-  echo "Purchase Complete! Thank you!";
+  $clear_cart_sql = "DELETE FROM Point_of_Sale.shopping_cart WHERE customer_id = $customer_id";
+  $clear_cart_result = mysqli_query($connect, $clear_cart_sql);
+  if(!$clear_cart_result) {
+    die("Could not clear cart!");
+  }
 
+  echo "Purchase Complete! Thank you!";
+  sleep(1);
+  header("Location:/index.php");
 
   
 }

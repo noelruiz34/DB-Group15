@@ -60,7 +60,7 @@
 <head>
 	<title>Order: <?php $order_id?></title>
 </head>
-<a href="/customer/customer-orders.php">Back to My Orders</a>
+<a href="/customer/customer-orders.php">Back to My Orders</a> <br>
 <body>
     <?php
         if(isset($_POST['order_details'])) {
