@@ -92,8 +92,7 @@
     <table>
         <tr>
             <td>
-                <a href="/employee/manage-products/add-update-product.php" class = "table" > Add/Update Product </a>
-                <button class="btn" onclick="location.href='/employee/manage-products/add-update-product.php'" type="button">Return to Main</button>
+                <button class="btn" onclick="location.href='/employee/manage-products/add-update-product.php'" type="button">Add/Update Product</button>
             </td>
         </tr>
         <tr>
