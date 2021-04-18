@@ -32,7 +32,7 @@
         padding: 10px;
     }
 
-    table.td {
+    td {
         align: center;
         background-color: #3A4750;
     }
