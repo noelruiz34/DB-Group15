@@ -58,7 +58,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Order: <?php $order_id?></title>
+	<title>Order Details</title>
 </head>
 <a href="/customer/customer-orders.php">Back to My Orders</a> <br>
 <body>
