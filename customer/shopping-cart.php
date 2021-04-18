@@ -39,7 +39,10 @@
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
       $cart_price = $cart_qty * $cart_p;
-      
+      if ($cart_qty == 0)
+      {
+        continue;
+      }
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
       ";
@@ -80,12 +83,7 @@
               ";
         
         $cart_total = $cart_total + $cart_price;
-   
-    
-    
-
-    
-  }
+    }
   echo "</table>";
   echo "<br>
     <tr>
@@ -105,11 +103,12 @@
         echo"
         <td>Your cart is empty.</td>
         ";
-      }
+        }
 
   if(isset($_POST['checkout'])) {
      header("Location:/customer/checkout.php");
   }
+
 }
   
 
