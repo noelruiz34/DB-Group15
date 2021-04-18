@@ -52,6 +52,9 @@
     td {
         text-align: center;
     }
+    table {
+        width: 40%;
+    }
 </style> 
 <body>
     
