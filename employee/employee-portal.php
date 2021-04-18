@@ -25,7 +25,11 @@
 
 <style>
 
-    div.options {
+    h1.options {
+       background-color: #3A4750;
+       opacity: .15;
+    }
+    div {
         background-color: #3A4750;
         opacity: .15;
     }
@@ -52,8 +56,8 @@
         <a href="/logout.php">Log Out</a>
     </p>
 
-    <div class="options">
-        <h1 class="center"><a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a></h1>
+    <div>
+        <h1 class="options"><a href="/employee/manage-products/add-update-product.php" > Add/Update Product </a></h1>
 
         <h1><a href="/employee/product-changes-history.php"> View Product Changes History </a></h1>
 
