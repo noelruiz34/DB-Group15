@@ -32,7 +32,7 @@
     
     echo "<table>";
     echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
-    $cart_total = 0;
+    $cart_total = 0.0;
     
     while($row=mysqli_fetch_array($cart_results)) 
     {
@@ -90,8 +90,25 @@
       $$cart_total
     </tr>
     ";
-
+    if ($cart_total > 0.0)
+    {
+      echo "<td><form method='post' action=''>
+    <input type = 'submit' name = 'checkout' value = 'Proceed To Checkout'/><br />
+    </form>
+    ";
+    }
+      else {
+        echo"
+        <td>Your cart is empty.</td>
+        ";
+      }
+    
   }
+  if(isset($_POST['pay'])) {
+     header("Location:/customer/checkout.php");
+  }
+  
+
 
   function checkEmpty($cust_id, $conn)
   {
@@ -178,4 +195,4 @@ if(isset($_POST['add_more_to_cart'])) {
 ?>
 
 
-<a href="checkout.php">Proceed To Checkout</a>
+
