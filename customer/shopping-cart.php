@@ -9,8 +9,8 @@
   $dbUser = "admin";
   $dbPass = "12345678";
   $dbName = "Point_of_Sale";
-  
   $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+
   if(mysqli_connect_errno())
   {
       die("connection Failed! " . mysqli_connect_error());
@@ -20,9 +20,9 @@
     {
       header("Location:/customer/customer-login.php");  
     }
-    $customer_id = $_SESSION['customer'];
+  $customer_id = $_SESSION['customer'];
   
-    displayCart($customer_id, $connect);
+  displayCart($customer_id, $connect);
   function displayCart($cust_id, $conn)
   {
     ob_start();
@@ -40,42 +40,40 @@
       $cart_p = floatval($row['p_price']);
       $cart_price = $cart_qty * $cart_p;
       
-        echo "<tr>
-        <td>" . $row['p_name'] . "</td>
-        ";
-        echo"
-        <form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-        ";
-        echo "<td>
-        <select name = qp>
-        ";
-        
-        for ($h = $row['cart_quantity']; $h >= 1; $h--) 
-          {
-            echo '<option value='.$h.'>'.$h.'</option>';
-          }
-        echo '</select>';
-        echo "<input type = 'submit' name = 'remove_from_cart' value = 'Remove'/><br />
-              </form>
-              ";
-              
-        echo"
-        <td><form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-        <td>" . $cart_price . "</td>
-        </tr>";
-        echo "<td>
-        <select name = qp>
-        ";
+      echo "<tr>
+      <td>" . $row['p_name'] . "</td>
+      ";
+      echo"
+      <form method='post' action=''>
+      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+      ";
+      echo "<td>
+      <select name = qp>
+      ";  
+      for ($h = $row['cart_quantity']; $h >= 1; $h--) 
+      {
+        echo '<option value='.$h.'>'.$h.'</option>';
+      }
+      echo '</select>';
+      echo "<input type = 'submit' name = 'remove_from_cart' value = 'Remove'/><br />
+      </form>
+      ";
+      echo"
+      <td><form method='post' action=''>
+      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+      <td>" . $cart_price . "</td>
+      </tr>";
+      echo "<td>
+      <select name = qp>
+      ";
 
-        for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
-          {
-            echo '<option value='.$h.'>'.$h.'</option>';
-          }
+      for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
+      {
+        echo '<option value='.$h.'>'.$h.'</option>';
+      }
         echo '</select>';
         echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add More To Cart'/><br />
               </form>
@@ -96,20 +94,20 @@
     $$cart_total
   </tr>
   ";
-    if ($cart_total > 0.0)
-    {
-      echo "<td><form method='post' action=''>
+  if ($cart_total > 0.0)
+  {
+    echo "<td><form method='post' action=''>
     <input type = 'submit' name = 'checkout' value = 'Proceed To Checkout'/><br />
     </form>
     ";
-    }
-      else {
+  }
+    else {
         echo"
         <td>Your cart is empty.</td>
         ";
       }
 
-  if(isset($_POST['pay'])) {
+  if(isset($_POST['checkout'])) {
      header("Location:/customer/checkout.php");
   }
 }
