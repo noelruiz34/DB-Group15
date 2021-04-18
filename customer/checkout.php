@@ -22,7 +22,7 @@
       header("Location:/customer/customer-login.php");  
     }
     $customer_id = $_SESSION['customer'];
-    $cart_total = 0;
+    
     displayCart($customer_id, $connect);
 function displayCart($cust_id, $conn)
   {
@@ -30,7 +30,7 @@ function displayCart($cust_id, $conn)
     $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
-    
+    $cart_total = 0.0;
     echo "<table>";
     echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
     
@@ -60,12 +60,22 @@ function displayCart($cust_id, $conn)
       $$cart_total
     </tr>
     ";
-  }
-  
-    echo "<td><form method='post' action=''>
+    if ($cart_total > 0.0)
+    {
+      echo "<td><form method='post' action=''>
     <input type = 'submit' name = 'pay' value = 'Pay'/><br />
     </form>
     ";
+    }
+      else {
+        echo"
+        <td>Your cart is empty.</td>
+        ";
+      }
+    
+  }
+  
+    
   
   
 
