@@ -200,9 +200,9 @@
         
                 echo "<table id='categoriesTable'>";
                 echo "<tr>
-                <th onclick='sortCategoriesTableStr(0)'>Category </a></th>
-                <th onclick='sortCategoriesTableInt(1)'>Items Sold  </a></th>
-                <th onclick='sortCategoriesTableInt(2)'>Total Revenue $</a> </th>
+                <th onclick='sortCategoriesTableStr(0)' style=color:#F44C67>Category </a></th>
+                <th onclick='sortCategoriesTableInt(1)' style=color:#F44C67>Items Sold  </a></th>
+                <th onclick='sortCategoriesTableInt(2)' style=color:#F44C67>Total Revenue $</a> </th>
                 </tr>";
                 foreach($categories_array as $category => $quantity_and_revenue) {
                     echo "<tr>
@@ -220,9 +220,9 @@
        
                 echo "<table id='productTable'>";
                 echo "<tr>
-                <th onclick='sortProductsTableStr(0)'> UPC </th>
-                <th onclick='sortProductsTableInt(1)'> Items Sold </th>
-                <th onclick='sortProductsTableInt(2)'> Total Revenue $</th>
+                <th onclick='sortProductsTableStr(0)' style=color:#ec0016> UPC </th>
+                <th onclick='sortProductsTableInt(1)' style=color:#ec0016> Items Sold </th>
+                <th onclick='sortProductsTableInt(2)' style=color:#ec0016> Total Revenue $</th>
                 </tr>";
         
                 foreach($products_array as $upc => $quantity_and_revenue) {
