@@ -48,7 +48,7 @@
             if(isset($_POST['submit_ticket'])){
                 $order_id = $_POST['order_id'];
                 $ticket_category = $_POST['ticket_category'];
-                $ticket_desc = $_POST['ticket_desc'];
+                $ticket_desc = addslashes($_POST['ticket_desc']);
 
                 $ticket_insert_sql = "INSERT INTO support_ticket (o_id, t_category, t_desc)
                 VALUES ($order_id, '$ticket_category','$ticket_desc')";
