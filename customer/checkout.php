@@ -22,7 +22,7 @@
       header("Location:/customer/customer-login.php");  
     }
     $customer_id = $_SESSION['customer'];
-  
+    $cart_total = 0;
     displayCart($customer_id, $connect);
 function displayCart($cust_id, $conn)
   {
@@ -33,7 +33,7 @@ function displayCart($cust_id, $conn)
     
     echo "<table>";
     echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
-    $cart_total = 0;
+    
     
     while($row=mysqli_fetch_array($cart_results)) 
     {
