@@ -21,30 +21,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Support Ticket Form</title>
+<link href="/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    
+    <!-- ****** faviconit.com favicons ****** -->
+	<link rel="shortcut icon" href="/images/favicon/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="/images/favicon/favicon-192.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="/images/favicon/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" href="/images/favicon/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/favicon-60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon-180.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="/images/favicon/favicon-144.png">
+	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+	<!-- ****** faviconit.com favicons ****** -->
+
+	<title>Request Support Ticket | Omazon.com</title>
 </head>
-<a href="/customer/customer-orders.php">Back to My Orders</a>
+
 <body>
-    <h1> Support Ticket Form </h1><br>
-    <p> This form is for Order #: <?php echo $order_id ?> </p>
-        <form action='' method='post'>
-        <label for='ticket_category'> Reason for Support Request: </label>
-        <select id='category' name = 'ticket_category'>
-            <option value='Return'> Return</option>
-            <option value='Service'> Service</option>
-            <option value='Exchange'> Exchange</option>
-            <option value='Other'> Other</option>
-        </select> <br> <br>
-        <label for="ticket_desc"> Please give us a short description as to how we can help you: </label> <br>
-        <textarea id="ticket_desc" name ="ticket_desc" rows="4" cols="50" maxlength="750">
-        </textarea> <br><br>
-        <input type="hidden" name = "order_id" value = <?php echo $order_id ?>>
-        <input type="submit" name = "submit_ticket" value = "Submit Ticket">
-        </form>
-
-</body>
-
-       <?php
+    <h1 style='text-align:center; margin:2px; margin-top:8vh;'> Support Ticket Form </h1><br>
+    <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?>
+    <?php
             if(isset($_POST['submit_ticket'])){
                 $order_id = $_POST['order_id'];
                 $ticket_category = $_POST['ticket_category'];
@@ -59,10 +69,31 @@
                     die("Support Ticket Insert failed!");
                 }
                 else {
-                    echo "Your support ticket for order #: $order_id has been submitted!";
+                    $_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
+                    header("Location:/customer/support-ticket-form.php");
                 }
             }
        ?>
+    <div style='width:50%; margin:0 auto; text-align:center;'>
+        <h3> This form is for Order #<?php echo $order_id ?> </h3>
+        <form action='' method='post'>
+        <label style='font-size:20px;' for='ticket_category'> Reason for Support Request: </label>
+        <select style='font-size:16px;' id='category' name = 'ticket_category'>
+            <option value='Return'> Return</option>
+            <option value='Service'> Service</option>
+            <option value='Exchange'> Exchange</option>
+            <option value='Other'> Other</option>
+        </select> <br> <br>
+        <label style='font-size:20px;'  for="ticket_desc"> Please give us a short description of your issue (750 characters max): </label> <br>
+        <textarea style='width:100%; resize: none;' id="ticket_desc" name ="ticket_desc" rows="4" cols="50" maxlength="750"></textarea> <br><br>
+        <input type="hidden" name = "order_id" value = <?php echo $order_id ?>>
+        <input type="submit" name = "submit_ticket" value = "Submit Ticket">
+        </form>
+    </div>
+
+</body>
+
+       
 </html>
 
 
