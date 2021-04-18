@@ -38,10 +38,10 @@
     }
     a{
         font-size: 25px;
+        text-align: center;
     }
     a:link, a:visited {
         color: white;
-        text-align: center;
         text-decoration: none;
         display: inline-block;
     }
