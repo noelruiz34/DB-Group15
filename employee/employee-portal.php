@@ -38,7 +38,6 @@
     }
     a.table{
         font-size: 25px;
-        text-align: center;
     }
     a.table:link, a.table:visited {
         color: white;
@@ -49,6 +48,9 @@
     a.table:hover, a.table:active {
         opacity: 90%;
         color: white;
+    }
+    td {
+        text-align: center;
     }
 </style> 
 <body>
@@ -69,7 +71,7 @@
 
     <table>
         <tr>
-            <td style = "text-align: center;">
+            <td>
                 <a href="/employee/manage-products/add-update-product.php" class = "table" > Add/Update Product </a>
             </td>
         </tr>
