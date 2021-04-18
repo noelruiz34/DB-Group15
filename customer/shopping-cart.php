@@ -39,50 +39,49 @@
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
       $cart_price = $cart_qty * $cart_p;
-      if ($cart_price > 0.0)
-      {
-        echo "<tr>
-        <td>" . $row['p_name'] . "</td>
-        ";
-        echo"
-        <form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-        ";
-        echo "<td>
-        <select name = qp>
-        ";
-        
-        for ($h = $row['cart_quantity']; $h >= 1; $h--) 
-          {
-            echo '<option value='.$h.'>'.$h.'</option>';
-          }
-        echo '</select>';
-        echo "<input type = 'submit' name = 'remove_from_cart' value = 'Remove'/><br />
-              </form>
-              ";
-              
-        echo"
-        <td><form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-        <td>" . $cart_price . "</td>
-        </tr>";
-        echo "<td>
-        <select name = qp>
-        ";
+      echo "<tr>
+      <td>" . $row['p_name'] . "</td>
+      ";
+      echo"
+      <form method='post' action=''>
+      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+      ";
+      echo "<td>
+      <select name = qp>
+      ";
+      
+      for ($h = $row['cart_quantity']; $h >= 1; $h--) 
+        {
+          echo '<option value='.$h.'>'.$h.'</option>';
+        }
+      echo '</select>';
+      echo "<input type = 'submit' name = 'remove_from_cart' value = 'Remove'/><br />
+            </form>
+            ";
+            
+      echo"
+      <td><form method='post' action=''>
+      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+      <td>" . $cart_price . "</td>
+      </tr>";
+      echo "<td>
+      <select name = qp>
+      ";
 
-        for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
-          {
-            echo '<option value='.$h.'>'.$h.'</option>';
-          }
-        echo '</select>';
-        echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add More To Cart'/><br />
-              </form>
-              ";
-        
-        $cart_total = $cart_total + $cart_price;
+      for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
+        {
+          echo '<option value='.$h.'>'.$h.'</option>';
+        }
+      echo '</select>';
+      echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add More To Cart'/><br />
+            </form>
+            ";
+      
+      $cart_total = $cart_total + $cart_price;
+    }
     echo "</table>";
     echo "<br>
       <tr>
@@ -91,9 +90,6 @@
       $$cart_total
     </tr>
     ";
-    }
-      }
-      
     if ($cart_total > 0.0)
     {
       echo "<td><form method='post' action=''>
