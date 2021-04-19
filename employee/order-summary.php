@@ -98,10 +98,6 @@ td {
         $_SESSION['order'] = $order;
 
         echo "<table id=\"orderInfo\"";
-        if($result->num_rows == 0)
-        {
-          echo "invalid order";
-        }
         while($order_info = mysqli_fetch_array($result))
         {
             echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
