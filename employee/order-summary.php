@@ -8,21 +8,6 @@
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-
-  function showOptions() {
-    const div = document.getElementById('options')
-    let html = ''
-
-    html += '<a style=\"fontSize: 150%; marginRight: 1%;\";>Price:</a>'
-    html += '<input type=\"radio\" name="status" id="p1" /> $'
-    html +=  '<input type="radio" name="status" id="p2" /> $ $'
-    html +=  '<input type="radio" name="status" id="p3" /> $ $ $'
-    html +=  '<input type="radio" name="status" id="p4" /> $ $ $ $'
-
-    div.innerHTML = html
-  }
-</script>
 
 
 <html>

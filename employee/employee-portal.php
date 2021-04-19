@@ -73,8 +73,8 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
-            $employee_id = $_SESSION['employee'];
-            $sql = "select * from Point_of_Sale.employee";
+            $id = $_SESSION['employee'];
+            $sql = "select * from Point_of_Sale.employee where ssn = $id";
             echo $sql;
             $result = $connect->query($sql);
             if (mysqli_num_rows($result) > 0) {
