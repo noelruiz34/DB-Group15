@@ -26,7 +26,7 @@
   function displayCart($cust_id, $conn)
   {
     ob_start();
-    $cart_sql = "SELECT *, * FROM shopping_cart FULL OUTER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+    $cart_sql = "SELECT *, * FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
     
