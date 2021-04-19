@@ -27,7 +27,7 @@
 function displayCart($cust_id, $conn)
   {
     ob_start();
-    $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+    $cart_sql = "SELECT *, * FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
     $cart_total = 0.0;
@@ -56,7 +56,7 @@ function displayCart($cust_id, $conn)
 
       $cart_p = $cart_qty * $cart_p;
       echo "<tr>
-      <td>" . $row['p_name'] . "</td>
+      <td>$" . $row['p_name'] . "</td>
       <td>" . $row['cart_quantity'] . "</td>
       ";
          
