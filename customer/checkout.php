@@ -54,18 +54,18 @@ function displayCart($cust_id, $conn)
       $cart_p = $cart_disc;
       $cart_p = round($cart_p, 2);
 
-      $cart_price = $cart_qty * $cart_p;
+      $cart_p = $cart_qty * $cart_p;
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
       <td>" . $row['cart_quantity'] . "</td>
       ";
          
       echo"
-      <td>" . $cart_price . "</td>
+      <td>" . $cart_p . "</td>
       </tr>";
       echo "<td>
       ";
-      $cart_total = $cart_total + $cart_price;
+      $cart_total = $cart_total + $cart_p;
     }
     echo "</table>";
     echo "<br>

@@ -53,9 +53,9 @@
       $cart_p = $cart_disc;
       $cart_p = round($cart_p, 2);
 
-      $cart_price = $cart_qty * $cart_p;
+      $cart_p = $cart_qty * $cart_p;
       $do_once = 0;
-      if ($cart_price == 0.0)
+      if ($cart_p == 0.0)
       {
         $is_empty = 1;
       }
@@ -94,7 +94,7 @@
       <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-      <td>" . $cart_price . "</td>
+      <td>" . $cart_p . "</td>
       </tr>";
       echo "<td>
       <select name = qp>
@@ -109,7 +109,7 @@
               </form>
               ";
         
-        $cart_total = $cart_total + $cart_price;
+        $cart_total = $cart_total + $cart_p;
     }
   
   if ($cart_total > 0.0)
