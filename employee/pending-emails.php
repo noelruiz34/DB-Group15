@@ -4,8 +4,7 @@
     table{
     border: 1px solid black;
     margin-top: 5%;
-    margin-left: auto;
-    margin-right: auto;
+    align:left;
     width: 400px;
     }
     td {
