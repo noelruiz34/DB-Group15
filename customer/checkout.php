@@ -97,7 +97,7 @@ function displayCart($cust_id, $conn)
 
 #a customer can only be fully registered if they have a billing address and a shipping address and billing info, thus we can just proceed to payment
 if(isset($_POST['pay'])) {
-  $cart_sql = "SELECT Point_of_Sale.shopping_cart.upc, Point_of_Sale.product.p_name, Point_of_Sale.shopping_cart.cart_quantity, Point_of_Sale.product.p_price, Point_of_Sale.product.p_quantity
+  $cart_sql = "SELECT Point_of_Sale.shopping_cart.upc, Point_of_Sale.product.p_name, Point_of_Sale.shopping_cart.cart_quantity, Point_of_Sale.product.p_price, Point_of_Sale.product.p_quantity, Point_of_Sale.product.p_discount
   FROM Point_of_Sale.shopping_cart INNER JOIN Point_of_Sale.product 
   ON Point_of_Sale.shopping_cart.upc = Point_of_Sale.product.upc 
   WHERE Point_of_Sale.shopping_cart.customer_id=$customer_id;";
@@ -143,7 +143,8 @@ if(isset($_POST['pay'])) {
       die("update quantity failed!");
     }
 
-    $product_purchase_sql = "INSERT INTO Point_of_Sale.product_purchase (upc, o_id, quantity_ordered, p_price) VALUES ($row[upc], $new_order_id, $row[cart_quantity], $row[p_price])";
+    $product_discounted_price =  number_format(($row['p_price'] * ((100 - $row['p_discount']) / 100)), 2);
+    $product_purchase_sql = "INSERT INTO Point_of_Sale.product_purchase (upc, o_id, quantity_ordered, p_price) VALUES ($row[upc], $new_order_id, $row[cart_quantity], $product_discounted_price)";
     $product_purchase_result = mysqli_query($connect, $product_purchase_sql); #Creating product purchase entities for the order
     if(!$product_purchase_result) {
       die("product purchase insert failed! on $row[upc] | $product_purchase_sql");
