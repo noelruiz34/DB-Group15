@@ -21,7 +21,6 @@ if ($listed == 'on') {
     $listed = 0;
 }
 
-// FIX EMPLOYEEID LATER
 $employeeId = $_SESSION['employee'];
 
 $currTime = date('Y-m-d H:i:s');
@@ -34,8 +33,7 @@ if (empty($upc) ||
     empty($pname) ||
     empty($quantity) ||
     empty($price) ||
-    empty($category) ||
-    empty($discount)) {
+    empty($category)) {
     $_SESSION['messages'][] = 'Please fill all required fields! (ERROR_ID:1)';
     header('Location: /employee/manage-products/add-update-product.php');
     exit;
@@ -52,7 +50,7 @@ try {
     $connection = new PDO($dsn, $dbUser, $dbPassword);
 } catch (PDOException $expection) {
     $_SESSION['messages'][] = 'Connection to database failed: ' . $expection->getMessage();
-    header('Location: /customer/register.php');
+    header('Location: /employee/manage-products/add-update-product.php');
     exit;
 }
 
