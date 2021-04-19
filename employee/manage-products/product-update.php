@@ -9,7 +9,7 @@ if(!isset($_SESSION['employee'])) // If session is not set then redirect to Logi
 // Variables from POST
 
 $upc = $_POST['upc'];
-$pname = addSlashes($_POST['pname']);
+$pname = $_POST['pname'];
 $quantity = $_POST['quantity'];
 $price = $_POST['price'];
 $category = $_POST['categories'];
@@ -25,7 +25,7 @@ if ($listed == 'on') {
 $employeeId = $_SESSION['employee'];
 
 $currTime = date('Y-m-d H:i:s');
-$updateDesc = addSlashes($_POST['update_desc']);
+$updateDesc = $_POST['update_desc'];
 
 // Conditionals verifying correct input
 
