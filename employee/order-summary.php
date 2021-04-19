@@ -121,8 +121,8 @@ td {
         while($item = mysqli_fetch_array($result))
         {
             $upc = $item['upc'];
-            $name = $connect->query("select p_name from Point_of_Sale.product where upc = $upc");
-            echo "<tr><td>".$name."</td><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+            $resName = $connect->query("select * from Point_of_Sale.product where upc = $upc");
+            echo "<tr><td>".$resName['p_name']."</td><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
         echo "</table>";
 
