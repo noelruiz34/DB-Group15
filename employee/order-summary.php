@@ -98,20 +98,25 @@ td {
         $_SESSION['order'] = $order;
 
         echo "<table id=\"orderInfo\"";
-        while($order_info = mysqli_fetch_array($result))
+        if($result->num_rows == 0)
         {
-            echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
-            echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
-            echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
-            echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
+          echo "invalid order";
         }
-        echo "<center> <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
-                  <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
-                  <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
-                  <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
-                  <input type=\"submit\" name=\"Result\"> 
-                </form> </center>";
-
+        else{
+          while($order_info = mysqli_fetch_array($result))
+          {
+              echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
+              echo "<tr><td> Customer ID: ".$order_info['customer_id']."</td></tr>";
+              echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
+              echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
+          }
+          echo "<center> <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
+                    <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
+                    <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
+                    <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
+                    <input type=\"submit\" name=\"Result\"> 
+                  </form> </center>";
+        }
 
         echo "</table>";
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
