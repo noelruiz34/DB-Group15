@@ -73,6 +73,7 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
+            $employee_id = $_SESSION['employee'];
             $result = $connect->query("select * from Point_of_Sale.employee where ssn = $employee_id");
             echo $employee_id;
             if ($result->num_rows > 0) {
