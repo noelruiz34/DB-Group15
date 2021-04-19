@@ -58,7 +58,7 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
     if(isset($_POST['catsel']))
     {
 //echo ($_POST['categories']);
-        $result3 = $connect->query('select upc, p_name, p_price, p_quantity from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
             
         echo "<table>";
         echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
@@ -66,9 +66,15 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
         while($row = mysqli_fetch_array($result3)){
             
             echo "<tr>
-            <td>" . $row['p_name'] . "</td>
-            <td>$" . $row['p_price'] . "</td>
-            <td>" . $row['upc'] . "</td>
+            <td>" . $row['p_name'] . "</td>";
+            if($row['p_discount'] <= 0) {
+                echo "<td>$" . $row['p_price'] . "</td>";
+            }
+            else {
+                $discountPrice = number_format($row['p_price'] * $row['p_discount'], 2);
+                echo "<td><s>$$row[p_price]</s> $discountPrice (-$row[p_discount]%)";
+            }
+            echo "<td>" . $row['upc'] . "</td>
             <td><form method='post' action=''>
             <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
             <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
@@ -98,7 +104,7 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
 
 
         $popi = $connect->query("
-        SELECT product_purchase.upc,  p_name, product.p_price ,p_quantity, 
+        SELECT product_purchase.upc,  p_name, product.p_price ,p_quantity, p_discount, 
 COUNT(product_purchase.upc) AS val
  FROM Point_of_Sale.product_purchase
 INNER JOIN Point_of_Sale.product ON product_purchase.upc = product.upc
