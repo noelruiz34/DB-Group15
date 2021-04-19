@@ -97,7 +97,7 @@ td {
 
         $_SESSION['order'] = $order;
 
-        echo "<table id=\"orderInfo\">";
+        echo "<table id=\"orderInfo\" style=\"margin-top: -2%;>";
         while($order_info = mysqli_fetch_array($result))
         {
             echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
