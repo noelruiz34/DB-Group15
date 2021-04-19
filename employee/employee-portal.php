@@ -14,7 +14,7 @@
 <head>
 	<title>Employee Portal</title>
     <div>
-        <center style="margin-top: 5%;font-size: 300%;">Employee Portal</center>
+        <center style="margin-top: 5%;font-size: 300%;">Employee Portal
         <hr style="width: 50%;">
         <font size="+1"> <!-- Not sure if this is necessary -->
         <?php
@@ -34,6 +34,7 @@
                 }
             ?>
         </font>
+        </center>
     </div>
 </head>
 
