@@ -1,3 +1,22 @@
+
+<html lang="en">
+<style>
+    table{
+    border: 1px solid black;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    }
+    td {
+        border: 1px solid black;
+        border-spacing: 10px;
+    }
+</style>
+<head>
+
+</head>
+<body>
 <?php 
     $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
     $dbUser = "admin";
@@ -28,3 +47,6 @@
     echo "</table>";
 
 ?>
+</body>
+</html>
+
