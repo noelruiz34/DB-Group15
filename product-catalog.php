@@ -107,9 +107,15 @@ $lower = 0;
             if($row['p_price'] >= $lower && $row['p_price'] <= $upper)
             {
             echo "<tr>
-            <td>" . $row['p_name'] . "</td>
-            <td>$" . $row['p_price'] . "</td>
-            <td>" . $row['upc'] . "</td>
+            <td>" . $row['p_name'] . "</td>";
+            if($row['p_discount'] <= 0) {
+                echo "<td>$" . $row['p_price'] . "</td>";
+            }
+            else {
+                $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
+                echo "<td><s>$$row[p_price]</s> $discountPrice (-$row[p_discount]%)";
+            }
+            echo "<td>" . $row['upc'] . "</td>
             <td><form method='post' action=''>
             <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
             <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
@@ -141,7 +147,7 @@ $lower = 0;
 
 
         $popi = $connect->query("
-        SELECT product_purchase.upc,  p_name, product.p_price ,p_quantity, 
+        SELECT product_purchase.upc,  p_name, product.p_price ,p_quantity, p_discount, 
 COUNT(product_purchase.upc) AS val
  FROM Point_of_Sale.product_purchase
 INNER JOIN Point_of_Sale.product ON product_purchase.upc = product.upc

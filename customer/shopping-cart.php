@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <body>
-  <a href="/index.php">Return to homepage</a>
+  <a href="/index.php">Return to homepage</a> <br>
   </body>
   
 <?php
@@ -9,8 +9,8 @@
   $dbUser = "admin";
   $dbPass = "12345678";
   $dbName = "Point_of_Sale";
-  
   $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+
   if(mysqli_connect_errno())
   {
       die("connection Failed! " . mysqli_connect_error());
@@ -20,25 +20,49 @@
     {
       header("Location:/customer/customer-login.php");  
     }
-    $customer_id = $_SESSION['customer'];
+  $customer_id = $_SESSION['customer'];
   
-    displayCart($customer_id, $connect);
+  displayCart($customer_id, $connect);
   function displayCart($cust_id, $conn)
   {
     ob_start();
-    $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+    $cart_sql = "SELECT *, p_name, p_price, p_discount FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
     
-    echo "<table>";
-    echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+    
     $cart_total = 0.0;
+    $do_once = 0;
     
     while($row=mysqli_fetch_array($cart_results)) 
     {
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
-      $cart_price = $cart_qty * $cart_p;
+
+      $cart_disc = floatval($row['p_discount']);
+      $cart_disc = $cart_disc * (1/100);
+      $cart_disc = 1 - $cart_disc;
+      $is_empty = 0;
+      
+
+      if ($row['p_discount'] == 000)
+      {
+        #there is no discount, thus the $cart_disc should not deduct anything from the cart_p
+        $cart_disc = 1;
+      }
+
+      $cart_p = $cart_p * $cart_disc;
+      $cart_p = round($cart_p, 2);
+
+      $cart_p = $cart_qty * $cart_p;
+      
+      if ($do_once == 0)
+      {
+        echo "<table>";
+        echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+        $do_once = 1;
+      }
+
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
       ";
@@ -49,83 +73,97 @@
       ";
       echo "<td>
       <select name = qp>
-      ";
-      
+      ";  
       for ($h = $row['cart_quantity']; $h >= 1; $h--) 
-        {
-          echo '<option value='.$h.'>'.$h.'</option>';
-        }
+      {
+        echo '<option value='.$h.'>'.$h.'</option>';
+      }
       echo '</select>';
       echo "<input type = 'submit' name = 'remove_from_cart' value = 'Remove'/><br />
-            </form>
-            ";
-            
-      echo"
+      </form>
+      ";
+      if($row['p_discount'] <= 0) {
+        echo"
       <td><form method='post' action=''>
       <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-      <td>" . $cart_price . "</td>
+      <td>$" . $cart_p . "</td>
       </tr>";
       echo "<td>
       <select name = qp>
       ";
+      }
+        else {
+          echo"
+      <td><form method='post' action=''>
+      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+      <td><s>$$row[p_price]</s><td>$" . $cart_p . " (-$row[p_discount]%)</td>
+      
+      </tr>";
+      echo "<td>
+      <select name = qp>
+      ";
+        }
+      
 
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
-        {
-          echo '<option value='.$h.'>'.$h.'</option>';
-        }
-      echo '</select>';
-      echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add More To Cart'/><br />
-            </form>
-            ";
-      
-      $cart_total = $cart_total + $cart_price;
+      {
+        echo '<option value='.$h.'>'.$h.'</option>';
+      }
+        echo '</select>';
+        echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add More To Cart'/><br />
+              </form>
+              ";
+        
+        $cart_total = $cart_total + $cart_p;
     }
+  
+  if ($cart_total > 0.0)
+  {
     echo "</table>";
     echo "<br>
       <tr>
-      <td> Total </td>
-      <td>  </td>
-      $$cart_total
-    </tr>
-    ";
-    if ($cart_total > 0.0)
-    {
-      echo "<td><form method='post' action=''>
+      <th> Total </th>
+      <th> $$cart_total </th>
+      </tr>
+      ";
+    echo "<td><form method='post' action=''>
     <input type = 'submit' name = 'checkout' value = 'Proceed To Checkout'/><br />
     </form>
     ";
-    }
-      else {
+  }
+    else {
+        
         echo"
         <td>Your cart is empty.</td>
         ";
-      }
-    
-  }
-  if(isset($_POST['pay'])) {
+        }
+
+  if(isset($_POST['checkout'])) {
      header("Location:/customer/checkout.php");
   }
+
+}
   
 
 
-  function checkEmpty($cust_id, $conn)
-  {
-    $cart_sql = "SELECT *, product.p_name, product.p_price, product.upc FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+function checkEmpty($cust_id, $conn)
+{
+  $cart_sql = "SELECT *, product.p_name, product.p_price, product.upc FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
-    $cart_results = mysqli_query($conn, $cart_sql);
-    while($row=mysqli_fetch_array($cart_results)) 
+  $cart_results = mysqli_query($conn, $cart_sql);
+  while($row=mysqli_fetch_array($cart_results)) 
+  {
+    if ($row['cart_quantity'] <= 0)
     {
-      if ($row['cart_quantity'] <= 0)
-      {
-        $deleteEmpRow = "DELETE FROM shopping_cart WHERE customer_id = $cust_id and upc = $row[upc]";
-        mysqli_query($conn, $deleteEmpRow);
-
-        #DELETE FROM `Point_of_Sale`.`shopping_cart` WHERE (`customer_id` = '1') and (`upc` = '1');
-      }
+      $deleteEmpRow = "DELETE FROM shopping_cart WHERE customer_id = $cust_id and upc = $row[upc]";
+      mysqli_query($conn, $deleteEmpRow);
     }
   }
+}
 
   
 

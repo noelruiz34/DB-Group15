@@ -1,13 +1,5 @@
 <?php
-    $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
-    $dbUser = "admin";
-    $dbPass = "12345678";
-    $dbName = "Point_of_Sale";
-    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
-    if(mysqli_connect_errno())
-    {
-        die("connection Failed! " . mysqli_connect_error());
-    }
+    include '../db.php';
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
@@ -21,39 +13,126 @@
 <html>
 <head>
 	<title>Employee Portal</title>
+    <div>
+        <center style="margin-top: 5%;font-size: 300%;">Employee Portal
+        <hr style="width: 50%;">
+        <font size="+1"> <!-- Not sure if this is necessary -->
+        <?php
+                $employee_id = $_SESSION['employee'];
+                $sql = "select * from Point_of_Sale.employee where employee_id = $employee_id";
+                $result = $connect->query($sql);
+
+                if (mysqli_num_rows($result) > 0) {
+
+                    while($employee_info = $result->fetch_assoc())
+                    {      
+                        echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
+                    }
+                }
+                else {
+                    echo "0 results";
+                }
+        ?>
+        </font>
+        </center>
+    </div>
 </head>
+
+<style>
+
+    table {
+        margin: auto;
+        width: 100%;
+        background-color: #303841;
+        padding: 10px;
+    }
+
+    td {
+        align: center;
+        background-color: #3A4750;
+    }
+    a.table{
+        font-size: 25px;
+    }
+    a.table:link, a.table:visited {
+        color: white;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    a.table:hover, a.table:active {
+        opacity: 90%;
+        color: white;
+    }
+    td {
+        text-align: center;
+    }
+    table {
+        width: 55%;
+    }
+
+    .btn {
+        outline: none;
+        padding: 12px 16px;
+        background-color: #3A4750;
+        opacity: 90%;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+    }
+    
+    .btn:hover {
+        background-color: rgba(0, 0, 0, .2);
+    }
+    
+    .btn.active {
+        background-color: #666;
+        color: white;
+    }
+</style> 
 <body>
     
-	<h1>Employee Portal</h1>
+    <table>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/manage-products/add-update-product.php'" type="button">Add/Update Product</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/product-changes-history.php'" type="button">View Product Changes History</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/support-tickets.php'" type="button">Support Tickets</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/issue-return.php'" type="button">Issue Return</button>        
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/order-summary.php'" type="button">Order lookup </button>            
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/sales.php'" type="button">Sales</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button class="btn" onclick="location.href='/employee/pending-emails.php'" type="button">Pending Emails</button>
+            </td>
+        </tr>
+</table>
 
-    <font size="+1"> <!-- Not sure if this is necessary -->
-       <?php
-            $sql = "SELECT f_name, l_name FROM employee WHERE employee_id=$employee_id";
-            $result = mysqli_query($connect, $sql);
-            $row = mysqli_fetch_array($result);
-            echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
-        ?>
-    </font>
-    <p align="left">
+    <p style="text-align: center;">
         <a href="/logout.php">Log Out</a>
     </p>
-    
-    <h1><a href="/employee/manage-products/add-update-product.php"> Add/Update Product </a></h1>
-
-    <h1><a href="/employee/product-changes-history.php"> View Product Changes History </a></h1>
-
-    <h1><a href="/employee/support-tickets.php"> Support Tickets </a></h1>
-
-    <h1><a href="/employee/issue-return.php"> Issue Return </a></h1>
-
-    <h1><a href = '/employee/order-summary.php'> Order lookup </a></h1>
-
-    <h1><a href="/employee/sales.php"> Sales </a></h1>
-
-    <h1><a href="/employee/pending-emails.php"> Pending Emails </a></h1>
-
-    
-    
 
 </body>
 </html>

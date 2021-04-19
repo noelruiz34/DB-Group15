@@ -208,7 +208,7 @@
                     echo "<tr>
                     <td>$category</td>
                     <td>$quantity_and_revenue[0]</td>
-                    <td>$quantity_and_revenue[1]</td>
+                    <td>" . number_format($quantity_and_revenue[1], 2) . "</td>
                     </tr>";
                 }
                 echo "</table>";
@@ -229,7 +229,7 @@
                     echo "<tr>
                     <td>$upc</td>
                     <td>$quantity_and_revenue[0]</td>
-                    <td>$quantity_and_revenue[1]</td>
+                    <td>" . number_format($quantity_and_revenue[1], 2) . "</td>
                     </tr>";
                 }
                 echo "</table>";

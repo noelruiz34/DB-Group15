@@ -81,7 +81,7 @@ $customer_id = $_SESSION['customer']
             <div class="hero-text">
                 <h1>High-quality goods for highly-awesome customers.</h1>
                 <div class='hero-body'>
-                    <p>Don't settle for cheap knockoffs. Come discover the point-of-sale system of all time.</p>
+                    <p>Don't settle for cheap knockoffs. Experience shopping with a smile.</p>
                     <br>
                     <?php
                         if(isset($_SESSION['customer'])) {

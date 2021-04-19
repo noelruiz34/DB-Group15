@@ -27,7 +27,7 @@
 function displayCart($cust_id, $conn)
   {
     ob_start();
-    $cart_sql = "SELECT *, product.p_name, product.p_price FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
+    $cart_sql = "SELECT *, p_name, p_price, p_discount FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
     $cart_total = 0.0;
@@ -39,18 +39,33 @@ function displayCart($cust_id, $conn)
     {
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
-      $cart_price = $cart_qty * $cart_p;
+
+      $cart_disc = floatval($row['p_discount']);
+      $cart_disc = $cart_disc * (1/100);
+      $cart_disc = 1 - $cart_disc;
+      
+
+      if ($row['p_discount'] == 000)
+      {
+        #there is no discount, thus the $cart_disc should not deduct anything from the cart_p
+        $cart_disc = 1;
+      }
+
+      $cart_p = $cart_p * $cart_disc;
+      $cart_p = round($cart_p, 2);
+
+      $cart_p = $cart_qty * $cart_p;
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
       <td>" . $row['cart_quantity'] . "</td>
       ";
          
       echo"
-      <td>" . $cart_price . "</td>
+      <td>$" . $cart_p . "</td>
       </tr>";
       echo "<td>
       ";
-      $cart_total = $cart_total + $cart_price;
+      $cart_total = $cart_total + $cart_p;
     }
     echo "</table>";
     echo "<br>
@@ -142,8 +157,6 @@ if(isset($_POST['pay'])) {
   }
 
   echo "Purchase Complete! Thank you!";
-  sleep(1);
-  header("Location:/index.php");
 
   
 }

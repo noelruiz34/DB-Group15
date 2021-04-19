@@ -8,21 +8,6 @@
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-
-  function showOptions() {
-    const div = document.getElementById('options')
-    let html = ''
-
-    html += '<a style=\"fontSize: 150%; marginRight: 1%;\";>Price:</a>'
-    html += '<input type=\"radio\" name="status" id="p1" /> $'
-    html +=  '<input type="radio" name="status" id="p2" /> $ $'
-    html +=  '<input type="radio" name="status" id="p3" /> $ $ $'
-    html +=  '<input type="radio" name="status" id="p4" /> $ $ $ $'
-
-    div.innerHTML = html
-  }
-</script>
 
 
 <html>
@@ -84,7 +69,6 @@ table{
 td {
     border: 1px solid black;
     border-spacing: 10px;
-
 }
 </style>
     <div>
@@ -102,6 +86,7 @@ td {
 
 <div id="options"></div>
 
+<!-- update name for lookup -->
 
 <div id="order_info">
     <?php 
@@ -112,7 +97,7 @@ td {
 
         $_SESSION['order'] = $order;
 
-        echo "<table id=\"orderInfo\">";
+        echo "<table id=\"orderInfo\"";
         while($order_info = mysqli_fetch_array($result))
         {
             echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
@@ -120,22 +105,25 @@ td {
             echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
-        echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
+        echo "<center> <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
                   <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
                   <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
                   <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
                   <input type=\"submit\" name=\"Result\"> 
-                </form>";
+                </form> </center>";
 
 
         echo "</table>";
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
-        echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
-        echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
+        echo "<div> <center style=\"margin-top: 0%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
+        echo "<tr><td>Name</td> <td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
         while($item = mysqli_fetch_array($result))
         {
-            echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+            $upc = $item['upc'];
+            $resName = $connect->query("select * from Point_of_Sale.product where upc = $upc");
+            $name = mysqli_fetch_array($resName);
+            echo "<tr><td>".$name['p_name']."</td><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
         echo "</table>";
 
@@ -151,7 +139,7 @@ td {
 
       $_SESSION['order'] = $order;
 
-      echo "<table id=\"orderInfo\">";
+      echo "<table id=\"orderInfo\"";
       while($order_info = mysqli_fetch_array($result))
       {
           echo "<tr><td> Order ID: ".$order_info['o_id']."</td></tr>";
@@ -159,22 +147,25 @@ td {
           echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
           echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
       }
-      echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 150%; marginRight: 1%;\";>Update Order Status:</a>
+      echo "<center> <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
                 <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
                 <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
                 <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
                 <input type=\"submit\" name=\"Result\"> 
-              </form>";
+              </form> </center>";
 
 
       echo "</table>";
       $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
       echo"<table>";
-      echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
-      echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
+      echo "<div> <center style=\"margin-top: 0%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
+      echo "<tr><td>Name</td> <td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
       while($item = mysqli_fetch_array($result))
       {
-          echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+          $upc = $item['upc'];
+          $resName = $connect->query("select * from Point_of_Sale.product where upc = $upc");
+          $name = mysqli_fetch_array($resName);
+          echo "<tr><td>".$name['p_name']."</td><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
       }
       echo "</table>";
     }
