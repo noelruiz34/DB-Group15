@@ -73,7 +73,6 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
-            echo $employee_id;
             $result = $connect->query("select f_name, l_name from Point_of_Sale.employee where ssn=$id;");
             while($row = mysqli_fetch_array($result))
             {
