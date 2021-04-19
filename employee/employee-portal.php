@@ -73,14 +73,14 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
-            $id = $_SESSION['employee'];
-            $sql = "select * from Point_of_Sale.employee where ssn = $id";
+            $employee_id = $_SESSION['employee'];
+            $sql = "select * from Point_of_Sale.employee where ssn = $employee_id";
+            echo $sql;
             $result = $connect->query($sql);
-    
-            while($employee_info = mysqli_fetch_array($result)))
-            {      
-                echo "Hello, ".$employee_info["f_name"]."!";
-            }
+                while($employee_info = $result->fetch_assoc())
+                {      
+                    echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
+                }
         ?>
     </font>
     <table>
