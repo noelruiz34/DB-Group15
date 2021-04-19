@@ -56,15 +56,7 @@
 
       $cart_p = $cart_qty * $cart_p;
       
-      if ($cart_p == 0.0)
-      {
-        $is_empty = 1;
-      }
-      if ($is_empty == 1) 
-      {
-        continue;
-      }
-      else if ($is_empty == 0 && $do_once == 0)
+      if ($do_once == 0)
       {
         echo "<table>";
         echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
