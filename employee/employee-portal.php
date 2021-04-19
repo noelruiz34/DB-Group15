@@ -74,6 +74,7 @@
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
             $result = $connect->query("select * from Point_of_Sale.employee where ssn = $employee_id");
+            echo $employee_id;
             if ($result->num_rows > 0) {
                 while($employee_info = $result->fetch_assoc())
                 {      
