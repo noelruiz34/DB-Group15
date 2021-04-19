@@ -117,9 +117,8 @@
     echo "</table>";
     echo "<br>
       <tr>
-      <td> Total </td>
-      <td>  </td>
-      $$cart_total
+      <th> Total </th>
+      <th> $cart_total </th>
       </tr>
       ";
     echo "<td><form method='post' action=''>
