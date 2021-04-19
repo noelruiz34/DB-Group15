@@ -75,7 +75,6 @@
        <?php
             $employee_id = $_SESSION['employee'];
             $sql = "select * from Point_of_Sale.employee where ssn = $employee_id";
-            echo $sql;
             $result = $connect->query($sql);
 
             if (mysqli_num_rows($result) > 0) {
