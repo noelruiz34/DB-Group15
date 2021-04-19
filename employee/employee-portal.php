@@ -13,6 +13,28 @@
 <html>
 <head>
 	<title>Employee Portal</title>
+    <div>
+        <center style="margin-top: 5%;font-size: 300%;">Employee Portal</center>
+        <hr style="width: 50%;">
+        <font size="+1"> <!-- Not sure if this is necessary -->
+        <?php
+                $employee_id = $_SESSION['employee'];
+                $sql = "select * from Point_of_Sale.employee where employee_id = $employee_id";
+                $result = $connect->query($sql);
+
+                if (mysqli_num_rows($result) > 0) {
+
+                    while($employee_info = $result->fetch_assoc())
+                    {      
+                        echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
+                    }
+                }
+                else {
+                    echo "0 results";
+                }
+            ?>
+        </font>
+    </div>
 </head>
 
 <style>
@@ -69,26 +91,6 @@
 </style> 
 <body>
     
-	<h1>Employee Portal</h1>
-
-    <font size="+1"> <!-- Not sure if this is necessary -->
-       <?php
-            $employee_id = $_SESSION['employee'];
-            $sql = "select * from Point_of_Sale.employee where employee_id = $employee_id";
-            $result = $connect->query($sql);
-
-            if (mysqli_num_rows($result) > 0) {
-
-                while($employee_info = $result->fetch_assoc())
-                {      
-                    echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
-                }
-            }
-            else {
-                echo "0 results";
-            }
-        ?>
-    </font>
     <table>
         <tr>
             <td>
