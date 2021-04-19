@@ -47,10 +47,11 @@
       if ($row['p_discount'] == 000)
       {
         #there is no discount, thus the $cart_disc should not deduct anything from the cart_p
-        $cart_disc = 0.0;
+        $cart_disc = $cart_p;
       }
 
       $cart_p = $cart_disc;
+      $cart_p = round($cart_p, 2);
 
       $cart_price = $cart_qty * $cart_p;
       $do_once = 0;
