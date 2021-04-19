@@ -38,7 +38,7 @@
 
     echo "<a href = /employee/employee-portal.php> Back to Employee Portal </a>";
     echo "<table>";
-        echo "<tr><td> Email ID </td><td> Recipient Email </td><td> Subject </td><td> Body </td></tr>";
+        echo "<tr><th> Email ID </td><td> Recipient Email </th><th> Subject </th><th> Body </th></tr>";
         while($row=mysqli_fetch_array($result)){
             echo "<tr><td>". $row['pending_email_id']. "</td><td>" . $row ['p_email'] . "</td><td>" . $row ['email_subject'] . "</td><td>" . $row ['email_content'] . "</td></tr>";
         }
