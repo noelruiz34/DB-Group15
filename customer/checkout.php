@@ -1,8 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link href="/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    
+      <!-- ****** faviconit.com favicons ****** -->
+    <link rel="shortcut icon" href="/images/favicon/favicon.ico">
+    <link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="196x196" href="/images/favicon/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="160x160" href="/images/favicon/favicon-160.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon-64.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16.png">
+    <link rel="apple-touch-icon" href="/images/favicon/favicon-57.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/favicon-114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/favicon-72.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/favicon-144.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/favicon-60.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/favicon-120.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/favicon-76.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/favicon-152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon-180.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    <meta name="msapplication-TileImage" content="/images/favicon/favicon-144.png">
+    <meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+    <!-- ****** faviconit.com favicons ****** -->
+    <title>Checkout | Omazon.com</title>
+  </head>
 <body>
-  <a href="/index.php">Return to homepage</a>
-  </body>
+  <h1>Checkout</h1>
   
 <?php
 
@@ -32,7 +60,7 @@ function displayCart($cust_id, $conn)
     $cart_results = mysqli_query($conn, $cart_sql);
     $cart_total = 0.0;
     echo "<table>";
-    echo "<tr><td> Product Name </td><td> Quantity </td><td> Price </td></tr> ";
+    echo "<tr><th> Product Name </th><th> Quantity </th><th> Price </th></tr> ";
     
     
     while($row=mysqli_fetch_array($cart_results)) 
@@ -63,31 +91,31 @@ function displayCart($cust_id, $conn)
       echo"
       <td>$" . $cart_p . "</td>
       </tr>";
-      echo "<td>
-      ";
+      
+
       $cart_total = $cart_total + $cart_p;
     }
     echo "</table>";
     echo "<br>
-      <tr>
-      <td> Total:  </td>
-      <td>  </td>
-      $$cart_total
-    </tr>
+  
+       <h3 style='text-align:center;'>Total: $$cart_total</h3>
     ";
+    $cart_total = number_format($cart_total, 2);
     if ($cart_total > 0.0)
     {
       echo "<td><form method='post' action=''>
-    <input type = 'submit' name = 'pay' value = 'Pay'/><br />
+    <input style='width:50%; margin:auto; display:block;' type = 'submit' name = 'pay' value = 'Pay'/>
     </form>
+    <br>
     ";
     }
       else {
         echo"
-        <td>Your cart is empty.</td>
+        <p style='text-align:center;'>Your cart is empty.</p>
         ";
       }
-    
+     echo '<a href="/customer/shopping-cart.php"><p style="text-align:center;">Return to shopping cart</p></a>';
+     echo '<a href="/index.php"><p style="text-align:center;">Return to home</p></a> <br>';
   }
   
     
@@ -157,7 +185,12 @@ if(isset($_POST['pay'])) {
     die("Could not clear cart!");
   }
 
-  echo "Purchase Complete! Thank you!";
+  echo "<br><h3 style='text-align:center;'>Purchase Complete! Thank you!</h3>";
 
   
 }
+?>
+
+</body>
+
+</html>

@@ -19,128 +19,74 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
 ?>
 <html>
 <head>
-	<title>Products</title>
+    <link href="/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    
+    <!-- ****** faviconit.com favicons ****** -->
+	<link rel="shortcut icon" href="/images/favicon/favicon.ico">
+	<link rel="icon" sizes="16x16 32x32 64x64" href="/images/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="196x196" href="/images/favicon/favicon-192.png">
+	<link rel="icon" type="image/png" sizes="160x160" href="/images/favicon/favicon-160.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="/images/favicon/favicon-96.png">
+	<link rel="icon" type="image/png" sizes="64x64" href="/images/favicon/favicon-64.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon/favicon-32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon/favicon-16.png">
+	<link rel="apple-touch-icon" href="/images/favicon/favicon-57.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="/images/favicon/favicon-114.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="/images/favicon/favicon-72.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="/images/favicon/favicon-144.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="/images/favicon/favicon-60.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="/images/favicon/favicon-120.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="/images/favicon/favicon-76.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="/images/favicon/favicon-152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon/favicon-180.png">
+	<meta name="msapplication-TileColor" content="#FFFFFF">
+	<meta name="msapplication-TileImage" content="/images/favicon/favicon-144.png">
+	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
+	<!-- ****** faviconit.com favicons ****** -->
+
+	<title>Omazon.com: The Point-Of-Sale System For All Your Needs</title>
+	<title>Product Catalog | Omazon.com</title>
 </head>
 <body>
-    <a href="/index.php">Back to Home</a>
-	<h1 style="text-align:center;">Check Out Our Products(Best Prices Around)</h1>
-
-
-
-
-    <center style="margin-top: 2%">
-       
-    </center>
-
-    <?php
+    <div class='navbar'>
+        <ul>
+            <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon<img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+            <li style='float:left'><a class='active' href="/product-catalog.php">Browse Products</a></li>
+            <?php
+                if(isset($_SESSION['customer'])) {
+                    echo "
+                    <li><a href = '/logout.php'  style='color:#ec0016;'> Log out </a></li>
+                    <li><a href='/customer/account/edit-customer-account-info.php'>My Account</a></li>
+                    <li><a href='/customer/customer-orders.php'>My Orders</a></li>
+                    <li><a href = '/customer/shopping-cart.php'>My Cart</a></li>
+                    
+                    ";
+                }
+                else {
+                    echo "
+                    <li><a href='/customer/register.php'>Register</a></li>
+                    <li><a href='/customer/customer-login.php'>Log in</a></li>
+                    ";
+                }
+            ?>
+        </ul>
+    </div>
 
     
+	<h1 style='margin-top: 100px;margin-bottom:45px;'>Product Catalog</h1>
+    
+    <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?>
+    <br>
+    <img style='margin: auto; width:35%;display:block; margin-bottom:26px' src='/images/salebanner.png'>
+    
 
-
-    $result = $connect->query("select category_name from product_category");
-  
-
- 
-            echo"<form action='' method='post'>";
-
-            echo "Min Price: <select id='lp' name = 'lp'>";
-            for ($h = 0; $h <=1000; $h++) 
-            {
-            echo '<option value='.$h.'>$'.$h.'</option>';
-            };
-            echo "</select>";
-            
-            echo "Max Price: <select id='up' name = 'up'>";
-            for ($h = 0; $h <=1000; $h++) 
-            {
-            echo '<option selected value='.$h.'>$'.$h.'</option>';
-            };
-            echo "</select>";
-            
-            echo "Choose Category:
-    <select id='categories' name='categories' required>";
-    while ($catRow = mysqli_fetch_array($result)) {
-        echo "<option value='" . $catRow['category_name'] . "' ";
-        if ($catRow['category_name'] == $row['p_category']) {
-            echo "selected";
-        }
-        echo ">" . $catRow['category_name'] . "</option>";
-    }
-    echo'<input type="submit" name="catsel" vlaue="Choose options">';
-    echo('</form>');
-
-    if(isset($_POST['catsel']))
-    {
-
-        $lower = 0;
-                        
-            if(isset($_POST['lp']))
-            {
-                $lower = $_POST['lp'];
-            }
-
-            if(isset($_POST['up']))
-            {
-                $upper = $_POST['up'];
-            }
-
-            if ($lower > $upper)
-            {
-                echo"Max price must be higher than Min price.";
-            }
-            else
-            {
-//echo ($_POST['categories']);
-        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
-            
-        echo "<table>";
-        echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
-       // echo (mysqli_num_rows($result2));
-        while($row = mysqli_fetch_array($result3)){
-
-            $realp = $row['p_price'];
-            if($row['p_discount'] > 0)
-            {
-            $realp =  number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
-            }
-            if($realp >= $lower && $realp <= $upper)
-            {
-            echo "<tr>
-            <td>" . $row['p_name'] . "</td>";
-            if($row['p_discount'] <= 0) {
-                echo "<td>$" . $row['p_price'] . "</td>";
-            }
-            else {
-                $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
-                echo "<td><s>$$row[p_price]</s> $discountPrice (-$row[p_discount]%)";
-            }
-            echo "<td>" . $row['upc'] . "</td>
-            <td><form method='post' action=''>
-            <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-            <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
-           
-            echo '<select name = qp>';
-            for ($h = 1; $h <=$row['p_quantity']; $h++) 
-            {
-            echo '<option value='.$h.'>'.$h.'</option>';
-            }
-            echo '</select>';
-
-
-           echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
-            </td>
-            </form>
-            </tr>";
-        }
-
-        }
-        }
-        echo "</table>";
-    }
-    else{
-
-     
-      echo" <html>
+    
+    <br>
+    <?php
+        /*
+         echo" <html>
       <h2 style='text-align:left;'>Popular Items!</h2>
         </html>";
 
@@ -172,31 +118,149 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             }
 
 
-        echo"
+            echo"
             <td>" . $row2['upc'] . "</td>
             <td><form method='post' action=''>
             <input type = 'hidden' name = 'add_upc' value= ".$row2['upc'].">
             <input type = 'hidden' name = 'iquant' value= ".$row2['p_quantity'].">";
            
-            echo '<select name = qp>';
-            for ($h = 1; $h <=$row2['p_quantity']; $h++) 
-            {
-            echo '<option value='.$h.'>'.$h.'</option>';
+            if ($row2['p_quantity'] >= 1) {
+                echo '<select name = qp>';
+                for ($h = 1; $h <= $row2['p_quantity']; $h++) 
+                {
+                echo '<option value='.$h.'>'.$h.'</option>';
+                }
+                echo '</select>';
+
+
+                echo "<td><input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
+                </td>";
+                
+            } else {
+                echo "<td>Out of Stock<br />
+                </td>";
             }
-            echo '</select>';
+            echo "</form></tr>";
 
-
-           echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />
-            </td>
-            </form>
-            </tr>";
-           
            
         }
+        echo "</table>";*/
+        ?>
+
+
+
+
+    <?php
+
+    
+
+
+    $result = $connect->query("select category_name from product_category");
+  
+
+                
+            echo"<div class='shade-content' style='width:20%; margin: 0 auto; margin-bottom: 50px; padding-top: 45px; padding-bottom:35px;'><h2>View Products</h2><form action='' method='post'>";
+
+            echo "Min Price: <input type='number' min='0' max='1000000' id='lp' name = 'lp' value='0'>";
+
+            
+            echo "Max Price: <input type='number' min='' max='1000000' id='up' name = 'up'  value='1000000'>";
+            
+            echo "Choose Category:
+    <select id='categories' name='categories' required>";
+    while ($catRow = mysqli_fetch_array($result)) {
+        echo "<option value='" . $catRow['category_name'] . "' ";
+        if ($catRow['category_name'] == $row['p_category']) {
+            echo "selected";
+        }
+        echo ">" . $catRow['category_name'] . "</option>";
+    }
+    echo'<input style="margin-top:32px" type="submit" name="catsel" vlaue="Choose options">';
+    echo '</form></div>';
+
+    if(isset($_POST['catsel']))
+    {
+
+        $lower = 0;
+                        
+            if(isset($_POST['lp']))
+            {
+                $lower = $_POST['lp'];
+            }
+
+            if(isset($_POST['up']))
+            {
+                $upper = $_POST['up'];
+            }
+
+            if ($lower > $upper)
+            {
+                echo"Max price must be higher than Min price.";
+                $_SESSION['messages'][] = 'Max price must be higher than Min price.';
+                header("Location:/product-catalog.php");
+                
+            }
+            else
+            {
+//echo ($_POST['categories']);
+        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+            
+        echo "<table style='width:60%'>";
+        echo "<tr><th> Name </th><th> Price </th><th> UPC </th><th></th></tr>";
+       // echo (mysqli_num_rows($result2));
+        while($row = mysqli_fetch_array($result3)){
+
+            $realp = $row['p_price'];
+            if($row['p_discount'] > 0)
+            {
+            $realp =  number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
+            }
+            if($realp >= $lower && $realp <= $upper)
+            {
+            echo "<tr>
+            <td>" . $row['p_name'] . "</td>";
+            if($row['p_discount'] <= 0) {
+                echo "<td>$" . $row['p_price'] . "</td>";
+            }
+            else {
+                $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
+                echo "<td><s>$$row[p_price]</s> $$discountPrice (-$row[p_discount]%)";
+            }
+            echo "<td>" . $row['upc'] . "</td>
+
+            
+            <td><form method='post' action=''>
+            <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+            <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
+           
+            if ($row['p_quantity'] > 0) {
+                echo '<select name = qp>';
+                for ($h = 1; $h <=$row['p_quantity']; $h++) 
+                {
+                echo '<option value='.$h.'>'.$h.'</option>';
+                }
+                echo '</select>';
+
+
+                echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />";
+            } else {
+                echo "<p style='color:#ec0016;'>Out of Stock</p>";
+            }
+            echo "</td>
+            </form>
+            </tr>";
+        }
+
+        }
+        }
         echo "</table>";
+    }
+
+
+     
+ 
 
         
-    }
 
   
 
@@ -224,7 +288,8 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
         if($quantity == 0)
         {
 
-            echo"Item is out of stock! Please check back later<br>";
+            $_SESSION['messages'][] = 'ERROR: Item is out of stock! Please check back later.';
+            header("Location:/product-catalog.php");
         }
 
         else
@@ -233,7 +298,6 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
         
        // $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
         if ($int == 0) { 
-            echo"Item Successfully Added to Cart!";
             
             $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantity."')");
             /*echo "cart updated";
@@ -246,7 +310,8 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             }
 
 */
-
+            $_SESSION['messages'][] = 'Item successfully added to cart!';
+            header("Location:/product-catalog.php");
             
         }
 
@@ -270,12 +335,14 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             }*/
 
             if( $_POST['iquant'] >= ($int + $quantity)){
-                echo "Cart Successfully Updated!<br>";
              $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity." where upc = ".$_POST['add_upc']." and customer_id = ".$customer_id);
+             $_SESSION['messages'][] = 'Item successfully added to cart!';
+                header("Location:/product-catalog.php");
                 
             }
             else{
-                echo "You cannot exceed the available quantity. Please choose a lower quantity";
+                $_SESSION['messages'][] = 'ERROR: You cannot exceed the available quantity. Please choose a lower quantity.';
+                header("Location:/product-catalog.php");
         }
 
             
@@ -306,6 +373,30 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
         #else run sql insert into
     
 ?>
+
+<div class='footer'>
+        <div class='row'>
+            <div class='column'>
+                <div style='padding-left:30%; padding-right: 20px; padding-top:0px; margin:32px;'>
+                    <h3 style='margin-bottom: 6px;'>Omazon<img src='/images/favicon/favicon-192.png' width='26' height='26'></h3>
+                    <p style='padding:0;'>Omazon is a fictional company conceived for the purpose of a database class project. There is no intention of profit or infringement of copyright. However, it still has many functionalities that a typical ecommerce website would have.</p>
+                </div>
+            </div>
+
+            <div class='column' style='flex:25%'>
+                <div style='padding-left: 20px; padding-right: 30%; padding-top:0px; margin:32px; text-align:left;'>
+                    <p>
+                        <a href="/index.php">Home</a> | 
+                        <a href="/product-catalog.php">Products</a> | 
+                        <a href="/customer/register.php">Register</a> | 
+                        <a href="/about.html">About</a>
+                    </p>
+                    <p><a href="/employee/employee-login.php">Employee Portal</a></p>
+                    <p class='copyright'>Omazon © 2021</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 </body>
