@@ -74,7 +74,7 @@
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
             $result = $connect->query("select f_name, l_name from Point_of_Sale.employee where ssn=$employee_id");
-            echo $employee_id
+            echo $employee_id;
             $row = mysqli_fetch_array($result);
             echo "Hello, " . $row['f_name'] . " " . $row['l_name'] . "!";
         ?>
