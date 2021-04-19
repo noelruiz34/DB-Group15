@@ -34,32 +34,29 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
 
     <?php
 
+    
+
+
     $result = $connect->query("select category_name from product_category");
-    $maxpres = $connect->query("select p_price from product order by p_price desc limit 1;");
-    $upper;
-    while($maxp = mysqli_fetch_array($maxpres))
-    {
-         $upper = ($maxp['p_price']);
-    }
   
 
  
             echo"<form action='' method='post'>";
 
             echo "Min Price: <select id='lp' name = 'lp' onchange='lpsel(this.value)' >";
-for ($h = 0; $h <=1000; $h++) 
-{
-echo '<option value='.$h.'>$'.$h.'</option>';
-};
-echo "</select>";
-
-echo "Max Price: <select id='up' name = 'up' onchange=upsel(this.value) >";
-for ($h = 0; $h <=1000; $h++) 
-{
-echo '<option selected value='.$h.'>$'.$h.'</option>';
-};
-echo "</select>";
-
+            for ($h = 0; $h <=1000; $h++) 
+            {
+            echo '<option value='.$h.'>$'.$h.'</option>';
+            };
+            echo "</select>";
+            
+            echo "Max Price: <select id='up' name = 'up' onchange=upsel(this.value) >";
+            for ($h = 0; $h <=1000; $h++) 
+            {
+            echo '<option selected value='.$h.'>$'.$h.'</option>';
+            };
+            echo "</select>";
+            
             echo "Choose Category:
     <select id='categories' name='categories' required>";
     while ($catRow = mysqli_fetch_array($result)) {
@@ -74,9 +71,8 @@ echo "</select>";
 
     if(isset($_POST['catsel']))
     {
-//echo ($_POST['categories']);
 
-$lower = 0;
+        $lower = 0;
                         
             if(isset($_POST['lp']))
             {
@@ -94,17 +90,20 @@ $lower = 0;
             }
             else
             {
-        $result3 = $connect->query('select upc, p_name, p_price, p_quantity from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+//echo ($_POST['categories']);
+        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
             
         echo "<table>";
         echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
        // echo (mysqli_num_rows($result2));
         while($row = mysqli_fetch_array($result3)){
-            
-            
 
-
-            if($row['p_price'] >= $lower && $row['p_price'] <= $upper)
+            $realp = $row['p_price'];
+            if($row['p_discount'] > 0)
+            {
+            $realp =  number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
+            }
+            if($realp >= $lower && $realp <= $upper)
             {
             echo "<tr>
             <td>" . $row['p_name'] . "</td>";
@@ -132,10 +131,10 @@ $lower = 0;
             </td>
             </form>
             </tr>";
-        
         }
-    }
-}
+
+        }
+        }
         echo "</table>";
     }
     else{
