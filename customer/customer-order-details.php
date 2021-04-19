@@ -49,7 +49,7 @@
                     <td>$row[upc]</td>
                     <td>$row[p_name]</td>
                     <td>$row[quantity_ordered]</td>
-                    <td>$$row[p_price]</td>
+                    <td>$" . number_format($row['p_price'], 2) . "</td>
                     </tr>";
                     $total += $row['p_price'] * $row['quantity_ordered'];
                 }
