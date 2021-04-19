@@ -105,12 +105,12 @@ td {
             echo "<tr><td> Date order Received: ".$order_info['o_time']."</td></tr>";
             echo "<tr><td> Status: ".$order_info['o_status']."</td></tr>";
         }
-        echo " <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
+        echo "<center> <form class=\"example\" action='' method=\"POST\"> <a style=\"fontSize: 100 px; marginRight: 1%;\";>Update Order Status:</a>
                   <input type=\"radio\" name=\"status\" value=\"Processing\" > Processing
                   <input type=\"radio\" name=\"status\" value=\"In Transit\" > In Transit
                   <input type=\"radio\" name=\"status\" value=\"Delivered\" > Delivered 
                   <input type=\"submit\" name=\"Result\"> 
-                </form>";
+                </form> </center>";
 
 
         echo "</table>";
@@ -120,7 +120,9 @@ td {
         echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
         while($item = mysqli_fetch_array($result))
         {
-            echo "<tr><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
+            $upc = $item['upc'];
+            $name = $connect->query("select p_name from Point_of_Sale.product where upc = $upc");
+            echo "<tr><td>".$name."</td><td>".$item['upc']."</td><td>".$item['quantity_ordered']."</td><td>".$item['p_price']."</td></tr>";
         }
         echo "</table>";
 

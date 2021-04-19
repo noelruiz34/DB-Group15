@@ -32,7 +32,7 @@
                 else {
                     echo "0 results";
                 }
-            ?>
+        ?>
         </font>
         </center>
     </div>
