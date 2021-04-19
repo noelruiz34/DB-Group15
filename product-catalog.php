@@ -71,7 +71,7 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
                 echo "<td>$" . $row['p_price'] . "</td>";
             }
             else {
-                $discountPrice = number_format($row['p_price'] * $row['p_discount'], 2);
+                $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
                 echo "<td><s>$$row[p_price]</s> $discountPrice (-$row[p_discount]%)";
             }
             echo "<td>" . $row['upc'] . "</td>
