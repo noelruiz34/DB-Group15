@@ -73,10 +73,10 @@
 
     <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
-            $result = $connect->query("select * from Point_of_Sale.employee where ssn=$employee_id");
-            while($row = mysqli_fetch_array($result))
+            $result = $connect->query("select * from Point_of_Sale.employee where ssn = $employee_id");
+            while($employee_info = mysqli_fetch_array($result))
             {      
-                echo "Hello, ".$row['f_name']." ".$row['l_name']."!";
+                echo "Hello, ".$employee_info['f_name']." ".$employee_info['l_name']."!";
             }
         ?>
     </font>
