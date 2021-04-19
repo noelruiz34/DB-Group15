@@ -39,6 +39,17 @@ function displayCart($cust_id, $conn)
     {
       $cart_qty =  floatval($row['cart_quantity']);
       $cart_p = floatval($row['p_price']);
+
+      $card_disc = floatval($row['p_discount']);
+
+      if ($row['p_discount'] == 000)
+      {
+        #there is no discount, thus the $cart_disc should not deduct anything from the cart_p
+        $cart_disc = 0.0;
+      }
+
+      $cart_p = $cart_p - $cart_disc;
+
       $cart_price = $cart_qty * $cart_p;
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
