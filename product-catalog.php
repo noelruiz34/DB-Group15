@@ -220,7 +220,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             echo "<tr>
             <td>" . $row['p_name'] . "</td>";
             if($row['p_discount'] <= 0) {
-                echo "<td>$" . $row['p_price'] . "</td>";
+                echo "<td>$" . number_format($row['p_price'],2) . "</td>";
             }
             else {
                 $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
