@@ -43,14 +43,14 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
  
             echo"<form action='' method='post'>";
 
-            echo "Min Price: <select id='lp' name = 'lp' onchange='lpsel(this.value)' >";
+            echo "Min Price: <select id='lp' name = 'lp'>";
             for ($h = 0; $h <=1000; $h++) 
             {
             echo '<option value='.$h.'>$'.$h.'</option>';
             };
             echo "</select>";
             
-            echo "Max Price: <select id='up' name = 'up' onchange=upsel(this.value) >";
+            echo "Max Price: <select id='up' name = 'up'>";
             for ($h = 0; $h <=1000; $h++) 
             {
             echo '<option selected value='.$h.'>$'.$h.'</option>';
@@ -161,8 +161,18 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
         
         while($row2 = mysqli_fetch_array($popi)){
             echo "<tr>
-            <td>" . $row2['p_name'] . "</td>
-            <td>$" . $row2['p_price'] . "</td>
+            <td>" . $row2['p_name'] . "</td>";
+
+            if($row2['p_discount'] <= 0) {
+                echo "<td>$" . $row2['p_price'] . "</td>";
+            }
+            else {
+                $discountPrice = number_format($row2['p_price'] * ((100 - $row2['p_discount']) / 100), 2);
+                echo "<td><s>$$row2[p_price]</s> $discountPrice (-$row2[p_discount]%)";
+            }
+
+
+        echo"
             <td>" . $row2['upc'] . "</td>
             <td><form method='post' action=''>
             <input type = 'hidden' name = 'add_upc' value= ".$row2['upc'].">
