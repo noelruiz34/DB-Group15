@@ -77,6 +77,7 @@
             $sql = "select * from Point_of_Sale.employee where ssn = $employee_id";
             echo $sql;
             $result = $connect->query($sql);
+            echo $result;
                 while($employee_info = $result->fetch_assoc())
                 {      
                     echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
