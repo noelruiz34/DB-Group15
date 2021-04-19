@@ -117,7 +117,7 @@ td {
         $result = $connect->query("select * from Point_of_Sale.product_purchase where o_id = $order");
         echo"<table>";
         echo "<div> <center style=\"margin-top: 5%;font-size: 75%;\">Order Contents</center><hr style=\"width: 35%;margin-bottom: -3%;\"></div>";
-        echo "<tr><td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
+        echo "<tr><td>Name</td> <td>Item UPC</td> <td>Quantitiy Ordered</td> <td>Price</td></tr>";
         while($item = mysqli_fetch_array($result))
         {
             $upc = $item['upc'];
