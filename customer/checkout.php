@@ -56,12 +56,12 @@ function displayCart($cust_id, $conn)
 
       $cart_p = $cart_qty * $cart_p;
       echo "<tr>
-      <td>$" . $row['p_name'] . "</td>
+      <td>" . $row['p_name'] . "</td>
       <td>" . $row['cart_quantity'] . "</td>
       ";
          
       echo"
-      <td>" . $cart_p . "</td>
+      <td>$" . $cart_p . "</td>
       </tr>";
       echo "<td>
       ";
