@@ -100,7 +100,7 @@
       <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-      <td>$<s>$$row[p_price]</s><td>" . $cart_p . "</td> (-$row[p_discount]%)
+      <td>$<s>$row[p_price]</s><td>" . $cart_p . "</td> (-$row[p_discount]%)
       
       </tr>";
       echo "<td>
