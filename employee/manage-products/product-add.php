@@ -3,13 +3,13 @@
 session_start();
 if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
 {
-    header("Location:employee_login.php");  
+    header("Location:/employee/employee-login.php");  
 }
 
 // Variables from POST
 
 $upc = $_POST['add_upc'];
-$pname = $_POST['add_pname'];
+$pname = addSlashes($_POST['add_pname']);
 $quantity = $_POST['add_quantity'];
 $price = $_POST['add_price'];
 $category = $_POST['add_category'];

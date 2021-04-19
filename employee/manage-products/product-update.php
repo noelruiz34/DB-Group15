@@ -3,13 +3,13 @@
 session_start();
 if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
 {
-    header("Location:employee_login.php");  
+    header("Location:/employee/employee-login.php");  
 }
 
 // Variables from POST
 
 $upc = $_POST['upc'];
-$pname = $_POST['pname'];
+$pname = addSlashes($_POST['pname']);
 $quantity = $_POST['quantity'];
 $price = $_POST['price'];
 $category = $_POST['categories'];
@@ -25,7 +25,7 @@ if ($listed == 'on') {
 $employeeId = $_SESSION['employee'];
 
 $currTime = date('Y-m-d H:i:s');
-$updateDesc = $_POST['update_desc'];
+$updateDesc = addSlashes($_POST['update_desc']);
 
 // Conditionals verifying correct input
 
