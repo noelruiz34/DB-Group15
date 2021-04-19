@@ -80,6 +80,9 @@
                     echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
                 }
             }
+            else {
+                echo "0 results";
+            }
         ?>
     </font>
     <table>
