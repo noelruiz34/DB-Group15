@@ -70,7 +70,7 @@
             $pass = $_POST['password'];
             $sql = "SELECT * FROM employee WHERE employee_id=$id AND password=$pass";
             $result = mysqli_query($connect,$sql);
-            if($result) {
+            if(mysqli_num_rows($result) >= 1) {
                 $_SESSION['employee']=$id;
                 header("Location:/employee/employee-portal.php");
             }
