@@ -5,7 +5,6 @@
     border: 1px solid black;
     margin-top: 5%;
     align:left;
-    width: 400px;
     }
     td {
         border: 1px solid black;
