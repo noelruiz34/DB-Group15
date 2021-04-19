@@ -2,7 +2,7 @@
   session_start();
   if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
   {
-    header("Location:employee_login.php");  
+    header("Location:/employee/employee-login.php");  
   }
 ?>
 
