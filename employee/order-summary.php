@@ -101,6 +101,7 @@ td {
 
 <div id="options"></div>
 
+<!-- update name for lookup -->
 
 <div id="order_info">
     <?php 
