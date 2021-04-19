@@ -71,16 +71,25 @@
     
 	<h1>Employee Portal</h1>
 
+    <font size="+1"> <!-- Not sure if this is necessary -->
        <?php
+            $employee_id = $_SESSION['employee'];
             $sql = "select * from Point_of_Sale.employee where ssn = $employee_id";
             echo $sql;
             $result = $connect->query($sql);
-            echo $result;
-            while($employee_info = mysqli_fetch_array($result))
-            {      
-                echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
+
+            if (mysqli_num_rows($result) > 0) {
+
+                while($employee_info = $result->fetch_assoc())
+                {      
+                    echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
+                }
+            }
+            else {
+                echo "0 results";
             }
         ?>
+    </font>
     <table>
         <tr>
             <td>
