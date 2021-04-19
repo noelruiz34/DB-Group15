@@ -146,6 +146,8 @@
       ";
 
       echo "<td><form method='post' action=''>
+      <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>";
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
