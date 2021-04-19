@@ -77,15 +77,10 @@
             $sql = "select * from Point_of_Sale.employee where ssn = $id";
             echo $sql;
             $result = $connect->query($sql);
-            if (mysqli_num_rows($result) > 0) {
-
-                while($employee_info = $result->fetch_assoc())
-                {      
-                    echo "Hello, ".$employee_info["f_name"]." ".$employee_info["l_name"]."!";
-                }
-            }
-            else {
-                echo "0 results";
+    
+            while($employee_info = mysqli_fetch_array($result)))
+            {      
+                echo "Hello, ".$employee_info["f_name"]."!";
             }
         ?>
     </font>
