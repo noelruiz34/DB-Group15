@@ -211,24 +211,20 @@ function checkEmpty($cust_id, $conn)
     $quantity = $_POST['qp'];
     $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['remove_upc']);
  
-   $int = 0;
+    $int = 0;
  
     while($row = mysqli_fetch_array($qcheck)){
         $int = $int +1;
     }
     
-    if ($quantity != $row['cart_quantity'])
-    {//cart update 
-      if ($_POST['iquant'] <= ($int + $row['cart_quantity']))
-      {// the quantity is smaller than what's in the cart, this is a remove request
-        $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
-      }
-      else 
-      {
-        echo "Remove Cart Error. Cannot Delete More Than Cart Quantity";
-      }
+    //cart update 
+      $connect->query("update shopping_cart set cart_quantity =  ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
+      
+      
+        
+      
 
-    }
+    
     /*
     if ($int == 0) { 
         $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['remove_upc']."', '".$quantity."')");
