@@ -89,7 +89,7 @@ function displayCart($cust_id, $conn)
       ";
          
       echo"
-      <td>$" . $cart_p . "</td>
+      <td>$" . number_format($cart_p, 2) . "</td>
       </tr>";
       
 
@@ -98,7 +98,7 @@ function displayCart($cust_id, $conn)
     echo "</table>";
     echo "<br>
   
-       <h3 style='text-align:center;'>Total: $$cart_total</h3>
+       <h3 style='text-align:center;'>Total: $" . number_format($cart_total, 2) . "</h3>
     ";
     $cart_total = number_format($cart_total, 2);
     if ($cart_total > 0.0)

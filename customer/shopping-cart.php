@@ -87,8 +87,11 @@
     $cart_sql = "SELECT *, p_name, p_price, p_discount FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
-    
-    
+    $qty_arr = array();
+    for ($i = 0; $i < ($row['p_quantity'] - $row['cart_quantity']); $i++)
+    {
+      $qty_arr[$i]= $i;
+    }
     $cart_total = 0.0;
     $do_once = 0;
     
@@ -111,87 +114,69 @@
       }
 
       $cart_p = $cart_p * $cart_disc;
-      $cart_p = number_format($cart_p, 2);
+      $cart_p = round($cart_p, 2);
 
-      $cart_p = $cart_qty * $cart_p;
-      $cart_p = number_format($cart_p, 2);
+      $cart_p = $cart_p * $cart_qty;
+      //$cart_p = number_format($cart_p, 2);
       if ($do_once == 0)
       {
         echo "<table>";
-        echo "<tr><th> Product Name </th><th> Quantity </th><th> Add More </th><th>Price</th></tr> ";
+        echo "<tr><th> Product Name </th><th> Quantity </th><th>Price</th></tr> ";
         $do_once = 1;
       }
 
       echo "<tr>
-
       <td>" . $row['p_name'] . "</td>
       ";
 
+      
+      
+
+      
       echo "
       <td>
       <form method='post' action=''>
-      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'update_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-      
       <select name = qp>
       ";  
-      for ($h = $row['cart_quantity']; $h >= 1; $h--) 
+      for ($h = 0; $h <= ($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         echo '<option value='.$h.'>'.$h.'</option>';
       }
       echo '</select>';
-      echo "<input type = 'submit' name = 'remove_from_cart' value = 'Remove'/>
+      echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
       </form>
       </td>
       ";
 
-      echo "<td><form method='post' action=''>
-      <select name = qp>";
-      for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
-      {
-        echo '<option value='.$h.'>'.$h.'</option>';
-      }
-        echo '</select>';
-        echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add'/><br />
-              </form>
-              ";
-
-        echo "</td>";
-
-       
-      echo "<td>";
+      
+      $table_p = $cart_p;
+      $table_p = number_format($table_p,2);
+      
       if($row['p_discount'] <= 0) {
-          echo"
+          echo"<td>
         <form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-        $" . $cart_p . "
-        ";
+        $" . $table_p . "
+        </td>";
 
       } else {
-            echo"
+            echo"<td>
         <form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-        <s>$$calcPreDisc</s> $" . $cart_p . " (-$row[p_discount]%)";
+        <s>$$calcPreDisc</s> $" . ($cart_p). " (-$row[p_discount]%)</td>";
       }
       echo "</td>";
       
-
-      
-
-        echo "</tr>";
+      echo "</tr>";
         $cart_total = $cart_total + $cart_p;
     }
   
   $cart_total = number_format($cart_total, 2);
-  if ($cart_total > 0.0)
+  if ($cart_total > 0.00)
   {
     echo "</table>";
     echo "<br>
-      <h3 style='text-align:center;'>Total: $$cart_total</h3>
+      <h3 style='text-align:center;'>Total: $ $cart_total  </h3>
 
       ";
     echo "<form method='post' action=''>
@@ -231,71 +216,29 @@ function checkEmpty($cust_id, $conn)
 
   
 
-  if(isset($_POST['remove_from_cart'])) {
+  if(isset($_POST['update_cart'])) {
    
 
     $customer_id = $_SESSION['customer'];
     $quantity = $_POST['qp'];
-    $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['remove_upc']);
+    $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['update_upc']);
  
-   $int = 0;
+    $int = 0;
  
     while($row = mysqli_fetch_array($qcheck)){
         $int = $int +1;
     }
-      
-    if ($int == 0) { 
-        $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['remove_upc']."', '".$quantity."')");
-        
-    }
- 
-    else{
-        if( $_POST['iquant'] >= ($int + $quantity)){
-           $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
-            }
-        else{
-            echo "Remove Cart Error. Cannot Delete More Than Cart Quantity";
-           }
-       }
-       ob_end_clean();
-       checkEmpty($customer_id, $connect);
-       displayCart($customer_id, $connect);
+    $connect->query("update shopping_cart set cart_quantity =  ".$quantity." where upc = ".$_POST['update_upc']." and customer_id = ".$customer_id);
+    ob_end_clean();
+    checkEmpty($customer_id, $connect);
+    displayCart($customer_id, $connect);
  
  }
 
-if(isset($_POST['add_more_to_cart'])) {
-   
 
-   $customer_id = $_SESSION['customer'];
-   $quantity = $_POST['qp'];
-   $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
-
-  $int = 0;
-
-   while($row = mysqli_fetch_array($qcheck)){
-       $int = $int +1;
-   }
-     
-   if ($int == 0) { 
-       echo"Item Successfully Added to Cart!";
-       $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantity."')");
-       
-   }
-
-   else{
-       if( $_POST['iquant'] >= ($int + $quantity)){
-          $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity." where upc = ".$_POST['add_upc']." and customer_id = ".$customer_id);
-           }
-       else{
-           echo "You cannot exceed the available quantity. Please choose a lower quantity";
-          }
-      }
-      ob_end_clean();
-      checkEmpty($customer_id, $connect);
-      displayCart($customer_id, $connect);
-}
 ?>
 </body>
+
 
 </html>
 
