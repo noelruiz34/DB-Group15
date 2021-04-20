@@ -144,13 +144,7 @@
       </td>
       ";
 
-      echo "<td><form method='post' action=''>
-      <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-      <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-      <select name = qp>";
-
       
-      echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc']."</td>";
     
       $cart_p = $cart_p * $cart_qty;
       if($row['p_discount'] <= 0) {
