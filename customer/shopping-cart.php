@@ -153,12 +153,12 @@
       
       echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
       <td><input type = 'hidden' name = 'iquant' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." </td>";
-      /*for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
+    for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         
         echo '<option value='.$h.'>'.$h.'</option>';
         
-      }*/
+      }
       
         echo '</select>';
         echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add'/><br />
@@ -174,18 +174,12 @@
       if($row['p_discount'] <= 0) {
           echo"
         <form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
         $" . $cart_p . "
         ";
 
       } else {
             echo"
         <form method='post' action=''>
-        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
         <s>$$calcPreDisc</s> $" . $cart_p . " (-$row[p_discount]%)";
       }
       echo "</td>";
