@@ -151,7 +151,8 @@
       <select name = qp>";
 
       
-      echo "<td><input type = 'number' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." >";
+      echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+      <td><input class= 'iquant' type = 'number' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." </td>";
       /*for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         
@@ -283,14 +284,6 @@ if(isset($_POST['add_more_to_cart'])) {
        $int = $int +1;
    }
      
-   if ($quantity > $row['cart_quantity'])
-   {
-      addmore();
-   }
-   else if ($quantity < $row['cart_quantity'])
-   {
-     takeout();
-   }
    ob_end_clean();
    checkEmpty($customer_id, $connect);
    displayCart($customer_id, $connect);
@@ -324,39 +317,12 @@ if(isset($_POST['add_more_to_cart'])) {
       checkEmpty($customer_id, $connect);
       displayCart($customer_id, $connect);
    }
-   function takeout()
-   {
-    $customer_id = $_SESSION['customer'];
-    $quantity = $_POST['qp'];
-    $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['remove_upc']);
- 
-   $int = 0;
- 
-    while($row = mysqli_fetch_array($qcheck)){
-        $int = $int +1;
-    }
-      
-    if ($int == 0) { 
-        $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['remove_upc']."', '".$quantity."')");
-        
-    }
- 
-    else{
-        if( $_POST['iquant'] >= ($int + $quantity)){
-           $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
-            }
-        else{
-            echo "Remove Cart Error. Cannot Delete More Than Cart Quantity";
-           }
-       }
-       ob_end_clean();
-       checkEmpty($customer_id, $connect);
-       displayCart($customer_id, $connect);
-   }
+   
    
 }
 ?>
 </body>
+
 
 </html>
 
