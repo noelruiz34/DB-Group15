@@ -152,14 +152,10 @@
 
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        if ($h == $row['cart_quantity'])
-        {
-          echo ('<option selected = "selected" value = '. $row['cart_quantity'] . ' > ' . $row['cart_quantity'] . '</option');
-        }
-        else 
-        {
-          echo '<option value='.$h.'>'.$h.'</option>';
-        }
+        echo ('<option selected = "selected" value = '. $row['cart_quantity'] . ' > ' . $row['cart_quantity'] . '</option');
+        
+        echo '<option value='.$h.'>'.$h.'</option>';
+        
         
       }
       
