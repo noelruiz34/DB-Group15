@@ -98,7 +98,8 @@
             Number of Items Sold: $running_item_total <br>
             Number of Items Returned: $running_return_item_total<br>
             Profit: $" . ($running_sold_total - $running_return_total) ."<br>
-        </font>"; 
+        </font>";
+        echo "<hr style=\"width: 50%; margin-left: 0%;\">"; 
 
         echo "<div class='row'>";
         $sales_result = mysqli_query($connect, $sales_sql);
