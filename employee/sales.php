@@ -282,6 +282,7 @@ tr:nth-child(even) {
         function checkDateRange(){
         var start  = document.forms["dates"]['sales_start'].value;
         var end = document.forms["dates"]['sales_end'].value;
+        
 
         console.log(start);
         console.log(end);
@@ -289,6 +290,8 @@ tr:nth-child(even) {
         if (new Date(start) > new Date(end))
         {
             alert("Start date must be before end date");
+            var form = document.getElementById("client");
+            form.reset();
             return false;
         }
     }
