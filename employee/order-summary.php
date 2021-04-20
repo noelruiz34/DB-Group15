@@ -8,7 +8,11 @@
 ?>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<script> 
+          function myFunction() {
+            alert("Hello! I am an alert box!");
+          }
+</script>
 
 <html>
 <head>
@@ -129,9 +133,8 @@ td {
             echo "</table>";
         }
         else{
-          echo "<script> function myFunction() {
-            alert(\"Hello! I am an alert box!\");
-          }
+          echo "<script>
+          myFunction()
           </script>";
         }
 
