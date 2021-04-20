@@ -146,6 +146,7 @@
 
       echo "<td><form method='post' action=''>
       <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+      <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>";
 
@@ -160,6 +161,7 @@
         echo '</select>';
         echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add'/><br />
               </form>
+              <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
               ";
 
         echo "</td>";
