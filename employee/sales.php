@@ -91,7 +91,7 @@
         } 
         
         echo "<h1>Summary for Date: $start_date to $end_date</h1>";
-        echo "<hr style=\"width: 25%; margin-left: 0%;\">";
+        echo "<hr style=\"width: 40%; margin-left: 0%;\">";
         echo "<font size='+2'>
             Total Sold: $$running_sold_total <br>
             Total Returned: $$running_return_total<br>
