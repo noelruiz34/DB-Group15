@@ -111,6 +111,7 @@
       }
 
       $cart_p = $cart_p * $cart_disc;
+      $cart_p = $cart_p * $cart_qty;
       $cart_p = number_format($cart_p, 2);
       if ($do_once == 0)
       {
@@ -141,7 +142,7 @@
 
       
     
-      $cart_p = $cart_p * $cart_qty;
+      
       if($row['p_discount'] <= 0) {
           echo"<td>
         <form method='post' action=''>
@@ -151,7 +152,7 @@
       } else {
             echo"<td>
         <form method='post' action=''>
-        <s>$$calcPreDisc</s> $" . ($cart_p * $cart_qty). " (-$row[p_discount]%)</td>";
+        <s>$$calcPreDisc</s> $" . ($cart_p). " (-$row[p_discount]%)</td>";
       }
       echo "</td>";
       
