@@ -151,7 +151,7 @@
       <select name = qp>";
 
       
-      echo "<td><input type = 'submit' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." >";
+      echo "<td><input type = 'number' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." >";
       /*for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         
