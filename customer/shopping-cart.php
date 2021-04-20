@@ -148,10 +148,19 @@
       <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>";
+
+      $default_qty = $row['cart_quantity'];
+
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        echo '<option value='.$h.'>'.$h.'</option>';
+        #echo '<option value='.$h.'>'.$h.'</option>';
+
+        ?>
+
+        <option value = '<?php echo $default_qty ?>' selected = 'selected'<?php echo $default_qty?> </option>
+        <?
       }
+      
         echo '</select>';
         echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add'/><br />
               </form>
