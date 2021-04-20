@@ -278,6 +278,9 @@ tr:nth-child(even) {
         var start  = document.forms["dates"]['sales_start'].value;
         var end = document.forms["dates"]['sales_end'].value;
 
+        console.log(start);
+        console.log(end);
+
         if (new Date(start) > new Date(end){
             alert("Start date must be before end date");
             return false;
