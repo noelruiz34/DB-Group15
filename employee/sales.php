@@ -275,8 +275,8 @@ tr:nth-child(even) {
 </style>
 <script>
     function checkDateRange(){
-        var start  = document.forms["dates"]['sales_start'];
-        var end = document.forms["dates"]['sales_end'];
+        var start  = document.forms["dates"]['sales_start'].value;
+        var end = document.forms["dates"]['sales_end'].value;
 
         if (new Date(start) > new Date(end){
             alert("Start date must be before end date");
