@@ -152,10 +152,13 @@
 
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        echo ('<option selected = "selected" value = '. $row['cart_quantity'] . ' > ' . $row['cart_quantity'] . '</option');
+        #echo ('<option selected = "selected" value = '. $row['cart_quantity'] . ' > ' . $row['cart_quantity'] . '</option');
         
-        echo '<option value='.$h.'>'.$h.'</option>';
-        
+        #echo '<option value='.$h.'>'.$h.'</option>';
+        ?> 
+        <select name = 'qtymod' id = 'add_upc'>
+          <option value = <?php $h ?> /option>
+        <?php
         
       }
       
