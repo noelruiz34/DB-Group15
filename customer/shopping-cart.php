@@ -149,16 +149,18 @@
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>";
 
-      $default_qty = $row['cart_quantity'];
 
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        #echo '<option value='.$h.'>'.$h.'</option>';
-
-        ?>
-
-        <option value = '<?php echo $default_qty ?>' selected = 'selected'<?php echo $default_qty?> </option>
-        <?
+        if ($h == $row['cart_quantity'])
+        {
+          echo ('<option selected = "selected" value = '. $row['cart_quantity'] . ' > ' . $row['cart_quantity'] . '</option');
+        }
+        else 
+        {
+          echo '<option value='.$h.'>'.$h.'</option>';
+        }
+        
       }
       
         echo '</select>';
