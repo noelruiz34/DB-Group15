@@ -305,9 +305,8 @@ tr:nth-child(even) {
         <select id="method" name = "view_method">
                 <option value="orders_and_returns"> Orders and Returns</option>
                 <option value="product_view"> Products and Categories</option>
-        </select> <br> <br>
-        Start Date: <input type='date' id='start' name='sales_start' required/>
-            End Date: <input type='date' id='end' name='sales_end' required/>
+        </select> <br> <br> Start Date: <input type='date' id='start' name='sales_start' required/>
+                    End Date: <input type='date' id='end' name='sales_end' required/>
         <input type = "submit" name = "generate_report" value = "Generate Report"/>
         <br>
     </form>
