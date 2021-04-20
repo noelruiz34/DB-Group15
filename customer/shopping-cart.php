@@ -161,6 +161,7 @@
 
        
       echo "<td>";
+      $cart_p = $cart_p * $cart_qty;
       if($row['p_discount'] <= 0) {
           echo"
         <form method='post' action=''>
@@ -180,9 +181,6 @@
       }
       echo "</td>";
       
-
-      
-
         echo "</tr>";
         $cart_total = $cart_total + $cart_p;
     }
