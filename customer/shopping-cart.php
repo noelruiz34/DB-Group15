@@ -219,9 +219,13 @@ function checkEmpty($cust_id, $conn)
     
     if ($quantity != $row['cart_quantity'])
     {//cart update 
-      if ($_POST['iquant'] >= ($int + $quantity))
+      if ($_POST['iquant'] <= ($int + $quantity))
       {// the quantity is smaller than what's in the cart, this is a remove request
         $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
+      }
+      else if ($_POST['iquant'] >= ($int + $quantity) )
+      {
+        echo "nothing";
       }
       else 
       {
