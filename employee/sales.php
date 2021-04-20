@@ -291,7 +291,8 @@ tr:nth-child(even) {
         {
             alert("Start date must be before end date");
             var form = document.getElementById("client");
-            form.reset();
+            start = "";
+            end = ""
             return false;
         }
     }
