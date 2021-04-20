@@ -87,8 +87,11 @@
     $cart_sql = "SELECT *, p_name, p_price, p_discount FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
-    
-    
+    $qty_arr = array();
+    for ($i = 0; $i < ($row['p_quantity'] - $row['cart_quantity']); $i++)
+    {
+      $qty_arr[$i]= $i;
+    }
     $cart_total = 0.0;
     $do_once = 0;
     
@@ -123,7 +126,21 @@
       echo "<tr>
       <td>" . $row['p_name'] . "</td>
       ";
-      echo "
+
+      
+      ?>
+      <select name = 'testing'>
+      <?php foreach($qty_arr as $value => $qty_arr) : ?>
+        <option value = "<?php echo $value ?>" <?php if ($_GET['cart_quantity'] == $value){echo 'select = "selected"';} ?> > <?php echo $value; ?> </option
+        <?php endforeach ?>
+        <?php
+        echo '/select';
+        echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
+        </form 
+        </td>";
+
+      
+      /*echo "
       <td>
       <form method='post' action=''>
       <input type = 'hidden' name = 'update_upc' value= ".$row['upc'].">
@@ -138,7 +155,7 @@
       echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
       </form>
       </td>
-      ";
+      ";*/
 
       
     
