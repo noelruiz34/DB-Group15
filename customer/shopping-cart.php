@@ -115,7 +115,7 @@
       if ($do_once == 0)
       {
         echo "<table>";
-        echo "<tr><th> Product Name </th><th> Quantity </th><th> Add More </th><th>Price</th></tr> ";
+        echo "<tr><th> Product Name </th><th> Quantity </th><th>Price</th></tr> ";
         $do_once = 1;
       }
 
