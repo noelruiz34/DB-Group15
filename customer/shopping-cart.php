@@ -168,12 +168,12 @@
         $cart_total = $cart_total + $cart_p;
     }
   
-  //$cart_total = number_format($cart_total, 2);
+  $cart_total = number_format($cart_total, 2);
   if ($cart_total > 0.0)
   {
     echo "</table>";
     echo "<br>
-      <h3 style='text-align:center;'>Total: $$cart_total</h3>
+      <h3 style='text-align:center;'>Total: $ ". $number_format($cart_total, 2) ." </h3>
 
       ";
     echo "<form method='post' action=''>
