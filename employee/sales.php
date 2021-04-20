@@ -282,10 +282,6 @@ tr:nth-child(even) {
         function checkDateRange(){
         var start  = document.forms["dates"]['sales_start'].value;
         var end = document.forms["dates"]['sales_end'].value;
-        
-
-        console.log(start);
-        console.log(end);
 
         if (new Date(start) > new Date(end))
         {
@@ -309,11 +305,10 @@ tr:nth-child(even) {
         <select id="method" name = "view_method">
                 <option value="orders_and_returns"> Orders and Returns</option>
                 <option value="product_view"> Products and Categories</option>
-        </select> <br>
-        Start Date: <input type='date' id='start' name='sales_start' required/><br>
-        End Date: <input type='date' id='end' name='sales_end' required/><br> <br>
+        </select> 
+        Start Date: <input type='date' id='start' name='sales_start' required/>
+        End Date: <input type='date' id='end' name='sales_end' required/>
         <input type = "submit" name = "generate_report" value = "Generate Report"/>
-        <br>
     </form>
     
     <?php 
