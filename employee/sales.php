@@ -273,6 +273,17 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 </style>
+<script>
+    function checkDateRange(){
+        var start  = document.forms["dates"]['sales_start'];
+        var end = document.forms["dates"]['sales_end'];
+
+        if (new Date(start) > new Date(end){
+            alert("Start date must be before end date");
+            return false;
+        }
+    }
+</script>
 <head>
 	<title>Sales</title>
 </head>
@@ -280,7 +291,7 @@ tr:nth-child(even) {
     <!-- use join tables to make the report -->
     <h1>Sales</h1>
     <a href = /employee/employee-portal.php> Back to Employee Portal </a> <br> <br>
-    <form action='' method='post'>
+    <form name="dates" action='' method='post' onsubmit="return checkDateRange()">
         <label for="view_method"> View Sales Report: </label>
         <select id="method" name = "view_method">
                 <option value="orders_and_returns"> Orders and Returns</option>
@@ -298,7 +309,6 @@ tr:nth-child(even) {
         if(isset($_POST['generate_report']) && $_POST['view_method'] == "orders_and_returns") {
             render_orders_and_returns_report($connect, $start_date, $end_date);
         }
-
         if(isset($_POST['generate_report']) && $_POST['view_method'] == "product_view") {
             $_SESSION['category_sort'] = "category_revenue";
             render_products_and_categories_report($connect, $start_date, $end_date);
