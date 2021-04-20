@@ -91,7 +91,7 @@
         } 
         
         echo "<h1>Summary for Date: $start_date to $end_date</h1>";
-        echo "<hr style=\"width: 50%; margin-left: 0%;\">";
+        echo "<hr style=\"width: 45%; margin-left: 0%;\">";
         echo "<font size='+2'>
             Total Sold: $$running_sold_total <br>
             Total Returned: $$running_return_total<br>
@@ -99,7 +99,7 @@
             Number of Items Returned: $running_return_item_total<br>
             Profit: $" . ($running_sold_total - $running_return_total) ."<br>
         </font>";
-        echo "<hr style=\"width: 50%; margin-left: 0%;\">"; 
+        echo "<hr style=\"width: 45%; margin-left: 0%;\">"; 
 
         echo "<div class='row'>";
         $sales_result = mysqli_query($connect, $sales_sql);
