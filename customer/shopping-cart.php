@@ -173,7 +173,7 @@
   {
     echo "</table>";
     echo "<br>
-      <h3 style='text-align:center;'>Total: $ ". $number_format($cart_total, 2) ." </h3>
+      <h3 style='text-align:center;'>Total: $". number_format($cart_total, 2) ." </h3>
 
       ";
     echo "<form method='post' action=''>
