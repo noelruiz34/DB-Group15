@@ -112,8 +112,6 @@
 
       $cart_p = $cart_p * $cart_disc;
       $cart_p = number_format($cart_p, 2);
-
-      
       if ($do_once == 0)
       {
         echo "<table>";
@@ -122,16 +120,13 @@
       }
 
       echo "<tr>
-
       <td>" . $row['p_name'] . "</td>
       ";
-
       echo "
       <td>
       <form method='post' action=''>
       <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
-      
       <select name = qp>
       ";  
       for ($h = $row['cart_quantity']; $h >= 1; $h--) 
@@ -148,15 +143,15 @@
     
       $cart_p = $cart_p * $cart_qty;
       if($row['p_discount'] <= 0) {
-          echo"
+          echo"<td>
         <form method='post' action=''>
         $" . $cart_p . "
-        ";
+        </td>";
 
       } else {
-            echo"
+            echo"<td>
         <form method='post' action=''>
-        <s>$$calcPreDisc</s> $" . ($cart_p * $cart_qty). " (-$row[p_discount]%)";
+        <s>$$calcPreDisc</s> $" . ($cart_p * $cart_qty). " (-$row[p_discount]%)</td>";
       }
       echo "</td>";
       
