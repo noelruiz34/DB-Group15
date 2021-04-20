@@ -169,7 +169,7 @@
     }
   
   $cart_total = number_format($cart_total, 2);
-  if ($cart_total > 0.0)
+  if ($cart_total > 0.00)
   {
     echo "</table>";
     echo "<br>
