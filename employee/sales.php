@@ -303,7 +303,6 @@ tr:nth-child(even) {
             $_SESSION['category_sort'] = "category_revenue";
             render_products_and_categories_report($connect, $start_date, $end_date);
         }
-        
     ?>
 
     
