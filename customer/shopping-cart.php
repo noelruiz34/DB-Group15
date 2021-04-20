@@ -151,8 +151,7 @@
       <select name = qp>";
 
       
-      echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-      <td><input type = 'hidden' name = 'iquant' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." </td>";
+      echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc']."</td>";
     for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         
