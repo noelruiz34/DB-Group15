@@ -216,12 +216,24 @@ function checkEmpty($cust_id, $conn)
     while($row = mysqli_fetch_array($qcheck)){
         $int = $int +1;
     }
-      
+    
+    if ($quantity != $row['cart_quantity'])
+    {//cart update 
+      if ($_POST['iquant'] >= ($int + $quantity))
+      {// the quantity is smaller than what's in the cart, this is a remove request
+        $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
+      }
+      else 
+      {
+        echo "Remove Cart Error. Cannot Delete More Than Cart Quantity";
+      }
+
+    }
+    /*
     if ($int == 0) { 
         $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['remove_upc']."', '".$quantity."')");
         
     }
- 
     else{
         if( $_POST['iquant'] >= ($int + $quantity)){
            $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
@@ -229,7 +241,7 @@ function checkEmpty($cust_id, $conn)
         else{
             echo "Remove Cart Error. Cannot Delete More Than Cart Quantity";
            }
-       }
+       }*/
        ob_end_clean();
        checkEmpty($customer_id, $connect);
        displayCart($customer_id, $connect);
@@ -253,8 +265,7 @@ if(isset($_POST['add_more_to_cart'])) {
    checkEmpty($customer_id, $connect);
    displayCart($customer_id, $connect);
 
-   function addmore()
-   {
+   
     $customer_id = $_SESSION['customer'];
     $quantity = $_POST['qp'];
     $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
@@ -281,7 +292,7 @@ if(isset($_POST['add_more_to_cart'])) {
       ob_end_clean();
       checkEmpty($customer_id, $connect);
       displayCart($customer_id, $connect);
-   }
+   
    
    
 }
