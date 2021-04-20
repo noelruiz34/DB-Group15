@@ -152,7 +152,7 @@
 
       
       echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-      <td><input class= 'iquant' type = 'number' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." </td>";
+      <td><input type = 'hidden' name = 'iquant' value = ".$row['cart_quantity']. " 'min=1' max=".($row['p_quantity'] - $row['cart_quantity']) ." </td>";
       /*for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         
