@@ -9,7 +9,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script> 
-          function inValidOrder() {
+          function myFunction() {
             alert("Please enter a valid order number");
           }
 
@@ -179,9 +179,9 @@ td {
           }
           echo "</table>";
       }
-      else{
-        echo "<script> inValidOrder() </script>";
-      }
+             else{
+          echo "<script> myFunction() </script>";
+        }
     }
     ?>
 
