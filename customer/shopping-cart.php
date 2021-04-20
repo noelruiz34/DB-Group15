@@ -151,12 +151,13 @@
       ";
 
       
-    
+      $table_p = $cart_p;
+      $table_p = number_format($table_p,2);
       
       if($row['p_discount'] <= 0) {
           echo"<td>
         <form method='post' action=''>
-        $" . $cart_p . "
+        $" . $table_p . "
         </td>";
 
       } else {
