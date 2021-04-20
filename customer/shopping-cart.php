@@ -179,11 +179,11 @@
       } else {
             echo"
         <form method='post' action=''>
-        <s>$$calcPreDisc</s> $" . $cart_p . " (-$row[p_discount]%)";
+        <s>$$calcPreDisc</s> $" . ($cart_p * $cart_qty). " (-$row[p_discount]%)";
       }
       echo "</td>";
       
-        echo "</tr>";
+      echo "</tr>";
         $cart_total = $cart_total + $cart_p;
     }
   
