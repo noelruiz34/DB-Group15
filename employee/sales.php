@@ -273,15 +273,21 @@ tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 </style>
+
 <script>
-    function checkDateRange(){
+
+
+</script>
+<script>
+        function checkDateRange(){
         var start  = document.forms["dates"]['sales_start'].value;
         var end = document.forms["dates"]['sales_end'].value;
 
         console.log(start);
         console.log(end);
 
-        if (new Date(start) > new Date(end){
+        if (new Date(start) > new Date(end))
+        {
             alert("Start date must be before end date");
             return false;
         }
