@@ -9,7 +9,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script> 
-          function myFunction() {
+          function inValidOrder() {
             alert("Please enter a valid order number");
           }
 
@@ -85,7 +85,7 @@ td {
 <body>
 
 <form class="example" action='' method="post">
-  <input type="text" placeholder="Search.." name="search">
+  <input type="text" placeholder="Search.." name="search" required>
   <button type="submit" name="Search" ><i class="fa fa-search"></i></button>
 </form>
 
@@ -180,7 +180,7 @@ td {
           echo "</table>";
       }
       else{
-        echo "<script> myFunction() </script>";
+        echo "<script> inValidOrder() </script>";
       }
     }
     ?>
