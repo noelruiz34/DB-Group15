@@ -128,19 +128,10 @@
       ";
 
       
-      ?>
-      <select name = 'testing'>
-      <?php foreach($qty_arr as $value => $qty_arr) : ?>
-        <option value = "<?php echo $value ?>" <?php if ($_GET['cart_quantity'] == $value){echo 'select = "selected"';} ?> > <?php echo $value; ?> </option
-        <?php endforeach ?>
-        <?php
-        echo '/select';
-        echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
-        </form 
-        </td>";
+      
 
       
-      /*echo "
+      echo "
       <td>
       <form method='post' action=''>
       <input type = 'hidden' name = 'update_upc' value= ".$row['upc'].">
@@ -155,7 +146,7 @@
       echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
       </form>
       </td>
-      ";*/
+      ";
 
       
     
@@ -177,7 +168,7 @@
         $cart_total = $cart_total + $cart_p;
     }
   
-  //$cart_total = number_format($cart_total, 2);
+  $cart_total = number_format($cart_total, 2);
   if ($cart_total > 0.0)
   {
     echo "</table>";
