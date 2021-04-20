@@ -149,16 +149,11 @@
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>";
 
-      ?><select name = 'qtymod' id = 'add_upc'> <?php
+      
       for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        #echo ('<option selected = "selected" value = '. $row['cart_quantity'] . ' > ' . $row['cart_quantity'] . '</option');
         
-        #echo '<option value='.$h.'>'.$h.'</option>';
-        ?> 
-        
-          <option value = <?php $h ?> /option>
-        <?php
+        echo '<option value='.$h.'>'.$h.'</option>';
         
       }
       
@@ -285,11 +280,34 @@ if(isset($_POST['add_more_to_cart'])) {
        $int = $int +1;
    }
      
-   if ($int == 0) { 
+   if ($quantity > $row['cart_quantity'])
+   {
+      addmore();
+   }
+   else if ($quantity < $row['cart_quantity'])
+   {
+     takeout();
+   }
+   ob_end_clean();
+   checkEmpty($customer_id, $connect);
+   displayCart($customer_id, $connect);
+
+   function addmore()
+   {
+    $customer_id = $_SESSION['customer'];
+    $quantity = $_POST['qp'];
+    $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
+ 
+   $int = 0;
+ 
+    while($row = mysqli_fetch_array($qcheck)){
+        $int = $int +1;
+    }
+     if ($int == 0) { 
        echo"Item Successfully Added to Cart!";
        $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantity."')");
        
-   }
+        }
 
    else{
        if( $_POST['iquant'] >= ($int + $quantity)){
@@ -302,6 +320,37 @@ if(isset($_POST['add_more_to_cart'])) {
       ob_end_clean();
       checkEmpty($customer_id, $connect);
       displayCart($customer_id, $connect);
+   }
+   function takeout()
+   {
+    $customer_id = $_SESSION['customer'];
+    $quantity = $_POST['qp'];
+    $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['remove_upc']);
+ 
+   $int = 0;
+ 
+    while($row = mysqli_fetch_array($qcheck)){
+        $int = $int +1;
+    }
+      
+    if ($int == 0) { 
+        $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['remove_upc']."', '".$quantity."')");
+        
+    }
+ 
+    else{
+        if( $_POST['iquant'] >= ($int + $quantity)){
+           $connect->query("update shopping_cart set cart_quantity = cart_quantity - ".$quantity." where upc = ".$_POST['remove_upc']." and customer_id = ".$customer_id);
+            }
+        else{
+            echo "Remove Cart Error. Cannot Delete More Than Cart Quantity";
+           }
+       }
+       ob_end_clean();
+       checkEmpty($customer_id, $connect);
+       displayCart($customer_id, $connect);
+   }
+   
 }
 ?>
 </body>
