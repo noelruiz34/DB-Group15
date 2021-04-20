@@ -117,7 +117,7 @@
       $cart_p = round($cart_p, 2);
 
       $cart_p = $cart_p * $cart_qty;
-      $cart_p = number_format($cart_p, 2);
+      //$cart_p = number_format($cart_p, 2);
       if ($do_once == 0)
       {
         echo "<table>";
