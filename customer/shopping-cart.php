@@ -151,23 +151,7 @@
 
       
       echo "<input type = 'hidden' name = 'add_upc' value= ".$row['upc']."</td>";
-    for ($h = 1; $h <=($row['p_quantity'] - $row['cart_quantity']); $h++) 
-      {
-        
-        echo '<option value='.$h.'>'.$h.'</option>';
-        
-      }
-      
-        echo '</select>';
-        echo "<input type = 'submit' name = 'add_more_to_cart' value = 'Add'/>
-              </form>
-              </td>
-              ";
-
-        echo "</td>";
-
-       
-      echo "<td>";
+    
       $cart_p = $cart_p * $cart_qty;
       if($row['p_discount'] <= 0) {
           echo"
