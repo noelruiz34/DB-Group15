@@ -115,7 +115,7 @@
 
       $cart_p = $cart_p * $cart_disc;
       $cart_p = round($cart_p, 2);
-      
+
       $cart_p = $cart_p * $cart_qty;
       //$cart_p = number_format($cart_p, 2);
       if ($do_once == 0)
@@ -175,7 +175,7 @@
   {
     echo "</table>";
     echo "<br>
-      <h3 style='text-align:center;'>Total: $ ($cart_total, 2)  </h3>
+      <h3 style='text-align:center;'>Total: $ $cart_total  </h3>
 
       ";
     echo "<form method='post' action=''>
