@@ -174,12 +174,18 @@
       if($row['p_discount'] <= 0) {
           echo"
         <form method='post' action=''>
-         $" . $cart_p . "
+        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
+        $" . $cart_p . "
         ";
 
       } else {
             echo"
         <form method='post' action=''>
+        <input type = 'hidden' name = 'remove_upc' value= ".$row['upc'].">
+        <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+        <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
         <s>$$calcPreDisc</s> $" . $cart_p . " (-$row[p_discount]%)";
       }
       echo "</td>";
