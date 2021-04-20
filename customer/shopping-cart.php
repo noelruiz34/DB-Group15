@@ -129,7 +129,7 @@
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>
       ";  
-      for ($h = $row['cart_quantity']; $h >= 1; $h--) 
+      for ($h = 1; $h <= ($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         echo '<option value='.$h.'>'.$h.'</option>';
       }
