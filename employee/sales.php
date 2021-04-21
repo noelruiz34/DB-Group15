@@ -169,9 +169,11 @@
         
         $categories_array = array();
         $products_array = array();
+        $total_items_sold = 0;
 
         while($row=mysqli_fetch_array($product_join_result)) {
             $row_cost_total = $row['quantity_ordered'] *$row['p_price'];
+            $total_items_sold += $row['quantity_ordered'];
 
             if(!array_key_exists($row['p_category'],$categories_array)) {
                 $categories_array[$row['p_category']] = array($row['quantity_ordered'], $row_cost_total);
@@ -191,15 +193,18 @@
 
         }
         
-        echo "<h1>Summary for Date: $start_date to $end_date</h1>";
+        echo "<h1>Report for Date: $start_date to $end_date</h1>";
         if(mysqli_num_rows($product_join_result) == 0){
             echo "There are no sales in this date range!";
         }
         else {
+            echo "<font size='+2'> 
+                    Total Products Sold: $total_items_sold
+                </font>";
             echo "<div class='row'>";
             echo "<div class='column'>";
             echo "<h2>Sales by Category</h2>";
-        
+            echo "Category with Most Revenue: " . array_search(max($categories_array), $categories_array) . " with $" . number_format(max(max($categories_array)), 2) . " in sales";
                 echo "<table id='categoriesTable'>";
                 echo "<tr>
                 <th onclick='sortCategoriesTableStr(0)' style=color:#F44C67>Category </a></th>
@@ -219,7 +224,7 @@
     
             echo "<div class='column'>";
             echo "<h2>Sales by Product(UPC)</h2>";
-       
+            echo "Product with Most Revenue (UPC): " . array_search(max($products_array), $products_array) . " with $" . number_format(max(max($products_array)), 2) . " in sales";
                 echo "<table id='productTable'>";
                 echo "<tr>
                 <th onclick='sortProductsTableStr(0)' style=color:#ec0016> UPC </th>
