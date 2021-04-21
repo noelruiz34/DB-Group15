@@ -15,7 +15,7 @@
        }
     
     $employee_id = $_SESSION['employee'];
-    $ticket_id = $_POST['ticket_details'];
+    $ticket_id = $_SESSION['support_ticket_id'];
 
     function echoSupportTicketDetails($connect, $ticket_id) {
         $sql = "SELECT * FROM support_ticket where t_id = $ticket_id";
@@ -82,6 +82,8 @@
             }
             header("Location:/employee/support-tickets.php");
         }
+
+        unset($_SESSION['support_ticket_id']);
     ?>
 
 </body>

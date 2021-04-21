@@ -126,7 +126,7 @@
         <input type = "submit" name = "view_resolved_tickets" value = "View Resolved Tickets"/>
     </form>
 
-    <form action="/employee/support-ticket-details.php" method="post">
+    <form action="" method="post">
         <label> Search For Support Ticket (ID): </label><input type = "text" name = "ticket_details" class = "box" />
         <input type = "submit" name = "search_ticket" value = "Search"/> <br /> <br />
     </form>
@@ -154,6 +154,24 @@
             }
             else {
                 die("Query Failed!");
+            }
+        }
+
+        if(isset($_POST['search_ticket'])) {
+            $ticket_id = $_POST['ticket_details'];
+            $sql = "SELECT * FROM support_ticket where t_id = '$ticket_id'";
+            $result = mysqli_query($connect, $sql);
+
+            $ticket_rows = mysqli_num_rows($result);
+            if(!$result) {
+                echo "Support Ticket: " . $ticket_id . " was not found";
+            }
+            elseif($ticket_rows == 0) {
+                echo "Support Ticket: " . $ticket_id . " was not found";
+            }
+            else {
+                $_SESSION['support_ticket_id'] = $ticket_id;
+                header("Location: /employee/support-ticket-details.php");
             }
         }
     ?>
