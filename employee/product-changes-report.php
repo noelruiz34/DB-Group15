@@ -20,11 +20,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Product Changes History</title>
+	<title>Product Changes Report</title>
 </head>
 <body>
     <!-- use join tables to make the report -->
-    <h1>Product Changes History</h1>
+    <h1>Product Changes Report</h1>
     <a href = /employee/employee-portal.php> Back to Employee Portal </a> <br> <br>
     <form action='' method='post'>
         <input type = "submit" name = "view_all_updates" value = "View All Updates"/><br><br>
