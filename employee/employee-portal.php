@@ -100,7 +100,7 @@
         </tr>
         <tr>
             <td>
-                <button class="btn" onclick="location.href='/employee/product-changes-history.php'" type="button">View Product Changes History</button>
+                <button class="btn" onclick="location.href='/employee/product-changes-report.php'" type="button">View Product Changes Report</button>
             </td>
         </tr>
         <tr>
