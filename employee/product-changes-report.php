@@ -62,10 +62,7 @@
             }
             
             $update_result = mysqli_query($connect, $update_sql);
-            echo "console.log('$update_sql');";
-            if(!$update_result) {
-                die("Query failed!");
-            }
+
             if(mysqli_num_rows($update_result) == 0) {
                 $upper_attribute = strtoupper($search_attribute);
                 echo "There are no changes for $upper_attribute: $search_id!";
