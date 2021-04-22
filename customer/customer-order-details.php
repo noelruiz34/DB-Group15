@@ -102,6 +102,11 @@
 </head>
 
 <body>
+<div class='navbar'>
+        <ul>
+            <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon<img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+        </ul>
+    </div>
     <?php
         if(isset($_POST['order_details'])) {
             echoOrderDetails($connect, $order_id);
