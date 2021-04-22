@@ -98,10 +98,11 @@
                 <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                </tr> <form action='/employee/support-ticket-details.php' method=post>
+                <td><form action='/employee/support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
                 <input type = submit name = resolved_details_button value = 'Details'/><br />
-                </form>";
+                </form></td>
+                </tr>";
             }
             echo "</table>";
         } 
@@ -110,7 +111,7 @@
 
 <!DOCTYPE html>
 <html>
-<style>
+    <style>
     table{
     border: 1px solid black;
     margin-top: 5%;
