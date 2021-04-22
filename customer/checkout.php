@@ -55,10 +55,36 @@
 function displayCart($cust_id, $conn)
   {
     ob_start();
+
+    $shipping_billing_sql = "SELECT * FROM Point_of_Sale.shipping_address INNER JOIN Point_of_Sale.billing_info
+     ON Point_of_Sale.shipping_address.customer_id = Point_of_Sale.billing_info.customer_id
+     WHERE shipping_address.customer_id = $cust_id";
+
+     $shipping_billing_result = mysqli_query($conn, $shipping_billing_sql);
+     if(!$shipping_billing_result) {
+       die("shipping_billing query failed!");
+     }
+
+     $shipping_billing_row = mysqli_fetch_array($shipping_billing_result);
+
+     echo "<p style='text-align:center'> Shipping Address </p>";
+     echo "<table>";
+     echo "<tr><th>Street</th><th>City</th><th>Zip</th><th>State</th></tr>";
+     echo "<tr><td>$shipping_billing_row[street]</td><td>$shipping_billing_row[city]</td><td>$shipping_billing_row[zip]</td><td>$shipping_billing_row[state]</td></tr>";
+     echo "</table> <br>";
+
+     echo "<p style='text-align:center'> Payment Method </p>";
+     echo "<table>";
+     echo "<tr><th>Card Number</th><th>Expiration Date</th><th>CVV</th></tr>";
+     $last_four_digits = substr($shipping_billing_row['cc_num'], -4);
+     echo "<tr><td>Ending in $last_four_digits</td><td>$shipping_billing_row[exp_date]</td><td>$shipping_billing_row[cvv]</td></tr>";
+     echo "</table> <br>";
+
     $cart_sql = "SELECT *, p_name, p_price, p_discount FROM shopping_cart INNER JOIN product ON shopping_cart.upc=product.upc WHERE customer_id=$cust_id";
     
     $cart_results = mysqli_query($conn, $cart_sql);
     $cart_total = 0.0;
+    echo "<p style='text-align:center'> Cart Total </p>";
     echo "<table>";
     echo "<tr><th> Product Name </th><th> Quantity </th><th> Price </th></tr> ";
     
@@ -116,10 +142,8 @@ function displayCart($cust_id, $conn)
       }
      echo '<a href="/customer/shopping-cart.php"><p style="text-align:center;">Return to shopping cart</p></a>';
      echo '<a href="/index.php"><p style="text-align:center;">Return to home</p></a> <br>';
+
   }
-  
-    
-  
   
 
 
