@@ -54,7 +54,7 @@
            
             echo "<table>";
             echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
-            while($row=mysqli_fetch_array($result)) {
+            while($row = mysqli_fetch_array($result)) {
                 echo "<tr>
                 <td>$row[update_id]</td>
                 <td>$row[update_time]</td>
@@ -78,7 +78,7 @@
             else {
                 $search_attribute = "employee_id";
             }
-            
+
             $update_sql = "select * from Point_of_Sale.product_update where $search_attribute=$search_id";
             $result = $connect->query($update_sql);
 
@@ -90,9 +90,12 @@
                 echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
                 while($row = mysqli_fetch_array($result)) {
                     echo "<tr>
-                    <td>$row[update_id]</td>
-                    <td>$row[update_time]</td>
-                    </tr>";
+                        <td>$row[update_id]</td>
+                        <td>$row[update_time]</td>
+                        <td>$row[employee_id]</td>
+                        <td>$row[upc]</td>
+                        <td>$row[update_desc]</td>
+                        </tr>";
                 }
                 echo "</table>";
             }
