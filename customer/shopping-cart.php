@@ -143,9 +143,15 @@
       $h = 0;
       for ($h = 0; $h <= ($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        echo '<option value='.$h.'>'.$h.'</option>';
+        #echo '<option value='.$h.'>'.$h.'</option>';
+        echo "<option value='".$h. "' ";
+        if ($h == $cart_qty)
+        {
+          echo "selected";
+        }
+        echo ">".$h."</option>";
       }
-      echo '<option value'. $cart_qty . '>' .$cart_qty. '</option>';
+      
       echo '</select>';
       echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
       </form>
