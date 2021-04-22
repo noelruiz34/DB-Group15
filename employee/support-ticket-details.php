@@ -10,9 +10,9 @@
     }
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
-       {
-           header("Location:/employee/employee-login.php");  
-       }
+    {
+       header("Location:/employee/employee-login.php");  
+    }
     
     $employee_id = $_SESSION['employee'];
     $ticket_id = $_SESSION['support_ticket_id'];
@@ -56,6 +56,17 @@
 
 <!DOCTYPE html>
 <html>
+<style>
+    table{
+    border: 1px solid black;
+    margin-top: 5%;
+    width: 600px;
+    }
+    td {
+        border: 1px solid black;
+        border-spacing: 10px;
+    }
+</style>
 <head>
 	<title>Support Ticket Details</title>
 </head>
