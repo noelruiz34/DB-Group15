@@ -98,7 +98,7 @@
                 <td>". $row['t_time']. "</td>
                 <td>" . $row ['t_category'] . "</td>
                 <td>" . $row ['t_status'] . "</td>
-                </tr><form action='/employee/support-ticket-details.php' method=post>
+                </tr> <form action='/employee/support-ticket-details.php' method=post>
                 <input type = hidden name = ticket_details value=$row[t_id]>
                 <input type = submit name = resolved_details_button value = 'Details'/><br />
                 </form>";
