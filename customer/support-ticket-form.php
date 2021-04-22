@@ -91,7 +91,7 @@
             <option value='Other'> Other</option>
         </select> <br> <br>
         <label style='font-size:20px;'  for="ticket_desc"> Please give us a short description of your issue (750 characters max): </label> <br>
-        <textarea style='width:100%; resize: none;' id="ticket_desc" name ="ticket_desc" rows="4" cols="50" maxlength="750"></textarea> <br><br>
+        <textarea style='width:100%; resize: none;' id="ticket_desc" name ="ticket_desc" rows="4" cols="50" maxlength="750" required></textarea> <br><br>
         <input type="hidden" name = "order_id" value = <?php echo $order_id ?>>
         <input type="submit" name = "submit_ticket" value = "Submit Ticket">
         </form>
