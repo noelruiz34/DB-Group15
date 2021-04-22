@@ -167,14 +167,14 @@ if(isset($_POST['pay'])) {
   $enough_stock = true;
   while($row=mysqli_fetch_array($cart_result)) { #this loop checks to make sure we have enough stock to carry out transaction
     if($row['p_quantity'] == 0) {
-      $error = "Sorry! Product $row[p_name] is out of stock!"
-      echo "<script> myFunction($error) </script>"
+      $error = "Sorry! Product $row[p_name] is out of stock!";
+      echo "<script> myFunction($error) </script>";
       // echo "Sorry! Product $row[p_name] is out of stock! <br>";
       $enough_stock = false;
     }
     elseif($row['cart_quantity'] > $row['p_quantity']) {
-      $error = "Sorry! You are ordering more $row[p_name] than we have in stock! We currently have $row[p_quantity] in stock."
-      echo "<script> myFunction($error) </script>"
+      $error = "Sorry! You are ordering more $row[p_name] than we have in stock! We currently have $row[p_quantity] in stock.";
+      echo "<script> myFunction($error) </script>";
       // echo "Sorry! You are ordering more $row[p_name] than we have in stock! We currently have $row[p_quantity] in stock. <br>";
       $enough_stock = false;
     }
