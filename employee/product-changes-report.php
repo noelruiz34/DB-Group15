@@ -89,9 +89,6 @@
                     echo "<tr>
                     <td>$row[update_id]</td>
                     <td>$row[update_time]</td>
-                    <td>$row[employee_id]</td>
-                    <td>$row[upc]</td>
-                    <td>$row[update_desc]</td>
                     </tr>";
                 }
                 echo "</table>";
