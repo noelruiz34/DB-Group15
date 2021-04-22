@@ -145,12 +145,13 @@
       {
         echo '<option value='.$h.'>'.$h.'</option>';
       }
+      echo '<option value'. $cart_qty . '>' .$cart_qty. '</option>';
       echo '</select>';
       echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
       </form>
       </td>
       ";
-      $h = $cart_qty;
+      
 
       
       $table_p = $cart_p;
