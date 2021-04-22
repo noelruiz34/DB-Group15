@@ -141,7 +141,7 @@
       <select name = qp>
       ";  
       $h = 0;
-      for ($h = 0; $h <= ($row['p_quantity'] - $row['cart_quantity']); $h++) 
+      for ($h = 0; $h <= ($row['p_quantity']); $h++) 
       {
         #echo '<option value='.$h.'>'.$h.'</option>';
         echo "<option value='".$h. "' ";
