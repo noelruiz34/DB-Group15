@@ -62,7 +62,7 @@
             }
             
             $update_result = mysqli_query($connect, $update_sql);
-            echo "console.log('$update_result');";
+            echo "console.log('$update_sql');";
             if(!$update_result) {
                 die("Query failed!");
             }
