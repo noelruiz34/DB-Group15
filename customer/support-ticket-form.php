@@ -57,6 +57,11 @@
 </head>
 
 <body>
+<div class='navbar'>
+        <ul>
+            <li style='float:left'><a href='/index.php' style='font-weight:900;'>Omazon<img src='/images/favicon/favicon-192.png' width='16' height='16'></a></li>
+        </ul>
+    </div>
     <h1 style='text-align:center; margin:2px; margin-top:8vh;'> Support Ticket Form </h1><br>
     <?php $path = $_SERVER['DOCUMENT_ROOT']; $path .= '/error-message.php'; require_once $path; ?>
     <?php
