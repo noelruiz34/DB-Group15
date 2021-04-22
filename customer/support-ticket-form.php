@@ -20,6 +20,12 @@
 
 <!DOCTYPE html>
 <html>
+<script> 
+          function closeTab() {
+            window.close();
+          }
+
+</script>
 <head>
 <link href="/styles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -71,6 +77,7 @@
                 else {
                     $_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
                     header("Location:/customer/support-ticket-form.php");
+                    echo "<script> closeTab() </script>"
                 }
             }
        ?>
