@@ -32,13 +32,14 @@
     <a href = /employee/employee-portal.php> Back to Employee Portal </a> <br> <br>
     <form action='' method='post'>
         <input type = "submit" name = "view_all_updates" value = "View All Updates"/><br><br>
+  
+</form>
+<form action='' method='post'>
         <label for="search"> Search Changes History By </label>
         <select id="method" name = "search_method">
             <option value="upc"> UPC</option>
             <option value="e_id"> Employee ID</option>
         </select>
-</form>
-<form action='' method='post'>
         <label> Search:  </label><input type = "text" name = "search_id" class = "box" />
         <input type = "submit" name = "history_search" value = "Search"/>
         <br> <br>
