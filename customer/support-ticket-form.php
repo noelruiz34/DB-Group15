@@ -75,7 +75,7 @@
                 }
                 else {
                     $_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
-                    header("Location:/customer/support-ticket-form.php");
+                    // header("Location:/customer/support-ticket-form.php");
                     echo "<script> closeTab() </script>";
                 }
             }
