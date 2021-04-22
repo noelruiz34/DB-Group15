@@ -37,10 +37,12 @@
             <option value="upc"> UPC</option>
             <option value="e_id"> Employee ID</option>
         </select>
+</form>
+<form action='' method='post'>
         <label> Search:  </label><input type = "text" name = "search_id" class = "box" />
         <input type = "submit" name = "history_search" value = "Search"/>
         <br> <br>
-    </form>
+</form>
     
     <?php
         if(isset($_POST['view_all_updates'])) {
