@@ -43,10 +43,34 @@
     </form>
     
     <?php
-        if(isset($_POST['history_search']) || isset($_POST['view_all_updates'])) {
+        if(isset(isset($_POST['view_all_updates'])) {
+
+            $update_sql = "select * from Point_of_Sale.product_update";
+            
+            $update_result = $connect->query($update_sql);
+
+           
+            echo "<table>";
+            echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
+            while($row=mysqli_fetch_array($update_result)) {
+                echo "<tr>
+                <td>$row[update_id]</td>
+                <td>$row[update_time]</td>
+                <td>$row[employee_id]</td>
+                <td>$row[upc]</td>
+                <td>$row[update_desc]</td>
+                </tr>";
+            }
+            echo "</table>";
+            
+        }
+
+        if(isset($_POST['history_search'])
+        {
             $search_attribute = "";
             $search_id = $_POST['search_id'];
 
+            $update_sql = "select * from Point_of_Sale.product_update where $search_attribute=$search_id";
             if($_POST['search_method'] == "upc") {
                 $search_attribute = "upc";
             }
@@ -54,17 +78,9 @@
                 $search_attribute = "employee_id";
             }
 
-            if(isset($_POST['view_all_updates'])) {
-                $update_sql = "SELECT * FROM product_update";
-            }
-            else {
-                $update_sql = "SELECT * FROM product_update WHERE $search_attribute=$search_id";
-            }
-            
             $update_result = $connect->query($update_sql);
 
             if(mysqli_num_rows($update_result) == 0) {
-                $upper_attribute = strtoupper($search_attribute);
                 echo "There are no changes for $upper_attribute: $search_id!";
             }
             else{
@@ -81,7 +97,6 @@
                 }
                 echo "</table>";
             }
-            
         }
 
     ?>
