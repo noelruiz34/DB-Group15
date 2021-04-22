@@ -15,7 +15,7 @@
     table{
     border: 1px solid black;
     margin-top: 5%;
-    width: 400px;
+    width: 600px;
     }
     td {
         border: 1px solid black;
