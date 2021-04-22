@@ -46,6 +46,7 @@
         if(isset($_POST['history_search']) || isset($_POST['view_all_updates'])) {
             $search_attribute = "";
             $search_id = $_POST['search_id'];
+
             if($_POST['search_method'] == "upc") {
                 $search_attribute = "upc";
             }
@@ -58,7 +59,6 @@
             }
             else {
                 $update_sql = "SELECT * FROM product_update WHERE $search_attribute=$search_id";
-                echo $update_sql;
             }
             
             $update_result = mysqli_query($connect, $update_sql);
@@ -68,6 +68,7 @@
             }
             if(mysqli_num_rows($update_result) == 0) {
                 $upper_attribute = strtoupper($search_attribute);
+                echo "console.log('$update_result');";
                 echo "There are no changes for $upper_attribute: $search_id!";
             }
             else{
