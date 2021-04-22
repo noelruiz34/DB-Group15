@@ -61,7 +61,7 @@
                 $update_sql = "SELECT * FROM product_update WHERE $search_attribute=$search_id";
             }
             
-            $update_result = mysqli_query($connect, $update_sql);
+            $update_result = $connect->query($update_sql);
 
             if(mysqli_num_rows($update_result) == 0) {
                 $upper_attribute = strtoupper($search_attribute);
