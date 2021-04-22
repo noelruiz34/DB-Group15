@@ -49,12 +49,12 @@
         if(isset($_POST['view_all_updates'])) {
 
             $update_sql = "select * from Point_of_Sale.product_update";
-            $update_result = $connect->query($update_sql);
+            $result = $connect->query($update_sql);
 
            
             echo "<table>";
             echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
-            while($row=mysqli_fetch_array($update_result)) {
+            while($row=mysqli_fetch_array($result)) {
                 echo "<tr>
                 <td>$row[update_id]</td>
                 <td>$row[update_time]</td>
@@ -80,15 +80,15 @@
                 $search_attribute = "employee_id";
             }
 
-            $update_result = $connect->query($update_sql);
+            $result = $connect->query($update_sql);
 
-            if(mysqli_num_rows($update_result) == 0) {
+            if(mysqli_num_rows($result) == 0) {
                 echo "There are no changes for $upper_attribute: $search_id!";
             }
             else{
                 echo "<table>";
                 echo "<tr><td> Update ID </td><td> Update Time </td><td> Employee ID </td><td> UPC </td><td> Update Description </td></tr>";
-                while($row=mysqli_fetch_array($update_result)) {
+                while($row=mysqli_fetch_array($result)) {
                     echo "<tr>
                     <td>$row[update_id]</td>
                     <td>$row[update_time]</td>
