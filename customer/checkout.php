@@ -54,8 +54,6 @@
     displayCart($customer_id, $connect);
 function displayCart($cust_id, $conn)
   {
-    
-
     $shipping_billing_sql = "SELECT * FROM Point_of_Sale.shipping_address INNER JOIN Point_of_Sale.billing_info
      ON Point_of_Sale.shipping_address.customer_id = Point_of_Sale.billing_info.customer_id
      WHERE shipping_address.customer_id = $cust_id";
