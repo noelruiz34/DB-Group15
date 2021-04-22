@@ -58,6 +58,7 @@
             }
             else {
                 $update_sql = "SELECT * FROM product_update WHERE $search_attribute=$search_id";
+                echo $update_sql;
             }
             
             $update_result = mysqli_query($connect, $update_sql);
