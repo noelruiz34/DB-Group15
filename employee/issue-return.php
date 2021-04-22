@@ -55,6 +55,18 @@
 
 <!DOCTYPE html>
 <html>
+<html>
+    <style>
+    table{
+    border: 1px solid black;
+    margin-top: 5%;
+    width: 600px;
+    }
+    td {
+        border: 1px solid black;
+        border-spacing: 10px;
+    }
+</style>
 <head>
 	<title>Issue Return</title>
 </head>
