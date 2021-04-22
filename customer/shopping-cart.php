@@ -140,10 +140,16 @@
       <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">
       <select name = qp>
       ";  
+      ?> 
+      <label for ='iquant'></label>
+      <select id = "iquant">
+      <?php
       for ($h = 0; $h <= ($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
-        echo '<option value='.$h.'>'.$h.'</option>';
-        echo '<option value='. $cart_quantity . 'selected> </option>';
+        ?> 
+        <option value=. $h . > </option>
+        <option value = . $cart_quantity . selected> </option>
+        <?php
       }
       echo '</select>';
       echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
