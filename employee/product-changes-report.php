@@ -43,10 +43,9 @@
     </form>
     
     <?php
-        if(isset(isset($_POST['view_all_updates'])) {
+        if(isset($_POST['view_all_updates'])) {
 
             $update_sql = "select * from Point_of_Sale.product_update";
-            
             $update_result = $connect->query($update_sql);
 
            
@@ -65,7 +64,7 @@
             
         }
 
-        if(isset($_POST['history_search'])
+        if(isset($_POST['history_search']))
         {
             $search_attribute = "";
             $search_id = $_POST['search_id'];
