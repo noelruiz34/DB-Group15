@@ -54,7 +54,7 @@
     displayCart($customer_id, $connect);
 function displayCart($cust_id, $conn)
   {
-    ob_start();
+    
 
     $shipping_billing_sql = "SELECT * FROM Point_of_Sale.shipping_address INNER JOIN Point_of_Sale.billing_info
      ON Point_of_Sale.shipping_address.customer_id = Point_of_Sale.billing_info.customer_id
@@ -129,6 +129,7 @@ function displayCart($cust_id, $conn)
     $cart_total = number_format($cart_total, 2);
     if ($cart_total > 0.0)
     {
+      ob_start();
       echo "<td><form method='post' action=''>
     <input style='width:50%; margin:auto; display:block;' type = 'submit' name = 'pay' value = 'Pay'/>
     </form>
@@ -209,7 +210,9 @@ if(isset($_POST['pay'])) {
     die("Could not clear cart!");
   }
 
+  ob_end_clean();
   echo "<br><h3 style='text-align:center;'>Purchase Complete! Thank you!</h3>";
+  echo '<a href="/index.php"><p style="text-align:center;">Return to home</p></a> <br>';
 
   
 }
