@@ -143,7 +143,7 @@
       for ($h = 0; $h <= ($row['p_quantity'] - $row['cart_quantity']); $h++) 
       {
         echo '<option value='.$h.'>'.$h.'</option>';
-        echo '<option value='. $cart_quantity . '</option>';
+        echo '<option value='. $cart_quantity . 'selected> </option>';
       }
       echo '</select>';
       echo "<input type = 'submit' name = 'update_cart' value = 'Update'/>
