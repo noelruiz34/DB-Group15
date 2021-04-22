@@ -83,6 +83,7 @@
             $result = $connect->query($update_sql);
 
             if(mysqli_num_rows($result) == 0) {
+                $upper_attribute = strtoupper($_POST['search_method']);
                 echo "There are no changes for $upper_attribute: $search_id!";
             }
             else{
