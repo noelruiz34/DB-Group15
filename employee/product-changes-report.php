@@ -38,7 +38,7 @@
         <label for="search"> Search Changes History By </label>
         <select id="method" name = "search_method">
             <option value="upc"> UPC</option>
-            <option value="e_id"> Employee ID</option>
+            <option value="Employee ID"> Employee ID</option>
         </select>
         <label> Search:  </label><input type = "text" name = "search_id" class = "box" />
         <input type = "submit" name = "history_search" value = "Search"/>
