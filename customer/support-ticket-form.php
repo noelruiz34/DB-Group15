@@ -15,7 +15,11 @@
        }
     
     $customer_id = $_SESSION['customer'];
-    $order_id = $_POST['order_detail_id'];
+    if(isset($_POST['order_detail_id'])) {
+        $order_id = $_POST['order_detail_id'];
+        unset($_SESSION['ticket_submitted']);
+    }
+    
 ?>
 
 <!DOCTYPE html>
@@ -74,18 +78,19 @@
                     die("Support Ticket Insert failed!");
                 }
                 else {
-                    echo "<div style='width:50%; margin:0 auto; text-align:center;'> 
+                     /*echo "<div style='width:50%; margin:0 auto; text-align:center;'> 
                         <h3> Your support ticket for Order #: $order_id has been submitted! </h3>
                         <a href = '/customer/customer-orders.php'> Back to My Orders </a>
-                        </div>";
-                    //$_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
-                    //header("Location:/customer/customer-orders.php");
+                        </div>"; */
+                    $_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
+                    $_SESSION['ticket_submitted'] = true;
+                    header("Location:/customer/support-ticket-form.php");
                     // echo "<script> closeTab() </script>";
                 }
             }
        ?>
     <div style='width:50%; margin:0 auto; text-align:center;'>
-        <?php if(!isset($_POST['submit_ticket'])) { ?>
+        <?php if($_SESSION['ticket_submitted'] != true) { ?>
         <h3> This form is for Order #<?php echo $order_id ?> </h3>
         <form action='' method='post'>
         <label style='font-size:20px;' for='ticket_category'> Reason for Support Request: </label>
@@ -102,7 +107,7 @@
         <?php } ?>
         </form>
     </div>
-
+        
 </body>
 
        
