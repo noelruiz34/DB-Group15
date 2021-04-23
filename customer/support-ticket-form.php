@@ -74,13 +74,18 @@
                     die("Support Ticket Insert failed!");
                 }
                 else {
-                    $_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
-                    // header("Location:/customer/support-ticket-form.php");
-                    echo "<script> closeTab() </script>";
+                    echo "<div style='width:50%; margin:0 auto; text-align:center;'> 
+                        <h3> Your support ticket for Order #: $order_id has been submitted! </h3>
+                        <a href = '/customer/customer-orders.php'> Back to My Orders </a>
+                        </div>";
+                    //$_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
+                    //header("Location:/customer/customer-orders.php");
+                    // echo "<script> closeTab() </script>";
                 }
             }
        ?>
     <div style='width:50%; margin:0 auto; text-align:center;'>
+        <?php if(!isset($_POST['submit_ticket'])) { ?>
         <h3> This form is for Order #<?php echo $order_id ?> </h3>
         <form action='' method='post'>
         <label style='font-size:20px;' for='ticket_category'> Reason for Support Request: </label>
@@ -93,7 +98,8 @@
         <label style='font-size:20px;'  for="ticket_desc"> Please give us a short description of your issue (750 characters max): </label> <br>
         <textarea style='width:100%; resize: none;' id="ticket_desc" name ="ticket_desc" rows="4" cols="50" maxlength="750" required></textarea> <br><br>
         <input type="hidden" name = "order_id" value = <?php echo $order_id ?>>
-        <input type="submit" name = "submit_ticket" value = "Submit Ticket">
+        <input type='submit' name = 'submit_ticket' id = 'submit_ticket' value = 'Submit Ticket'>
+        <?php } ?>
         </form>
     </div>
 
