@@ -177,9 +177,34 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     }
     echo'<input style="margin-top:32px" type="submit" name="catsel" vlaue="Choose options">';
     echo '</form></div>';
-    function loadProducts()
+
+    if(isset($_POST['catsel']))
     {
+
+        $lower = 0;
+                        
+            if(isset($_POST['lp']))
+            {
+                $lower = $_POST['lp'];
+            }
+
+            if(isset($_POST['up']))
+            {
+                $upper = $_POST['up'];
+            }
+
+            if ($lower > $upper)
+            {
+                echo"Max price must be higher than Min price.";
+                $_SESSION['messages'][] = 'Max price must be higher than Min price.';
+                header("Location:/product-catalog.php");
+                
+            }
+            else
+            {
+//echo ($_POST['categories']);
         $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+            
         echo "<table style='width:60%'>";
         echo "<tr><th> Name </th><th> Price </th><th> UPC </th><th></th></tr>";
        // echo (mysqli_num_rows($result2));
@@ -229,35 +254,6 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
         }
         }
         echo "</table>";
-    }
-
-    if(isset($_POST['catsel']))
-    {
-
-        $lower = 0;
-                        
-            if(isset($_POST['lp']))
-            {
-                $lower = $_POST['lp'];
-            }
-
-            if(isset($_POST['up']))
-            {
-                $upper = $_POST['up'];
-            }
-
-            if ($lower > $upper)
-            {
-                echo"Max price must be higher than Min price.";
-                $_SESSION['messages'][] = 'Max price must be higher than Min price.';
-                header("Location:/product-catalog.php");
-                
-            }
-            else
-            {
-//echo ($_POST['categories']);
-        
-        loadProducts();
     }
 
 
