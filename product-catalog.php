@@ -158,7 +158,81 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     $result = $connect->query("select category_name from product_category");
   
 
+             function loadProducts(){
+                $lower = 0;
+                        
+                if(isset($_POST['lp']))
+                {
+                    $lower = $_POST['lp'];
+                }
+    
+                if(isset($_POST['up']))
+                {
+                    $upper = $_POST['up'];
+                }
+    
+                if ($lower > $upper)
+                {
+                    echo"Max price must be higher than Min price.";
+                    $_SESSION['messages'][] = 'Max price must be higher than Min price.';
+                    header("Location:/product-catalog.php");
+                    
+                }
+                else
+                {
+    //echo ($_POST['categories']);
+            $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
                 
+            echo "<table style='width:60%'>";
+            echo "<tr><th> Name </th><th> Price </th><th> UPC </th><th></th></tr>";
+           // echo (mysqli_num_rows($result2));
+            while($row = mysqli_fetch_array($result3)){
+    
+                $realp = $row['p_price'];
+                if($row['p_discount'] > 0)
+                {
+                $realp =  number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
+                }
+                if($realp >= $lower && $realp <= $upper)
+                {
+                echo "<tr>
+                <td>" . $row['p_name'] . "</td>";
+                if($row['p_discount'] <= 0) {
+                    echo "<td>$" . number_format($row['p_price'],2) . "</td>";
+                }
+                else {
+                    $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
+                    echo "<td><s>$$row[p_price]</s> $$discountPrice (-$row[p_discount]%)";
+                }
+                echo "<td>" . $row['upc'] . "</td>
+    
+                
+                <td><form method='post' action=''>
+                <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
+                <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
+               
+                if ($row['p_quantity'] > 0) {
+                    echo '<select name = qp>';
+                    for ($h = 1; $h <=$row['p_quantity']; $h++) 
+                    {
+                    echo '<option value='.$h.'>'.$h.'</option>';
+                    }
+                    echo '</select>';
+    
+    
+                    echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />";
+                } else {
+                    echo "<p style='color:#ec0016;'>Out of Stock</p>";
+                }
+                echo "</td>
+                </form>
+                </tr>";
+            }
+    
+            }
+            }
+            echo "</table>";
+             }   
             echo"<div class='shade-content' style='width:20%; margin: 0 auto; margin-bottom: 50px; padding-top: 45px; padding-bottom:35px;'><h2>View Products</h2><form action='' method='post'>";
 
             echo "Min Price: <input type='number' min='0' max='1000000' id='lp' name = 'lp' value='0'>";
@@ -181,79 +255,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     if(isset($_POST['catsel']))
     {
 
-        $lower = 0;
-                        
-            if(isset($_POST['lp']))
-            {
-                $lower = $_POST['lp'];
-            }
-
-            if(isset($_POST['up']))
-            {
-                $upper = $_POST['up'];
-            }
-
-            if ($lower > $upper)
-            {
-                echo"Max price must be higher than Min price.";
-                $_SESSION['messages'][] = 'Max price must be higher than Min price.';
-                header("Location:/product-catalog.php");
-                
-            }
-            else
-            {
-//echo ($_POST['categories']);
-        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
-            
-        echo "<table style='width:60%'>";
-        echo "<tr><th> Name </th><th> Price </th><th> UPC </th><th></th></tr>";
-       // echo (mysqli_num_rows($result2));
-        while($row = mysqli_fetch_array($result3)){
-
-            $realp = $row['p_price'];
-            if($row['p_discount'] > 0)
-            {
-            $realp =  number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
-            }
-            if($realp >= $lower && $realp <= $upper)
-            {
-            echo "<tr>
-            <td>" . $row['p_name'] . "</td>";
-            if($row['p_discount'] <= 0) {
-                echo "<td>$" . number_format($row['p_price'],2) . "</td>";
-            }
-            else {
-                $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
-                echo "<td><s>$$row[p_price]</s> $$discountPrice (-$row[p_discount]%)";
-            }
-            echo "<td>" . $row['upc'] . "</td>
-
-            
-            <td><form method='post' action=''>
-            <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
-            <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
-           
-            if ($row['p_quantity'] > 0) {
-                echo '<select name = qp>';
-                for ($h = 1; $h <=$row['p_quantity']; $h++) 
-                {
-                echo '<option value='.$h.'>'.$h.'</option>';
-                }
-                echo '</select>';
-
-
-                echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />";
-            } else {
-                echo "<p style='color:#ec0016;'>Out of Stock</p>";
-            }
-            echo "</td>
-            </form>
-            </tr>";
-        }
-
-        }
-        }
-        echo "</table>";
+        loadProducts();
     }
 
 
