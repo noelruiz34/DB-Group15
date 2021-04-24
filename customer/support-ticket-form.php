@@ -82,7 +82,7 @@
                         <h3> Your support ticket for Order #: $order_id has been submitted! </h3>
                         <a href = '/customer/customer-orders.php'> Back to My Orders </a>
                         </div>"; */
-                    $_SESSION['messages'][] = "Your support ticket for Order #:$order_id has been submitted!";
+                    $_SESSION['messages'][] = "Your support ticket for Order #$order_id has been submitted!";
                     $_SESSION['ticket_submitted'] = true;
                     header("Location:/customer/support-ticket-form.php");
                     // echo "<script> closeTab() </script>";

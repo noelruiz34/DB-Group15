@@ -46,6 +46,12 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
 	<meta name="msapplication-config" content="/images/favicon/browserconfig.xml">
 	<!-- ****** faviconit.com favicons ****** -->
 
+    <style>
+  .hide { position:absolute; top:-1px; left:-1px; width:1px; height:1px; }
+</style>
+
+<iframe name="hiddenFrame" class="hide"></iframe>
+
 	<title>Omazon.com: The Point-Of-Sale System For All Your Needs</title>
 	<title>Product Catalog | Omazon.com</title>
 </head>
@@ -85,6 +91,8 @@ ob_start(); //added this line for login redirect hopefully it doesn't mess anyth
     
     <br>
     <?php
+
+
         /*
          echo" <html>
       <h2 style='text-align:left;'>Popular Items!</h2>
@@ -144,15 +152,36 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
 
            
         }
-        echo "</table>";*/
+        echo "</table>";
         ?>
 
 
 
 
-    <?php
+    <?php*/
 
+    $_SESSION['catty'];
+    $_SESSION['ubnd'];
+    $_SESSION['lbnd'];
+
+    if(isset($_POST['catsel']))
+{
+    $_SESSION['catty'] = $_POST['categories'];
+    $_SESSION['ubnd'] = $_POST['up'];
+    $_SESSION['lbnd'] =  $_POST['lp'];
     
+}
+
+if(!isset($_SESSION['catty']))
+{
+
+        $_SESSION['catty'] = 'All';
+        $_SESSION['lbnd'] = 0;
+        $_SESSION['ubnd'] =  1000000;
+    
+    
+}
+
 
 
     $result = $connect->query("select category_name from product_category");
@@ -161,39 +190,57 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
                 
             echo"<div class='shade-content' style='width:20%; margin: 0 auto; margin-bottom: 50px; padding-top: 45px; padding-bottom:35px;'><h2>View Products</h2><form action='' method='post'>";
 
-            echo "Min Price: <input type='number' min='0' max='1000000' id='lp' name = 'lp' value='0'>";
+            echo "Min Price: <input type='number' min='0' max='1000000' id='lp' name = 'lp' value=".$_SESSION['lbnd'].">";
+
+
+
+
 
             
-            echo "Max Price: <input type='number' min='' max='1000000' id='up' name = 'up'  value='1000000'>";
-            
+            echo "Max Price: <input type='number' min='' max='1000000' id='up' name = 'up'  value=".$_SESSION['ubnd'].">";
+               
             echo "Choose Category:
     <select id='categories' name='categories' required>";
+    echo "<option value='All'";
+    if ($_SESSION['catty'] == 'All') {
+        echo "selected";
+    }    
+    echo ">All</option>";
     while ($catRow = mysqli_fetch_array($result)) {
         echo "<option value='" . $catRow['category_name'] . "' ";
-        if ($catRow['category_name'] == $row['p_category']) {
+        if ($catRow['category_name'] == $_SESSION['catty']) {
             echo "selected";
         }
         echo ">" . $catRow['category_name'] . "</option>";
     }
-    echo'<input style="margin-top:32px" type="submit" name="catsel" vlaue="Choose options">';
+    
+    echo "<option value='Clearance'";
+    if ($_SESSION['catty'] == 'Clearance') {
+        echo "selected";
+    }    
+    echo ">Clearance</option>";
+    echo'<input style="margin-top:32px" type="submit" name="catsel" value="Choose options">';
     echo '</form></div>';
+  
 
-    if(isset($_POST['catsel']))
+if(isset($_POST['catsel']))
+{
+    $_SESSION['catty'] = $_POST['categories'];
+    $_SESSION['ubnd'] = $_POST['up'];
+    $_SESSION['lbnd'] =  $_POST['lp'];
+    
+}
+
+    
+    $upper = $_SESSION['ubnd'];
+    $lower = $_SESSION['lbnd'];
+
+
+    if(isset($_SESSION['catty']))
     {
-
-        $lower = 0;
-                        
-            if(isset($_POST['lp']))
-            {
-                $lower = $_POST['lp'];
-            }
-
-            if(isset($_POST['up']))
-            {
-                $upper = $_POST['up'];
-            }
-
-            if ($lower > $upper)
+              
+            
+            if ($_POST['lp']> $_POST['up'])
             {
                 echo"Max price must be higher than Min price.";
                 $_SESSION['messages'][] = 'Max price must be higher than Min price.';
@@ -202,14 +249,26 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             }
             else
             {
-//echo ($_POST['categories']);
-        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+
             
+
+        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "'.$_SESSION['catty'].'" and  p_listed=1');
+        if ($_SESSION['catty'] == 'All')
+        {
+            $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_listed=1 order by p_name asc');
+        }
+
+        if ($_SESSION['catty'] == 'Clearance')
+        {
+            $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_listed=1 and p_discount >20');
+        }
+
         echo "<table style='width:60%'>";
         echo "<tr><th> Name </th><th> Price </th><th> UPC </th><th></th></tr>";
        // echo (mysqli_num_rows($result2));
+       $int = 0;
         while($row = mysqli_fetch_array($result3)){
-
+                
             $realp = $row['p_price'];
             if($row['p_discount'] > 0)
             {
@@ -226,47 +285,63 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
                 $discountPrice = number_format($row['p_price'] * ((100 - $row['p_discount']) / 100), 2);
                 echo "<td><s>$$row[p_price]</s> $$discountPrice (-$row[p_discount]%)";
             }
-            echo "<td>" . $row['upc'] . "</td>
 
             
-            <td><form method='post' action=''>
+            $customer_id2 = $_SESSION['customer'];   
+            $qcheck2 = $connect->query("select cart_quantity from shopping_cart where customer_id = ".$customer_id2." and upc = ".$row['upc']);
+
+            $int = 0;
+            
+            while($qrow= mysqli_fetch_array($qcheck2)){
+               
+                $int = $qrow['cart_quantity'];
+            }
+            
+            echo "<td>" . $row['upc'] . "</td>  <td>
+
+            
+           <form method='post' action='' '>
             <input type = 'hidden' name = 'add_upc' value= ".$row['upc'].">
             <input type = 'hidden' name = 'iquant' value= ".$row['p_quantity'].">";
            
             if ($row['p_quantity'] > 0) {
+                
                 echo '<select name = qp>';
                 for ($h = 1; $h <=$row['p_quantity']; $h++) 
                 {
                 echo '<option value='.$h.'>'.$h.'</option>';
                 }
                 echo '</select>';
-
-
-                echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart'/><br />";
+            
+                echo "<input type = 'submit' name = 'add_to_cart' value = 'Add to Cart' />";
+                if ($int > 0)
+                {
+                echo"$int in cart";
+                }
             } else {
                 echo "<p style='color:#ec0016;'>Out of Stock</p>";
             }
             echo "</td>
-            </form>
-            </tr>";
+            
+            </tr>
+            </form>";
         }
 
         }
         }
         echo "</table>";
+
+
+
+      
     }
-
-
-     
+    
  
 
-        
 
-  
 
     if(isset($_POST['add_to_cart'])) {
         
-    
        if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
         {
             ob_start();
@@ -276,13 +351,13 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
 
         $customer_id = $_SESSION['customer'];
         $quantity = $_POST['qp'];
-        $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
+        $qcheck = $connect->query("select cart_quantity from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
 
         $int = 0;
-
-        while($row = mysqli_fetch_array($qcheck)){
+            
+        while($row= mysqli_fetch_array($qcheck)){
            
-            $int = $int +1;
+            $int = $row['cart_quantity'];
         }
              
         if($quantity == 0)
@@ -294,49 +369,20 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
 
         else
         {
-     
-        
-       // $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantiy."')");
+             
         if ($int == 0) { 
             
             $connect->query("insert into shopping_cart (customer_id, upc, cart_quantity) values ('".$customer_id."', '".$_POST['add_upc']."', '".$quantity."')");
-            /*echo "cart updated";
-            $qcheck2 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-
-            while($row5 = mysqli_fetch_array($qcheck2)){
-                
-                echo( $row5['upc']);
-            
-            }
-
-*/
             $_SESSION['messages'][] = 'Item successfully added to cart!';
             header("Location:/product-catalog.php");
             
         }
 
         else{
-            
-           
-
-            //echo($_POST['iquant']);
-
-
-           // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
-            
-
-           // echo("select p_quantity from product where upc = ".$_POST['add_upc']);
-            //$q = mysqli_fetch_array($quancheck['p_quantity']); //quantity of product
-           // $cq = mysqli_fetch_array($qcheck['cart_quantity']);
-            //$qcheck3 = $connect->query("select * from shopping_cart where customer_id = '".$customer_id."' and upc = '".$_POST['add_upc'])."'";
-           /* while($row = mysqli_fetch_array($quancheck)){
-                echo"found a value: ";
-                echo ($row['p_quantity']);
-            }*/
-
+                  
             if( $_POST['iquant'] >= ($int + $quantity)){
              $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity." where upc = ".$_POST['add_upc']." and customer_id = ".$customer_id);
-             $_SESSION['messages'][] = 'Item successfully added to cart!';
+             $_SESSION['messages'][] = 'Cart Succesfully Updated!';
                 header("Location:/product-catalog.php");
                 
             }
@@ -345,33 +391,22 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
                 header("Location:/product-catalog.php");
         }
 
-            
+                     
 
-            
-          /*
-            if ($q >= $cq)
-            {
-               // $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity);
-                echo "item in cart";
-            }
-
-            else{
-                echo "You cannot add more than the available quantity";
-
-
-
-            }
-*/
         }
     }
+
+
+
+    
+
+
     }
 
 
 
 
-        #if upc already in cart run sql update
-        #else run sql insert into
-    
+     
 ?>
 
 <div class='footer'>
