@@ -311,7 +311,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
 
 */
             $_SESSION['messages'][] = 'Item successfully added to cart!';
-            header("Location:/product-catalog.php");
+            // header("Location:/product-catalog.php");
             
         }
 
