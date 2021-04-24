@@ -288,13 +288,13 @@ if(isset($_POST['catsel']))
 
             
             $customer_id2 = $_SESSION['customer'];   
-            $qcheck2 = $connect->query("select * from shopping_cart where customer_id = ".$customer_id2." and upc = ".$row['upc']);
+            $qcheck2 = $connect->query("select cart_quantity from shopping_cart where customer_id = ".$customer_id2." and upc = ".$row['upc']);
 
             $int = 0;
             
             while($qrow= mysqli_fetch_array($qcheck2)){
                
-                $int = $int +1;
+                $int = $qrow['cart_quantity'];
             }
             
             echo "<td>" . $row['upc'] . "</td>  <td>
@@ -341,8 +341,7 @@ if(isset($_POST['catsel']))
 
 
     if(isset($_POST['add_to_cart'])) {
-        echo"ARE WE ADDING TO CART?!??!?!";
-
+        
        if(!isset($_SESSION['customer'])) // If session is not set then redirect to Login Page
         {
             ob_start();
@@ -352,13 +351,13 @@ if(isset($_POST['catsel']))
 
         $customer_id = $_SESSION['customer'];
         $quantity = $_POST['qp'];
-        $qcheck = $connect->query("select * from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
+        $qcheck = $connect->query("select cart_quantity from shopping_cart where customer_id = ".$customer_id." and upc = ".$_POST['add_upc']);
 
         $int = 0;
-
-        while($row = mysqli_fetch_array($qcheck)){
+            
+        while($row= mysqli_fetch_array($qcheck)){
            
-            $int = $int +1;
+            $int = $row['cart_quantity'];
         }
              
         if($quantity == 0)
