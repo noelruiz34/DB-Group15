@@ -73,13 +73,13 @@ function displayCart($cust_id, $conn)
 
      $shipping_billing_row = mysqli_fetch_array($shipping_billing_result);
 
-     echo "<p style='text-align:center'> Shipping Address </p>";
+     echo "<h3 style='text-align:center'> Shipping Address </h3>";
      echo "<table>";
      echo "<tr><th>Street</th><th>City</th><th>Zip</th><th>State</th></tr>";
      echo "<tr><td>$shipping_billing_row[street]</td><td>$shipping_billing_row[city]</td><td>$shipping_billing_row[zip]</td><td>$shipping_billing_row[state]</td></tr>";
      echo "</table> <br>";
 
-     echo "<p style='text-align:center'> Payment Method </p>";
+     echo "<h3 style='text-align:center'> Payment Method </h3>";
      echo "<table>";
      echo "<tr><th>Card Number</th><th>Expiration Date</th><th>CVV</th></tr>";
      $last_four_digits = substr($shipping_billing_row['cc_num'], -4);
@@ -90,7 +90,7 @@ function displayCart($cust_id, $conn)
     
     $cart_results = mysqli_query($conn, $cart_sql);
     $cart_total = 0.0;
-    echo "<p style='text-align:center'> Cart Total </p>";
+    echo "<h3 style='text-align:center'> Cart Total </h3>";
     echo "<table>";
     echo "<tr><th> Product Name </th><th> Quantity </th><th> Price </th></tr> ";
     
@@ -130,7 +130,7 @@ function displayCart($cust_id, $conn)
     echo "</table>";
     echo "<br>
   
-       <h3 style='text-align:center;'>Total: $" . number_format($cart_total, 2) . "</h3>
+       <h2 style='text-align:center;'>Total: $" . number_format($cart_total, 2) . "</h2>
     ";
     $cart_total = number_format($cart_total, 2);
     if ($cart_total > 0.0)
