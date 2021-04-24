@@ -291,7 +291,8 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
         {
 
             $_SESSION['messages'][] = 'ERROR: Item is out of stock! Please check back later.';
-            header("Location:/product-catalog.php");
+            // header("Location:/product-catalog.php");
+            loadProducts();
         }
 
         else
@@ -313,7 +314,8 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
 
 */
             $_SESSION['messages'][] = 'Item successfully added to cart!';
-            header("Location:/product-catalog.php");
+            // header("Location:/product-catalog.php");
+            loadProducts();
             
         }
 
@@ -339,12 +341,14 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             if( $_POST['iquant'] >= ($int + $quantity)){
              $connect->query("update shopping_cart set cart_quantity = cart_quantity + ".$quantity." where upc = ".$_POST['add_upc']." and customer_id = ".$customer_id);
              $_SESSION['messages'][] = 'Item successfully added to cart!';
-                header("Location:/product-catalog.php");
+                // header("Location:/product-catalog.php");
+                loadProducts();
                 
             }
             else{
                 $_SESSION['messages'][] = 'ERROR: You cannot exceed the available quantity. Please choose a lower quantity.';
-                header("Location:/product-catalog.php");
+                // header("Location:/product-catalog.php");
+                loadProducts();
         }
 
             
