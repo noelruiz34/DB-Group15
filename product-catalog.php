@@ -256,7 +256,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             {
 //echo ($_POST['categories']);
         $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
-        loadProducts()
+        loadProducts();
     }
 
 
