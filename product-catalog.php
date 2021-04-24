@@ -179,6 +179,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     echo '</form></div>';
     function loadProducts()
     {
+        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
         echo "<table style='width:60%'>";
         echo "<tr><th> Name </th><th> Price </th><th> UPC </th><th></th></tr>";
        // echo (mysqli_num_rows($result2));
@@ -255,7 +256,7 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
             else
             {
 //echo ($_POST['categories']);
-        $result3 = $connect->query('select upc, p_name, p_price, p_quantity, p_discount from product where p_category = "' .$_POST['categories']. '" and  p_listed=1');
+        
         loadProducts();
     }
 
