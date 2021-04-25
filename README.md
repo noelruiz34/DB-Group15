@@ -16,7 +16,12 @@ This is a mock point-of-sale system website, conceived for a database class proj
   - Add update/products
   - Issue returns
 - Triggers
-  - !!!!ADD TRIGGERS!!!!
+1) When new order is created, the order status is intialized as “Processing”.
+2) After this new order is created, an email is generated to let the customer know that their order is on its way.
+3) When an order status gets updated (by an employee), if the new order status is not the same as the old order status then send a new email to let the customer's know of the update.
+4) If the inventory count of an item is less than or equal to 20 then send an email to employees to let them know so that they can be informed to add more inventory.
+5) When a refund is initiated a record of the time is kept.
+6) When a support ticket is created a timestamp is generated and the ticket status is initialized as “Needs Review”. 
 - Data queries
   - View product info for product update
   - Product catalog
