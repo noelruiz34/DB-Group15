@@ -11,7 +11,7 @@ if($connect->connect_error) {
 }
 
 session_start();
-$customer_id = $_SESSION['customer']
+// $customer_id = $_SESSION['customer']
 ?>
 
 

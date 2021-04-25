@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <?php 
-    include '../db.php';
+    $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
+    $dbUser = "admin";
+    $dbPass = "12345678";
+    $dbName = "Point_of_Sale";
+    
+    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+    if (!$connect) {
+        die('Could not connect: ' . mysqli_error($connect));
+    }
     session_start();
     if(!isset($_SESSION['employee'])) {
       header("Location:/employee/employee-login.php"); 

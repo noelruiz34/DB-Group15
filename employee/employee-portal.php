@@ -1,5 +1,13 @@
 <?php
-    include '../db.php';
+    $dbServername = "database-1.cgnsxr0vmecq.us-east-2.rds.amazonaws.com";
+    $dbUser = "admin";
+    $dbPass = "12345678";
+    $dbName = "Point_of_Sale";
+    
+    $connect = mysqli_connect($dbServername, $dbUser, $dbPass, $dbName);
+    if (!$connect) {
+        die('Could not connect: ' . mysqli_error($connect));
+    }
     session_start();
     if(!isset($_SESSION['employee'])) // If session is not set then redirect to Login Page
        {
@@ -21,6 +29,15 @@
                 $employee_id = $_SESSION['employee'];
                 $sql = "select * from Point_of_Sale.employee where employee_id = $employee_id";
                 $result = $connect->query($sql);
+
+                $count = count($result); # get count
+
+                if (!empty($count)) {
+                    return $result;
+                } 
+                else {
+                    return false;
+                }
 
                 if (mysqli_num_rows($result) > 0) {
 
