@@ -16,7 +16,9 @@ This is a mock point-of-sale system website, conceived for a database class proj
   - Add update/products
   - Issue returns
 - Triggers
-  - !!!!ADD TRIGGERS!!!!
+  - Trigger upon Order Creation and Status Update, row will be appended to pending_emails table. 
+  - Trigger upon Product dropping below set threshold (20) will append to pending_emails table.
+  - Trigger upon Product reaching 0 quantity. If any customer has the product in their shopping cart it will be removed. 
 - Data queries
   - View product info for product update
   - Product catalog
