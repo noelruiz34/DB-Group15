@@ -165,11 +165,12 @@ echo "<tr><td> Name </td><td> Price </td><td> UPC </td></tr>";
     $_SESSION['lbnd'];
 
     if(isset($_POST['catsel']))
-    {
-        $_SESSION['catty'] = $_POST['categories'];
-        $_SESSION['ubnd'] = $_POST['up'];
-        $_SESSION['lbnd'] =  $_POST['lp'];
-    }
+{
+    $_SESSION['catty'] = $_POST['categories'];
+    $_SESSION['ubnd'] = $_POST['up'];
+    $_SESSION['lbnd'] =  $_POST['lp'];
+    
+}
 
 if(!isset($_SESSION['catty']))
 {
@@ -177,6 +178,8 @@ if(!isset($_SESSION['catty']))
         $_SESSION['catty'] = 'All';
         $_SESSION['lbnd'] = 0;
         $_SESSION['ubnd'] =  1000000;
+    
+    
 }
 
 
