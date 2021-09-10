@@ -1,4 +1,5 @@
 # DB-Group15
+
 This is a mock point-of-sale system website, conceived for a database class project.
 
 [Check out the project on herokuapp](https://point-of-sale-group15.herokuapp.com/)
